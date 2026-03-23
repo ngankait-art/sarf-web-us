@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarf — Join the Waitlist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;
+  transition:background-color .5s ease,color .4s ease;
+}
+
+:root{
+  --gold:#F5A800;
+  --gold-light:#FFB800;
+  --gold-bright:#FFD055;
+  --gold-glow:rgba(245,168,0,0.12);
+  --gold-border:rgba(245,168,0,0.15);
+  --gold-accent:rgba(245,168,0,0.06);
+  --bg-deep:#070A10;
+  --bg-card:#0C0F18;
+  --bg-elevated:#111522;
+  --text-primary:#F0EBE0;
+  --text-secondary:rgba(240,235,224,0.72);
+  --text-muted:rgba(240,235,224,0.42);
+  --surface:rgba(255,255,255,0.03);
+  --surface-hover:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.06);
+  --border-gold:rgba(245,168,0,0.12);
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.4);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.5);
+  --shadow-gold:0 4px 24px rgba(245,168,0,0.2);
+  --nav-bg:rgba(7,10,16,0.85);
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+}
+
+.light{
+  --gold:#C8870A;
+  --gold-light:#D9960C;
+  --gold-bright:#E8A50E;
+  --gold-glow:rgba(200,135,10,0.08);
+  --gold-border:rgba(200,135,10,0.18);
+  --gold-accent:rgba(200,135,10,0.04);
+  --bg-deep:#F8F6F1;
+  --bg-card:#FFFFFF;
+  --bg-elevated:#FFFFFF;
+  --text-primary:#141821;
+  --text-secondary:rgba(20,24,33,0.64);
+  --text-muted:rgba(20,24,33,0.38);
+  --surface:rgba(0,0,0,0.025);
+  --surface-hover:rgba(0,0,0,0.05);
+  --border:rgba(0,0,0,0.06);
+  --border-gold:rgba(200,135,10,0.14);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.08);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.1);
+  --shadow-gold:0 4px 24px rgba(200,135,10,0.15);
+  --nav-bg:rgba(248,246,241,0.88);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border-gold);border-radius:99px;}
+
+/* Transitions for theme switching */
+body,nav,.strip,.strip-card,.compare-sec,.why-sec,.bottom,.feat,
+.modal,.compare-table-wrap,.ct-row,footer,input,textarea{
+  transition:background-color .45s ease,border-color .35s ease,color .35s ease,box-shadow .35s ease;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+[dir="rtl"] body{font-family:'Tajawal',sans-serif;}
+[dir="rtl"] p,[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,
+[dir="rtl"] button,[dir="rtl"] label{font-family:'Tajawal',sans-serif;}
+
+.nav-brand,.f-brand-name{
+  font-family:'Inter',sans-serif !important;
+  font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+}
+.phone-inner,.phone-inner *{
+  font-family:'DM Sans',sans-serif !important;
+  direction:ltr !important;text-align:left !important;
+}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px) saturate(1.4);
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--border);
+}
+@media(max-width:580px){nav{padding:0 18px;height:56px;}}
+
+.nav-left{display:flex;align-items:center;gap:10px;}
+.nav-logo-img{
+  width:34px;height:34px;border-radius:50%;
+  box-shadow:0 0 20px rgba(245,168,0,0.25),0 0 0 1px rgba(245,168,0,0.15);
+  object-fit:cover;
+}
+.nav-brand{font-size:13px;color:var(--text-primary);letter-spacing:0.28em;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+
+.nav-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:999px;padding:7px 14px;
+  font-size:12px;cursor:pointer;border:none;
+  transition:all .25s ease;white-space:nowrap;line-height:1;
+}
+.theme-btn{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text-secondary);
+  font-family:'DM Sans',sans-serif;
+}
+[dir="rtl"] .theme-btn{font-family:'Tajawal',sans-serif;}
+.theme-btn svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.theme-btn:hover{background:var(--surface-hover);border-color:var(--border-gold);}
+
+.lang-btn{
+  background:var(--gold-glow);
+  border:1px solid var(--border-gold);
+  color:var(--gold);
+}
+.lang-btn.showing-arabic{font-family:'Tajawal',sans-serif;font-size:13px;}
+.lang-btn.showing-english{font-family:'Inter',sans-serif;font-weight:600;font-size:11px;}
+.lang-btn:hover{background:rgba(245,168,0,0.14);border-color:rgba(245,168,0,0.3);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:120px 80px 80px;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:64px;
+  position:relative;overflow:hidden;
+  background:var(--bg-deep);
+}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;}
+  .phone-wrap{display:none;}
+}
+
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(245,168,0,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,168,0,0.025) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 15% 45%,rgba(245,168,0,0.07) 0%,transparent 60%);
+}
+[dir="rtl"] .hero-glow{
+  background:radial-gradient(ellipse 60% 50% at 85% 45%,rgba(245,168,0,0.07) 0%,transparent 60%);
+}
+.hero-glow2{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 45% 35% at 85% 55%,rgba(245,168,0,0.025) 0%,transparent 55%);
+}
+[dir="rtl"] .hero-glow2{
+  background:radial-gradient(ellipse 45% 35% at 15% 55%,rgba(245,168,0,0.025) 0%,transparent 55%);
+}
+.hero-fade{
+  position:absolute;bottom:0;left:0;right:0;height:160px;pointer-events:none;
+  background:linear-gradient(to top,var(--bg-deep),transparent);
+}
+
+.hero-text{position:relative;z-index:1;}
+[dir="rtl"] .hero{direction:rtl;}
+[dir="rtl"] .hero-text{text-align:right;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-glow);
+  border:1px solid var(--border-gold);
+  border-radius:999px;padding:7px 16px;
+  font-size:12px;color:var(--gold-light);
+  margin-bottom:28px;
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:0.04em;
+}
+[dir="rtl"] .hero-badge{font-family:'Tajawal',sans-serif;letter-spacing:0;}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+  animation:pulse-glow 2.4s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 0 0 0 rgba(245,168,0,0.4);}
+  50%{box-shadow:0 0 8px 4px rgba(245,168,0,0.6);}
+}
+
+h1{
+  font-size:clamp(44px,5vw,68px);
+  line-height:1.12;font-weight:700;
+  margin-bottom:22px;
+  font-family:'DM Sans',sans-serif;
+  color:var(--text-primary);
+  letter-spacing:-0.01em;
+}
+[dir="rtl"] h1{font-family:'Tajawal',sans-serif;line-height:1.4;letter-spacing:0;}
+h1 em{
+  display:block;font-style:normal;
+  background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+[dir="rtl"] h1 em{font-family:'Tajawal',sans-serif;}
+
+.hero-sub{
+  font-size:17px;color:var(--text-secondary);
+  line-height:1.8;margin-bottom:40px;
+  max-width:30rem;font-weight:400;
+  font-family:'DM Sans',sans-serif;
+}
+[dir="rtl"] .hero-sub{font-family:'Tajawal',sans-serif;line-height:2;}
+@media(max-width:900px){.hero-sub{margin-left:auto;margin-right:auto;margin-bottom:36px;}}
+
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#F5A800 0%,#FFC53D 50%,#F5A800 100%);
+  background-size:200% 100%;
+  color:#07090E;font-weight:700;font-size:14px;
+  padding:16px 36px;border-radius:14px;border:none;cursor:pointer;
+  box-shadow:var(--shadow-gold),inset 0 1px 0 rgba(255,255,255,0.2);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  font-family:'DM Sans',sans-serif;
+  position:relative;overflow:hidden;
+}
+[dir="rtl"] .cta-btn{font-family:'Tajawal',sans-serif;}
+.cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0) 100%);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.cta-btn:hover::before{transform:translateX(100%);}
+.cta-btn:hover{
+  box-shadow:0 8px 40px rgba(245,168,0,0.45),inset 0 1px 0 rgba(255,255,255,0.2);
+  transform:translateY(-2px);
+  background-position:100% 0;
+}
+.cta-btn:active{transform:translateY(0) scale(0.98);}
+.cta-arrow{font-size:14px;display:inline-block;transition:transform .25s;}
+.cta-btn:hover .cta-arrow{transform:translateX(3px);}
+[dir="rtl"] .cta-btn:hover .cta-arrow{transform:translateX(-3px);}
+
+.hero-disclaimer{
+  margin-top:16px;font-size:12px;
+  color:var(--text-muted);
+  font-family:'DM Sans',sans-serif;
+}
+[dir="rtl"] .hero-disclaimer{font-family:'Tajawal',sans-serif;}
+
+/* ── PHONE MOCKUP ── */
+.phone-wrap{
+  position:relative;z-index:1;
+  display:flex;justify-content:center;align-items:center;
+  perspective:1200px;
+}
+.phone-ambient{
+  position:absolute;width:320px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(245,168,0,0.14) 0%,transparent 65%);
+  filter:blur(56px);pointer-events:none;
+}
+.phone{
+  width:310px;border-radius:48px;padding:2.5px;
+  background:linear-gradient(160deg,rgba(245,168,0,0.85) 0%,rgba(180,120,0,0.35) 40%,rgba(245,168,0,0.65) 100%);
+  box-shadow:
+    0 0 0 1px rgba(245,168,0,0.1),
+    0 50px 100px rgba(0,0,0,0.6),
+    0 20px 60px rgba(0,0,0,0.4),
+    0 0 80px rgba(245,168,0,0.08);
+  will-change:transform;cursor:grab;
+}
+.phone:active{cursor:grabbing;}
+.phone-inner{
+  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
+  border-radius:46px;padding:16px;position:relative;overflow:hidden;
+}
+.phone-inner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,208,85,0.25),transparent);
+}
+.phone-glare{display:none;}
+.notch{
+  width:76px;height:20px;background:#000;
+  border-radius:0 0 14px 14px;margin:0 auto 14px;
+}
+.p-screen{
+  background:#10121a;border-radius:16px;
+  padding:14px;margin-bottom:8px;
+}
+.p-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,228,217,0.28);margin-bottom:5px;}
+.p-amount{font-size:26px;font-weight:500;color:#F2EDE3;margin-bottom:8px;}
+.p-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.22);
+  border-radius:6px;padding:3px 9px;
+  color:#F5A800;font-size:10px;font-weight:500;margin-bottom:10px;
+}
+.p-pill-dot{width:5px;height:5px;border-radius:50%;background:#F5A800;flex-shrink:0;}
+.p-divider{border:none;border-top:1px solid rgba(255,255,255,0.05);margin:10px 0;}
+.p-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.p-row-label{font-size:10px;color:rgba(232,228,217,0.3);}
+.p-row-val{font-size:11px;font-weight:500;}
+.p-row-val.white{color:#F2EDE3;}
+.p-row-val.gold{color:#F5A800;}
+.p-row-val.green{color:#7ec48a;}
+.p-note{font-size:9px;color:rgba(232,228,217,0.22);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04);}
+.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.p-stat{background:#10121a;border-radius:10px;padding:11px;}
+.p-stat-val{font-size:14px;font-weight:500;margin-bottom:2px;}
+.p-stat-val.gold{color:#F5A800;}
+.p-stat-val.green{color:#7ec48a;}
+.p-stat-val.blue{color:#7ab3e0;}
+.p-stat-lbl{font-size:9px;color:rgba(232,228,217,0.28);}
+.p-bar{background:#10121a;border-radius:10px;padding:12px;}
+.p-bar-lbl{font-size:9px;color:rgba(232,228,217,0.28);margin-bottom:8px;}
+.p-bar-track{background:#1a1c24;border-radius:4px;height:4px;overflow:hidden;margin-bottom:5px;}
+.p-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#F5A800,#FFD055);width:0%;transition:width 1.8s cubic-bezier(.22,1,.36,1);}
+.p-bar-row{display:flex;justify-content:space-between;font-size:8px;color:rgba(232,228,217,0.18);}
+.p-home{width:36px;height:4px;background:rgba(232,228,217,0.08);border-radius:2px;margin:12px auto 0;}
+
+/* ── TRUST STRIP (below hero) ── */
+.trust-strip{
+  padding:20px 40px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;gap:32px;
+  flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--text-muted);
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:0.02em;
+}
+[dir="rtl"] .trust-item{font-family:'Tajawal',sans-serif;}
+.trust-item svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;opacity:0.7;}
+@media(max-width:580px){
+  .trust-strip{padding:16px 20px;gap:16px;}
+  .trust-item{font-size:10px;}
+}
+
+/* ── FEATURE STRIP ── */
+.strip{
+  border-bottom:1px solid var(--border);
+  background:var(--bg-deep);
+  padding:72px 40px;
+}
+.strip-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+@media(max-width:900px){.strip-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.strip-inner{grid-template-columns:1fr;}}
+.strip-card{
+  border-radius:var(--radius-md);padding:24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.strip-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,var(--gold-accent),transparent 70%);
+  opacity:0;transition:opacity .3s;
+}
+.strip-card:hover::before{opacity:1;}
+.strip-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--border-gold);
+  box-shadow:var(--shadow-md);
+}
+.strip-icon{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  position:relative;z-index:1;
+}
+.strip-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.strip-label{font-size:22px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+[dir="rtl"] .strip-label{font-family:'Tajawal',sans-serif;}
+.strip-sub{font-size:13px;color:var(--text-muted);margin-top:3px;position:relative;z-index:1;}
+[dir="rtl"] .strip-sub{font-family:'Tajawal',sans-serif;}
+
+/* ── SHARED SECTION STYLES ── */
+.sec-badge{
+  display:inline-flex;align-items:center;
+  border:1px solid var(--border-gold);
+  background:var(--gold-glow);color:var(--gold);
+  font-size:11px;border-radius:999px;padding:5px 16px;
+  font-family:'DM Sans',sans-serif;letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:18px;font-weight:500;
+}
+[dir="rtl"] .sec-badge{font-family:'Tajawal',sans-serif;letter-spacing:0;text-transform:none;}
+.sec-heading{
+  font-size:clamp(28px,3.5vw,40px);font-weight:700;
+  color:var(--text-primary);text-align:center;
+  margin-bottom:14px;
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:-0.01em;
+}
+[dir="rtl"] .sec-heading{font-family:'Tajawal',sans-serif;letter-spacing:0;}
+.gold-word{
+  background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-intro{
+  font-size:16px;color:var(--text-secondary);
+  text-align:center;max-width:640px;margin:0 auto 52px;
+  line-height:1.8;
+}
+[dir="rtl"] .sec-intro{font-family:'Tajawal',sans-serif;line-height:2;}
+
+/* ── COMPARE SECTION ── */
+.compare-sec{
+  padding:88px 40px;
+  background:var(--bg-deep);
+  position:relative;
+}
+.compare-sec::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-accent),transparent 70%);
+  filter:blur(80px);pointer-events:none;
+}
+.compare-inner{max-width:1280px;margin:0 auto;text-align:center;position:relative;}
+.compare-table-wrap{
+  max-width:920px;margin:0 auto;
+  border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--bg-card);
+  box-shadow:var(--shadow-md);
+}
+.ct-head{
+  display:grid;grid-template-columns:1.6fr 1.2fr 2fr 1.4fr;
+  background:var(--gold-accent);
+  border-bottom:1px solid var(--border);
+}
+.ct-head>div{
+  padding:14px 20px;
+  font-size:11px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-muted);
+  font-family:'Inter',sans-serif;
+}
+.ct-row{
+  display:grid;grid-template-columns:1.6fr 1.2fr 2fr 1.4fr;
+  border-bottom:1px solid var(--border);
+}
+.ct-row:last-of-type{border-bottom:none;}
+.ct-row:hover{background:var(--surface-hover);}
+.ct-row>div{padding:14px 20px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text-primary);}
+.ct-row.sarf{
+  background:var(--gold-accent);
+  border-left:3px solid var(--gold);
+}
+[dir="rtl"] .ct-row.sarf{border-left:none;border-right:3px solid var(--gold);}
+.ct-name{font-weight:600;display:flex;flex-direction:column;gap:5px;}
+.sarf-name{color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;letter-spacing:0.12em;text-transform:uppercase;}
+.ct-badge{
+  display:inline-block;align-self:flex-start;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  color:var(--gold);font-size:10px;border-radius:999px;padding:2px 10px;font-weight:500;
+}
+.ct-rate{font-weight:600;}
+.ct-rate.gold{color:var(--gold);}
+.ct-rate.na{color:var(--text-muted);}
+.ct-type{color:var(--text-muted);}
+.ct-type.good{color:var(--text-primary);}
+.ct-status{color:var(--text-muted);}
+.ct-status.wl{color:var(--gold);font-weight:600;cursor:pointer;transition:opacity .2s;}
+.ct-status.wl:hover{opacity:0.8;}
+.ct-foot-row{
+  padding:12px 20px;font-size:11px;color:var(--text-muted);
+  border-top:1px solid var(--border);
+  font-style:italic;text-align:left;
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+}
+[dir="rtl"] .ct-foot-row{text-align:right;font-family:'Tajawal',sans-serif;}
+@media(max-width:700px){
+  .ct-head,.ct-row{grid-template-columns:1.5fr 1fr;}
+  .ct-head>div:nth-child(3),.ct-head>div:nth-child(4),
+  .ct-row>div:nth-child(3),.ct-row>div:nth-child(4){display:none;}
+}
+
+/* ── WHY SARF SECTION ── */
+.why-sec{
+  padding:88px 40px;
+  background:var(--bg-deep);
+}
+.why-inner{max-width:1280px;margin:0 auto;text-align:center;}
+.feat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  text-align:left;
+}
+[dir="rtl"] .feat-grid{text-align:right;}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.feat-grid{grid-template-columns:1fr;}}
+.feat{
+  border-radius:var(--radius-lg);padding:28px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:all .35s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.feat::after{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at center,var(--gold-accent),transparent 50%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.feat:hover::after{opacity:1;}
+.feat:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--border-gold);
+}
+.feat-icon-wrap{
+  width:44px;height:44px;border-radius:14px;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  position:relative;z-index:1;
+}
+.feat-icon-wrap svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.feat-tag{
+  display:inline-block;
+  border:1px solid var(--border-gold);
+  background:var(--gold-glow);color:var(--gold);
+  font-size:10px;border-radius:999px;padding:3px 12px;
+  margin-bottom:14px;font-family:'DM Sans',sans-serif;
+  font-weight:500;position:relative;z-index:1;
+}
+[dir="rtl"] .feat-tag{font-family:'Tajawal',sans-serif;}
+.feat-t{font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:10px;font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+[dir="rtl"] .feat-t{font-family:'Tajawal',sans-serif;}
+.feat-d{font-size:14px;color:var(--text-secondary);line-height:1.75;font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+[dir="rtl"] .feat-d{font-family:'Tajawal',sans-serif;line-height:2;}
+
+/* ── BOTTOM CTA ── */
+.bottom{
+  padding:96px 24px 100px;text-align:center;
+  border-top:1px solid var(--border);
+  background:var(--bg-deep);
+  position:relative;overflow:hidden;
+}
+.bottom::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-accent),transparent 70%);
+  filter:blur(100px);pointer-events:none;
+}
+.bottom h2{
+  font-size:clamp(28px,4vw,52px);
+  color:var(--text-primary);margin-bottom:14px;font-weight:700;
+  font-family:'DM Sans',sans-serif;
+  position:relative;letter-spacing:-0.01em;
+}
+[dir="rtl"] .bottom h2{font-family:'Tajawal',sans-serif;letter-spacing:0;}
+.bottom p{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.8;position:relative;}
+[dir="rtl"] .bottom p{font-family:'Tajawal',sans-serif;}
+.bottom-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+  color:#07090E;font-weight:700;font-size:14px;
+  padding:16px 44px;border-radius:14px;border:none;cursor:pointer;
+  box-shadow:var(--shadow-gold);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  font-family:'DM Sans',sans-serif;
+  position:relative;
+}
+[dir="rtl"] .bottom-btn{font-family:'Tajawal',sans-serif;}
+.bottom-btn:hover{box-shadow:0 8px 40px rgba(245,168,0,0.45);transform:translateY(-3px);}
+.bottom-btn:active{transform:translateY(0) scale(0.98);}
+.b-note{font-size:11px;color:var(--text-muted);margin-top:18px;position:relative;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:28px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg-deep);
+}
+.f-brand{display:flex;align-items:center;gap:8px;}
+.f-brand-img{width:24px;height:24px;border-radius:50%;object-fit:cover;}
+.f-brand-name{font-size:12px;color:var(--text-primary);}
+.f-txt{font-size:12px;color:var(--text-muted);}
+[dir="rtl"] .f-txt{font-family:'Tajawal',sans-serif;}
+@media(max-width:580px){footer{flex-direction:column;gap:12px;text-align:center;padding:20px;}}
+
+/* ── MODAL ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  max-width:448px;width:100%;
+  border-radius:var(--radius-lg);border:1px solid var(--border);
+  background:var(--bg-card);
+  box-shadow:var(--shadow-lg),0 0 60px rgba(245,168,0,0.06);
+  max-height:90vh;overflow-y:auto;
+  animation:modalIn .35s cubic-bezier(.22,1,.36,1);
+}
+@keyframes modalIn{
+  from{opacity:0;transform:scale(.96) translateY(16px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+.modal-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:24px 28px;border-bottom:1px solid var(--border);gap:16px;
+}
+.modal-title{font-size:18px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;}
+[dir="rtl"] .modal-title{font-family:'Cairo',sans-serif;}
+.modal-sub{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.5;}
+[dir="rtl"] .modal-sub{font-family:'Cairo',sans-serif;}
+.modal-close{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-muted);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;line-height:1;
+}
+.modal-close:hover{transform:scale(1.1);border-color:var(--border-gold);color:var(--text-primary);}
+.modal-body{padding:24px 28px;}
+.field{margin-bottom:18px;}
+label{
+  display:block;font-size:12px;font-weight:600;
+  color:var(--text-secondary);margin-bottom:7px;
+  font-family:'DM Sans',sans-serif;
+}
+[dir="rtl"] label{font-family:'Cairo',sans-serif;}
+.req{color:var(--gold);margin-inline-start:2px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+input,textarea{
+  width:100%;padding:11px 14px;border-radius:var(--radius-sm);
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  font-size:13px;color:var(--text-primary);
+  font-family:'DM Sans',sans-serif;
+  outline:none;transition:all .25s;resize:vertical;
+}
+[dir="rtl"] input,[dir="rtl"] textarea{font-family:'Cairo',sans-serif;}
+input[type="email"],input[type="tel"]{direction:ltr;text-align:left;font-family:'DM Sans',sans-serif !important;}
+input::placeholder,textarea::placeholder{color:var(--text-muted);opacity:.7;}
+input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
+#form-error{font-size:12px;color:#ef4444;margin-bottom:12px;display:none;text-align:center;}
+.submit-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+  color:#07090E;font-weight:700;font-size:14px;
+  border:none;border-radius:12px;cursor:pointer;
+  box-shadow:var(--shadow-gold);
+  font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .25s cubic-bezier(.22,1,.36,1);
+}
+[dir="rtl"] .submit-btn{font-family:'Cairo',sans-serif;}
+.submit-btn:hover:not(:disabled){transform:scale(1.02);box-shadow:0 6px 28px rgba(245,168,0,0.4);}
+.submit-btn:active:not(:disabled){transform:scale(.97);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;}
+.submit-spinner{
+  width:16px;height:16px;border:2px solid rgba(0,0,0,0.2);
+  border-top-color:#07090E;border-radius:50%;
+  animation:spin .6s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.modal-success{display:none;text-align:center;padding:48px 28px;}
+.success-icon{width:56px;height:56px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;}
+.success-icon svg{width:56px;height:56px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.s-title{font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+[dir="rtl"] .s-title{font-family:'Cairo',sans-serif;}
+.s-msg{font-size:14px;color:var(--text-secondary);}
+[dir="rtl"] .s-msg{font-family:'Cairo',sans-serif;}
+
+/* ── REVEAL ── */
+.reveal{
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.on{opacity:1 !important;transform:none !important;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:580px){
+  .compare-sec,.why-sec{padding-left:20px;padding-right:20px;}
+  .strip{padding:48px 20px;}
+  footer{padding:20px;}
+}
+
+/* ── PREFERS-COLOR-SCHEME: auto light mode support ── */
+@media(prefers-color-scheme:light){
+  html:not(.dark-forced):not(:has(body)) .light{
+    /* OS-level light mode respected when user hasn't manually toggled */
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-left">
+    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="Sarf" class="nav-logo-img">
+    <span class="nav-brand">Sarf</span>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn theme-btn" id="theme-btn" onclick="toggleTheme()">
+      <svg id="theme-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <span id="theme-label">Light</span>
+    </button>
+    <button class="nav-btn lang-btn showing-arabic" id="lang-btn" onclick="toggleLang()">العربية</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-fade"></div>
+
+  <div class="hero-text">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span id="tag-text">Waitlist Open · المملكة العربية السعودية</span>
+    </div>
+    <h1 id="hero-h1">Get financing<br>matched to your<br><em>salary.</em></h1>
+    <p class="hero-sub" id="hero-sub">Connect your bank. Get your rate in 60 seconds. Repay a fixed agreed amount — no hidden fees, no admin charges, no branch visit required.</p>
+    <button class="cta-btn" id="hero-btn" onclick="openModal()">Join Waitlist <span class="cta-arrow">→</span></button>
+    <p class="hero-disclaimer" id="note-text">No spam &nbsp;·&nbsp; Waitlist only &nbsp;·&nbsp; Unsubscribe anytime</p>
+  </div>
+
+  <!-- PHONE MOCKUP -->
+  <div class="phone-wrap">
+    <div class="phone-ambient"></div>
+    <div class="phone" id="phone-el">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="p-screen">
+          <div class="p-lbl" id="ph-lbl">My Financing</div>
+          <div class="p-amount">SAR 25,000</div>
+          <div class="p-pill"><span class="p-pill-dot"></span>11.4% <span id="ph-rate">fixed rate</span></div>
+          <div class="p-divider"></div>
+          <div class="p-row"><span class="p-row-label" id="ph-r1">You receive</span><span class="p-row-val white">SAR 25,000</span></div>
+          <div class="p-row"><span class="p-row-label" id="ph-r2">Fixed total repayment</span><span class="p-row-val gold">SAR 27,850</span></div>
+          <div class="p-row"><span class="p-row-label" id="ph-r3">Admin fees</span><span class="p-row-val green">SAR 0</span></div>
+          <div class="p-row"><span class="p-row-label" id="ph-r4">Salary transfer</span><span class="p-row-val green" id="ph-v4">Not required</span></div>
+          <div class="p-row"><span class="p-row-label" id="ph-r5">Hidden charges</span><span class="p-row-val green" id="ph-v5">None</span></div>
+          <div class="p-note" id="ph-note">Total agreed and locked on day one. Repaid monthly over 12 months matched to your salary dates.</div>
+        </div>
+        <div class="p-stats">
+          <div class="p-stat"><div class="p-stat-val gold">60 sec</div><div class="p-stat-lbl" id="ph-s1">Rate decision</div></div>
+          <div class="p-stat"><div class="p-stat-val green">SAR 0</div><div class="p-stat-lbl" id="ph-s2">Admin fees</div></div>
+          <div class="p-stat"><div class="p-stat-val blue">Fixed</div><div class="p-stat-lbl" id="ph-s3">Total repayment</div></div>
+          <div class="p-stat"><div class="p-stat-val gold">Open</div><div class="p-stat-lbl" id="ph-s4">To all borrowers</div></div>
+        </div>
+        <div class="p-bar">
+          <div class="p-bar-lbl" id="ph-score">Repayment Strength Score</div>
+          <div class="p-bar-track"><div class="p-bar-fill" id="p-bar-fill"></div></div>
+          <div class="p-bar-row"><span id="pb-1">Building</span><span id="pb-2">Strong</span><span id="pb-3">Excellent</span></div>
+        </div>
+        <div class="p-home"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip" id="trust-strip">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span id="tr-1">Bank-grade encryption</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span id="tr-2">Open banking verified</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <span id="tr-3">No data sold to third parties</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span id="tr-4">SAMA regulated framework</span>
+  </div>
+</div>
+
+<!-- FEATURE STRIP -->
+<section class="strip">
+  <div class="strip-inner">
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="strip-label" id="sl-1">60 sec</div>
+      <div class="strip-sub" id="ss-1">Rate decision</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div class="strip-label" id="sl-2">SAR 0</div>
+      <div class="strip-sub" id="ss-2">Admin fees</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="strip-label" id="sl-3">Fixed</div>
+      <div class="strip-sub" id="ss-3">Rate type</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="strip-label" id="sl-4">Open</div>
+      <div class="strip-sub" id="ss-4">To all currently</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE SECTION -->
+<section class="compare-sec">
+  <div class="compare-inner">
+    <div class="sec-badge" id="cmp-lbl">Compare</div>
+    <h2 class="sec-heading reveal" id="cmp-h">See how SARF <span class="gold-word">compares</span></h2>
+    <p class="sec-intro reveal" id="cmp-p">Most Saudi bank personal finance products offer better rates only when you transfer your salary to them — and charge admin fees on top. Sarf uses open banking to read your income wherever your salary lands, with a fixed total agreed on day one.</p>
+    <div class="compare-table-wrap reveal">
+      <div class="ct-head">
+        <div id="th-1">Lender</div>
+        <div id="th-2">Rate</div>
+        <div id="th-3">Structure</div>
+        <div id="th-4">Who can apply</div>
+      </div>
+      <div class="ct-row sarf">
+        <div class="ct-name"><span class="sarf-name">Sarf</span><span class="ct-badge" id="wl-badge">Waitlist open</span></div>
+        <div class="ct-rate gold">8–16% <span id="ct-fixed">fixed total</span></div>
+        <div class="ct-type good" id="ct-s1">Fixed — agreed day one</div>
+        <div class="ct-status wl" onclick="openModal()" id="ct-join">Join waitlist →</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-arj">Al Rajhi Bank</div>
+        <div class="ct-rate" id="cr-arj">17–22% profit rate equiv.</div>
+        <div class="ct-type" id="ct-arj">Best rates require salary transfer &amp; approved employer</div>
+        <div class="ct-status" id="ct-arj2">Min SAR 5,000 salary</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-snb">Saudi National Bank</div>
+        <div class="ct-rate" id="cr-snb">16–20% profit rate equiv.</div>
+        <div class="ct-type" id="ct-snb">Best rates via salary transfer. Admin fee 1% + 15% VAT</div>
+        <div class="ct-status" id="ct-snb2">Non-transfer option at higher rate</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-ryad">Riyad Bank</div>
+        <div class="ct-rate" id="cr-ryad">17–21% profit rate equiv.</div>
+        <div class="ct-type" id="ct-ryad">Best rates require salary transfer + admin fee</div>
+        <div class="ct-status" id="ct-ryad2">Non-transfer option available</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-lendo">Lendo</div>
+        <div class="ct-rate na" id="ct-lendo">Not for individuals</div>
+        <div class="ct-type" id="ct-lendo2">SME invoice financing only</div>
+        <div class="ct-status" id="ct-lendo3">Businesses only</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-tam">Tamara / Tabby</div>
+        <div class="ct-rate na" id="ct-tam">Buy now pay later</div>
+        <div class="ct-type" id="ct-tam2">Retail purchases only</div>
+        <div class="ct-status" id="ct-tam3">Not personal financing</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name" id="bn-stc">STC Pay / stc bank</div>
+        <div class="ct-rate" id="ct-stc">Limited personal financing</div>
+        <div class="ct-type" id="ct-stc2">STC customers only</div>
+        <div class="ct-status" id="ct-stc3">Restricted eligibility</div>
+      </div>
+      <div class="ct-foot-row" id="ct-foot">Saudi bank rates are Murabaha/Tawarruq profit rates shown as effective annual equivalents for comparison. Sarf rate is projected based on comparable income-linked benchmarks. Subject to SAMA licensing and underwriting at launch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SARF SECTION -->
+<section class="why-sec">
+  <div class="why-inner">
+    <div class="sec-badge" id="why-lbl">Why Sarf</div>
+    <h2 class="sec-heading reveal" id="why-h">Personal financing. <span class="gold-word">Reimagined.</span></h2>
+    <p class="sec-intro reveal" id="why-p">Saudi banks have offered the same personal finance product for decades. Sarf uses open banking and income data to give you a faster, fairer, and more transparent experience.</p>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span class="feat-tag" id="f1tag">Instant Decision</span>
+        <div class="feat-t" id="f1t">Rate in 60 seconds</div>
+        <div class="feat-d" id="f1d">Connect your bank account. Sarf reads your income, cash flow, and financial behavior in seconds. No paperwork, no branch visit, no waiting weeks for approval.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="feat-tag" id="f2tag">Your Salary Stays Yours</span>
+        <div class="feat-t" id="f2t">No salary transfer required</div>
+        <div class="feat-d" id="f2d">Most Saudi banks give their best rates only when you transfer your salary to them. Sarf uses open banking to verify your income wherever your salary lands — no transfer required, same great rate.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="feat-tag" id="f3tag">No Surprises</span>
+        <div class="feat-t" id="f3t">Fixed total — agreed day one</div>
+        <div class="feat-d" id="f3d">Your total repayment is locked when you sign. SAR 25,000 borrowed means SAR 27,850 repaid — total, fixed, agreed upfront. No monthly recalculations.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <span class="feat-tag" id="f4tag">Launching Soon</span>
+        <div class="feat-t" id="f4t">Builds your Sarf score</div>
+        <div class="feat-d" id="f4d">Every on-time repayment improves your Sarf Repayment Strength Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom">
+  <h2 class="reveal" id="btm-h">Financing that works<br>for <em style="color:var(--gold);">everyone.</em></h2>
+  <p class="reveal" id="btm-p">Better rates. Fixed total. No admin fees.</p>
+  <button class="bottom-btn reveal" onclick="openModal()">
+    <span id="btm-btn-text">Join Waitlist</span>
+  </button>
+  <p class="b-note reveal">contact@sarf.space &nbsp;&#183;&nbsp; sarfspace.com</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">
+    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="Sarf" class="f-brand-img">
+    <span class="f-brand-name">Sarf</span>
+  </div>
+  <div class="f-txt" id="footer-txt">© 2026 Sarf Technology Inc. · Structures, tracks, and enforces personal loans.</div>
+</footer>
+
+<!-- WAITLIST MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="m-title">Join the Waitlist</div>
+        <div class="modal-sub" id="m-sub">Be first to access Sarf when we launch. Takes 30 seconds.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&#215;</button>
+    </div>
+    <div id="modal-form-wrap">
+      <div class="modal-body">
+        <div class="field">
+          <label id="l-email">Email address <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="you@example.com" dir="ltr">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label id="l-name">Full name <span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label id="l-phone">Phone number <span class="req">*</span><span id="l-optional" style="font-weight:400;margin-inline-start:4px;"></span></label>
+            <input type="tel" id="f-phone" placeholder="+966 5X XXX XXXX" dir="ltr">
+          </div>
+        </div>
+        <div class="field">
+          <label id="l-company">Company <span id="l-optional2" style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <input type="text" id="f-company" placeholder="Your company name">
+        </div>
+        <div class="field">
+          <label id="l-message">Message <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <textarea id="f-message" rows="3" placeholder="Tell us what you need financing for..."></textarea>
+        </div>
+        <div id="form-error"></div>
+        <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+          <span id="btn-text">Confirm & Join</span>
+          <span class="submit-spinner" id="submit-spinner"></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="s-title" id="s-title">You're on the list!</div>
+      <div class="s-msg" id="s-msg">We'll be in touch soon.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+var SCRIPT_URL = 'https://sheetdb.io/api/v1/xrkeaduauvp0q';
+var isAr = true;
+var isLight = false;
+
+var t = {
+  en: {
+    langBtn: 'العربية',
+    themeLight: 'Light', themeDark: 'Dark',
+    tag: 'Waitlist Open · المملكة العربية السعودية',
+    h1: 'Get financing<br>matched to your<br><em>salary.</em>',
+    sub: 'Connect your bank. Get your rate in 60 seconds. Repay a fixed agreed amount — no hidden fees, no admin charges, no branch visit required.',
+    heroBtnText: 'Join Waitlist <span class="cta-arrow">→</span>',
+    note: 'No spam &nbsp;·&nbsp; Waitlist only &nbsp;·&nbsp; Unsubscribe anytime',
+    sl1:'60 sec', ss1:'Rate decision',
+    sl2:'SAR 0', ss2:'Admin fees',
+    sl3:'Fixed', ss3:'Rate type',
+    sl4:'Open', ss4:'To all currently',
+    modalTitle: 'Join the Waitlist',
+    modalSub: 'Be first to access Sarf when we launch. Takes 30 seconds.',
+    lEmail: 'Email address', lName: 'Full name', lPhone: 'Phone number',
+    lCompany: 'Company', lMessage: 'Message', lOptional: '(optional)',
+    phonePh: '+966 5X XXX XXXX', companyPh: 'Your company name',
+    messagePh: 'Tell us what you need financing for...',
+    submitBtn: 'Confirm & Join',
+    successTitle: "You're on the list!", successMsg: "We'll be in touch soon.",
+    phLbl: 'My Financing', phRate: 'fixed rate',
+    phR1: 'You receive', phR2: 'Fixed total repayment', phR3: 'Admin fees',
+    phR4: 'Salary transfer', phV4: 'Not required', phR5: 'Hidden charges', phV5: 'None',
+    phNote: 'Total agreed and locked on day one. Repaid monthly over 12 months matched to your salary dates.',
+    phS1: 'Rate decision', phS2: 'Admin fees', phS3: 'Total repayment', phS4: 'To all borrowers',
+    phScore: 'Repayment Strength Score', pb1: 'Building', pb2: 'Strong', pb3: 'Excellent',
+    cmpLbl: 'Compare', cmpP: 'Most Saudi bank personal finance products offer better rates only when you transfer your salary to them — and charge admin fees on top. Sarf uses open banking to read your income wherever your salary lands, with a fixed total agreed on day one.',
+    th1: 'Lender', th2: 'Rate', th3: 'Structure', th4: 'Who can apply',
+    wlBadge: 'Waitlist open', ctFixed: 'fixed total', ctS1: 'Fixed — agreed day one', ctJoin: 'Join waitlist →',
+    ctArj: 'Best rates require salary transfer & approved employer', ctArj2: 'Min SAR 5,000 salary',
+    ctSnb: 'Best rates via salary transfer. Admin fee 1% + 15% VAT', ctSnb2: 'Non-transfer option at higher rate',
+    ctRyad: 'Best rates require salary transfer + admin fee', ctRyad2: 'Non-transfer option available',
+    bnArj: 'Al Rajhi Bank', crArj: '17–22% profit rate equiv.',
+    bnSnb: 'Saudi National Bank', crSnb: '16–20% profit rate equiv.',
+    bnRyad: 'Riyad Bank', crRyad: '17–21% profit rate equiv.',
+    bnLendo: 'Lendo', bnTam: 'Tamara / Tabby', bnStc: 'STC Pay / stc bank',
+    ctLendo: 'Not for individuals', ctLendo2: 'SME invoice financing only', ctLendo3: 'Businesses only',
+    ctTam: 'Buy now pay later', ctTam2: 'Retail purchases only', ctTam3: 'Not personal financing',
+    ctStc: 'Limited personal financing', ctStc2: 'STC customers only', ctStc3: 'Restricted eligibility',
+    ctFoot: 'Saudi bank rates are Murabaha/Tawarruq profit rates shown as effective annual equivalents for comparison. Sarf rate is projected based on comparable income-linked benchmarks. Subject to SAMA licensing and underwriting at launch.',
+    whyLbl: 'Why Sarf', whyP: 'Saudi banks have offered the same personal finance product for decades. Sarf uses open banking and income data to give you a faster, fairer, and more transparent experience.',
+    f1t: 'Rate in 60 seconds', f1tag: 'Instant Decision',
+    f1d: 'Connect your bank account. Sarf reads your income, cash flow, and financial behavior in seconds. No paperwork, no branch visit, no waiting weeks for approval.',
+    f2t: 'No salary transfer required', f2tag: 'Your Salary Stays Yours',
+    f2d: 'Most Saudi banks give their best rates only when you transfer your salary to them. Sarf uses open banking to verify your income wherever your salary lands — no transfer required, same great rate.',
+    f3t: 'Fixed total — agreed day one', f3tag: 'No Surprises',
+    f3d: 'Your total repayment is locked when you sign. SAR 25,000 borrowed means SAR 27,850 repaid — total, fixed, agreed upfront. No monthly recalculations.',
+    f4t: 'Builds your Sarf score', f4tag: 'Launching Soon',
+    f4d: 'Every on-time repayment improves your Sarf Repayment Strength Score — automatically unlocking better rates and higher amounts on your next agreement.',
+    btmH: 'Financing that works<br>for <em style="color:var(--gold);">everyone.</em>',
+    btmP: 'Better rates. Fixed total. No admin fees.', btmBtn: 'Join Waitlist',
+    footerTxt: '© 2026 Sarf Technology Inc. · Structures, tracks, and enforces personal loans.',
+    errRequired: 'Please fill in all required fields.',
+    errEmail: 'Please enter a valid email address.',
+    errSubmit: 'Something went wrong. Please try again.',
+    submitting: 'Submitting...',
+    tr1: 'Bank-grade encryption', tr2: 'Open banking verified',
+    tr3: 'No data sold to third parties', tr4: 'SAMA regulated framework'
+  },
+  ar: {
+    langBtn: 'English',
+    themeLight: 'فاتح', themeDark: 'داكن',
+    tag: 'قائمة الانتظار مفتوحة · المملكة العربية السعودية',
+    h1: 'تمويل مبني<br>على راتبك<br><em>الفعلي.</em>',
+    sub: 'اربط حسابك البنكي. احصل على سعرك في 60 ثانية. سدّد مبلغاً ثابتاً محدداً مسبقاً — بلا رسوم خفية، بلا رسوم إدارية، بلا زيارة فرع.',
+    heroBtnText: 'انضم إلى قائمة الانتظار <span class="cta-arrow">←</span>',
+    note: 'لا رسائل مزعجة &nbsp;·&nbsp; قائمة انتظار فقط &nbsp;·&nbsp; إلغاء الاشتراك في أي وقت',
+    sl1:'60 ثانية', ss1:'معدل فوري',
+    sl2:'SAR 0', ss2:'رسوم إدارية',
+    sl3:'ثابت', ss3:'معدل الفائدة',
+    sl4:'مفتوح', ss4:'للجميع',
+    modalTitle: 'انضم إلى قائمة الانتظار',
+    modalSub: 'كن أول من يحصل على Sarf عند الإطلاق. يستغرق 30 ثانية.',
+    lEmail: 'البريد الإلكتروني', lName: 'الاسم الكامل', lPhone: 'رقم الجوال',
+    lCompany: 'الشركة', lMessage: 'رسالة', lOptional: '(اختياري)',
+    phonePh: '+966 5X XXX XXXX', companyPh: 'اسم شركتك',
+    messagePh: 'أخبرنا عن احتياجاتك التمويلية...',
+    submitBtn: 'تأكيد الانضمام',
+    successTitle: '!أنت على القائمة', successMsg: 'سنتواصل معك قريباً.',
+    phLbl: 'تمويلي', phRate: 'نسبة ثابتة',
+    phR1: 'تستلم', phR2: 'إجمالي السداد الثابت', phR3: 'الرسوم الإدارية',
+    phR4: 'تحويل الراتب', phV4: 'غير مطلوب', phR5: 'رسوم خفية', phV5: 'لا يوجد',
+    phNote: 'المبلغ الإجمالي متفق عليه ومحدد من اليوم الأول. يُسدَّد شهرياً على مدى 12 شهراً متزامناً مع موعد راتبك.',
+    phS1: 'قرار السعر', phS2: 'الرسوم الإدارية', phS3: 'إجمالي السداد', phS4: 'متاح للجميع',
+    phScore: 'نقاط قوة السداد', pb1: 'في البناء', pb2: 'قوي', pb3: 'ممتاز',
+    cmpLbl: 'مقارنة', cmpP: 'معظم منتجات التمويل الشخصي في البنوك السعودية تمنحك أفضل الأسعار فقط عند تحويل راتبك إليها — مع رسوم إدارية إضافية. Sarf يقرأ دخلك عبر الخدمات المصرفية المفتوحة أينما كان راتبك، مع إجمالي ثابت متفق عليه من اليوم الأول.',
+    th1: 'المُقرض', th2: 'المعدل', th3: 'الهيكل', th4: 'شروط التأهل',
+    wlBadge: 'قائمة الانتظار مفتوحة', ctFixed: 'إجمالي ثابت', ctS1: 'ثابت — متفق عليه من اليوم الأول', ctJoin: '← انضم للقائمة',
+    ctArj: 'أفضل الأسعار تتطلب تحويل الراتب وصاحب عمل معتمد', ctArj2: 'الحد الأدنى SAR 5,000',
+    ctSnb: 'أفضل الأسعار عبر تحويل الراتب. رسوم إدارية 1% + 15% ضريبة', ctSnb2: 'خيار بدون تحويل بسعر أعلى',
+    ctRyad: 'أفضل الأسعار تتطلب تحويل الراتب + رسوم إدارية', ctRyad2: 'خيار بدون تحويل متاح',
+    bnArj: 'بنك الراجحي', crArj: '17–22% معادل تكلفة تمويل (مرابحة)',
+    bnSnb: 'البنك الأهلي السعودي', crSnb: '16–20% معادل تكلفة تمويل (تورق)',
+    bnRyad: 'بنك الرياض', crRyad: '17–21% معادل تكلفة تمويل (تورق)',
+    bnLendo: 'لِندو', bnTam: 'تمارا / تابي', bnStc: 'STC Pay / بنك stc',
+    ctLendo: 'غير متاح للأفراد', ctLendo2: 'تمويل فواتير الشركات فقط', ctLendo3: 'للشركات فقط',
+    ctTam: 'اشتر الآن وادفع لاحقاً', ctTam2: 'مشتريات التجزئة فقط', ctTam3: 'ليس تمويلاً شخصياً',
+    ctStc: 'تمويل شخصي محدود', ctStc2: 'لعملاء STC فقط', ctStc3: 'أهلية محدودة',
+    ctFoot: 'أسعار البنوك السعودية معروضة كمعادلات نسبة سنوية تقريبية للمقارنة. سعر Sarf متوقع بناءً على معايير الإقراض المرتبطة بالرواتب. يخضع لترخيص ساما والاكتتاب عند الإطلاق.',
+    whyLbl: 'لماذا Sarf', whyP: 'قدّمت البنوك السعودية نفس منتج التمويل الشخصي لعقود. Sarf يستخدم الخدمات المصرفية المفتوحة وبيانات الدخل لمنحك تجربة أسرع وأكثر عدالة وشفافية.',
+    f1t: 'معدلك في 60 ثانية', f1tag: 'قرار فوري',
+    f1d: 'اربط حسابك البنكي. Sarf يقرأ دخلك وتدفقاتك المالية وسلوكك المالي في ثوانٍ. بلا أوراق، بلا زيارة فرع، بلا انتظار لأسابيع.',
+    f2t: 'لا يتطلب تحويل الراتب', f2tag: 'راتبك يبقى في حسابك',
+    f2d: 'معظم البنوك السعودية تمنحك أفضل الأسعار فقط عند تحويل راتبك إليها. Sarf يتحقق من دخلك عبر الخدمات المصرفية المفتوحة أينما كان راتبك — بدون تحويل، بنفس السعر الممتاز.',
+    f3t: 'إجمالي ثابت — متفق عليه من اليوم الأول', f3tag: 'بلا مفاجآت',
+    f3d: 'يُحدَّد إجمالي السداد عند التوقيع. SAR 25,000 مقترضة تعني SAR 27,850 سداداً — إجمالي، ثابت، متفق عليه مسبقاً.',
+    f4t: 'يبني نقاط Sarf الخاصة بك', f4tag: 'قريباً',
+    f4d: 'كل دفعة في موعدها تحسّن نقاط قوة السداد Sarf الخاصة بك — مما يتيح تلقائياً أسعاراً أفضل ومبالغ أعلى في اتفاقيتك التالية.',
+    btmH: 'تمويل يناسب<br><em style="color:var(--gold);">الجميع.</em>',
+    btmP: 'أسعار أفضل. إجمالي ثابت. بلا رسوم إدارية.', btmBtn: 'انضم إلى قائمة الانتظار',
+    footerTxt: '© 2026 شركة Sarf للتكنولوجيا · تهيكل القروض الشخصية وتتبعها وتطبيقها.',
+    errRequired: 'يرجى ملء جميع الحقول المطلوبة.',
+    errEmail: 'يرجى إدخال بريد إلكتروني صحيح.',
+    errSubmit: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+    submitting: 'جارٍ الإرسال...',
+    tr1: 'تشفير بمستوى البنوك', tr2: 'معتمد عبر الخدمات المصرفية المفتوحة',
+    tr3: 'لا نبيع بياناتك لأطراف ثالثة', tr4: 'إطار عمل منظّم من ساما'
+  }
+};
+
+function setLang(ar) {
+  isAr = ar;
+  var lang = ar ? t.ar : t.en;
+  var html = document.getElementById('html-root');
+  html.setAttribute('dir', ar ? 'rtl' : 'ltr');
+  html.setAttribute('lang', ar ? 'ar' : 'en');
+
+  var langBtn = document.getElementById('lang-btn');
+  langBtn.textContent = lang.langBtn;
+  langBtn.className = 'nav-btn lang-btn ' + (ar ? 'showing-english' : 'showing-arabic');
+
+  var themeLabel = document.getElementById('theme-label');
+  themeLabel.textContent = isLight ? (ar ? lang.themeDark : 'Dark') : (ar ? lang.themeLight : 'Light');
+
+  document.getElementById('tag-text').textContent = lang.tag;
+  document.getElementById('hero-h1').innerHTML = lang.h1;
+  document.getElementById('hero-sub').textContent = lang.sub;
+  document.getElementById('hero-btn').innerHTML = lang.heroBtnText;
+  document.getElementById('note-text').innerHTML = lang.note;
+
+  document.getElementById('sl-1').textContent = lang.sl1;
+  document.getElementById('ss-1').textContent = lang.ss1;
+  document.getElementById('sl-2').textContent = lang.sl2;
+  document.getElementById('ss-2').textContent = lang.ss2;
+  document.getElementById('sl-3').textContent = lang.sl3;
+  document.getElementById('ss-3').textContent = lang.ss3;
+  document.getElementById('sl-4').textContent = lang.sl4;
+  document.getElementById('ss-4').textContent = lang.ss4;
+
+  document.getElementById('m-title').textContent = lang.modalTitle;
+  document.getElementById('m-sub').textContent = lang.modalSub;
+  document.getElementById('l-email').childNodes[0].textContent = lang.lEmail + ' ';
+  document.getElementById('l-name').childNodes[0].textContent = lang.lName + ' ';
+  document.getElementById('l-phone').childNodes[0].textContent = lang.lPhone + ' ';
+  document.getElementById('l-company').childNodes[0].textContent = lang.lCompany + ' ';
+  document.getElementById('l-message').childNodes[0].textContent = lang.lMessage + ' ';
+  document.getElementById('l-optional').textContent = lang.lOptional;
+  document.getElementById('l-optional2').textContent = lang.lOptional;
+  document.getElementById('f-phone').placeholder = lang.phonePh;
+  document.getElementById('f-company').placeholder = lang.companyPh;
+  document.getElementById('f-message').placeholder = lang.messagePh;
+  document.getElementById('btn-text').textContent = lang.submitBtn;
+  document.getElementById('s-title').textContent = lang.successTitle;
+  document.getElementById('s-msg').textContent = lang.successMsg;
+
+  document.getElementById('ph-lbl').textContent = lang.phLbl;
+  document.getElementById('ph-rate').textContent = lang.phRate;
+  document.getElementById('ph-r1').textContent = lang.phR1;
+  document.getElementById('ph-r2').textContent = lang.phR2;
+  document.getElementById('ph-r3').textContent = lang.phR3;
+  document.getElementById('ph-r4').textContent = lang.phR4;
+  document.getElementById('ph-v4').textContent = lang.phV4;
+  document.getElementById('ph-r5').textContent = lang.phR5;
+  document.getElementById('ph-v5').textContent = lang.phV5;
+  document.getElementById('ph-note').textContent = lang.phNote;
+  document.getElementById('ph-s1').textContent = lang.phS1;
+  document.getElementById('ph-s2').textContent = lang.phS2;
+  document.getElementById('ph-s3').textContent = lang.phS3;
+  document.getElementById('ph-s4').textContent = lang.phS4;
+  document.getElementById('ph-score').textContent = lang.phScore;
+  document.getElementById('pb-1').textContent = lang.pb1;
+  document.getElementById('pb-2').textContent = lang.pb2;
+  document.getElementById('pb-3').textContent = lang.pb3;
+
+  document.getElementById('cmp-lbl').textContent = lang.cmpLbl;
+  document.getElementById('cmp-h').innerHTML = ar
+    ? 'كيف يقارن Sarf <span class="gold-word">بالبدائل</span>'
+    : 'See how SARF <span class="gold-word">compares</span>';
+  document.getElementById('cmp-p').textContent = lang.cmpP;
+  document.getElementById('th-1').textContent = lang.th1;
+  document.getElementById('th-2').textContent = lang.th2;
+  document.getElementById('th-3').textContent = lang.th3;
+  document.getElementById('th-4').textContent = lang.th4;
+  document.getElementById('wl-badge').textContent = lang.wlBadge;
+  document.getElementById('ct-fixed').textContent = lang.ctFixed;
+  document.getElementById('ct-s1').textContent = lang.ctS1;
+  document.getElementById('ct-join').textContent = lang.ctJoin;
+  document.getElementById('ct-arj').textContent = lang.ctArj;
+  document.getElementById('ct-arj2').textContent = lang.ctArj2;
+  document.getElementById('ct-snb').textContent = lang.ctSnb;
+  document.getElementById('ct-snb2').textContent = lang.ctSnb2;
+  document.getElementById('ct-ryad').textContent = lang.ctRyad;
+  document.getElementById('ct-ryad2').textContent = lang.ctRyad2;
+  document.getElementById('bn-arj').textContent = lang.bnArj;
+  document.getElementById('cr-arj').textContent = lang.crArj;
+  document.getElementById('bn-snb').textContent = lang.bnSnb;
+  document.getElementById('cr-snb').textContent = lang.crSnb;
+  document.getElementById('bn-ryad').textContent = lang.bnRyad;
+  document.getElementById('cr-ryad').textContent = lang.crRyad;
+  document.getElementById('bn-lendo').textContent = lang.bnLendo;
+  document.getElementById('bn-tam').textContent = lang.bnTam;
+  document.getElementById('bn-stc').textContent = lang.bnStc;
+  document.getElementById('ct-lendo').textContent = lang.ctLendo;
+  document.getElementById('ct-lendo2').textContent = lang.ctLendo2;
+  document.getElementById('ct-lendo3').textContent = lang.ctLendo3;
+  document.getElementById('ct-tam').textContent = lang.ctTam;
+  document.getElementById('ct-tam2').textContent = lang.ctTam2;
+  document.getElementById('ct-tam3').textContent = lang.ctTam3;
+  document.getElementById('ct-stc').textContent = lang.ctStc;
+  document.getElementById('ct-stc2').textContent = lang.ctStc2;
+  document.getElementById('ct-stc3').textContent = lang.ctStc3;
+  document.getElementById('ct-foot').textContent = lang.ctFoot;
+
+  document.getElementById('why-lbl').textContent = lang.whyLbl;
+  document.getElementById('why-h').innerHTML = ar
+    ? 'تمويل شخصي. <span class="gold-word">مُعاد تصوّره.</span>'
+    : 'Personal financing. <span class="gold-word">Reimagined.</span>';
+  document.getElementById('why-p').textContent = lang.whyP;
+  document.getElementById('f1t').textContent = lang.f1t;
+  document.getElementById('f1tag').textContent = lang.f1tag;
+  document.getElementById('f1d').textContent = lang.f1d;
+  document.getElementById('f2t').textContent = lang.f2t;
+  document.getElementById('f2tag').textContent = lang.f2tag;
+  document.getElementById('f2d').textContent = lang.f2d;
+  document.getElementById('f3t').textContent = lang.f3t;
+  document.getElementById('f3tag').textContent = lang.f3tag;
+  document.getElementById('f3d').textContent = lang.f3d;
+  document.getElementById('f4t').textContent = lang.f4t;
+  document.getElementById('f4tag').textContent = lang.f4tag;
+  document.getElementById('f4d').textContent = lang.f4d;
+
+  document.getElementById('btm-h').innerHTML = lang.btmH;
+  document.getElementById('btm-p').textContent = lang.btmP;
+  document.getElementById('btm-btn-text').textContent = lang.btmBtn;
+  document.getElementById('footer-txt').textContent = lang.footerTxt;
+
+  // Trust strip
+  document.getElementById('tr-1').textContent = lang.tr1;
+  document.getElementById('tr-2').textContent = lang.tr2;
+  document.getElementById('tr-3').textContent = lang.tr3;
+  document.getElementById('tr-4').textContent = lang.tr4;
+}
+
+function toggleLang() { setLang(!isAr); if (window.syncPhoneDir) window.syncPhoneDir(); }
+setLang(true);
+
+function toggleTheme() {
+  isLight = !isLight;
+  var html = document.getElementById('html-root');
+  html.classList.toggle('light', isLight);
+  var lang = isAr ? t.ar : t.en;
+  var label = document.getElementById('theme-label');
+  var icon = document.getElementById('theme-icon');
+  if (isLight) {
+    label.textContent = isAr ? lang.themeDark : 'Dark';
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    label.textContent = isAr ? lang.themeLight : 'Light';
+    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitForm() {
+  var lang = isAr ? t.ar : t.en;
+  var email = document.getElementById('f-email').value.trim();
+  var name = document.getElementById('f-name').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var company = document.getElementById('f-company').value.trim();
+  var message = document.getElementById('f-message').value.trim();
+  var errEl = document.getElementById('form-error');
+
+  errEl.style.display = 'none';
+
+  if (!email || !name || !phone) {
+    errEl.textContent = lang.errRequired;
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!email.includes('@')) {
+    errEl.textContent = lang.errEmail;
+    errEl.style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('submit-btn');
+  var spinner = document.getElementById('submit-spinner');
+  document.getElementById('btn-text').textContent = lang.submitting;
+  spinner.style.display = 'block';
+  btn.disabled = true;
+
+  var payload = {
+    email: email,
+    timestamp: new Date().toISOString(),
+    fullName: name,
+    phone: phone,
+    company: company || '',
+    message: message || ''
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: [{
+        Email:     payload.email,
+        Timestamp: new Date().toLocaleString('en-SA', {timeZone:'Asia/Riyadh'}),
+        fullName:  payload.fullName,
+        Phone:     payload.phone,
+        Company:   payload.company,
+        Message:   payload.message
+      }]
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function() {
+    document.getElementById('modal-form-wrap').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  })
+  .catch(function() {
+    errEl.textContent = lang.errSubmit;
+    errEl.style.display = 'block';
+    spinner.style.display = 'none';
+    document.getElementById('btn-text').textContent = lang.submitBtn;
+    btn.disabled = false;
+  });
+}
+
+// ── PHONE DRAG INTERACTION ──
+(function() {
+  var phoneEl = document.getElementById('phone-el');
+  if (!phoneEl) return;
+
+  var DEF_RY = 8, DEF_RX = -3;
+  var ry = DEF_RY, rx = DEF_RX;
+  var dragging = false, lastX = 0, lastY = 0;
+  var floatPhase = 0;
+  var easeTimer = null;
+
+  function isRTL() {
+    return document.getElementById('html-root').getAttribute('dir') === 'rtl';
+  }
+
+  window.syncPhoneDir = function() {
+    DEF_RY = isRTL() ? -8 : 8;
+    if (!dragging) startEaseBack();
+  };
+
+  function applyTransform() {
+    var ty = Math.sin(floatPhase) * -7;
+    phoneEl.style.transform =
+      'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(' + ty.toFixed(2) + 'px)';
+  }
+
+  (function loop() {
+    if (!dragging) floatPhase += 0.008;
+    applyTransform();
+    requestAnimationFrame(loop);
+  })();
+
+  function startEaseBack() {
+    if (easeTimer) { clearInterval(easeTimer); easeTimer = null; }
+    easeTimer = setInterval(function() {
+      ry += (DEF_RY - ry) * 0.1;
+      rx += (DEF_RX - rx) * 0.1;
+      if (Math.abs(ry - DEF_RY) < 0.05 && Math.abs(rx - DEF_RX) < 0.05) {
+        ry = DEF_RY; rx = DEF_RX;
+        clearInterval(easeTimer); easeTimer = null;
+      }
+    }, 16);
+  }
+
+  function onDragStart(x, y) {
+    dragging = true;
+    lastX = x; lastY = y;
+    if (easeTimer) { clearInterval(easeTimer); easeTimer = null; }
+  }
+  function onDragMove(x, y) {
+    if (!dragging) return;
+    ry = Math.max(-55, Math.min(55, ry + (x - lastX) * 0.35));
+    rx = Math.max(-40, Math.min(40, rx - (y - lastY) * 0.25));
+    lastX = x; lastY = y;
+  }
+  function onDragEnd() {
+    if (!dragging) return;
+    dragging = false;
+    startEaseBack();
+  }
+
+  phoneEl.addEventListener('mousedown', function(e) { onDragStart(e.clientX, e.clientY); e.preventDefault(); });
+  document.addEventListener('mousemove', function(e) { onDragMove(e.clientX, e.clientY); });
+  document.addEventListener('mouseup', onDragEnd);
+
+  phoneEl.addEventListener('touchstart', function(e) { onDragStart(e.touches[0].clientX, e.touches[0].clientY); }, {passive: true});
+  phoneEl.addEventListener('touchmove', function(e) { onDragMove(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); }, {passive: false});
+  phoneEl.addEventListener('touchend', onDragEnd);
+})();
+
+// Progress bar fill on load
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var fill = document.getElementById('p-bar-fill');
+    if (fill) fill.style.width = '68%';
+  }, 800);
+});
+
+// Scroll reveal with staggered delays
+var obs = new IntersectionObserver(function(es) {
+  es.forEach(function(e) {
+    if (e.isIntersecting) {
+      // Add staggered delay for siblings
+      var parent = e.target.parentElement;
+      if (parent) {
+        var siblings = parent.querySelectorAll('.reveal');
+        var idx = Array.prototype.indexOf.call(siblings, e.target);
+        e.target.style.transitionDelay = (idx * 0.08) + 's';
+      }
+      e.target.classList.add('on');
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(function(el) {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  obs.observe(el);
+});
+</script>
+
+<!--
+  GOOGLE APPS SCRIPT SETUP
+  1. Open: https://docs.google.com/spreadsheets/d/1oiFEpPr6gjCR58uzmWZMysLJ_m9K-puRju5U-Ao2Ew0/edit
+  2. Click Extensions → Apps Script
+  3. Delete all existing code and paste the following:
+
+  function doPost(e) {
+    var sheet = SpreadsheetApp.openById('1oiFEpPr6gjCR58uzmWZMysLJ_m9K-puRju5U-Ao2Ew0').getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      data.email,
+      data.timestamp,
+      data.fullName,
+      data.phone,
+      data.company,
+      data.message
+    ]);
+    return ContentService
+      .createTextOutput(JSON.stringify({status:'ok'}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  function doGet(e) {
+    return ContentService.createTextOutput('Sarf Waitlist API is running.');
+  }
+
+  4. Click Deploy → New deployment
+  5. Type: Web app
+  6. Execute as: Me
+  7. Who has access: Anyone
+  8. Click Deploy → Copy the Web App URL
+  9. Replace SCRIPT_URL in this file with your new URL
+-->
+</body>
+</html>
