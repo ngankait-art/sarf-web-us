@@ -4,316 +4,1140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sarf — Join the Waitlist</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--gold:#B49B64;--gold2:#D4B87A;--bg:#07090E;--card:#0F1117;--border:rgba(180,155,100,0.15);--text:#E8E4D9;--muted:rgba(232,228,217,0.48);}
-html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+html{
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;
+  transition:background-color .5s ease,color .4s ease;
+}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:56px;display:flex;align-items:center;justify-content:center;background:rgba(7,9,14,0.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(180,155,100,0.07);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);letter-spacing:2px;}
+:root{
+  --gold:#F5A800;
+  --gold-light:#FFB800;
+  --gold-bright:#FFD055;
+  --gold-glow:rgba(245,168,0,0.12);
+  --gold-border:rgba(245,168,0,0.15);
+  --gold-accent:rgba(245,168,0,0.06);
+  --bg-deep:#070A10;
+  --bg-card:#0C0F18;
+  --bg-elevated:#111522;
+  --text-primary:#F0EBE0;
+  --text-secondary:rgba(240,235,224,0.72);
+  --text-muted:rgba(240,235,224,0.42);
+  --surface:rgba(255,255,255,0.03);
+  --surface-hover:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.06);
+  --border-gold:rgba(245,168,0,0.12);
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.4);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.5);
+  --shadow-gold:0 4px 24px rgba(245,168,0,0.2);
+  --nav-bg:rgba(7,10,16,0.85);
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+}
 
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:64px;padding:100px 80px 60px;position:relative;overflow:hidden;}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;}.phone-wrap{display:none;}}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 68% 38%,rgba(180,155,100,0.055) 0%,transparent 58%);pointer-events:none;}
+.light{
+  --gold:#C8870A;
+  --gold-light:#D9960C;
+  --gold-bright:#E8A50E;
+  --gold-glow:rgba(200,135,10,0.08);
+  --gold-border:rgba(200,135,10,0.18);
+  --gold-accent:rgba(200,135,10,0.04);
+  --bg-deep:#F8F6F1;
+  --bg-card:#FFFFFF;
+  --bg-elevated:#FFFFFF;
+  --text-primary:#141821;
+  --text-secondary:rgba(20,24,33,0.64);
+  --text-muted:rgba(20,24,33,0.38);
+  --surface:rgba(0,0,0,0.025);
+  --surface-hover:rgba(0,0,0,0.05);
+  --border:rgba(0,0,0,0.06);
+  --border-gold:rgba(200,135,10,0.14);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.08);
+  --shadow-lg:0 24px 64px rgba(0,0,0,0.1);
+  --shadow-gold:0 4px 24px rgba(200,135,10,0.15);
+  --nav-bg:rgba(248,246,241,0.88);
+}
 
-.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(180,155,100,0.09);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
-.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border-gold);border-radius:99px;}
 
-h1{font-size:clamp(36px,4.2vw,60px);line-height:1.1;color:#F2EDE3;margin-bottom:16px;font-weight:700;}
-h1 em{color:var(--gold);font-style:normal;font-family:'Playfair Display',serif;}
+body,nav,.strip,.strip-card,.compare-sec,.why-sec,.bottom,.feat,
+.modal,.compare-table-wrap,.ct-row,footer,input,textarea{
+  transition:background-color .45s ease,border-color .35s ease,color .35s ease,box-shadow .35s ease;
+}
 
-.hero-sub{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:32px;max-width:430px;font-weight:300;}
-@media(max-width:900px){.hero-sub{margin:0 auto 32px;}}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  overflow-x:hidden;
+  line-height:1.6;
+}
 
-.form-wrap{display:flex;gap:0;max-width:420px;}
-@media(max-width:900px){.form-wrap{margin:0 auto;}}
-.em-in{flex:1;padding:15px 18px;background:#0c0e15;border:1px solid rgba(180,155,100,0.22);border-right:none;border-radius:10px 0 0 10px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
-.em-in::placeholder{color:rgba(232,228,217,0.22);}
-.em-in:focus{border-color:var(--gold);}
-.sub-btn{padding:15px 22px;background:var(--gold);color:#000;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;border:none;border-radius:0 10px 10px 0;cursor:pointer;white-space:nowrap;transition:background .2s;}
-.sub-btn:hover{background:var(--gold2);}
-.sub-ok{display:none;font-size:13px;color:var(--gold);margin-top:11px;}
-.hero-note{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:11px;color:rgba(232,228,217,0.28);}
-.hero-note-dot{width:5px;height:5px;border-radius:50%;background:#7ec48a;}
-@media(max-width:900px){.hero-note{justify-content:center;}}
+.nav-brand,.f-brand-name{
+  font-family:'Inter',sans-serif !important;
+  font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+}
+.phone-inner,.phone-inner *{
+  font-family:'DM Sans',sans-serif !important;
+}
 
-/* PHONE */
-.phone-wrap{display:flex;justify-content:center;align-items:center;}
-.phone{width:272px;background:#0b0d14;border-radius:38px;border:1.5px solid rgba(180,155,100,0.18);padding:18px;box-shadow:0 48px 90px rgba(0,0,0,0.65);}
-.notch{width:76px;height:20px;background:#000;border-radius:0 0 12px 12px;margin:0 auto 16px;}
-.p-screen{background:#10121a;border-radius:18px;padding:16px;margin-bottom:10px;}
+/* NAVBAR */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px) saturate(1.4);
+  -webkit-backdrop-filter:blur(24px) saturate(1.4);
+  border-bottom:1px solid var(--border);
+}
+@media(max-width:580px){nav{padding:0 18px;height:56px;}}
+
+.nav-left{display:flex;align-items:center;gap:10px;}
+.nav-logo-img{
+  width:34px;height:34px;border-radius:50%;
+  box-shadow:0 0 20px rgba(245,168,0,0.25),0 0 0 1px rgba(245,168,0,0.15);
+  object-fit:cover;
+}
+.nav-brand{font-size:13px;color:var(--text-primary);letter-spacing:0.28em;}
+.nav-right{display:flex;align-items:center;gap:8px;}
+
+.nav-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:999px;padding:7px 14px;
+  font-size:12px;cursor:pointer;border:none;
+  transition:all .25s ease;white-space:nowrap;line-height:1;
+}
+.theme-btn{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--text-secondary);
+  font-family:'DM Sans',sans-serif;
+}
+.theme-btn svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.theme-btn:hover{background:var(--surface-hover);border-color:var(--border-gold);}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:120px 80px 80px;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:64px;
+  position:relative;overflow:hidden;
+  background:var(--bg-deep);
+}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;}
+  .phone-wrap{display:none;}
+}
+
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(245,168,0,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,168,0,0.025) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 20%,transparent 70%);
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 15% 45%,rgba(245,168,0,0.07) 0%,transparent 60%);
+}
+.hero-glow2{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 45% 35% at 85% 55%,rgba(245,168,0,0.025) 0%,transparent 55%);
+}
+.hero-fade{
+  position:absolute;bottom:0;left:0;right:0;height:160px;pointer-events:none;
+  background:linear-gradient(to top,var(--bg-deep),transparent);
+}
+
+.hero-text{position:relative;z-index:1;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-glow);
+  border:1px solid var(--border-gold);
+  border-radius:999px;padding:7px 16px;
+  font-size:12px;color:var(--gold-light);
+  margin-bottom:28px;
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:0.04em;
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+  animation:pulse-glow 2.4s ease-in-out infinite;
+}
+@keyframes pulse-glow{
+  0%,100%{box-shadow:0 0 0 0 rgba(245,168,0,0.4);}
+  50%{box-shadow:0 0 8px 4px rgba(245,168,0,0.6);}
+}
+
+h1{
+  font-size:clamp(44px,5vw,68px);
+  line-height:1.12;font-weight:700;
+  margin-bottom:22px;
+  font-family:'DM Sans',sans-serif;
+  color:var(--text-primary);
+  letter-spacing:-0.01em;
+}
+h1 em{
+  display:block;font-style:normal;
+  background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-sub{
+  font-size:17px;color:var(--text-secondary);
+  line-height:1.8;margin-bottom:40px;
+  max-width:30rem;font-weight:400;
+  font-family:'DM Sans',sans-serif;
+}
+@media(max-width:900px){.hero-sub{margin-left:auto;margin-right:auto;margin-bottom:36px;}}
+
+.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#F5A800 0%,#FFC53D 50%,#F5A800 100%);
+  background-size:200% 100%;
+  color:#07090E;font-weight:700;font-size:14px;
+  padding:16px 36px;border-radius:14px;border:none;cursor:pointer;
+  box-shadow:var(--shadow-gold),inset 0 1px 0 rgba(255,255,255,0.2);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  font-family:'DM Sans',sans-serif;
+  position:relative;overflow:hidden;
+}
+.cta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0) 100%);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.cta-btn:hover::before{transform:translateX(100%);}
+.cta-btn:hover{
+  box-shadow:0 8px 40px rgba(245,168,0,0.45),inset 0 1px 0 rgba(255,255,255,0.2);
+  transform:translateY(-2px);
+  background-position:100% 0;
+}
+.cta-btn:active{transform:translateY(0) scale(0.98);}
+.cta-arrow{font-size:14px;display:inline-block;transition:transform .25s;}
+.cta-btn:hover .cta-arrow{transform:translateX(3px);}
+
+.hero-disclaimer{
+  margin-top:16px;font-size:12px;
+  color:var(--text-muted);
+  font-family:'DM Sans',sans-serif;
+}
+
+/* PHONE MOCKUP */
+.phone-wrap{
+  position:relative;z-index:1;
+  display:flex;justify-content:center;align-items:center;
+  perspective:1200px;
+}
+.phone-ambient{
+  position:absolute;width:320px;height:500px;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(245,168,0,0.14) 0%,transparent 65%);
+  filter:blur(56px);pointer-events:none;
+}
+.phone{
+  width:310px;border-radius:48px;padding:2.5px;
+  background:linear-gradient(160deg,rgba(245,168,0,0.85) 0%,rgba(180,120,0,0.35) 40%,rgba(245,168,0,0.65) 100%);
+  box-shadow:
+    0 0 0 1px rgba(245,168,0,0.1),
+    0 50px 100px rgba(0,0,0,0.6),
+    0 20px 60px rgba(0,0,0,0.4),
+    0 0 80px rgba(245,168,0,0.08);
+  will-change:transform;cursor:grab;
+}
+.phone:active{cursor:grabbing;}
+.phone-inner{
+  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
+  border-radius:46px;padding:16px;position:relative;overflow:hidden;
+}
+.phone-inner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,208,85,0.25),transparent);
+}
+.notch{
+  width:76px;height:20px;background:#000;
+  border-radius:0 0 14px 14px;margin:0 auto 14px;
+}
+.p-screen{
+  background:#10121a;border-radius:16px;
+  padding:14px;margin-bottom:8px;
+}
 .p-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,228,217,0.28);margin-bottom:5px;}
 .p-amount{font-size:26px;font-weight:500;color:#F2EDE3;margin-bottom:8px;}
-.p-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(180,155,100,0.1);border:1px solid rgba(180,155,100,0.22);border-radius:6px;padding:3px 9px;font-size:10px;color:var(--gold);font-weight:500;margin-bottom:10px;}
+.p-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.22);
+  border-radius:6px;padding:3px 9px;
+  color:#F5A800;font-size:10px;font-weight:500;margin-bottom:10px;
+}
+.p-pill-dot{width:5px;height:5px;border-radius:50%;background:#F5A800;flex-shrink:0;}
 .p-divider{border:none;border-top:1px solid rgba(255,255,255,0.05);margin:10px 0;}
 .p-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
 .p-row-label{font-size:10px;color:rgba(232,228,217,0.3);}
 .p-row-val{font-size:11px;font-weight:500;}
-.p-row-val.gold{color:var(--gold);}
-.p-row-val.green{color:#7ec48a;}
 .p-row-val.white{color:#F2EDE3;}
+.p-row-val.gold{color:#F5A800;}
+.p-row-val.green{color:#7ec48a;}
 .p-note{font-size:9px;color:rgba(232,228,217,0.22);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04);}
-.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
 .p-stat{background:#10121a;border-radius:10px;padding:11px;}
 .p-stat-val{font-size:14px;font-weight:500;margin-bottom:2px;}
-.p-stat-val.gold{color:var(--gold);}
+.p-stat-val.gold{color:#F5A800;}
 .p-stat-val.green{color:#7ec48a;}
 .p-stat-val.blue{color:#7ab3e0;}
 .p-stat-lbl{font-size:9px;color:rgba(232,228,217,0.28);}
 .p-bar{background:#10121a;border-radius:10px;padding:12px;}
 .p-bar-lbl{font-size:9px;color:rgba(232,228,217,0.28);margin-bottom:8px;}
 .p-bar-track{background:#1a1c24;border-radius:4px;height:4px;overflow:hidden;margin-bottom:5px;}
-.p-bar-fill{height:100%;border-radius:4px;background:var(--gold);}
+.p-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#F5A800,#FFD055);width:0%;transition:width 1.8s cubic-bezier(.22,1,.36,1);}
 .p-bar-row{display:flex;justify-content:space-between;font-size:8px;color:rgba(232,228,217,0.18);}
 .p-home{width:36px;height:4px;background:rgba(232,228,217,0.08);border-radius:2px;margin:12px auto 0;}
 
-.sec{padding:80px 80px;max-width:1100px;margin:0 auto;}
-@media(max-width:900px){.sec{padding:60px 24px;}}
-.sec-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.sec-h{font-size:clamp(24px,3.5vw,38px);color:#F2EDE3;margin-bottom:10px;font-weight:700;}
-.sec-p{font-size:14px;color:var(--muted);margin-bottom:36px;line-height:1.8;max-width:580px;}
-
-/* COMPARE */
-.compare-table{width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(180,155,100,0.1);}
-.ct-head{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;background:#0f1117;padding:14px 20px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,228,217,0.28);}
-.ct-row{display:grid;grid-template-columns:2fr 1.2fr 1fr 1fr;padding:16px 20px;border-top:1px solid rgba(255,255,255,0.04);align-items:center;transition:background .15s;}
-.ct-row:hover{background:rgba(180,155,100,0.02);}
-.ct-row.sarf{background:rgba(180,155,100,0.05);border-top:1px solid rgba(180,155,100,0.14);}
-.ct-name{display:flex;align-items:center;gap:9px;font-size:14px;color:#E8E4D9;}
-.ct-name.s{font-weight:500;color:#F2EDE3;}
-.ct-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.ct-dot.on{background:var(--gold);}
-.ct-dot.off{background:#252530;}
-.ct-badge{font-size:9px;background:rgba(180,155,100,0.12);border:1px solid rgba(180,155,100,0.22);color:var(--gold);padding:2px 8px;border-radius:10px;margin-left:4px;}
-.ct-rate{font-size:14px;font-weight:500;color:#E8E4D9;}
-.ct-rate.gold{color:var(--gold);}
-.ct-rate.na{color:rgba(232,228,217,0.22);font-size:12px;}
-.ct-fee{font-size:12px;color:rgba(232,228,217,0.35);}
-.ct-fee.good{color:#7ec48a;}
-.ct-fee.bad{color:#e07a7a;}
-.ct-status{font-size:11px;color:rgba(232,228,217,0.28);}
-.ct-status.wl{color:var(--gold);}
-.ct-status.no{color:#e07a7a;}
-.ct-foot{padding:10px 20px 14px;font-size:10px;color:rgba(232,228,217,0.18);border-top:1px solid rgba(255,255,255,0.04);line-height:1.6;}
-
-/* FEATURES */
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:640px){.feat-grid{grid-template-columns:1fr;}}
-.feat{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:24px;transition:border-color .2s;}
-.feat:hover{border-color:var(--border);}
-.feat-icon{font-size:20px;margin-bottom:12px;}
-.feat-t{font-size:15px;font-weight:500;color:#F2EDE3;margin-bottom:3px;}
-.feat-tag{font-size:10px;color:var(--gold);margin-bottom:9px;display:block;}
-.feat-d{font-size:12.5px;color:var(--muted);line-height:1.7;}
-
-/* BOTTOM */
-.bottom{padding:80px 24px 100px;text-align:center;border-top:1px solid rgba(180,155,100,0.07);}
-.bottom h2{font-size:clamp(26px,4vw,50px);color:#F2EDE3;margin-bottom:10px;font-weight:700;}
-.bottom p{font-size:14px;color:var(--muted);margin-bottom:32px;line-height:1.75;}
-.b-form{display:flex;max-width:400px;margin:0 auto;}
-.b-form input{flex:1;padding:15px 18px;background:#0c0e15;border:1px solid rgba(180,155,100,0.22);border-right:none;border-radius:10px 0 0 10px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
-.b-form input::placeholder{color:rgba(232,228,217,0.22);}
-.b-form input:focus{border-color:var(--gold);}
-.b-form button{padding:15px 22px;background:var(--gold);color:#000;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;border:none;border-radius:0 10px 10px 0;cursor:pointer;white-space:nowrap;transition:background .2s;}
-.b-form button:hover{background:var(--gold2);}
-.b-ok{display:none;font-size:13px;color:var(--gold);margin-top:11px;}
-.b-note{font-size:11px;color:rgba(232,228,217,0.16);margin-top:16px;}
-
-footer{padding:20px 40px;border-top:1px solid rgba(180,155,100,0.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-.f-logo{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold);}
-.f-txt{font-size:11px;color:rgba(232,228,217,0.16);}
-
-@keyframes up{from{opacity:0;transform:translateY(13px);}to{opacity:1;transform:translateY(0);}}
-.a1{animation:up .6s ease .1s both;}.a2{animation:up .6s ease .25s both;}.a3{animation:up .6s ease .4s both;}.a4{animation:up .6s ease .55s both;}.a5{animation:up .6s ease .68s both;}
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .65s ease,transform .65s ease;}
-.reveal.on{opacity:1;transform:none;}
-
+/* TRUST STRIP */
+.trust-strip{
+  padding:20px 40px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;gap:32px;
+  flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--text-muted);
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:0.02em;
+}
+.trust-item svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;opacity:0.7;}
 @media(max-width:580px){
-.form-wrap,.b-form{flex-direction:column;}
-.em-in,.b-form input{border-right:1px solid rgba(180,155,100,0.22);border-bottom:none;border-radius:10px 10px 0 0;}
-.sub-btn,.b-form button{border-radius:0 0 10px 10px;}
-.ct-head,.ct-row{grid-template-columns:1.5fr 1fr;}
-.ct-head>*:nth-child(3),.ct-head>*:nth-child(4),.ct-row>*:nth-child(3),.ct-row>*:nth-child(4){display:none;}
-footer{flex-direction:column;text-align:center;}}
+  .trust-strip{padding:16px 20px;gap:16px;}
+  .trust-item{font-size:10px;}
+}
+
+/* FEATURE STRIP */
+.strip{
+  border-bottom:1px solid var(--border);
+  background:var(--bg-deep);
+  padding:72px 40px;
+}
+.strip-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+@media(max-width:900px){.strip-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.strip-inner{grid-template-columns:1fr;}}
+.strip-card{
+  border-radius:var(--radius-md);padding:24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.strip-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,var(--gold-accent),transparent 70%);
+  opacity:0;transition:opacity .3s;
+}
+.strip-card:hover::before{opacity:1;}
+.strip-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--border-gold);
+  box-shadow:var(--shadow-md);
+}
+.strip-icon{
+  width:40px;height:40px;border-radius:12px;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  position:relative;z-index:1;
+}
+.strip-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.strip-label{font-size:22px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+.strip-sub{font-size:13px;color:var(--text-muted);margin-top:3px;position:relative;z-index:1;}
+
+/* SHARED SECTION STYLES */
+.sec-badge{
+  display:inline-flex;align-items:center;
+  border:1px solid var(--border-gold);
+  background:var(--gold-glow);color:var(--gold);
+  font-size:11px;border-radius:999px;padding:5px 16px;
+  font-family:'DM Sans',sans-serif;letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:18px;font-weight:500;
+}
+.sec-heading{
+  font-size:clamp(28px,3.5vw,40px);font-weight:700;
+  color:var(--text-primary);text-align:center;
+  margin-bottom:14px;
+  font-family:'DM Sans',sans-serif;
+  letter-spacing:-0.01em;
+}
+.gold-word{
+  background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-intro{
+  font-size:16px;color:var(--text-secondary);
+  text-align:center;max-width:640px;margin:0 auto 52px;
+  line-height:1.8;
+}
+
+/* COMPARE SECTION */
+.compare-sec{
+  padding:88px 40px;
+  background:var(--bg-deep);
+  position:relative;
+}
+.compare-sec::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-accent),transparent 70%);
+  filter:blur(80px);pointer-events:none;
+}
+.compare-inner{max-width:1280px;margin:0 auto;text-align:center;position:relative;}
+.compare-table-wrap{
+  max-width:920px;margin:0 auto;
+  border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--bg-card);
+  box-shadow:var(--shadow-md);
+}
+.ct-head{
+  display:grid;grid-template-columns:1.6fr 1.2fr 1.2fr 1.4fr;
+  background:var(--gold-accent);
+  border-bottom:1px solid var(--border);
+}
+.ct-head>div{
+  padding:14px 20px;
+  font-size:11px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-muted);
+  font-family:'Inter',sans-serif;
+}
+.ct-row{
+  display:grid;grid-template-columns:1.6fr 1.2fr 1.2fr 1.4fr;
+  border-bottom:1px solid var(--border);
+}
+.ct-row:last-of-type{border-bottom:none;}
+.ct-row:hover{background:var(--surface-hover);}
+.ct-row>div{padding:14px 20px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text-primary);}
+.ct-row.sarf{
+  background:var(--gold-accent);
+  border-left:3px solid var(--gold);
+}
+.ct-name{font-weight:600;display:flex;flex-direction:column;gap:5px;}
+.sarf-name{color:var(--gold);font-weight:700;font-family:'Inter',sans-serif;letter-spacing:0.12em;text-transform:uppercase;}
+.ct-badge{
+  display:inline-block;align-self:flex-start;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  color:var(--gold);font-size:10px;border-radius:999px;padding:2px 10px;font-weight:500;
+}
+.ct-rate{font-weight:600;}
+.ct-rate.gold{color:var(--gold);}
+.ct-rate.na{color:var(--text-muted);}
+.ct-fee{color:var(--text-muted);}
+.ct-fee.good{color:var(--text-primary);}
+.ct-status{color:var(--text-muted);}
+.ct-status.wl{color:var(--gold);font-weight:600;cursor:pointer;transition:opacity .2s;}
+.ct-status.wl:hover{opacity:0.8;}
+.ct-foot-row{
+  padding:12px 20px;font-size:11px;color:var(--text-muted);
+  border-top:1px solid var(--border);
+  font-style:italic;text-align:left;
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+}
+@media(max-width:700px){
+  .ct-head,.ct-row{grid-template-columns:1.5fr 1fr;}
+  .ct-head>div:nth-child(3),.ct-head>div:nth-child(4),
+  .ct-row>div:nth-child(3),.ct-row>div:nth-child(4){display:none;}
+}
+
+/* WHY SARF SECTION */
+.why-sec{
+  padding:88px 40px;
+  background:var(--bg-deep);
+}
+.why-inner{max-width:1280px;margin:0 auto;text-align:center;}
+.feat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  text-align:left;
+}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.feat-grid{grid-template-columns:1fr;}}
+.feat{
+  border-radius:var(--radius-lg);padding:28px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:all .35s cubic-bezier(.22,1,.36,1);
+  position:relative;overflow:hidden;
+}
+.feat::after{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:radial-gradient(circle at center,var(--gold-accent),transparent 50%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.feat:hover::after{opacity:1;}
+.feat:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--border-gold);
+}
+.feat-icon-wrap{
+  width:44px;height:44px;border-radius:14px;
+  background:var(--gold-glow);border:1px solid var(--border-gold);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  position:relative;z-index:1;
+}
+.feat-icon-wrap svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.feat-tag{
+  display:inline-block;
+  border:1px solid var(--border-gold);
+  background:var(--gold-glow);color:var(--gold);
+  font-size:10px;border-radius:999px;padding:3px 12px;
+  margin-bottom:14px;font-family:'DM Sans',sans-serif;
+  font-weight:500;position:relative;z-index:1;
+}
+.feat-t{font-size:17px;font-weight:700;color:var(--text-primary);margin-bottom:10px;font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+.feat-d{font-size:14px;color:var(--text-secondary);line-height:1.75;font-family:'DM Sans',sans-serif;position:relative;z-index:1;}
+
+/* BOTTOM CTA */
+.bottom{
+  padding:96px 24px 100px;text-align:center;
+  border-top:1px solid var(--border);
+  background:var(--bg-deep);
+  position:relative;overflow:hidden;
+}
+.bottom::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-accent),transparent 70%);
+  filter:blur(100px);pointer-events:none;
+}
+.bottom h2{
+  font-size:clamp(28px,4vw,52px);
+  color:var(--text-primary);margin-bottom:14px;font-weight:700;
+  font-family:'DM Sans',sans-serif;
+  position:relative;letter-spacing:-0.01em;
+}
+.bottom p{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.8;position:relative;}
+.bottom-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+  color:#07090E;font-weight:700;font-size:14px;
+  padding:16px 44px;border-radius:14px;border:none;cursor:pointer;
+  box-shadow:var(--shadow-gold);
+  transition:all .3s cubic-bezier(.22,1,.36,1);
+  font-family:'DM Sans',sans-serif;
+  position:relative;
+}
+.bottom-btn:hover{box-shadow:0 8px 40px rgba(245,168,0,0.45);transform:translateY(-3px);}
+.bottom-btn:active{transform:translateY(0) scale(0.98);}
+.b-note{font-size:11px;color:var(--text-muted);margin-top:18px;position:relative;}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:28px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg-deep);
+}
+.f-brand{display:flex;align-items:center;gap:8px;}
+.f-brand-img{width:24px;height:24px;border-radius:50%;object-fit:cover;}
+.f-brand-name{font-size:12px;color:var(--text-primary);}
+.f-txt{font-size:12px;color:var(--text-muted);}
+@media(max-width:580px){footer{flex-direction:column;gap:12px;text-align:center;padding:20px;}}
+
+/* MODAL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  max-width:448px;width:100%;
+  border-radius:var(--radius-lg);border:1px solid var(--border);
+  background:var(--bg-card);
+  box-shadow:var(--shadow-lg),0 0 60px rgba(245,168,0,0.06);
+  max-height:90vh;overflow-y:auto;
+  animation:modalIn .35s cubic-bezier(.22,1,.36,1);
+}
+@keyframes modalIn{
+  from{opacity:0;transform:scale(.96) translateY(16px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+.modal-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:24px 28px;border-bottom:1px solid var(--border);gap:16px;
+}
+.modal-title{font-size:18px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;}
+.modal-sub{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.5;}
+.modal-close{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-muted);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;line-height:1;
+}
+.modal-close:hover{transform:scale(1.1);border-color:var(--border-gold);color:var(--text-primary);}
+.modal-body{padding:24px 28px;}
+.field{margin-bottom:18px;}
+label{
+  display:block;font-size:12px;font-weight:600;
+  color:var(--text-secondary);margin-bottom:7px;
+  font-family:'DM Sans',sans-serif;
+}
+.req{color:var(--gold);margin-inline-start:2px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+input,textarea{
+  width:100%;padding:11px 14px;border-radius:var(--radius-sm);
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  font-size:13px;color:var(--text-primary);
+  font-family:'DM Sans',sans-serif;
+  outline:none;transition:all .25s;resize:vertical;
+}
+input::placeholder,textarea::placeholder{color:var(--text-muted);opacity:.7;}
+input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow);}
+input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
+#form-error{font-size:12px;color:#ef4444;margin-bottom:12px;display:none;text-align:center;}
+.submit-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
+  color:#07090E;font-weight:700;font-size:14px;
+  border:none;border-radius:12px;cursor:pointer;
+  box-shadow:var(--shadow-gold);
+  font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .25s cubic-bezier(.22,1,.36,1);
+}
+.submit-btn:hover:not(:disabled){transform:scale(1.02);box-shadow:0 6px 28px rgba(245,168,0,0.4);}
+.submit-btn:active:not(:disabled){transform:scale(.97);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;}
+.submit-spinner{
+  width:16px;height:16px;border:2px solid rgba(0,0,0,0.2);
+  border-top-color:#07090E;border-radius:50%;
+  animation:spin .6s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.modal-success{display:none;text-align:center;padding:48px 28px;}
+.success-icon{width:56px;height:56px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;}
+.success-icon svg{width:56px;height:56px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.s-title{font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+.s-msg{font-size:14px;color:var(--text-secondary);}
+
+/* REVEAL */
+.reveal{
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+.reveal.on{opacity:1 !important;transform:none !important;}
+
+/* RESPONSIVE */
+@media(max-width:580px){
+  .compare-sec,.why-sec{padding-left:20px;padding-right:20px;}
+  .strip{padding:48px 20px;}
+  footer{padding:20px;}
+}
 </style>
 </head>
 <body>
 
-<nav><div class="nav-logo">Sarf</div></nav>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-left">
+    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="Sarf" class="nav-logo-img">
+    <span class="nav-brand">Sarf</span>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn theme-btn" id="theme-btn" onclick="toggleTheme()">
+      <svg id="theme-icon" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <span id="theme-label">Light</span>
+    </button>
+  </div>
+</nav>
 
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div>
-    <div class="hero-tag a1"><div class="hero-dot"></div>Waitlist Open · KSA & USA 2026</div>
-    <h1 class="a2">Get financing<br>without the<br><em>FICO score.</em></h1>
-    <p class="hero-sub a3">Connect your bank. Get your rate in 60 seconds. Repay a fixed agreed amount — no origination fees, no compounding, no hidden charges.</p>
-    <div class="form-wrap a4">
-      <input class="em-in" type="email" id="h-email" placeholder="Enter your email address" />
-      <button class="sub-btn" onclick="go('h')">Join Waitlist</button>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-fade"></div>
+
+  <div class="hero-text">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Waitlist Open · KSA & USA 2026
     </div>
-    <div class="sub-ok" id="h-ok">You are on the waitlist. We will reach out before launch.</div>
-    <div class="hero-note a5"><div class="hero-note-dot"></div>No spam · Waitlist only · Unsubscribe anytime</div>
+    <h1>Get financing<br>without the<br><em>FICO score.</em></h1>
+    <p class="hero-sub">Connect your bank. Get your rate in 60 seconds. Repay a fixed agreed amount — no origination fees, no compounding, no hidden charges.</p>
+    <button class="cta-btn" onclick="openModal()">Join Waitlist <span class="cta-arrow">&rarr;</span></button>
+    <p class="hero-disclaimer">No spam &nbsp;&middot;&nbsp; Waitlist only &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
   </div>
 
+  <!-- PHONE MOCKUP -->
   <div class="phone-wrap">
-    <div class="phone">
-      <div class="notch"></div>
-      <div class="p-screen">
-        <div class="p-lbl">My Financing</div>
-        <div class="p-amount">$10,000</div>
-        <div class="p-pill">● 11.2% fixed profit rate</div>
-        <div class="p-divider"></div>
-        <div class="p-row"><span class="p-row-label">You receive</span><span class="p-row-val white">$10,000</span></div>
-        <div class="p-row"><span class="p-row-label">Fixed total repayment</span><span class="p-row-val gold">$11,120</span></div>
-        <div class="p-row"><span class="p-row-label">Origination fee</span><span class="p-row-val green">$0</span></div>
-        <div class="p-row"><span class="p-row-label">Compounding charges</span><span class="p-row-val green">None</span></div>
-        <div class="p-row"><span class="p-row-label">Hidden fees</span><span class="p-row-val green">None</span></div>
-        <div class="p-note">Total agreed and locked on day one. Repaid monthly over 12 months matched to your salary dates.</div>
+    <div class="phone-ambient"></div>
+    <div class="phone" id="phone-el">
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="p-screen">
+          <div class="p-lbl">My Financing</div>
+          <div class="p-amount">$10,000</div>
+          <div class="p-pill"><span class="p-pill-dot"></span>11.2% fixed profit rate</div>
+          <div class="p-divider"></div>
+          <div class="p-row"><span class="p-row-label">You receive</span><span class="p-row-val white">$10,000</span></div>
+          <div class="p-row"><span class="p-row-label">Fixed total repayment</span><span class="p-row-val gold">$11,120</span></div>
+          <div class="p-row"><span class="p-row-label">Origination fee</span><span class="p-row-val green">$0</span></div>
+          <div class="p-row"><span class="p-row-label">Compounding charges</span><span class="p-row-val green">None</span></div>
+          <div class="p-row"><span class="p-row-label">Hidden fees</span><span class="p-row-val green">None</span></div>
+          <div class="p-note">Total agreed and locked on day one. Repaid monthly over 12 months matched to your salary dates.</div>
+        </div>
+        <div class="p-stats">
+          <div class="p-stat"><div class="p-stat-val gold">60 sec</div><div class="p-stat-lbl">Rate decision</div></div>
+          <div class="p-stat"><div class="p-stat-val green">$0</div><div class="p-stat-lbl">Origination fee</div></div>
+          <div class="p-stat"><div class="p-stat-val blue">Fixed</div><div class="p-stat-lbl">Total repayment</div></div>
+          <div class="p-stat"><div class="p-stat-val gold">0</div><div class="p-stat-lbl">FICO required</div></div>
+        </div>
+        <div class="p-bar">
+          <div class="p-bar-lbl">Repayment Strength Score</div>
+          <div class="p-bar-track"><div class="p-bar-fill" id="p-bar-fill"></div></div>
+          <div class="p-bar-row"><span>Building</span><span>Strong</span><span>Excellent</span></div>
+        </div>
+        <div class="p-home"></div>
       </div>
-      <div class="p-stats">
-        <div class="p-stat"><div class="p-stat-val gold">60 sec</div><div class="p-stat-lbl">Rate decision</div></div>
-        <div class="p-stat"><div class="p-stat-val green">$0</div><div class="p-stat-lbl">Origination fee</div></div>
-        <div class="p-stat"><div class="p-stat-val blue">Fixed</div><div class="p-stat-lbl">Total repayment</div></div>
-        <div class="p-stat"><div class="p-stat-val gold">0</div><div class="p-stat-lbl">FICO required</div></div>
-      </div>
-      <div class="p-bar">
-        <div class="p-bar-lbl">Repayment Strength Score</div>
-        <div class="p-bar-track"><div class="p-bar-fill" style="width:76%;"></div></div>
-        <div class="p-bar-row"><span>Building</span><span>Strong</span><span>Excellent</span></div>
-      </div>
-      <div class="p-home"></div>
     </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span>Bank-grade encryption</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span>Open banking verified</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <span>No data sold to third parties</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span>US regulated framework</span>
   </div>
 </div>
 
-<!-- COMPARE -->
-<div class="sec">
-  <div class="sec-lbl reveal">Compare</div>
-  <h2 class="sec-h reveal">See how Sarf stacks up</h2>
-  <p class="sec-p reveal">The biggest US banks do not offer personal loans at all. The ones that do charge origination fees on top of their rates — and still decline millions of qualified borrowers.</p>
-
-  <div class="compare-table reveal">
-    <div class="ct-head">
-      <div>Lender</div>
-      <div>Rate (USD)</div>
-      <div>Origination fee</div>
-      <div>Available</div>
+<!-- FEATURE STRIP -->
+<section class="strip">
+  <div class="strip-inner">
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <div class="strip-label">60 sec</div>
+      <div class="strip-sub">Rate decision</div>
     </div>
-    <div class="ct-row sarf">
-      <div class="ct-name s"><div class="ct-dot on"></div>Sarf<span class="ct-badge">Waitlist open</span></div>
-      <div class="ct-rate gold">8–16% fixed</div>
-      <div class="ct-fee good">$0 always</div>
-      <div class="ct-status wl">Join waitlist →</div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div class="strip-label">$0</div>
+      <div class="strip-sub">Origination fees</div>
     </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>SoFi</div>
-      <div class="ct-rate">8–26% APR</div>
-      <div class="ct-fee good">None</div>
-      <div class="ct-status">Needs credit history</div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="strip-label">Fixed</div>
+      <div class="strip-sub">Rate type</div>
     </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>Upstart</div>
-      <div class="ct-rate">9–35% APR</div>
-      <div class="ct-fee bad">Up to 12%</div>
-      <div class="ct-status">Partial access</div>
-    </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>LendingClub</div>
-      <div class="ct-rate">9–36% APR</div>
-      <div class="ct-fee bad">Up to 8%</div>
-      <div class="ct-status">Needs credit history</div>
-    </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>Chase Bank</div>
-      <div class="ct-rate na">No personal loans</div>
-      <div class="ct-fee">—</div>
-      <div class="ct-status no">Not available</div>
-    </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>Bank of America</div>
-      <div class="ct-rate na">No personal loans</div>
-      <div class="ct-fee">—</div>
-      <div class="ct-status no">Not available</div>
-    </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>Citibank</div>
-      <div class="ct-rate na">No personal loans</div>
-      <div class="ct-fee">—</div>
-      <div class="ct-status no">Not available</div>
-    </div>
-    <div class="ct-row">
-      <div class="ct-name"><div class="ct-dot off"></div>Wells Fargo</div>
-      <div class="ct-rate">7–24% APR</div>
-      <div class="ct-fee">None</div>
-      <div class="ct-status no">Declined thin-file borrowers</div>
-    </div>
-    <div class="ct-foot">Chase, Bank of America, and Citibank do not offer unsecured personal loans as of 2026. Sarf rate is projected based on comparable payroll-linked lending benchmarks and subject to underwriting at launch.</div>
-  </div>
-</div>
-
-<!-- FEATURES -->
-<div class="sec" style="padding-top:0;">
-  <div class="sec-lbl reveal">Why Sarf</div>
-  <h2 class="sec-h reveal">A better way to borrow</h2>
-  <p class="sec-p reveal">Whether you have an excellent credit score or none at all — Sarf reads your actual income and financial behavior to give you the rate you deserve.</p>
-  <div class="feat-grid">
-    <div class="feat reveal">
-      <div class="feat-icon">⚡</div>
-      <div class="feat-t">Rate in 60 seconds</div>
-      <span class="feat-tag">Instant Decision</span>
-      <div class="feat-d">Connect your bank account. Sarf reads your income, cash flow, and financial behavior. No documents, no branch visit, no waiting.</div>
-    </div>
-    <div class="feat reveal">
-      <div class="feat-icon">🔒</div>
-      <div class="feat-t">Zero origination fees</div>
-      <span class="feat-tag">Always $0</span>
-      <div class="feat-d">You borrow $10,000 — you receive $10,000. Competitors deduct up to 12% before you see a dollar. With Sarf, what you borrow is what lands in your account.</div>
-    </div>
-    <div class="feat reveal">
-      <div class="feat-icon">📅</div>
-      <div class="feat-t">Fixed total — agreed day one</div>
-      <span class="feat-tag">No Surprises</span>
-      <div class="feat-d">Your total repayment is locked before you sign. No compounding. No rate changes. No surprise charges. You always know exactly what you owe.</div>
-    </div>
-    <div class="feat reveal">
-      <div class="feat-icon">📈</div>
-      <div class="feat-t">Builds your Sarf score</div>
-      <span class="feat-tag">Launching Soon</span>
-      <div class="feat-d">Every on-time repayment improves your Sarf Repayment Strength Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
+    <div class="strip-card reveal">
+      <div class="strip-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="strip-label">No FICO</div>
+      <div class="strip-sub">Score required</div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- COMPARE SECTION -->
+<section class="compare-sec">
+  <div class="compare-inner">
+    <div class="sec-badge">Compare</div>
+    <h2 class="sec-heading reveal">See how Sarf <span class="gold-word">stacks up</span></h2>
+    <p class="sec-intro reveal">The biggest US banks do not offer personal loans at all. The ones that do charge origination fees on top of their rates — and still decline millions of qualified borrowers.</p>
+    <div class="compare-table-wrap reveal">
+      <div class="ct-head">
+        <div>Lender</div>
+        <div>Rate (USD)</div>
+        <div>Origination fee</div>
+        <div>Available</div>
+      </div>
+      <div class="ct-row sarf">
+        <div class="ct-name"><span class="sarf-name">Sarf</span><span class="ct-badge">Waitlist open</span></div>
+        <div class="ct-rate gold">8&ndash;16% fixed</div>
+        <div class="ct-fee good">$0 always</div>
+        <div class="ct-status wl" onclick="openModal()">Join waitlist &rarr;</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">SoFi</div>
+        <div class="ct-rate">8&ndash;26% APR</div>
+        <div class="ct-fee good">None</div>
+        <div class="ct-status">Needs credit history</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">Upstart</div>
+        <div class="ct-rate">9&ndash;35% APR</div>
+        <div class="ct-fee" style="color:#e07a7a;">Up to 12%</div>
+        <div class="ct-status">Partial access</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">LendingClub</div>
+        <div class="ct-rate">9&ndash;36% APR</div>
+        <div class="ct-fee" style="color:#e07a7a;">Up to 8%</div>
+        <div class="ct-status">Needs credit history</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">Chase Bank</div>
+        <div class="ct-rate na">No personal loans</div>
+        <div class="ct-fee">&mdash;</div>
+        <div class="ct-status" style="color:#e07a7a;">Not available</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">Bank of America</div>
+        <div class="ct-rate na">No personal loans</div>
+        <div class="ct-fee">&mdash;</div>
+        <div class="ct-status" style="color:#e07a7a;">Not available</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">Citibank</div>
+        <div class="ct-rate na">No personal loans</div>
+        <div class="ct-fee">&mdash;</div>
+        <div class="ct-status" style="color:#e07a7a;">Not available</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-name">Wells Fargo</div>
+        <div class="ct-rate">7&ndash;24% APR</div>
+        <div class="ct-fee">None</div>
+        <div class="ct-status" style="color:#e07a7a;">Declined thin-file borrowers</div>
+      </div>
+      <div class="ct-foot-row">Chase, Bank of America, and Citibank do not offer unsecured personal loans as of 2026. Sarf rate is projected based on comparable payroll-linked lending benchmarks and subject to underwriting at launch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SARF SECTION -->
+<section class="why-sec">
+  <div class="why-inner">
+    <div class="sec-badge">Why Sarf</div>
+    <h2 class="sec-heading reveal">A better way to <span class="gold-word">borrow.</span></h2>
+    <p class="sec-intro reveal">Whether you have an excellent credit score or none at all — Sarf reads your actual income and financial behavior to give you the rate you deserve.</p>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span class="feat-tag">Instant Decision</span>
+        <div class="feat-t">Rate in 60 seconds</div>
+        <div class="feat-d">Connect your bank account. Sarf reads your income, cash flow, and financial behavior. No documents, no branch visit, no waiting.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="feat-tag">Always $0</span>
+        <div class="feat-t">Zero origination fees</div>
+        <div class="feat-d">You borrow $10,000 — you receive $10,000. Competitors deduct up to 12% before you see a dollar. With Sarf, what you borrow is what lands in your account.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="feat-tag">No Surprises</span>
+        <div class="feat-t">Fixed total — agreed day one</div>
+        <div class="feat-d">Your total repayment is locked before you sign. No compounding. No rate changes. No surprise charges. You always know exactly what you owe.</div>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <span class="feat-tag">Launching Soon</span>
+        <div class="feat-t">Builds your Sarf score</div>
+        <div class="feat-d">Every on-time repayment improves your Sarf Repayment Strength Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- BOTTOM CTA -->
-<div class="bottom">
-  <h2 class="reveal">Financing that works<br>for <em style="color:var(--gold);font-family:'Playfair Display',serif;">everyone.</em></h2>
+<section class="bottom">
+  <h2 class="reveal">Financing that works<br>for <em style="color:var(--gold);">everyone.</em></h2>
   <p class="reveal">Better rates. No fees. No surprises.<br>Launching in KSA and the US in 2026.</p>
-  <div class="b-form reveal">
-    <input type="email" id="b-email" placeholder="Enter your email address" />
-    <button onclick="go('b')">Join Waitlist</button>
-  </div>
-  <div class="b-ok" id="b-ok">You are on the waitlist. We will reach out before launch.</div>
-  <p class="b-note reveal">contact@sarf.space · sarfspace.com · KSA & USA · 2026</p>
-</div>
+  <button class="bottom-btn reveal" onclick="openModal()">Join Waitlist</button>
+  <p class="b-note reveal">contact@sarf.space &nbsp;&#183;&nbsp; sarfspace.com &nbsp;&#183;&nbsp; KSA & USA &nbsp;&#183;&nbsp; 2026</p>
+</section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="f-logo">Sarf</div>
-  <div class="f-txt">© 2026 Sarf Technology Inc. · Structures, tracks, and enforces personal loans.</div>
+  <div class="f-brand">
+    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="Sarf" class="f-brand-img">
+    <span class="f-brand-name">Sarf</span>
+  </div>
+  <div class="f-txt">&copy; 2026 Sarf Technology Inc. &middot; Structures, tracks, and enforces personal loans.</div>
 </footer>
 
+<!-- WAITLIST MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Join the Waitlist</div>
+        <div class="modal-sub">Be first to access Sarf when we launch. Takes 30 seconds.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&#215;</button>
+    </div>
+    <div id="modal-form-wrap">
+      <div class="modal-body">
+        <div class="field">
+          <label>Email address <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="you@example.com">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Full name <span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label>Phone number <span class="req">*</span></label>
+            <input type="tel" id="f-phone" placeholder="+1 (555) 123-4567">
+          </div>
+        </div>
+        <div class="field">
+          <label>Company <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <input type="text" id="f-company" placeholder="Your company name">
+        </div>
+        <div class="field">
+          <label>Message <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <textarea id="f-message" rows="3" placeholder="Tell us what you need financing for..."></textarea>
+        </div>
+        <div id="form-error"></div>
+        <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+          <span id="btn-text">Confirm & Join</span>
+          <span class="submit-spinner" id="submit-spinner"></span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+      </div>
+      <div class="s-title">You're on the list!</div>
+      <div class="s-msg">We'll be in touch soon.</div>
+    </div>
+  </div>
+</div>
+
 <script>
-function go(id){
-  const inp=document.getElementById(id+'-email');
-  const ok=document.getElementById(id+'-ok');
-  const v=inp.value.trim();
-  if(!v||!v.includes('@')){inp.style.borderColor='#d97070';setTimeout(()=>inp.style.borderColor='rgba(180,155,100,0.22)',1600);return;}
-  inp.parentElement.style.display='none';
-  ok.style.display='block';
+var SCRIPT_URL = 'https://sheetdb.io/api/v1/xrkeaduauvp0q';
+var isLight = false;
+
+function toggleTheme() {
+  isLight = !isLight;
+  document.documentElement.classList.toggle('light', isLight);
+  var label = document.getElementById('theme-label');
+  var icon = document.getElementById('theme-icon');
+  if (isLight) {
+    label.textContent = 'Dark';
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    label.textContent = 'Light';
+    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
 }
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function submitForm() {
+  var email = document.getElementById('f-email').value.trim();
+  var name = document.getElementById('f-name').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var company = document.getElementById('f-company').value.trim();
+  var message = document.getElementById('f-message').value.trim();
+  var errEl = document.getElementById('form-error');
+
+  errEl.style.display = 'none';
+
+  if (!email || !name || !phone) {
+    errEl.textContent = 'Please fill in all required fields.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!email.includes('@')) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('submit-btn');
+  var spinner = document.getElementById('submit-spinner');
+  document.getElementById('btn-text').textContent = 'Submitting...';
+  spinner.style.display = 'block';
+  btn.disabled = true;
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: [{
+        Email:     email,
+        Timestamp: new Date().toLocaleString('en-US', {timeZone:'America/New_York'}),
+        fullName:  name,
+        Phone:     phone,
+        Company:   company || '',
+        Message:   message || ''
+      }]
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function() {
+    document.getElementById('modal-form-wrap').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+  })
+  .catch(function() {
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.style.display = 'block';
+    spinner.style.display = 'none';
+    document.getElementById('btn-text').textContent = 'Confirm & Join';
+    btn.disabled = false;
+  });
+}
+
+// Phone drag interaction
+(function() {
+  var phoneEl = document.getElementById('phone-el');
+  if (!phoneEl) return;
+
+  var DEF_RY = 8, DEF_RX = -3;
+  var ry = DEF_RY, rx = DEF_RX;
+  var dragging = false, lastX = 0, lastY = 0;
+  var floatPhase = 0;
+  var easeTimer = null;
+
+  function applyTransform() {
+    var ty = Math.sin(floatPhase) * -7;
+    phoneEl.style.transform =
+      'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(' + ty.toFixed(2) + 'px)';
+  }
+
+  (function loop() {
+    if (!dragging) floatPhase += 0.008;
+    applyTransform();
+    requestAnimationFrame(loop);
+  })();
+
+  function startEaseBack() {
+    if (easeTimer) { clearInterval(easeTimer); easeTimer = null; }
+    easeTimer = setInterval(function() {
+      ry += (DEF_RY - ry) * 0.1;
+      rx += (DEF_RX - rx) * 0.1;
+      if (Math.abs(ry - DEF_RY) < 0.05 && Math.abs(rx - DEF_RX) < 0.05) {
+        ry = DEF_RY; rx = DEF_RX;
+        clearInterval(easeTimer); easeTimer = null;
+      }
+    }, 16);
+  }
+
+  function onDragStart(x, y) {
+    dragging = true;
+    lastX = x; lastY = y;
+    if (easeTimer) { clearInterval(easeTimer); easeTimer = null; }
+  }
+  function onDragMove(x, y) {
+    if (!dragging) return;
+    ry = Math.max(-55, Math.min(55, ry + (x - lastX) * 0.35));
+    rx = Math.max(-40, Math.min(40, rx - (y - lastY) * 0.25));
+    lastX = x; lastY = y;
+  }
+  function onDragEnd() {
+    if (!dragging) return;
+    dragging = false;
+    startEaseBack();
+  }
+
+  phoneEl.addEventListener('mousedown', function(e) { onDragStart(e.clientX, e.clientY); e.preventDefault(); });
+  document.addEventListener('mousemove', function(e) { onDragMove(e.clientX, e.clientY); });
+  document.addEventListener('mouseup', onDragEnd);
+
+  phoneEl.addEventListener('touchstart', function(e) { onDragStart(e.touches[0].clientX, e.touches[0].clientY); }, {passive: true});
+  phoneEl.addEventListener('touchmove', function(e) { onDragMove(e.touches[0].clientX, e.touches[0].clientY); e.preventDefault(); }, {passive: false});
+  phoneEl.addEventListener('touchend', onDragEnd);
+})();
+
+// Progress bar fill on load
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var fill = document.getElementById('p-bar-fill');
+    if (fill) fill.style.width = '76%';
+  }, 800);
+});
+
+// Scroll reveal with staggered delays
+var obs = new IntersectionObserver(function(es) {
+  es.forEach(function(e) {
+    if (e.isIntersecting) {
+      var parent = e.target.parentElement;
+      if (parent) {
+        var siblings = parent.querySelectorAll('.reveal');
+        var idx = Array.prototype.indexOf.call(siblings, e.target);
+        e.target.style.transitionDelay = (idx * 0.08) + 's';
+      }
+      e.target.classList.add('on');
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(function(el) {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  obs.observe(el);
+});
 </script>
+
 </body>
 </html>
