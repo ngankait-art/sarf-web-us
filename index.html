@@ -1097,7 +1097,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         </div>
         <div class="re-field">
           <div class="re-toggle-row">
-            <span class="re-label" style="margin-bottom:0;">Salary linked</span>
+            <span class="re-label" style="margin-bottom:0;">Salary-linked income</span>
             <div class="re-toggle on" id="re-salary" onclick="this.classList.toggle('on');reUpdate();">
               <div class="re-toggle-knob"></div>
             </div>
@@ -1105,7 +1105,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         </div>
         <div class="re-field">
           <div class="re-toggle-row">
-            <span class="re-label" style="margin-bottom:0;">Guarantor present</span>
+            <span class="re-label" style="margin-bottom:0;" id="re-guarantor-label">No guarantor (optional)</span>
             <div class="re-toggle" id="re-guarantor" onclick="this.classList.toggle('on');reUpdate();">
               <div class="re-toggle-knob"></div>
             </div>
@@ -1113,7 +1113,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         </div>
         <div class="re-field">
           <div class="re-toggle-row">
-            <span class="re-label" style="margin-bottom:0;">Collateral available</span>
+            <span class="re-label" style="margin-bottom:0;" id="re-collateral-label">No collateral (optional)</span>
             <div class="re-toggle" id="re-collateral" onclick="this.classList.toggle('on');reUpdate();">
               <div class="re-toggle-knob"></div>
             </div>
@@ -1130,7 +1130,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       </div>
       <!-- RIGHT: Repayment intelligence output -->
       <div class="re-card">
-        <div class="re-card-title" style="text-align:center;">Repayment Power</div>
+        <div class="re-card-title" style="text-align:center;font-size:16px;letter-spacing:0.08em;">Repayment Decision Intelligence</div>
         <div class="re-output">
           <div class="re-live"><span class="re-live-dot"></span>Live</div>
           <div class="re-ring-wrap">
@@ -1151,13 +1151,13 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
               <div id="re-confidence-level" style="font-size:15px;font-weight:700;color:var(--gold);">Medium</div>
             </div>
             <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
-              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Next Payment</div>
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Next Payment Confidence</div>
               <div id="re-next-payment" style="font-size:15px;font-weight:700;color:var(--gold);">0%</div>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:10px;">
             <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
-              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">3-Payment Outlook</div>
+              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Short-term Repayment Probability</div>
               <div id="re-short-term" style="font-size:15px;font-weight:700;color:var(--gold);">0%</div>
             </div>
             <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
@@ -1586,6 +1586,10 @@ function reUpdate() {
 
   document.getElementById('re-loans-taken-val').textContent = taken;
   document.getElementById('re-loans-repaid-val').textContent = repaid;
+
+  // Dynamic toggle labels
+  document.getElementById('re-guarantor-label').textContent = document.getElementById('re-guarantor').classList.contains('on') ? 'Guarantor added' : 'No guarantor (optional)';
+  document.getElementById('re-collateral-label').textContent = document.getElementById('re-collateral').classList.contains('on') ? 'Collateral added' : 'No collateral (optional)';
 
   document.querySelectorAll('.re-pill').forEach(function(el) { el.classList.remove('active'); });
   var r = reCalc();
