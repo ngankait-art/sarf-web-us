@@ -277,115 +277,133 @@ h1 em{
   perspective:1200px;
 }
 .phone-ambient{
-  position:absolute;width:304px;height:475px;border-radius:50%;
+  position:absolute;width:360px;height:560px;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(245,168,0,0.18) 0%,transparent 65%);
   filter:blur(48px);pointer-events:none;
 }
-/* DYNAMIC PHONE FRAME VARIABLES */
+/* =========================
+   BIGGER PHONE + THICK GOLD FRAME
+   ========================= */
 .phone{
-  --edge-left-opacity: 0.24;
-  --edge-right-opacity: 0.32;
-  --edge-left-x: 0px;
-  --edge-right-x: 0px;
-  --frame-specular: 0.24;
+  --edge-left-opacity: 0.88;
+  --edge-right-opacity: 0.88;
+  --edge-left-scale: 1;
+  --edge-right-scale: 1;
+  --frame-specular: 0.30;
 
-  width:242px;
-  border-radius:40px;
-  padding:2.5px;
+  width:290px;
+  border-radius:46px;
+  padding:14px;
   position:relative;
   cursor:grab;
   will-change:transform;
+  transform-style:preserve-3d;
+  overflow:visible;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,235,170,calc(var(--frame-specular) * 0.55)) 0%,
-      rgba(255,220,120,0.08) 12%,
-      rgba(245,168,0,0.06) 24%,
-      rgba(0,0,0,0) 42%
+      rgba(255,245,205,calc(var(--frame-specular) * 0.95)) 0%,
+      rgba(255,226,138,0.18) 10%,
+      rgba(201,140,20,0.10) 28%,
+      rgba(0,0,0,0.00) 48%
     ),
     linear-gradient(
-      160deg,
-      rgba(245,168,0,0.92) 0%,
-      rgba(180,120,0,0.42) 38%,
-      rgba(245,168,0,0.72) 100%
+      135deg,
+      #f8d978 0%,
+      #d9a62a 18%,
+      #8d6410 34%,
+      #f0c35a 52%,
+      #7a540c 69%,
+      #c8921f 84%,
+      #f6db84 100%
     );
 
   box-shadow:
-    0 0 0 1px rgba(245,168,0,0.20),
-    inset 0 1px 0 rgba(255,235,170,calc(var(--frame-specular) * 0.7)),
-    inset 0 -1px 0 rgba(0,0,0,0.28),
-    0 50px 100px rgba(0,0,0,0.70),
-    0 20px 60px rgba(0,0,0,0.50),
-    0 0 80px rgba(245,168,0,0.12);
+    0 0 0 1px rgba(255,220,120,0.28),
+    inset 0 1px 0 rgba(255,250,220,0.55),
+    inset 0 -2px 0 rgba(90,58,6,0.35),
+    0 34px 90px rgba(0,0,0,0.48),
+    0 18px 44px rgba(0,0,0,0.30),
+    0 0 50px rgba(245,168,0,0.12);
 }
 
 .phone:active{cursor:grabbing;}
 
-/* DYNAMIC LEFT EDGE */
+/* THICK LEFT SIDEWALL */
 .phone::before{
   content:'';
   position:absolute;
-  top:11%;
-  bottom:11%;
-  left:0;
-  width:4px;
-  border-radius:4px;
+  top:7px;
+  bottom:7px;
+  left:-2px;
+  width:16px;
+  border-radius:18px 10px 10px 18px;
   pointer-events:none;
-  z-index:2;
-  transform:translateX(var(--edge-left-x));
+  z-index:3;
   opacity:var(--edge-left-opacity);
+  transform:scaleX(var(--edge-left-scale));
+  transform-origin:left center;
+
   background:
     linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,232,165,0.14) 12%,
-      rgba(255,220,120,0.52) 50%,
-      rgba(255,232,165,0.18) 88%,
-      transparent 100%
+      90deg,
+      #6f4b08 0%,
+      #9b6c10 16%,
+      #d9a62a 34%,
+      #f7da86 52%,
+      #c9901d 68%,
+      #8b620e 84%,
+      rgba(0,0,0,0.18) 100%
     );
-  filter:blur(0.2px);
+
   box-shadow:
-    -1px 0 2px rgba(255,220,120,0.12),
-    0 0 8px rgba(245,168,0,0.10);
+    inset 1px 0 0 rgba(255,247,214,0.40),
+    inset -2px 0 3px rgba(92,60,6,0.28),
+    1px 0 0 rgba(255,232,163,0.18);
 }
 
-/* DYNAMIC RIGHT EDGE */
+/* THICK RIGHT SIDEWALL */
 .phone::after{
   content:'';
   position:absolute;
-  top:11%;
-  bottom:11%;
-  right:0;
-  width:4px;
-  border-radius:4px;
+  top:7px;
+  bottom:7px;
+  right:-2px;
+  width:16px;
+  border-radius:10px 18px 18px 10px;
   pointer-events:none;
-  z-index:2;
-  transform:translateX(var(--edge-right-x));
+  z-index:3;
   opacity:var(--edge-right-opacity);
+  transform:scaleX(var(--edge-right-scale));
+  transform-origin:right center;
+
   background:
     linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,232,165,0.14) 12%,
-      rgba(255,220,120,0.52) 50%,
-      rgba(255,232,165,0.18) 88%,
-      transparent 100%
+      270deg,
+      #6f4b08 0%,
+      #9b6c10 16%,
+      #d9a62a 34%,
+      #f7da86 52%,
+      #c9901d 68%,
+      #8b620e 84%,
+      rgba(0,0,0,0.18) 100%
     );
-  filter:blur(0.2px);
+
   box-shadow:
-    1px 0 2px rgba(255,220,120,0.12),
-    0 0 8px rgba(245,168,0,0.10);
+    inset -1px 0 0 rgba(255,247,214,0.40),
+    inset 2px 0 3px rgba(92,60,6,0.28),
+    -1px 0 0 rgba(255,232,163,0.18);
 }
 .phone-inner{
-  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
-  border-radius:40px;padding:12px;position:relative;overflow:hidden;
-  /* Inset shadow on both sides for frame depth */
+  border-radius:34px;
+  overflow:hidden;
+  padding:14px;
+  position:relative;
+  background:linear-gradient(180deg,#121212 0%,#0a0a0a 100%);
   box-shadow:
-    inset 2px 0 4px rgba(0,0,0,0.3),
-    inset -2px 0 4px rgba(0,0,0,0.3),
-    inset 0 2px 4px rgba(0,0,0,0.2),
-    inset 0 -1px 3px rgba(0,0,0,0.15);
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
 }
 /* Top edge light catch */
 .phone-inner::before{
@@ -1400,27 +1418,26 @@ function submitForm() {
     phoneEl.style.transform =
       'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(' + ty.toFixed(2) + 'px)';
 
-    /* ROTATION-DRIVEN EDGE LIGHTING */
+    /* ROTATION-DRIVEN EDGE LIGHTING — thick sidewall variant */
     var n = Math.max(-1, Math.min(1, ry / 55));
 
-    /* When rotated right, left edge becomes stronger.
-       When rotated left, right edge becomes stronger. */
-    var leftOpacity = 0.24 + Math.max(0, n) * 0.18 - Math.max(0, -n) * 0.06;
-    var rightOpacity = 0.24 + Math.max(0, -n) * 0.18 - Math.max(0, n) * 0.06;
+    /* nearer edge gets stronger */
+    var leftOpacity = 0.78 + Math.max(0, n) * 0.18 - Math.max(0, -n) * 0.10;
+    var rightOpacity = 0.78 + Math.max(0, -n) * 0.18 - Math.max(0, n) * 0.10;
 
-    leftOpacity = Math.max(0.16, Math.min(0.42, leftOpacity));
-    rightOpacity = Math.max(0.16, Math.min(0.42, rightOpacity));
+    leftOpacity = Math.max(0.62, Math.min(1.0, leftOpacity));
+    rightOpacity = Math.max(0.62, Math.min(1.0, rightOpacity));
 
-    var leftShift = (-n * 2).toFixed(2) + 'px';
-    var rightShift = (-n * 2).toFixed(2) + 'px';
+    var leftScale = 1 + Math.max(0, n) * 0.22;
+    var rightScale = 1 + Math.max(0, -n) * 0.22;
 
-    var frameSpecular = 0.24 + Math.abs(n) * 0.10;
-    frameSpecular = Math.max(0.18, Math.min(0.34, frameSpecular));
+    var frameSpecular = 0.26 + Math.abs(n) * 0.10;
+    frameSpecular = Math.max(0.22, Math.min(0.38, frameSpecular));
 
     phoneEl.style.setProperty('--edge-left-opacity', leftOpacity.toFixed(3));
     phoneEl.style.setProperty('--edge-right-opacity', rightOpacity.toFixed(3));
-    phoneEl.style.setProperty('--edge-left-x', leftShift);
-    phoneEl.style.setProperty('--edge-right-x', rightShift);
+    phoneEl.style.setProperty('--edge-left-scale', leftScale.toFixed(3));
+    phoneEl.style.setProperty('--edge-right-scale', rightScale.toFixed(3));
     phoneEl.style.setProperty('--frame-specular', frameSpecular.toFixed(3));
   }
 
