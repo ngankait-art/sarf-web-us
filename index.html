@@ -807,7 +807,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <!-- NAVBAR -->
 <nav>
   <div class="nav-left">
-    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="SARF" class="nav-logo-img">
+    <img src="sarf-logo-new.png" alt="SARF" class="nav-logo-img">
     <span class="nav-brand">SARF</span>
   </div>
   <div class="nav-right">
@@ -831,15 +831,15 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="hero-fade"></div>
 
   <div class="hero-text">
+    <!-- CHANGE H: Simplified hero badge — removed "for USA & KSA 2026" -->
     <div class="hero-badge">
       <span class="badge-line1">Waitlist Open</span>
-      <span class="badge-line2">for</span>
-      <span class="badge-line3">USA & KSA 2026</span>
     </div>
     <h1 id="hero-h1">Get financing<br>without the<br><em>FICO score.</em></h1>
     <p class="hero-sub">Connect your bank. Get your rate in 60 seconds. Repay a fixed agreed amount — no origination fees, no compounding, no hidden charges.</p>
     <button class="cta-btn" onclick="openModal()">Join Waitlist <span class="cta-arrow">&rarr;</span></button>
-    <p class="hero-disclaimer">No spam &nbsp;&middot;&nbsp; Waitlist only &nbsp;&middot;&nbsp; Unsubscribe anytime</p>
+    <!-- CHANGE B: Added trust/security micro-copy -->
+    <p class="hero-disclaimer">Bank-grade security &nbsp;&middot;&nbsp; Encrypted connection &nbsp;&middot;&nbsp; Waitlist only</p>
   </div>
 
   <!-- PHONE MOCKUP -->
@@ -867,7 +867,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
           <div class="p-stat"><div class="p-stat-val gold">0</div><div class="p-stat-lbl">FICO required</div></div>
         </div>
         <div class="p-bar">
-          <div class="p-bar-lbl">Repayment Strength Score</div>
+          <!-- CHANGE G: Renamed to SARF Score -->
+          <div class="p-bar-lbl">SARF Score</div>
           <div class="p-bar-track"><div class="p-bar-fill" id="p-bar-fill"></div></div>
           <div class="p-bar-row"><span>Building</span><span>Strong</span><span>Excellent</span></div>
         </div>
@@ -925,26 +926,27 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         <div>Origination fee</div>
         <div>Available</div>
       </div>
+      <!-- CHANGE C: Added brand logo placeholders beside lender names -->
       <div class="ct-row sarf">
-        <div class="ct-name"><span class="sarf-name">SARF</span><span class="ct-badge">Waitlist open</span></div>
+        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><img src="sarf-logo-new.png" alt="SARF" style="width:22px;height:22px;border-radius:50%;object-fit:cover;"><span class="sarf-name">SARF</span></span><span class="ct-badge">Waitlist open</span></div>
         <div class="ct-rate gold">8&ndash;16% fixed</div>
         <div class="ct-fee good">$0 always</div>
         <div class="ct-status wl" onclick="openModal()">Join waitlist &rarr;</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">SoFi</div>
+        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><!-- LOGO PLACEHOLDER: Replace with SoFi logo --><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">S</span>SoFi</span></div>
         <div class="ct-rate">8&ndash;26% APR</div>
         <div class="ct-fee good">None</div>
         <div class="ct-status">Needs credit history</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">Upstart</div>
+        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><!-- LOGO PLACEHOLDER: Replace with Upstart logo --><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">U</span>Upstart</span></div>
         <div class="ct-rate">9&ndash;35% APR</div>
         <div class="ct-fee" style="color:#e07a7a;">Up to 12%</div>
         <div class="ct-status">Partial access</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">LendingClub</div>
+        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">L</span>LendingClub</span></div>
         <div class="ct-rate">9&ndash;36% APR</div>
         <div class="ct-fee" style="color:#e07a7a;">Up to 8%</div>
         <div class="ct-status">Needs credit history</div>
@@ -1003,67 +1005,80 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div class="feat reveal">
         <span class="feat-tag">Launching Soon</span>
         <div class="feat-t">Builds your SARF score</div>
-        <div class="feat-d">Every on-time repayment improves your SARF Repayment Strength Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
+        <!-- CHANGE G: Updated copy to use SARF Score -->
+        <div class="feat-d">Every on-time repayment improves your SARF Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RELIABILITY ENGINE DEMO -->
+<!-- CHANGE D-F: SARF Score Demo — simplified, borrower-facing -->
 <section class="re-sec">
   <div class="re-inner">
     <div style="text-align:center;">
       <div class="sec-badge">LIVE DEMO</div>
-      <h2 class="sec-heading reveal">Test the <span class="gold-word">Reliability Engine</span></h2>
-      <p class="sec-intro reveal">See how SARF evaluates a borrower profile and generates a real-time decision.</p>
+      <h2 class="sec-heading reveal">See your <span class="gold-word">SARF Score</span></h2>
+      <p class="sec-intro reveal">Answer a few simple questions and instantly see how much you could qualify for.</p>
     </div>
     <div class="re-presets reveal">
-      <button class="re-pill" onclick="rePreset('strong')">Strong User</button>
-      <button class="re-pill" onclick="rePreset('new')">New User</button>
-      <button class="re-pill" onclick="rePreset('moderate')">Moderate Risk</button>
-      <button class="re-pill" onclick="rePreset('high')">High Risk</button>
+      <button class="re-pill" onclick="rePreset('strong')">Excellent Profile</button>
+      <button class="re-pill" onclick="rePreset('good')">Good Profile</button>
+      <button class="re-pill" onclick="rePreset('new')">First-time Borrower</button>
+      <button class="re-pill" onclick="rePreset('building')">Building Credit</button>
     </div>
     <div class="re-grid reveal">
-      <!-- LEFT: Inputs -->
+      <!-- LEFT: Borrower-facing inputs -->
       <div class="re-card">
-        <div class="re-card-title">Borrower Profile</div>
+        <div class="re-card-title">Your Profile</div>
         <div class="re-field">
-          <div class="re-label"><span>Account Age (days)</span><span class="re-val" id="re-age-val">365</span></div>
-          <input type="range" class="re-slider" id="re-age" min="0" max="1000" value="365" oninput="reUpdate()">
-        </div>
-        <div class="re-field">
-          <div class="re-label"><span>Prior Obligations Completed</span><span class="re-val" id="re-obl-val">10</span></div>
+          <div class="re-label"><span>Loans repaid on time</span><span class="re-val" id="re-obl-val">10</span></div>
           <input type="range" class="re-slider" id="re-obl" min="0" max="30" value="10" oninput="reUpdate()">
         </div>
         <div class="re-field">
-          <div class="re-label"><span>Average Days Late</span><span class="re-val" id="re-late-val">2d</span></div>
-          <input type="range" class="re-slider" id="re-late" min="0" max="30" value="2" oninput="reUpdate()">
-        </div>
-        <div class="re-field">
-          <div class="re-label"><span>Reschedule Count</span><span class="re-val" id="re-resc-val">1</span></div>
-          <input type="range" class="re-slider" id="re-resc" min="0" max="8" value="1" oninput="reUpdate()">
-        </div>
-        <div class="re-field">
-          <div class="re-label"><span>KYC Strength</span></div>
+          <div class="re-label"><span>Identity verification</span></div>
           <select class="re-select" id="re-kyc" onchange="reUpdate()">
-            <option value="none">None — Not Verified</option>
-            <option value="basic">Basic</option>
-            <option value="standard" selected>Standard</option>
-            <option value="enhanced">Enhanced</option>
+            <option value="none">Not yet verified</option>
+            <option value="basic">Basic — ID uploaded</option>
+            <option value="standard" selected>Standard — ID + selfie</option>
+            <option value="enhanced">Enhanced — fully verified</option>
           </select>
+        </div>
+        <div class="re-field">
+          <div class="re-toggle-row">
+            <span class="re-label" style="margin-bottom:0;">Salary linked</span>
+            <div class="re-toggle on" id="re-salary" onclick="this.classList.toggle('on');reUpdate();">
+              <div class="re-toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+        <div class="re-field">
+          <div class="re-toggle-row">
+            <span class="re-label" style="margin-bottom:0;">Guarantor present</span>
+            <div class="re-toggle" id="re-guarantor" onclick="this.classList.toggle('on');reUpdate();">
+              <div class="re-toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+        <div class="re-field">
+          <div class="re-toggle-row">
+            <span class="re-label" style="margin-bottom:0;">Collateral available</span>
+            <div class="re-toggle" id="re-collateral" onclick="this.classList.toggle('on');reUpdate();">
+              <div class="re-toggle-knob"></div>
+            </div>
+          </div>
         </div>
         <div class="re-field" style="margin-bottom:0;">
           <div class="re-toggle-row">
-            <span class="re-label" style="margin-bottom:0;">Bank Account Linked</span>
-            <div class="re-toggle" id="re-bank" onclick="this.classList.toggle('on');reUpdate();">
+            <span class="re-label" style="margin-bottom:0;">Credit score on file</span>
+            <div class="re-toggle" id="re-credit" onclick="this.classList.toggle('on');reUpdate();">
               <div class="re-toggle-knob"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- RIGHT: Output -->
+      <!-- RIGHT: Borrower-facing output -->
       <div class="re-card">
-        <div class="re-card-title" style="text-align:center;">OIE Evaluation</div>
+        <div class="re-card-title" style="text-align:center;">Your SARF Score</div>
         <div class="re-output">
           <div class="re-live"><span class="re-live-dot"></span>Live</div>
           <div class="re-ring-wrap">
@@ -1073,17 +1088,22 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
             </svg>
             <div class="re-ring-center">
               <div class="re-score-num" id="re-score-num">0</div>
-              <div class="re-score-label">Reliability Score</div>
+              <div class="re-score-label">SARF Score</div>
             </div>
+          </div>
+          <!-- Estimated amount -->
+          <div style="text-align:center;">
+            <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Estimated eligible amount</div>
+            <div id="re-amount" style="font-size:28px;font-weight:700;font-family:'Inter',sans-serif;color:var(--gold);line-height:1;">$0</div>
           </div>
           <div>
             <span class="re-decision decline" id="re-decision">Decline</span>
-            <span class="re-confidence" id="re-confidence">Confidence 0%</span>
           </div>
+          <!-- Status badges -->
           <div class="re-chips" id="re-chips"></div>
           <div class="re-accordion">
             <div class="re-acc-header" id="re-acc-toggle" onclick="this.classList.toggle('open');document.getElementById('re-acc-body').classList.toggle('open');">
-              <span>Decision Explanation</span>
+              <span>What affects your score?</span>
               <span class="re-acc-arrow">&#9660;</span>
             </div>
             <div class="re-acc-body" id="re-acc-body">
@@ -1112,7 +1132,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <!-- FOOTER -->
 <footer>
   <div class="f-brand">
-    <img src="https://media.base44.com/images/public/69bc0387e3e2eb0eb46c9e39/f5f91c94d_sarf-logo.png" alt="SARF" class="f-brand-img">
+    <img src="sarf-logo-new.png" alt="SARF" class="f-brand-img">
     <span class="f-brand-name">SARF</span>
   </div>
   <div class="f-txt">&copy; 2026 SARF Inc. &middot; Structures, tracks, and enforces personal loans.</div>
@@ -1349,101 +1369,91 @@ document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(f
   el.setAttribute('data-reveal-delay', (i % 4) * 80);
 });
 
-// ── RELIABILITY ENGINE ──
+// ── CHANGE D-G: SARF Score Demo — simplified, borrower-facing ──
 var rePresets = {
-  strong:   {age:720, obl:18, late:0, resc:0, kyc:'enhanced', bank:true},
-  'new':    {age:30,  obl:0,  late:0, resc:0, kyc:'basic',    bank:false},
-  moderate: {age:300, obl:6,  late:6, resc:2, kyc:'standard',  bank:false},
-  high:     {age:90,  obl:2,  late:14,resc:4, kyc:'basic',    bank:false}
+  strong:   {obl:20, kyc:'enhanced', salary:true, guarantor:true, collateral:true, credit:true},
+  good:     {obl:12, kyc:'standard', salary:true, guarantor:false, collateral:false, credit:true},
+  'new':    {obl:0,  kyc:'basic',    salary:false, guarantor:false, collateral:false, credit:false},
+  building: {obl:3,  kyc:'standard', salary:true, guarantor:false, collateral:false, credit:false}
 };
 var reAnimTarget = 0, reAnimCurrent = 0, reAnimFrame = null;
+var reAmountTarget = 0, reAmountCurrent = 0, reAmountFrame = null;
 
 function rePreset(key) {
   var p = rePresets[key];
-  document.getElementById('re-age').value = p.age;
   document.getElementById('re-obl').value = p.obl;
-  document.getElementById('re-late').value = p.late;
-  document.getElementById('re-resc').value = p.resc;
   document.getElementById('re-kyc').value = p.kyc;
-  var bankEl = document.getElementById('re-bank');
-  if (p.bank) bankEl.classList.add('on'); else bankEl.classList.remove('on');
-  document.querySelectorAll('.re-pill').forEach(function(el) {
-    el.classList.toggle('active', el.textContent.toLowerCase().indexOf(key === 'new' ? 'new' : key) !== -1);
+  var toggles = {salary:'re-salary',guarantor:'re-guarantor',collateral:'re-collateral',credit:'re-credit'};
+  for (var k in toggles) {
+    var el = document.getElementById(toggles[k]);
+    if (p[k]) el.classList.add('on'); else el.classList.remove('on');
+  }
+  document.querySelectorAll('.re-pill').forEach(function(el,i) {
+    el.classList.toggle('active', i === ['strong','good','new','building'].indexOf(key));
   });
   reUpdate();
 }
 
 function reCalc() {
-  var age = +document.getElementById('re-age').value;
   var obl = +document.getElementById('re-obl').value;
-  var late = +document.getElementById('re-late').value;
-  var resc = +document.getElementById('re-resc').value;
   var kyc = document.getElementById('re-kyc').value;
-  var bank = document.getElementById('re-bank').classList.contains('on');
+  var salary = document.getElementById('re-salary').classList.contains('on');
+  var guarantor = document.getElementById('re-guarantor').classList.contains('on');
+  var collateral = document.getElementById('re-collateral').classList.contains('on');
+  var credit = document.getElementById('re-credit').classList.contains('on');
 
   var score = 0;
   var reasons = [];
+  var badges = [];
 
-  // Account age: up to 20, max at 730
-  var agePts = Math.min(20, (age / 730) * 20);
-  score += agePts;
-  if (age >= 365) reasons.push('Mature account (' + age + ' days)');
-  else if (age < 90) reasons.push('Very new account (' + age + ' days) — limited history');
-  else reasons.push('Account age: ' + age + ' days');
-
-  // Obligations: up to 25, max at 20
-  var oblPts = Math.min(25, (Math.min(obl, 20) / 20) * 25);
+  // Repayment history: up to 30 pts (max at 20 loans)
+  var oblPts = Math.min(30, (Math.min(obl, 20) / 20) * 30);
   score += oblPts;
-  if (obl >= 10) reasons.push(obl + ' obligations completed — strong track record');
-  else if (obl === 0) reasons.push('No prior obligations — unproven repayment history');
-  else reasons.push(obl + ' prior obligations completed');
+  if (obl >= 10) reasons.push('Strong repayment history — ' + obl + ' loans repaid on time');
+  else if (obl === 0) reasons.push('No repayment history yet — building your profile');
+  else reasons.push(obl + ' loan(s) repaid on time');
 
-  // Days late: up to 20 minus 2 per day
-  var latePts = Math.max(0, 20 - late * 2);
-  score += latePts;
-  if (late === 0) reasons.push('No late payments — excellent punctuality');
-  else if (late <= 5) reasons.push('Average ' + late + 'd late — minor delays');
-  else reasons.push('Average ' + late + 'd late — significant delinquency risk');
-
-  // Reschedules: up to 15 minus 5 per reschedule
-  var rescPts = Math.max(0, 15 - resc * 5);
-  score += rescPts;
-  if (resc === 0) reasons.push('No reschedules — stable repayment behavior');
-  else reasons.push(resc + ' reschedule(s) — indicates cash flow instability');
-
-  // KYC
-  var kycMap = {none:0, basic:4, standard:8, enhanced:12};
+  // KYC: none=0, basic=8, standard=14, enhanced=20
+  var kycMap = {none:0, basic:8, standard:14, enhanced:20};
   score += kycMap[kyc] || 0;
-  if (kyc === 'none') reasons.push('KYC not verified — identity cannot be confirmed');
-  else if (kyc === 'enhanced') reasons.push('Enhanced KYC — fully verified identity');
-  else reasons.push('KYC level: ' + kyc);
+  if (kyc === 'enhanced') reasons.push('Fully verified identity — maximum trust');
+  else if (kyc === 'standard') reasons.push('Standard identity verification');
+  else if (kyc === 'basic') reasons.push('Basic ID uploaded — upgrade for better score');
+  else reasons.push('Identity not yet verified');
 
-  // Bank linked
-  if (bank) { score += 8; reasons.push('Bank account linked — income verification enabled'); }
-  else reasons.push('No bank account linked — cannot verify income');
+  // Salary linked: 15 pts
+  if (salary) { score += 15; reasons.push('Salary linked — income verified automatically'); badges.push({text:'Salary linked',on:true}); }
+  else { reasons.push('Salary not linked — link to boost your score'); badges.push({text:'Salary not linked',on:false}); }
+
+  // Guarantor: 12 pts
+  if (guarantor) { score += 12; reasons.push('Guarantor present — added security'); badges.push({text:'Guarantor',on:true}); }
+  else badges.push({text:'No guarantor',on:false});
+
+  // Collateral: 13 pts
+  if (collateral) { score += 13; reasons.push('Collateral available — unlocks higher amounts'); badges.push({text:'Collateral',on:true}); }
+  else badges.push({text:'No collateral',on:false});
+
+  // Credit score on file: 10 pts
+  if (credit) { score += 10; reasons.push('Credit score on file — additional data point'); badges.push({text:'Credit score',on:true}); }
+  else { reasons.push('No credit score on file — not required but helps'); badges.push({text:'No credit score',on:false}); }
 
   // KYC none cap
-  if (kyc === 'none') score = Math.min(score, 20);
+  if (kyc === 'none') score = Math.min(score, 25);
 
   score = Math.round(Math.min(100, Math.max(0, score)));
 
-  var decision, chips = [];
-  if (score >= 75) {
-    decision = 'approve';
-  } else if (score >= 45) {
-    decision = 'conditional';
-    if (!bank) chips.push('Bank verification required');
-    if (kyc === 'none' || kyc === 'basic') chips.push('KYC upgrade required');
-    if (resc >= 2) chips.push('Guarantor required');
-    if (late >= 5) chips.push('Reduced limit recommended');
-    if (chips.length === 0) chips.push('Additional review required');
-  } else {
-    decision = 'decline';
-  }
+  // Decision
+  var decision;
+  if (score >= 70) decision = 'approve';
+  else if (score >= 40) decision = 'conditional';
+  else decision = 'decline';
 
-  var confidence = Math.min(98, Math.max(40, 50 + score * 0.5));
+  // Estimated amount based on score
+  var amount = 0;
+  if (score >= 70) amount = 5000 + Math.round((score - 70) / 30 * 20000);
+  else if (score >= 40) amount = 1000 + Math.round((score - 40) / 30 * 4000);
 
-  return {score:score, decision:decision, confidence:Math.round(confidence), chips:chips, reasons:reasons};
+  return {score:score, decision:decision, amount:amount, badges:badges, reasons:reasons};
 }
 
 function reAnimateScore(target) {
@@ -1451,63 +1461,58 @@ function reAnimateScore(target) {
   if (reAnimFrame) return;
   function step() {
     var diff = reAnimTarget - reAnimCurrent;
-    if (Math.abs(diff) < 0.5) {
-      reAnimCurrent = reAnimTarget;
-      reAnimFrame = null;
-    } else {
-      reAnimCurrent += diff * 0.12;
-      reAnimFrame = requestAnimationFrame(step);
-    }
+    if (Math.abs(diff) < 0.5) { reAnimCurrent = reAnimTarget; reAnimFrame = null; }
+    else { reAnimCurrent += diff * 0.12; reAnimFrame = requestAnimationFrame(step); }
     document.getElementById('re-score-num').textContent = Math.round(reAnimCurrent);
   }
   reAnimFrame = requestAnimationFrame(step);
 }
 
+function reAnimateAmount(target) {
+  reAmountTarget = target;
+  if (reAmountFrame) return;
+  function step() {
+    var diff = reAmountTarget - reAmountCurrent;
+    if (Math.abs(diff) < 10) { reAmountCurrent = reAmountTarget; reAmountFrame = null; }
+    else { reAmountCurrent += diff * 0.12; reAmountFrame = requestAnimationFrame(step); }
+    var v = Math.round(reAmountCurrent);
+    document.getElementById('re-amount').textContent = v > 0 ? '$' + v.toLocaleString() : '$0';
+  }
+  reAmountFrame = requestAnimationFrame(step);
+}
+
 function reUpdate() {
-  // Update displayed values
-  var age = document.getElementById('re-age').value;
-  var obl = document.getElementById('re-obl').value;
-  var late = document.getElementById('re-late').value;
-  var resc = document.getElementById('re-resc').value;
-  document.getElementById('re-age-val').textContent = age;
-  document.getElementById('re-obl-val').textContent = obl;
-  document.getElementById('re-late-val').textContent = late + 'd';
-  document.getElementById('re-resc-val').textContent = resc;
-
-  // Clear active pills
+  document.getElementById('re-obl-val').textContent = document.getElementById('re-obl').value;
   document.querySelectorAll('.re-pill').forEach(function(el) { el.classList.remove('active'); });
-
   var r = reCalc();
 
-  // Animate score
   reAnimateScore(r.score);
+  reAnimateAmount(r.amount);
 
   // Ring
-  var circ = 2 * Math.PI * 68; // ~427.26
-  var offset = circ - (r.score / 100) * circ;
+  var circ = 2 * Math.PI * 68;
   var ring = document.getElementById('re-ring');
-  ring.style.strokeDashoffset = offset;
+  ring.style.strokeDashoffset = circ - (r.score / 100) * circ;
   var colors = {approve:'#4ade80', conditional:'#fbbf24', decline:'#f87171'};
   ring.style.stroke = colors[r.decision];
 
   // Decision badge
   var decEl = document.getElementById('re-decision');
   decEl.className = 're-decision ' + r.decision;
-  decEl.textContent = r.decision.charAt(0).toUpperCase() + r.decision.slice(1);
+  var labels = {approve:'Approved', conditional:'Conditional', decline:'Not eligible'};
+  decEl.textContent = labels[r.decision];
 
-  // Confidence
-  document.getElementById('re-confidence').textContent = 'Confidence ' + r.confidence + '%';
-
-  // Chips
+  // Status badges
   var chipsEl = document.getElementById('re-chips');
-  chipsEl.innerHTML = r.chips.map(function(c) { return '<span class="re-chip">' + c + '</span>'; }).join('');
+  chipsEl.innerHTML = r.badges.map(function(b) {
+    var cls = b.on ? 'background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.25);color:#4ade80;' : '';
+    return '<span class="re-chip" style="' + cls + '">' + b.text + '</span>';
+  }).join('');
 
   // Reasons
-  var reasonsEl = document.getElementById('re-reasons');
-  reasonsEl.innerHTML = r.reasons.map(function(rr) { return '<li>' + rr + '</li>'; }).join('');
+  document.getElementById('re-reasons').innerHTML = r.reasons.map(function(rr) { return '<li>' + rr + '</li>'; }).join('');
 }
 
-// Init
 reUpdate();
 </script>
 
