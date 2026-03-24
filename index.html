@@ -659,6 +659,138 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 .s-title{font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:8px;font-family:'DM Sans',sans-serif;}
 .s-msg{font-size:14px;color:var(--text-muted);}
 
+/* RELIABILITY ENGINE */
+.re-sec{
+  padding:80px 40px;
+  background:linear-gradient(180deg,var(--bg-card) 0%,var(--bg-deep) 100%);
+  border-top:1px solid var(--gold-border);
+}
+.re-inner{max-width:1100px;margin:0 auto;}
+.re-presets{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+.re-pill{
+  padding:7px 16px;border-radius:999px;font-size:12px;font-weight:600;
+  background:rgba(255,255,255,0.03);border:1px solid var(--gold-border);
+  color:var(--text-muted);cursor:pointer;transition:all .2s;
+  font-family:'DM Sans',sans-serif;
+}
+.re-pill:hover,.re-pill.active{background:var(--gold-glow);border-color:var(--gold-border-strong);color:var(--gold);}
+.re-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:800px){.re-grid{grid-template-columns:1fr;}}
+.re-card{
+  border-radius:var(--radius-lg);padding:28px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--gold-border);
+  backdrop-filter:blur(12px);
+}
+.light .re-card{background:rgba(255,255,255,0.8);}
+.re-card-title{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;}
+.re-field{margin-bottom:18px;}
+.re-label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+.re-val{color:var(--gold);font-family:'Inter',sans-serif;font-weight:700;}
+.re-slider{
+  -webkit-appearance:none;appearance:none;width:100%;height:4px;
+  border-radius:4px;background:rgba(255,255,255,0.08);outline:none;
+  cursor:pointer;
+}
+.light .re-slider{background:rgba(0,0,0,0.08);}
+.re-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--gold);cursor:pointer;
+  box-shadow:0 0 8px rgba(245,168,0,0.5);
+}
+.re-slider::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;border:none;
+  background:var(--gold);cursor:pointer;
+  box-shadow:0 0 8px rgba(245,168,0,0.5);
+}
+.re-select{
+  width:100%;padding:9px 14px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1.5px solid var(--gold-border);
+  font-size:13px;color:var(--text-primary);font-family:'DM Sans',sans-serif;
+  outline:none;cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23F5A800' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+}
+.light .re-select{background-color:rgba(0,0,0,0.04);}
+.re-select option{background:var(--bg-card);color:var(--text-primary);}
+.re-toggle-row{display:flex;align-items:center;justify-content:space-between;}
+.re-toggle{
+  width:44px;height:24px;border-radius:12px;
+  background:rgba(255,255,255,0.1);border:1px solid var(--gold-border);
+  cursor:pointer;position:relative;transition:background .2s;flex-shrink:0;
+}
+.re-toggle.on{background:var(--gold);}
+.re-toggle-knob{
+  width:18px;height:18px;border-radius:50%;background:#fff;
+  position:absolute;top:2px;left:2px;
+  transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,0.3);
+}
+.re-toggle.on .re-toggle-knob{transform:translateX(20px);}
+
+/* Right card */
+.re-output{display:flex;flex-direction:column;align-items:center;gap:20px;}
+.re-live{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted);font-family:'DM Sans',sans-serif;letter-spacing:0.04em;text-transform:uppercase;}
+.re-live-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse-glow-green 2s infinite;}
+@keyframes pulse-glow-green{
+  0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,0.5);}
+  50%{box-shadow:0 0 6px 3px rgba(74,222,128,0.6);}
+}
+.re-ring-wrap{position:relative;width:160px;height:160px;}
+.re-ring-svg{width:160px;height:160px;transform:rotate(-90deg);}
+.re-ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:8;}
+.light .re-ring-bg{stroke:rgba(0,0,0,0.06);}
+.re-ring-fg{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(0.16,1,0.3,1),stroke .3s;}
+.re-ring-center{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.re-score-num{font-size:40px;font-weight:700;font-family:'Inter',sans-serif;color:var(--text-primary);line-height:1;}
+.re-score-label{font-size:11px;color:var(--text-muted);margin-top:2px;letter-spacing:0.04em;}
+.re-decision{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 18px;border-radius:999px;font-size:13px;font-weight:700;
+  font-family:'DM Sans',sans-serif;letter-spacing:0.02em;
+}
+.re-decision.approve{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:#4ade80;}
+.re-decision.conditional{background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;}
+.re-decision.decline{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;}
+.re-confidence{font-size:12px;color:var(--text-muted);font-family:'DM Sans',sans-serif;}
+.re-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.re-chip{
+  padding:5px 12px;border-radius:999px;font-size:11px;font-weight:500;
+  background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);
+  color:#fbbf24;font-family:'DM Sans',sans-serif;
+}
+.re-accordion{
+  width:100%;border-radius:12px;overflow:hidden;
+  border:1px solid var(--gold-border);background:rgba(255,255,255,0.02);
+}
+.light .re-accordion{background:rgba(0,0,0,0.02);}
+.re-acc-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;cursor:pointer;font-size:13px;font-weight:600;
+  color:var(--text-muted);font-family:'DM Sans',sans-serif;transition:color .2s;
+}
+.re-acc-header:hover{color:var(--text-primary);}
+.re-acc-arrow{transition:transform .25s;font-size:14px;color:var(--gold);}
+.re-acc-header.open .re-acc-arrow{transform:rotate(180deg);}
+.re-acc-body{
+  max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(0.16,1,0.3,1);
+}
+.re-acc-body.open{max-height:300px;}
+.re-acc-content{padding:0 16px 14px;}
+.re-acc-content ul{list-style:none;padding:0;}
+.re-acc-content li{
+  font-size:12px;color:var(--text-muted);padding:4px 0;
+  display:flex;align-items:flex-start;gap:6px;line-height:1.5;
+}
+.re-acc-content li::before{content:'•';color:var(--gold);flex-shrink:0;margin-top:1px;}
+.re-cta-wrap{text-align:center;margin-top:32px;}
+
+@media(max-width:580px){
+  .re-sec{padding:60px 20px;}
+}
+
 /* REVEAL */
 .reveal{transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1);}
 .reveal.on{opacity:1 !important;transform:none !important;transition-delay:var(--reveal-delay,0ms);}
@@ -913,6 +1045,98 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   </div>
 </section>
 
+<!-- RELIABILITY ENGINE DEMO -->
+<section class="re-sec">
+  <div class="re-inner">
+    <div style="text-align:center;">
+      <div class="sec-badge">LIVE DEMO</div>
+      <h2 class="sec-heading reveal">Test the <span class="gold-word">Reliability Engine</span></h2>
+      <p class="sec-intro reveal">See how SARF evaluates a borrower profile and generates a real-time decision.</p>
+    </div>
+    <div class="re-presets reveal">
+      <button class="re-pill" onclick="rePreset('strong')">Strong User</button>
+      <button class="re-pill" onclick="rePreset('new')">New User</button>
+      <button class="re-pill" onclick="rePreset('moderate')">Moderate Risk</button>
+      <button class="re-pill" onclick="rePreset('high')">High Risk</button>
+    </div>
+    <div class="re-grid reveal">
+      <!-- LEFT: Inputs -->
+      <div class="re-card">
+        <div class="re-card-title">Borrower Profile</div>
+        <div class="re-field">
+          <div class="re-label"><span>Account Age (days)</span><span class="re-val" id="re-age-val">365</span></div>
+          <input type="range" class="re-slider" id="re-age" min="0" max="1000" value="365" oninput="reUpdate()">
+        </div>
+        <div class="re-field">
+          <div class="re-label"><span>Prior Obligations Completed</span><span class="re-val" id="re-obl-val">10</span></div>
+          <input type="range" class="re-slider" id="re-obl" min="0" max="30" value="10" oninput="reUpdate()">
+        </div>
+        <div class="re-field">
+          <div class="re-label"><span>Average Days Late</span><span class="re-val" id="re-late-val">2d</span></div>
+          <input type="range" class="re-slider" id="re-late" min="0" max="30" value="2" oninput="reUpdate()">
+        </div>
+        <div class="re-field">
+          <div class="re-label"><span>Reschedule Count</span><span class="re-val" id="re-resc-val">1</span></div>
+          <input type="range" class="re-slider" id="re-resc" min="0" max="8" value="1" oninput="reUpdate()">
+        </div>
+        <div class="re-field">
+          <div class="re-label"><span>KYC Strength</span></div>
+          <select class="re-select" id="re-kyc" onchange="reUpdate()">
+            <option value="none">None — Not Verified</option>
+            <option value="basic">Basic</option>
+            <option value="standard" selected>Standard</option>
+            <option value="enhanced">Enhanced</option>
+          </select>
+        </div>
+        <div class="re-field" style="margin-bottom:0;">
+          <div class="re-toggle-row">
+            <span class="re-label" style="margin-bottom:0;">Bank Account Linked</span>
+            <div class="re-toggle" id="re-bank" onclick="this.classList.toggle('on');reUpdate();">
+              <div class="re-toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- RIGHT: Output -->
+      <div class="re-card">
+        <div class="re-card-title" style="text-align:center;">OIE Evaluation</div>
+        <div class="re-output">
+          <div class="re-live"><span class="re-live-dot"></span>Live</div>
+          <div class="re-ring-wrap">
+            <svg class="re-ring-svg" viewBox="0 0 160 160">
+              <circle class="re-ring-bg" cx="80" cy="80" r="68"/>
+              <circle class="re-ring-fg" id="re-ring" cx="80" cy="80" r="68" stroke-dasharray="427.26" stroke-dashoffset="427.26"/>
+            </svg>
+            <div class="re-ring-center">
+              <div class="re-score-num" id="re-score-num">0</div>
+              <div class="re-score-label">Reliability Score</div>
+            </div>
+          </div>
+          <div>
+            <span class="re-decision decline" id="re-decision">Decline</span>
+            <span class="re-confidence" id="re-confidence">Confidence 0%</span>
+          </div>
+          <div class="re-chips" id="re-chips"></div>
+          <div class="re-accordion">
+            <div class="re-acc-header" id="re-acc-toggle" onclick="this.classList.toggle('open');document.getElementById('re-acc-body').classList.toggle('open');">
+              <span>Decision Explanation</span>
+              <span class="re-acc-arrow">&#9660;</span>
+            </div>
+            <div class="re-acc-body" id="re-acc-body">
+              <div class="re-acc-content">
+                <ul id="re-reasons"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="re-cta-wrap reveal">
+      <button class="cta-btn" onclick="openModal()" style="animation:none;">Get Early Access <span class="cta-arrow">&rarr;</span></button>
+    </div>
+  </div>
+</section>
+
 <!-- BOTTOM CTA -->
 <section class="bottom">
   <h2 class="reveal">Financing that works<br>for <em style="color:var(--gold);">everyone.</em></h2>
@@ -1160,6 +1384,167 @@ document.querySelectorAll('.reveal').forEach(function(el) {
 document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(function(el,i) {
   el.setAttribute('data-reveal-delay', (i % 4) * 80);
 });
+
+// ── RELIABILITY ENGINE ──
+var rePresets = {
+  strong:   {age:720, obl:18, late:0, resc:0, kyc:'enhanced', bank:true},
+  'new':    {age:30,  obl:0,  late:0, resc:0, kyc:'basic',    bank:false},
+  moderate: {age:300, obl:6,  late:6, resc:2, kyc:'standard',  bank:false},
+  high:     {age:90,  obl:2,  late:14,resc:4, kyc:'basic',    bank:false}
+};
+var reAnimTarget = 0, reAnimCurrent = 0, reAnimFrame = null;
+
+function rePreset(key) {
+  var p = rePresets[key];
+  document.getElementById('re-age').value = p.age;
+  document.getElementById('re-obl').value = p.obl;
+  document.getElementById('re-late').value = p.late;
+  document.getElementById('re-resc').value = p.resc;
+  document.getElementById('re-kyc').value = p.kyc;
+  var bankEl = document.getElementById('re-bank');
+  if (p.bank) bankEl.classList.add('on'); else bankEl.classList.remove('on');
+  document.querySelectorAll('.re-pill').forEach(function(el) {
+    el.classList.toggle('active', el.textContent.toLowerCase().indexOf(key === 'new' ? 'new' : key) !== -1);
+  });
+  reUpdate();
+}
+
+function reCalc() {
+  var age = +document.getElementById('re-age').value;
+  var obl = +document.getElementById('re-obl').value;
+  var late = +document.getElementById('re-late').value;
+  var resc = +document.getElementById('re-resc').value;
+  var kyc = document.getElementById('re-kyc').value;
+  var bank = document.getElementById('re-bank').classList.contains('on');
+
+  var score = 0;
+  var reasons = [];
+
+  // Account age: up to 20, max at 730
+  var agePts = Math.min(20, (age / 730) * 20);
+  score += agePts;
+  if (age >= 365) reasons.push('Mature account (' + age + ' days)');
+  else if (age < 90) reasons.push('Very new account (' + age + ' days) — limited history');
+  else reasons.push('Account age: ' + age + ' days');
+
+  // Obligations: up to 25, max at 20
+  var oblPts = Math.min(25, (Math.min(obl, 20) / 20) * 25);
+  score += oblPts;
+  if (obl >= 10) reasons.push(obl + ' obligations completed — strong track record');
+  else if (obl === 0) reasons.push('No prior obligations — unproven repayment history');
+  else reasons.push(obl + ' prior obligations completed');
+
+  // Days late: up to 20 minus 2 per day
+  var latePts = Math.max(0, 20 - late * 2);
+  score += latePts;
+  if (late === 0) reasons.push('No late payments — excellent punctuality');
+  else if (late <= 5) reasons.push('Average ' + late + 'd late — minor delays');
+  else reasons.push('Average ' + late + 'd late — significant delinquency risk');
+
+  // Reschedules: up to 15 minus 5 per reschedule
+  var rescPts = Math.max(0, 15 - resc * 5);
+  score += rescPts;
+  if (resc === 0) reasons.push('No reschedules — stable repayment behavior');
+  else reasons.push(resc + ' reschedule(s) — indicates cash flow instability');
+
+  // KYC
+  var kycMap = {none:0, basic:4, standard:8, enhanced:12};
+  score += kycMap[kyc] || 0;
+  if (kyc === 'none') reasons.push('KYC not verified — identity cannot be confirmed');
+  else if (kyc === 'enhanced') reasons.push('Enhanced KYC — fully verified identity');
+  else reasons.push('KYC level: ' + kyc);
+
+  // Bank linked
+  if (bank) { score += 8; reasons.push('Bank account linked — income verification enabled'); }
+  else reasons.push('No bank account linked — cannot verify income');
+
+  // KYC none cap
+  if (kyc === 'none') score = Math.min(score, 20);
+
+  score = Math.round(Math.min(100, Math.max(0, score)));
+
+  var decision, chips = [];
+  if (score >= 75) {
+    decision = 'approve';
+  } else if (score >= 45) {
+    decision = 'conditional';
+    if (!bank) chips.push('Bank verification required');
+    if (kyc === 'none' || kyc === 'basic') chips.push('KYC upgrade required');
+    if (resc >= 2) chips.push('Guarantor required');
+    if (late >= 5) chips.push('Reduced limit recommended');
+    if (chips.length === 0) chips.push('Additional review required');
+  } else {
+    decision = 'decline';
+  }
+
+  var confidence = Math.min(98, Math.max(40, 50 + score * 0.5));
+
+  return {score:score, decision:decision, confidence:Math.round(confidence), chips:chips, reasons:reasons};
+}
+
+function reAnimateScore(target) {
+  reAnimTarget = target;
+  if (reAnimFrame) return;
+  function step() {
+    var diff = reAnimTarget - reAnimCurrent;
+    if (Math.abs(diff) < 0.5) {
+      reAnimCurrent = reAnimTarget;
+      reAnimFrame = null;
+    } else {
+      reAnimCurrent += diff * 0.12;
+      reAnimFrame = requestAnimationFrame(step);
+    }
+    document.getElementById('re-score-num').textContent = Math.round(reAnimCurrent);
+  }
+  reAnimFrame = requestAnimationFrame(step);
+}
+
+function reUpdate() {
+  // Update displayed values
+  var age = document.getElementById('re-age').value;
+  var obl = document.getElementById('re-obl').value;
+  var late = document.getElementById('re-late').value;
+  var resc = document.getElementById('re-resc').value;
+  document.getElementById('re-age-val').textContent = age;
+  document.getElementById('re-obl-val').textContent = obl;
+  document.getElementById('re-late-val').textContent = late + 'd';
+  document.getElementById('re-resc-val').textContent = resc;
+
+  // Clear active pills
+  document.querySelectorAll('.re-pill').forEach(function(el) { el.classList.remove('active'); });
+
+  var r = reCalc();
+
+  // Animate score
+  reAnimateScore(r.score);
+
+  // Ring
+  var circ = 2 * Math.PI * 68; // ~427.26
+  var offset = circ - (r.score / 100) * circ;
+  var ring = document.getElementById('re-ring');
+  ring.style.strokeDashoffset = offset;
+  var colors = {approve:'#4ade80', conditional:'#fbbf24', decline:'#f87171'};
+  ring.style.stroke = colors[r.decision];
+
+  // Decision badge
+  var decEl = document.getElementById('re-decision');
+  decEl.className = 're-decision ' + r.decision;
+  decEl.textContent = r.decision.charAt(0).toUpperCase() + r.decision.slice(1);
+
+  // Confidence
+  document.getElementById('re-confidence').textContent = 'Confidence ' + r.confidence + '%';
+
+  // Chips
+  var chipsEl = document.getElementById('re-chips');
+  chipsEl.innerHTML = r.chips.map(function(c) { return '<span class="re-chip">' + c + '</span>'; }).join('');
+
+  // Reasons
+  var reasonsEl = document.getElementById('re-reasons');
+  reasonsEl.innerHTML = r.reasons.map(function(rr) { return '<li>' + rr + '</li>'; }).join('');
+}
+
+// Init
+reUpdate();
 </script>
 
 </body>
