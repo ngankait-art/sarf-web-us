@@ -107,11 +107,21 @@ nav{
 @media(max-width:580px){nav{padding:0 18px;}}
 
 .nav-left{display:flex;align-items:center;gap:10px;}
-.nav-logo-img{
-  width:32px;height:32px;border-radius:50%;
+/* SARF logo circular crop — hides white edge on source image */
+.sarf-logo-circle{
+  width:32px;height:32px;border-radius:50%;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
   box-shadow:0 0 16px rgba(245,168,0,0.35);
-  object-fit:cover;
+  background:#111;
 }
+.sarf-logo-circle img{width:110%;height:110%;object-fit:cover;}
+.sarf-logo-circle.sm{width:22px;height:22px;box-shadow:none;}
+.sarf-logo-circle.footer{width:24px;height:24px;box-shadow:none;}
+/* Competitor logo in comparison table */
+.ct-logo{width:22px;height:22px;border-radius:6px;object-fit:contain;flex-shrink:0;}
+.ct-logo.round{border-radius:50%;}
+.ct-logo-wrap{display:flex;align-items:center;gap:8px;}
+.nav-logo-img{display:none;/* replaced by .sarf-logo-circle */}
 .nav-brand{font-size:14px;color:var(--text-primary);}
 .nav-right{display:flex;align-items:center;gap:8px;}
 
@@ -807,7 +817,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <!-- NAVBAR -->
 <nav>
   <div class="nav-left">
-    <img src="sarf-logo-new.png" alt="SARF" class="nav-logo-img">
+    <!-- LOGO: New SARF logo with circular crop -->
+    <span class="sarf-logo-circle"><img src="logo-sarf.png" alt="SARF"></span>
     <span class="nav-brand">SARF</span>
   </div>
   <div class="nav-right">
@@ -926,51 +937,51 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         <div>Origination fee</div>
         <div>Available</div>
       </div>
-      <!-- CHANGE C: Added brand logo placeholders beside lender names -->
+      <!-- LOGOS: All lender rows with real brand logos -->
       <div class="ct-row sarf">
-        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><img src="sarf-logo-new.png" alt="SARF" style="width:22px;height:22px;border-radius:50%;object-fit:cover;"><span class="sarf-name">SARF</span></span><span class="ct-badge">Waitlist open</span></div>
+        <div class="ct-name"><span class="ct-logo-wrap"><span class="sarf-logo-circle sm"><img src="logo-sarf.png" alt="SARF"></span><span class="sarf-name">SARF</span></span><span class="ct-badge">Waitlist open</span></div>
         <div class="ct-rate gold">8&ndash;16% fixed</div>
         <div class="ct-fee good">$0 always</div>
         <div class="ct-status wl" onclick="openModal()">Join waitlist &rarr;</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><!-- LOGO PLACEHOLDER: Replace with SoFi logo --><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">S</span>SoFi</span></div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-sofi.png" alt="SoFi" class="ct-logo">SoFi</span></div>
         <div class="ct-rate">8&ndash;26% APR</div>
         <div class="ct-fee good">None</div>
         <div class="ct-status">Needs credit history</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><!-- LOGO PLACEHOLDER: Replace with Upstart logo --><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">U</span>Upstart</span></div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-upstart.png" alt="Upstart" class="ct-logo">Upstart</span></div>
         <div class="ct-rate">9&ndash;35% APR</div>
         <div class="ct-fee" style="color:#e07a7a;">Up to 12%</div>
         <div class="ct-status">Partial access</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name"><span style="display:flex;align-items:center;gap:8px;"><span style="width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-muted);flex-shrink:0;">L</span>LendingClub</span></div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-lendingclub.png" alt="LendingClub" class="ct-logo">LendingClub</span></div>
         <div class="ct-rate">9&ndash;36% APR</div>
         <div class="ct-fee" style="color:#e07a7a;">Up to 8%</div>
         <div class="ct-status">Needs credit history</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">Chase Bank</div>
+        <div class="ct-name"><span class="ct-logo-wrap"><span class="ct-logo round" style="background:#0060f0;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">C</span>Chase Bank</span></div>
         <div class="ct-rate na">No personal loans</div>
         <div class="ct-fee">&mdash;</div>
         <div class="ct-status" style="color:#e07a7a;">Not available</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">Bank of America</div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-bofa.jpg" alt="Bank of America" class="ct-logo">Bank of America</span></div>
         <div class="ct-rate na">No personal loans</div>
         <div class="ct-fee">&mdash;</div>
         <div class="ct-status" style="color:#e07a7a;">Not available</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">Citibank</div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-citi.png" alt="Citibank" class="ct-logo">Citibank</span></div>
         <div class="ct-rate na">No personal loans</div>
         <div class="ct-fee">&mdash;</div>
         <div class="ct-status" style="color:#e07a7a;">Not available</div>
       </div>
       <div class="ct-row">
-        <div class="ct-name">Wells Fargo</div>
+        <div class="ct-name"><span class="ct-logo-wrap"><img src="logo-wellsfargo.png" alt="Wells Fargo" class="ct-logo round">Wells Fargo</span></div>
         <div class="ct-rate">7&ndash;24% APR</div>
         <div class="ct-fee">None</div>
         <div class="ct-status" style="color:#e07a7a;">Declined thin-file borrowers</div>
@@ -1132,7 +1143,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <!-- FOOTER -->
 <footer>
   <div class="f-brand">
-    <img src="sarf-logo-new.png" alt="SARF" class="f-brand-img">
+    <!-- LOGO: New SARF logo in footer with circular crop -->
+    <span class="sarf-logo-circle footer"><img src="logo-sarf.png" alt="SARF"></span>
     <span class="f-brand-name">SARF</span>
   </div>
   <div class="f-txt">&copy; 2026 SARF Inc. &middot; Structures, tracks, and enforces personal loans.</div>
