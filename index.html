@@ -915,8 +915,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
           <div class="p-stat"><div class="p-stat-val gold">0</div><div class="p-stat-lbl">FICO required</div></div>
         </div>
         <div class="p-bar">
-          <!-- CHANGE G: Renamed to SARF Score -->
-          <div class="p-bar-lbl">SARF Score</div>
+          <div class="p-bar-lbl">Repayment Strength</div>
           <div class="p-bar-track"><div class="p-bar-fill" id="p-bar-fill"></div></div>
           <div class="p-bar-row"><span>Building</span><span>Strong</span><span>Excellent</span></div>
         </div>
@@ -1052,40 +1051,40 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       </div>
       <div class="feat reveal">
         <span class="feat-tag">Launching Soon</span>
-        <div class="feat-t">Builds your SARF score</div>
-        <!-- CHANGE G: Updated copy to use SARF Score -->
-        <div class="feat-d">Every on-time repayment improves your SARF Score — automatically unlocking better rates and higher amounts on your next agreement.</div>
+        <div class="feat-t">Builds your repayment power</div>
+        <div class="feat-d">Every on-time repayment strengthens your financing profile — automatically unlocking better rates and higher amounts on your next agreement.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHANGE D-F: SARF Score Demo — simplified, borrower-facing -->
+<!-- REPAYMENT INTELLIGENCE SIMULATOR -->
 <section class="re-sec">
   <div class="re-inner">
     <div style="text-align:center;">
       <div class="sec-badge">LIVE DEMO</div>
-      <h2 class="sec-heading reveal">See your <span class="gold-word">SARF Score</span></h2>
-      <p class="sec-intro reveal">Answer a few simple questions and instantly see how much you could qualify for.</p>
+      <h2 class="sec-heading reveal">See your <span class="gold-word">repayment power</span></h2>
+      <p class="sec-intro reveal">Understand your repayment outlook and estimated financing capacity in real time.</p>
     </div>
     <div class="re-presets reveal">
       <button class="re-pill" onclick="rePreset('strong')">Excellent Profile</button>
       <button class="re-pill" onclick="rePreset('good')">Good Profile</button>
       <button class="re-pill" onclick="rePreset('new')">First-time Borrower</button>
-      <button class="re-pill" onclick="rePreset('building')">Building Credit</button>
+      <button class="re-pill" onclick="rePreset('building')">Building History</button>
     </div>
     <div class="re-grid reveal">
-      <!-- LEFT: Borrower-facing inputs -->
+      <!-- LEFT: Financing profile inputs -->
       <div class="re-card">
-        <div class="re-card-title">Your Profile</div>
-        <!-- CHANGE 2: Two separate loan sliders -->
+        <div class="re-card-title">Your Financing Profile</div>
         <div class="re-field">
-          <div class="re-label"><span>Loans taken</span><span class="re-val" id="re-loans-taken-val">10</span></div>
+          <div class="re-label"><span>Financing history</span><span class="re-val" id="re-loans-taken-val">10</span></div>
           <input type="range" class="re-slider" id="re-loans-taken" min="0" max="30" value="10" oninput="reUpdate()">
+          <div style="font-size:10px;color:var(--text-subtle);margin-top:3px;">Total financing agreements used</div>
         </div>
         <div class="re-field">
-          <div class="re-label"><span>Loans fully repaid</span><span class="re-val" id="re-loans-repaid-val">8</span></div>
+          <div class="re-label"><span>Successful repayments</span><span class="re-val" id="re-loans-repaid-val">8</span></div>
           <input type="range" class="re-slider" id="re-loans-repaid" min="0" max="30" value="8" oninput="reUpdate()">
+          <div style="font-size:10px;color:var(--text-subtle);margin-top:3px;">Agreements fully repaid on time</div>
         </div>
         <div class="re-field">
           <div class="re-label"><span>Identity verification</span></div>
@@ -1122,16 +1121,16 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
         </div>
         <div class="re-field" style="margin-bottom:0;">
           <div class="re-toggle-row">
-            <span class="re-label" style="margin-bottom:0;">Credit score on file</span>
+            <span class="re-label" style="margin-bottom:0;">Credit history available</span>
             <div class="re-toggle" id="re-credit" onclick="this.classList.toggle('on');reUpdate();">
               <div class="re-toggle-knob"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- RIGHT: Borrower-facing output -->
+      <!-- RIGHT: Repayment intelligence output -->
       <div class="re-card">
-        <div class="re-card-title" style="text-align:center;">Your SARF Score</div>
+        <div class="re-card-title" style="text-align:center;">Repayment Power</div>
         <div class="re-output">
           <div class="re-live"><span class="re-live-dot"></span>Live</div>
           <div class="re-ring-wrap">
@@ -1140,23 +1139,44 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
               <circle class="re-ring-fg" id="re-ring" cx="80" cy="80" r="68" stroke-dasharray="427.26" stroke-dashoffset="427.26"/>
             </svg>
             <div class="re-ring-center">
-              <div class="re-score-num" id="re-score-num">0</div>
-              <div class="re-score-label">SARF Score</div>
+              <div class="re-score-num" id="re-score-num">0<span style="font-size:16px;font-weight:500;">%</span></div>
+              <div class="re-score-label">Repayment Power</div>
             </div>
           </div>
-          <!-- Estimated amount -->
-          <div style="text-align:center;">
-            <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Estimated eligible amount</div>
-            <div id="re-amount" style="font-size:28px;font-weight:700;font-family:'Inter',sans-serif;color:var(--gold);line-height:1;">$0</div>
+          <div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:-8px;margin-bottom:12px;">Based on your financial behavior and repayment patterns</div>
+          <!-- Predictive metrics -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Confidence Level</div>
+              <div id="re-confidence-level" style="font-size:15px;font-weight:700;color:var(--gold);">Medium</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Next Payment</div>
+              <div id="re-next-payment" style="font-size:15px;font-weight:700;color:var(--gold);">0%</div>
+            </div>
           </div>
-          <div>
-            <span class="re-decision decline" id="re-decision">Decline</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:10px;">
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">3-Payment Outlook</div>
+              <div id="re-short-term" style="font-size:15px;font-weight:700;color:var(--gold);">0%</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);border-radius:12px;padding:12px;text-align:center;">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Financing Capacity</div>
+              <div id="re-amount" style="font-size:15px;font-weight:700;color:var(--gold);">$0</div>
+            </div>
+          </div>
+          <!-- Eligibility decision -->
+          <div style="margin-top:14px;">
+            <span class="re-decision decline" id="re-decision">Not yet eligible</span>
           </div>
           <!-- Status badges -->
           <div class="re-chips" id="re-chips"></div>
+          <!-- Improvement suggestions -->
+          <div id="re-suggestions" style="width:100%;margin-top:6px;"></div>
+          <!-- Accordion -->
           <div class="re-accordion">
-            <div class="re-acc-header" id="re-acc-toggle" onclick="this.classList.toggle('open');document.getElementById('re-acc-body').classList.toggle('open');">
-              <span>What affects your score?</span>
+            <div class="re-acc-header" onclick="this.classList.toggle('open');document.getElementById('re-acc-body').classList.toggle('open');">
+              <span>What affects your repayment power?</span>
               <span class="re-acc-arrow">&#9660;</span>
             </div>
             <div class="re-acc-body" id="re-acc-body">
@@ -1423,9 +1443,8 @@ document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(f
   el.setAttribute('data-reveal-delay', (i % 4) * 80);
 });
 
-// ── SARF Score Demo — loans taken/repaid model ──
+// ── Repayment Intelligence Simulator ──
 
-// CHANGE 5: Updated presets with loansTaken + loansRepaid
 var rePresets = {
   strong:   {loansTaken:22, loansRepaid:21, kyc:'enhanced', salary:true, guarantor:true, collateral:true, credit:true},
   good:     {loansTaken:12, loansRepaid:11, kyc:'standard', salary:true, guarantor:false, collateral:false, credit:true},
@@ -1451,7 +1470,7 @@ function rePreset(key) {
   reUpdate();
 }
 
-// CHANGE 3: New scoring model — history + consistency
+// Repayment prediction model
 function reCalc() {
   var taken = +document.getElementById('re-loans-taken').value;
   var repaid = +document.getElementById('re-loans-repaid').value;
@@ -1461,85 +1480,78 @@ function reCalc() {
   var collateral = document.getElementById('re-collateral').classList.contains('on');
   var credit = document.getElementById('re-credit').classList.contains('on');
 
-  // Enforce: repaid cannot exceed taken
   if (repaid > taken) { repaid = taken; document.getElementById('re-loans-repaid').value = repaid; }
 
-  var score = 0;
+  var power = 0;
   var reasons = [];
   var badges = [];
+  var recommendations = [];
 
-  // Repayment rate
   var rate = taken > 0 ? repaid / taken : 0;
   var ratePct = Math.round(rate * 100);
 
-  // History score: up to 20 pts (max at 20 loans taken)
-  var historyPts = Math.min(20, (Math.min(taken, 20) / 20) * 20);
-  score += historyPts;
+  // History: up to 20 pts
+  power += Math.min(20, (Math.min(taken, 20) / 20) * 20);
+  // Consistency: up to 25 pts
+  power += rate * 25;
 
-  // Consistency score: up to 25 pts from repayment rate
-  var consistencyPts = rate * 25;
-  score += consistencyPts;
-
-  // CHANGE 4: Repayment explanation
+  // Repayment reasons
   if (taken === 0) {
-    reasons.push('No borrowing history yet — building your profile');
+    reasons.push('No financing history yet — building your repayment profile');
   } else if (rate >= 0.95) {
-    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans — ' + ratePct + '% repayment record');
+    reasons.push('Strong repayment consistency across ' + taken + ' financing agreements (' + ratePct + '% repaid)');
   } else if (rate >= 0.7) {
-    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — solid consistency');
-  } else if (rate >= 0.4) {
-    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — room to improve');
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' agreements (' + ratePct + '%) — solid repayment pattern');
   } else {
-    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — limited repayment record');
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' agreements (' + ratePct + '%) — limited repayment record reduces confidence');
   }
 
-  if (taken >= 10 && rate >= 0.9) {
-    reasons.push('Strong repayment consistency across ' + taken + ' loans');
-  } else if (taken >= 5) {
-    reasons.push('Building track record with ' + taken + ' loans taken');
-  } else if (taken > 0) {
-    reasons.push('Limited borrowing history so far');
-  }
-
-  // KYC: none=0, basic=5, standard=8, enhanced=10
+  // KYC
   var kycMap = {none:0, basic:5, standard:8, enhanced:10};
-  score += kycMap[kyc] || 0;
-  if (kyc === 'enhanced') reasons.push('Fully verified identity — maximum trust');
-  else if (kyc === 'standard') reasons.push('Standard identity verification');
-  else if (kyc === 'basic') reasons.push('Basic ID uploaded — upgrade for better score');
-  else reasons.push('Identity not yet verified');
+  power += kycMap[kyc] || 0;
+  if (kyc === 'enhanced') reasons.push('Fully verified identity — highest trust level');
+  else if (kyc === 'standard') reasons.push('Standard identity verification in place');
+  else if (kyc === 'basic') reasons.push('Basic ID uploaded — enhanced verification improves confidence');
+  else reasons.push('Identity not yet verified — required for financing');
 
-  // Salary linked: 15 pts
-  if (salary) { score += 15; reasons.push('Salary linked — income verified automatically'); badges.push({text:'Salary linked',on:true}); }
-  else { reasons.push('Salary not linked — link to boost your score'); badges.push({text:'Salary not linked',on:false}); }
+  // Salary
+  if (salary) { power += 15; reasons.push('Salary-linked income improves next-payment confidence'); badges.push({text:'Salary-linked income',on:true}); }
+  else { reasons.push('No salary link — linking income increases repayment predictability'); badges.push({text:'Income not linked',on:false}); recommendations.push({text:'Link salary income', gain:'+12%'}); }
 
-  // Guarantor: 10 pts
-  if (guarantor) { score += 10; reasons.push('Guarantor present — added security'); badges.push({text:'Guarantor',on:true}); }
-  else badges.push({text:'No guarantor',on:false});
+  // Guarantor
+  if (guarantor) { power += 10; reasons.push('Guarantor added — increases protection and deal readiness'); badges.push({text:'Guarantor added',on:true}); }
+  else { badges.push({text:'No guarantor (optional)',on:false}); recommendations.push({text:'Add a guarantor', gain:'+8%'}); }
 
-  // Collateral: 10 pts
-  if (collateral) { score += 10; reasons.push('Collateral available — unlocks higher amounts'); badges.push({text:'Collateral',on:true}); }
-  else badges.push({text:'No collateral',on:false});
+  // Collateral
+  if (collateral) { power += 10; reasons.push('Collateral increases protection and financing capacity'); badges.push({text:'Collateral added',on:true}); }
+  else { badges.push({text:'No collateral (optional)',on:false}); recommendations.push({text:'Provide collateral', gain:'+8%'}); }
 
-  // Credit score on file: 10 pts
-  if (credit) { score += 10; reasons.push('Credit score on file — additional data point'); badges.push({text:'Credit score',on:true}); }
-  else { reasons.push('No credit score on file — not required but helps'); badges.push({text:'No credit score',on:false}); }
+  // Credit history
+  if (credit) { power += 10; reasons.push('Credit history available — additional repayment signal'); badges.push({text:'Credit history available',on:true}); }
+  else { reasons.push('No credit history on file — not required but strengthens profile'); badges.push({text:'Thin credit profile',on:false}); recommendations.push({text:'Share credit history', gain:'+7%'}); }
 
-  // KYC none cap
-  if (kyc === 'none') score = Math.min(score, 25);
+  if (kyc === 'none') power = Math.min(power, 25);
+  power = Math.round(Math.min(100, Math.max(0, power)));
 
-  score = Math.round(Math.min(100, Math.max(0, score)));
+  // Derived metrics
+  var nextPayment = Math.min(99, Math.round(power * 0.92 + (salary ? 8 : 0)));
+  var shortTerm = Math.min(98, Math.round(power * 0.85 + (rate >= 0.9 ? 6 : 0)));
+  var confidenceLevel = power >= 70 ? 'High' : (power >= 40 ? 'Medium' : 'Low');
 
   var decision;
-  if (score >= 70) decision = 'approve';
-  else if (score >= 40) decision = 'conditional';
+  if (power >= 70) decision = 'approve';
+  else if (power >= 40) decision = 'conditional';
   else decision = 'decline';
 
   var amount = 0;
-  if (score >= 70) amount = 5000 + Math.round((score - 70) / 30 * 20000);
-  else if (score >= 40) amount = 1000 + Math.round((score - 40) / 30 * 4000);
+  if (power >= 70) amount = 5000 + Math.round((power - 70) / 30 * 20000);
+  else if (power >= 40) amount = 1000 + Math.round((power - 40) / 30 * 4000);
 
-  return {score:score, decision:decision, amount:amount, badges:badges, reasons:reasons};
+  // Improvement suggestions based on missing factors
+  if (taken < 5 && recommendations.length < 4) recommendations.push({text:'Build financing history', gain:'+5–15%'});
+  if (kyc !== 'enhanced' && recommendations.length < 4) recommendations.push({text:'Complete enhanced KYC', gain:'+5%'});
+
+  return {power:power, decision:decision, amount:amount, badges:badges, reasons:reasons, nextPayment:nextPayment, shortTerm:shortTerm, confidenceLevel:confidenceLevel, recommendations:recommendations};
 }
 
 function reAnimateScore(target) {
@@ -1549,7 +1561,7 @@ function reAnimateScore(target) {
     var diff = reAnimTarget - reAnimCurrent;
     if (Math.abs(diff) < 0.5) { reAnimCurrent = reAnimTarget; reAnimFrame = null; }
     else { reAnimCurrent += diff * 0.12; reAnimFrame = requestAnimationFrame(step); }
-    document.getElementById('re-score-num').textContent = Math.round(reAnimCurrent);
+    document.getElementById('re-score-num').innerHTML = Math.round(reAnimCurrent) + '<span style="font-size:16px;font-weight:500;">%</span>';
   }
   reAnimFrame = requestAnimationFrame(step);
 }
@@ -1570,12 +1582,7 @@ function reAnimateAmount(target) {
 function reUpdate() {
   var taken = +document.getElementById('re-loans-taken').value;
   var repaid = +document.getElementById('re-loans-repaid').value;
-
-  // Enforce: repaid cannot exceed taken
-  if (repaid > taken) {
-    repaid = taken;
-    document.getElementById('re-loans-repaid').value = repaid;
-  }
+  if (repaid > taken) { repaid = taken; document.getElementById('re-loans-repaid').value = repaid; }
 
   document.getElementById('re-loans-taken-val').textContent = taken;
   document.getElementById('re-loans-repaid-val').textContent = repaid;
@@ -1583,20 +1590,26 @@ function reUpdate() {
   document.querySelectorAll('.re-pill').forEach(function(el) { el.classList.remove('active'); });
   var r = reCalc();
 
-  reAnimateScore(r.score);
+  reAnimateScore(r.power);
   reAnimateAmount(r.amount);
 
   // Ring
   var circ = 2 * Math.PI * 68;
   var ring = document.getElementById('re-ring');
-  ring.style.strokeDashoffset = circ - (r.score / 100) * circ;
+  ring.style.strokeDashoffset = circ - (r.power / 100) * circ;
   var colors = {approve:'#4ade80', conditional:'#fbbf24', decline:'#f87171'};
   ring.style.stroke = colors[r.decision];
+
+  // Predictive metrics
+  document.getElementById('re-confidence-level').textContent = r.confidenceLevel;
+  document.getElementById('re-confidence-level').style.color = r.confidenceLevel === 'High' ? '#4ade80' : (r.confidenceLevel === 'Medium' ? '#fbbf24' : '#f87171');
+  document.getElementById('re-next-payment').textContent = r.nextPayment + '%';
+  document.getElementById('re-short-term').textContent = r.shortTerm + '%';
 
   // Decision badge
   var decEl = document.getElementById('re-decision');
   decEl.className = 're-decision ' + r.decision;
-  var labels = {approve:'Approved', conditional:'Conditional', decline:'Not eligible'};
+  var labels = {approve:'Eligible', conditional:'Eligible with conditions', decline:'Not yet eligible'};
   decEl.textContent = labels[r.decision];
 
   // Status badges
@@ -1605,6 +1618,19 @@ function reUpdate() {
     var cls = b.on ? 'background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.25);color:#4ade80;' : '';
     return '<span class="re-chip" style="' + cls + '">' + b.text + '</span>';
   }).join('');
+
+  // Improvement suggestions
+  var sugEl = document.getElementById('re-suggestions');
+  if (r.recommendations.length > 0) {
+    sugEl.innerHTML = '<div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;">How to improve your repayment power</div>' +
+      r.recommendations.map(function(rec) {
+        return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px;">' +
+          '<span style="color:var(--text-muted);">' + rec.text + '</span>' +
+          '<span style="color:#4ade80;font-weight:600;font-family:Inter,sans-serif;font-size:11px;">' + rec.gain + '</span></div>';
+      }).join('');
+  } else {
+    sugEl.innerHTML = '<div style="font-size:11px;color:var(--text-muted);text-align:center;padding:8px 0;">Your repayment profile is fully optimized</div>';
+  }
 
   // Reasons
   document.getElementById('re-reasons').innerHTML = r.reasons.map(function(rr) { return '<li>' + rr + '</li>'; }).join('');
