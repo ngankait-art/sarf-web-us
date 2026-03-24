@@ -270,25 +270,22 @@ h1 em{
   font-family:'DM Sans',sans-serif;
 }
 
-/* PHONE MOCKUP — KSA shell design adapted for US */
+/* PHONE MOCKUP — identical to KSA reference */
 .phone-wrap{
-  position:relative;z-index:1;
   display:flex;justify-content:center;align-items:center;
   perspective:1000px;
 }
-.phone-ambient{
-  position:absolute;width:340px;height:520px;border-radius:50%;
-  background:radial-gradient(ellipse at center,rgba(245,168,0,0.18) 0%,transparent 65%);
-  filter:blur(48px);pointer-events:none;
-}
+.phone-ambient{display:none;}
 .phone{
   width:272px;
+  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
   border-radius:40px;
+  border:2px solid transparent;
+  background-clip:padding-box;
   padding:3px;
   position:relative;
   will-change:transform;
   cursor:grab;
-  /* KSA-style multi-layer shadow for structural depth */
   box-shadow:
     0 0 0 1px rgba(200,153,42,0.15),
     2px 0 0 1px rgba(200,153,42,0.35),
@@ -300,7 +297,20 @@ h1 em{
     inset 0 -1px 0 rgba(0,0,0,0.4);
 }
 .phone:active{cursor:grabbing;}
-/* Top frame highlight — gold metallic strip */
+.phone-inner{
+  background:#0b0d14;
+  border-radius:38px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+}
+.phone-inner::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);
+}
 .phone-frame-top{
   position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,
@@ -310,9 +320,8 @@ h1 em{
     rgba(245,208,128,0.8) 70%,
     rgba(200,153,42,0.0) 100%);
   border-radius:40px 40px 0 0;
-  z-index:2;pointer-events:none;
+  z-index:2;
 }
-/* Right side frame edge — gold metallic strip */
 .phone-frame-side{
   position:absolute;top:0;right:-1px;bottom:0;width:3px;
   background:linear-gradient(180deg,
@@ -322,31 +331,9 @@ h1 em{
     rgba(200,153,42,0.6) 70%,
     rgba(200,153,42,0.0) 100%);
   border-radius:0 40px 40px 0;
-  z-index:2;pointer-events:none;
+  z-index:2;
 }
-/* Left side frame edge — subtle complementary */
-.phone-frame-left{
-  position:absolute;top:0;left:-1px;bottom:0;width:2px;
-  background:linear-gradient(180deg,
-    rgba(245,208,128,0.0) 0%,
-    rgba(245,208,128,0.15) 30%,
-    rgba(245,208,128,0.25) 50%,
-    rgba(245,208,128,0.15) 70%,
-    rgba(245,208,128,0.0) 100%);
-  border-radius:40px 0 0 40px;
-  z-index:2;pointer-events:none;
-}
-.phone-inner{
-  background:#0b0d14;
-  border-radius:38px;
-  padding:16px;
-  position:relative;
-  overflow:hidden;
-}
-.phone-inner::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);
-}
+.phone-frame-left{display:none;}
 .notch{
   width:76px;height:20px;background:#000;
   border-radius:0 0 12px 12px;margin:0 auto 16px;
