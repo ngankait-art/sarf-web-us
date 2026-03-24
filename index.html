@@ -270,71 +270,121 @@ h1 em{
   font-family:'DM Sans',sans-serif;
 }
 
-/* PHONE MOCKUP */
+/* PHONE MOCKUP — KSA shell design adapted for US */
 .phone-wrap{
   position:relative;z-index:1;
   display:flex;justify-content:center;align-items:center;
-  perspective:1200px;
+  perspective:1000px;
 }
 .phone-ambient{
-  position:absolute;width:304px;height:475px;border-radius:50%;
+  position:absolute;width:340px;height:520px;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(245,168,0,0.18) 0%,transparent 65%);
   filter:blur(48px);pointer-events:none;
 }
 .phone{
-  width:242px;border-radius:40px;padding:2.5px;
-  background:linear-gradient(160deg,rgba(245,168,0,0.9) 0%,rgba(180,120,0,0.4) 40%,rgba(245,168,0,0.7) 100%);
-  box-shadow:0 0 0 1px rgba(245,168,0,0.15),0 50px 100px rgba(0,0,0,0.7),0 20px 60px rgba(0,0,0,0.5),0 0 80px rgba(245,168,0,0.12);
-  will-change:transform;cursor:grab;
+  width:272px;
+  border-radius:40px;
+  padding:3px;
+  position:relative;
+  will-change:transform;
+  cursor:grab;
+  /* KSA-style multi-layer shadow for structural depth */
+  box-shadow:
+    0 0 0 1px rgba(200,153,42,0.15),
+    2px 0 0 1px rgba(200,153,42,0.35),
+    4px 2px 0 1px rgba(200,153,42,0.2),
+    -1px 0 0 1px rgba(245,208,128,0.1),
+    0 60px 120px rgba(0,0,0,0.8),
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(245,208,128,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.4);
 }
 .phone:active{cursor:grabbing;}
-.phone-inner{
-  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
-  border-radius:40px;padding:12px;position:relative;overflow:hidden;
+/* Top frame highlight — gold metallic strip */
+.phone-frame-top{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,
+    rgba(200,153,42,0.0) 0%,
+    rgba(245,208,128,0.8) 30%,
+    rgba(200,153,42,1) 50%,
+    rgba(245,208,128,0.8) 70%,
+    rgba(200,153,42,0.0) 100%);
+  border-radius:40px 40px 0 0;
+  z-index:2;pointer-events:none;
 }
-/* Top edge light catch */
+/* Right side frame edge — gold metallic strip */
+.phone-frame-side{
+  position:absolute;top:0;right:-1px;bottom:0;width:3px;
+  background:linear-gradient(180deg,
+    rgba(200,153,42,0.0) 0%,
+    rgba(200,153,42,0.6) 30%,
+    rgba(200,153,42,0.8) 50%,
+    rgba(200,153,42,0.6) 70%,
+    rgba(200,153,42,0.0) 100%);
+  border-radius:0 40px 40px 0;
+  z-index:2;pointer-events:none;
+}
+/* Left side frame edge — subtle complementary */
+.phone-frame-left{
+  position:absolute;top:0;left:-1px;bottom:0;width:2px;
+  background:linear-gradient(180deg,
+    rgba(245,208,128,0.0) 0%,
+    rgba(245,208,128,0.15) 30%,
+    rgba(245,208,128,0.25) 50%,
+    rgba(245,208,128,0.15) 70%,
+    rgba(245,208,128,0.0) 100%);
+  border-radius:40px 0 0 40px;
+  z-index:2;pointer-events:none;
+}
+.phone-inner{
+  background:#0b0d14;
+  border-radius:38px;
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
 .phone-inner::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,208,85,0.3),transparent);
+  background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);
 }
 .notch{
-  width:61px;height:15px;background:#000;
-  border-radius:0 0 11px 11px;margin:0 auto 9px;
+  width:76px;height:20px;background:#000;
+  border-radius:0 0 12px 12px;margin:0 auto 16px;
 }
 .p-screen{
-  background:#10121a;border-radius:13px;
-  padding:11px;margin-bottom:6px;
+  background:#10121a;border-radius:18px;
+  padding:16px;margin-bottom:10px;
 }
-.p-lbl{font-size:8.5px;letter-spacing:1.1px;text-transform:uppercase;color:rgba(232,228,217,0.6);margin-bottom:4px;}
-.p-amount{font-size:21px;font-weight:500;color:#F2EDE3;margin-bottom:5px;}
+.p-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,228,217,0.28);margin-bottom:5px;}
+.p-amount{font-size:26px;font-weight:500;color:#F2EDE3;margin-bottom:8px;}
 .p-pill{
-  display:inline-flex;align-items:center;gap:3px;
+  display:inline-flex;align-items:center;gap:4px;
   background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.22);
-  border-radius:5px;padding:2px 6px;
-  color:#F5A800;font-size:8.5px;font-weight:500;margin-bottom:7px;
+  border-radius:6px;padding:3px 9px;
+  color:#F5A800;font-size:10px;font-weight:500;margin-bottom:10px;
 }
 .p-pill-dot{width:4px;height:4px;border-radius:50%;background:#F5A800;flex-shrink:0;}
 .p-divider{border:none;border-top:1px solid rgba(255,255,255,0.05);margin:8px 0;}
 .p-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.p-row-label{font-size:9.5px;color:rgba(232,228,217,0.6);}
-.p-row-val{font-size:10.5px;font-weight:500;}
+.p-row-label{font-size:10px;color:rgba(232,228,217,0.3);}
+.p-row-val{font-size:11px;font-weight:500;}
 .p-row-val.white{color:#F2EDE3;}
 .p-row-val.gold{color:#F5A800;}
 .p-row-val.green{color:#7ec48a;}
-.p-note{font-size:8.5px;color:rgba(232,228,217,0.55);line-height:1.6;margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,0.04);}
-.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;}
-.p-stat{background:#10121a;border-radius:8px;padding:9px;}
-.p-stat-val{font-size:12px;font-weight:500;margin-bottom:2px;}
+.p-note{font-size:9px;color:rgba(232,228,217,0.22);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04);}
+.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.p-stat{background:#10121a;border-radius:10px;padding:11px;}
+.p-stat-val{font-size:14px;font-weight:500;margin-bottom:2px;}
 .p-stat-val.gold{color:#F5A800;}
 .p-stat-val.green{color:#7ec48a;}
 .p-stat-val.blue{color:#7ab3e0;}
-.p-stat-lbl{font-size:8.5px;color:rgba(232,228,217,0.6);}
-.p-bar{background:#10121a;border-radius:8px;padding:9px;}
-.p-bar-lbl{font-size:8.5px;color:rgba(232,228,217,0.6);margin-bottom:5px;}
+.p-stat-lbl{font-size:9px;color:rgba(232,228,217,0.28);}
+.p-bar{background:#10121a;border-radius:10px;padding:12px;}
+.p-bar-lbl{font-size:9px;color:rgba(232,228,217,0.28);margin-bottom:8px;}
 .p-bar-track{background:#1a1c24;border-radius:4px;height:3px;overflow:hidden;margin-bottom:4px;}
 .p-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#F5A800 0%,#FFD055 60%,#F5A800 100%);background-size:200% 100%;width:0%;transition:width 1.8s cubic-bezier(0.16,1,0.3,1);}
-.p-bar-row{display:flex;justify-content:space-between;font-size:7.5px;color:rgba(232,228,217,0.5);}
-.p-home{width:28px;height:3px;background:rgba(232,228,217,0.08);border-radius:2px;margin:9px auto 0;}
+.p-bar-row{display:flex;justify-content:space-between;font-size:8px;color:rgba(232,228,217,0.18);}
+.p-home{width:36px;height:4px;background:rgba(232,228,217,0.08);border-radius:2px;margin:12px auto 0;}
 
 /* FEATURE STRIP */
 .strip{
@@ -854,6 +904,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="phone-wrap">
     <div class="phone-ambient"></div>
     <div class="phone" id="phone-el">
+      <div class="phone-frame-top"></div>
+      <div class="phone-frame-side"></div>
+      <div class="phone-frame-left"></div>
       <div class="phone-inner">
         <div class="notch"></div>
         <div class="p-screen">
