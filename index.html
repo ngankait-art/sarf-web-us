@@ -281,17 +281,65 @@ h1 em{
   background:radial-gradient(ellipse at center,rgba(245,168,0,0.18) 0%,transparent 65%);
   filter:blur(48px);pointer-events:none;
 }
+/* PHONE FRAME EDGE ENHANCEMENT — beveled metallic frame for 3D realism */
 .phone{
   width:242px;border-radius:40px;padding:2.5px;
   background:linear-gradient(160deg,rgba(245,168,0,0.9) 0%,rgba(180,120,0,0.4) 40%,rgba(245,168,0,0.7) 100%);
-  box-shadow:0 0 0 1px rgba(245,168,0,0.15),0 50px 100px rgba(0,0,0,0.7),0 20px 60px rgba(0,0,0,0.5),0 0 80px rgba(245,168,0,0.12);
+  box-shadow:
+    /* outer gold rim — visible from both sides */
+    0 0 0 1px rgba(245,168,0,0.2),
+    /* left edge rim highlight */
+    -2px 0 6px rgba(245,168,0,0.15),
+    /* right edge rim highlight */
+    2px 0 6px rgba(245,168,0,0.15),
+    /* top bevel catch */
+    0 -1px 3px rgba(255,220,100,0.1),
+    /* bottom shadow for grounding */
+    0 2px 4px rgba(0,0,0,0.4),
+    /* depth shadow layers */
+    0 50px 100px rgba(0,0,0,0.7),
+    0 20px 60px rgba(0,0,0,0.5),
+    /* ambient gold glow */
+    0 0 80px rgba(245,168,0,0.12);
   will-change:transform;cursor:grab;
+  position:relative;
 }
 .phone:active{cursor:grabbing;}
+/* Left vertical edge rim — subtle beveled highlight */
+.phone::before{
+  content:'';position:absolute;top:12%;bottom:12%;left:-0.5px;width:2px;
+  border-radius:2px;pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,220,120,0.2) 20%,
+    rgba(255,200,80,0.35) 50%,
+    rgba(255,220,120,0.2) 80%,
+    transparent 100%
+  );
+}
+/* Right vertical edge rim — matching highlight for rotational symmetry */
+.phone::after{
+  content:'';position:absolute;top:12%;bottom:12%;right:-0.5px;width:2px;
+  border-radius:2px;pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,220,120,0.2) 20%,
+    rgba(255,200,80,0.35) 50%,
+    rgba(255,220,120,0.2) 80%,
+    transparent 100%
+  );
+}
 .phone-inner{
   background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
   border-radius:40px;padding:12px;position:relative;overflow:hidden;
+  /* Inset shadow on both sides for frame depth */
+  box-shadow:
+    inset 2px 0 4px rgba(0,0,0,0.3),
+    inset -2px 0 4px rgba(0,0,0,0.3),
+    inset 0 2px 4px rgba(0,0,0,0.2),
+    inset 0 -1px 3px rgba(0,0,0,0.15);
 }
+/* Top edge light catch */
 .phone-inner::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,208,85,0.3),transparent);
