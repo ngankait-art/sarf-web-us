@@ -1038,9 +1038,14 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <!-- LEFT: Borrower-facing inputs -->
       <div class="re-card">
         <div class="re-card-title">Your Profile</div>
+        <!-- CHANGE 2: Two separate loan sliders -->
         <div class="re-field">
-          <div class="re-label"><span>Loans repaid on time</span><span class="re-val" id="re-obl-val">10</span></div>
-          <input type="range" class="re-slider" id="re-obl" min="0" max="30" value="10" oninput="reUpdate()">
+          <div class="re-label"><span>Loans taken</span><span class="re-val" id="re-loans-taken-val">10</span></div>
+          <input type="range" class="re-slider" id="re-loans-taken" min="0" max="30" value="10" oninput="reUpdate()">
+        </div>
+        <div class="re-field">
+          <div class="re-label"><span>Loans fully repaid</span><span class="re-val" id="re-loans-repaid-val">8</span></div>
+          <input type="range" class="re-slider" id="re-loans-repaid" min="0" max="30" value="8" oninput="reUpdate()">
         </div>
         <div class="re-field">
           <div class="re-label"><span>Identity verification</span></div>
@@ -1132,9 +1137,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <!-- BOTTOM CTA -->
 <section class="bottom">
   <h2 class="reveal">Financing that works<br>for <em style="color:var(--gold);">everyone.</em></h2>
-  <p class="reveal">Better rates. No fees. No surprises.<br>Launching in KSA and the US in 2026.</p>
+  <p class="reveal">Better rates. No fees. No surprises.</p>
   <button class="bottom-btn reveal" onclick="openModal()">Join Waitlist</button>
-  <p class="b-note reveal">contact@sarf.space &nbsp;&#183;&nbsp; sarfspace.com &nbsp;&#183;&nbsp; KSA & USA &nbsp;&#183;&nbsp; 2026</p>
+  <p class="b-note reveal">contact@sarf.space &nbsp;&#183;&nbsp; sarf.space &nbsp;&#183;&nbsp; 2026</p>
 </section>
 
 <!-- FOOTER -->
@@ -1378,19 +1383,22 @@ document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(f
   el.setAttribute('data-reveal-delay', (i % 4) * 80);
 });
 
-// ── CHANGE D-G: SARF Score Demo — simplified, borrower-facing ──
+// ── SARF Score Demo — loans taken/repaid model ──
+
+// CHANGE 5: Updated presets with loansTaken + loansRepaid
 var rePresets = {
-  strong:   {obl:20, kyc:'enhanced', salary:true, guarantor:true, collateral:true, credit:true},
-  good:     {obl:12, kyc:'standard', salary:true, guarantor:false, collateral:false, credit:true},
-  'new':    {obl:0,  kyc:'basic',    salary:false, guarantor:false, collateral:false, credit:false},
-  building: {obl:3,  kyc:'standard', salary:true, guarantor:false, collateral:false, credit:false}
+  strong:   {loansTaken:22, loansRepaid:21, kyc:'enhanced', salary:true, guarantor:true, collateral:true, credit:true},
+  good:     {loansTaken:12, loansRepaid:11, kyc:'standard', salary:true, guarantor:false, collateral:false, credit:true},
+  'new':    {loansTaken:0,  loansRepaid:0,  kyc:'basic',    salary:false, guarantor:false, collateral:false, credit:false},
+  building: {loansTaken:4,  loansRepaid:3,  kyc:'standard', salary:true, guarantor:false, collateral:false, credit:false}
 };
 var reAnimTarget = 0, reAnimCurrent = 0, reAnimFrame = null;
 var reAmountTarget = 0, reAmountCurrent = 0, reAmountFrame = null;
 
 function rePreset(key) {
   var p = rePresets[key];
-  document.getElementById('re-obl').value = p.obl;
+  document.getElementById('re-loans-taken').value = p.loansTaken;
+  document.getElementById('re-loans-repaid').value = p.loansRepaid;
   document.getElementById('re-kyc').value = p.kyc;
   var toggles = {salary:'re-salary',guarantor:'re-guarantor',collateral:'re-collateral',credit:'re-credit'};
   for (var k in toggles) {
@@ -1403,27 +1411,58 @@ function rePreset(key) {
   reUpdate();
 }
 
+// CHANGE 3: New scoring model — history + consistency
 function reCalc() {
-  var obl = +document.getElementById('re-obl').value;
+  var taken = +document.getElementById('re-loans-taken').value;
+  var repaid = +document.getElementById('re-loans-repaid').value;
   var kyc = document.getElementById('re-kyc').value;
   var salary = document.getElementById('re-salary').classList.contains('on');
   var guarantor = document.getElementById('re-guarantor').classList.contains('on');
   var collateral = document.getElementById('re-collateral').classList.contains('on');
   var credit = document.getElementById('re-credit').classList.contains('on');
 
+  // Enforce: repaid cannot exceed taken
+  if (repaid > taken) { repaid = taken; document.getElementById('re-loans-repaid').value = repaid; }
+
   var score = 0;
   var reasons = [];
   var badges = [];
 
-  // Repayment history: up to 30 pts (max at 20 loans)
-  var oblPts = Math.min(30, (Math.min(obl, 20) / 20) * 30);
-  score += oblPts;
-  if (obl >= 10) reasons.push('Strong repayment history — ' + obl + ' loans repaid on time');
-  else if (obl === 0) reasons.push('No repayment history yet — building your profile');
-  else reasons.push(obl + ' loan(s) repaid on time');
+  // Repayment rate
+  var rate = taken > 0 ? repaid / taken : 0;
+  var ratePct = Math.round(rate * 100);
 
-  // KYC: none=0, basic=8, standard=14, enhanced=20
-  var kycMap = {none:0, basic:8, standard:14, enhanced:20};
+  // History score: up to 20 pts (max at 20 loans taken)
+  var historyPts = Math.min(20, (Math.min(taken, 20) / 20) * 20);
+  score += historyPts;
+
+  // Consistency score: up to 25 pts from repayment rate
+  var consistencyPts = rate * 25;
+  score += consistencyPts;
+
+  // CHANGE 4: Repayment explanation
+  if (taken === 0) {
+    reasons.push('No borrowing history yet — building your profile');
+  } else if (rate >= 0.95) {
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans — ' + ratePct + '% repayment record');
+  } else if (rate >= 0.7) {
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — solid consistency');
+  } else if (rate >= 0.4) {
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — room to improve');
+  } else {
+    reasons.push('Repaid ' + repaid + ' of ' + taken + ' loans (' + ratePct + '%) — limited repayment record');
+  }
+
+  if (taken >= 10 && rate >= 0.9) {
+    reasons.push('Strong repayment consistency across ' + taken + ' loans');
+  } else if (taken >= 5) {
+    reasons.push('Building track record with ' + taken + ' loans taken');
+  } else if (taken > 0) {
+    reasons.push('Limited borrowing history so far');
+  }
+
+  // KYC: none=0, basic=5, standard=8, enhanced=10
+  var kycMap = {none:0, basic:5, standard:8, enhanced:10};
   score += kycMap[kyc] || 0;
   if (kyc === 'enhanced') reasons.push('Fully verified identity — maximum trust');
   else if (kyc === 'standard') reasons.push('Standard identity verification');
@@ -1434,12 +1473,12 @@ function reCalc() {
   if (salary) { score += 15; reasons.push('Salary linked — income verified automatically'); badges.push({text:'Salary linked',on:true}); }
   else { reasons.push('Salary not linked — link to boost your score'); badges.push({text:'Salary not linked',on:false}); }
 
-  // Guarantor: 12 pts
-  if (guarantor) { score += 12; reasons.push('Guarantor present — added security'); badges.push({text:'Guarantor',on:true}); }
+  // Guarantor: 10 pts
+  if (guarantor) { score += 10; reasons.push('Guarantor present — added security'); badges.push({text:'Guarantor',on:true}); }
   else badges.push({text:'No guarantor',on:false});
 
-  // Collateral: 13 pts
-  if (collateral) { score += 13; reasons.push('Collateral available — unlocks higher amounts'); badges.push({text:'Collateral',on:true}); }
+  // Collateral: 10 pts
+  if (collateral) { score += 10; reasons.push('Collateral available — unlocks higher amounts'); badges.push({text:'Collateral',on:true}); }
   else badges.push({text:'No collateral',on:false});
 
   // Credit score on file: 10 pts
@@ -1451,13 +1490,11 @@ function reCalc() {
 
   score = Math.round(Math.min(100, Math.max(0, score)));
 
-  // Decision
   var decision;
   if (score >= 70) decision = 'approve';
   else if (score >= 40) decision = 'conditional';
   else decision = 'decline';
 
-  // Estimated amount based on score
   var amount = 0;
   if (score >= 70) amount = 5000 + Math.round((score - 70) / 30 * 20000);
   else if (score >= 40) amount = 1000 + Math.round((score - 40) / 30 * 4000);
@@ -1491,7 +1528,18 @@ function reAnimateAmount(target) {
 }
 
 function reUpdate() {
-  document.getElementById('re-obl-val').textContent = document.getElementById('re-obl').value;
+  var taken = +document.getElementById('re-loans-taken').value;
+  var repaid = +document.getElementById('re-loans-repaid').value;
+
+  // Enforce: repaid cannot exceed taken
+  if (repaid > taken) {
+    repaid = taken;
+    document.getElementById('re-loans-repaid').value = repaid;
+  }
+
+  document.getElementById('re-loans-taken-val').textContent = taken;
+  document.getElementById('re-loans-repaid-val').textContent = repaid;
+
   document.querySelectorAll('.re-pill').forEach(function(el) { el.classList.remove('active'); });
   var r = reCalc();
 
