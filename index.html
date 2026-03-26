@@ -985,6 +985,11 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-slider-fill{height:100%;background:var(--sd-gold);border-radius:2px;transition:width .3s}
 #sarf-demo .sd-slider-labels{display:flex;justify-content:space-between;margin-bottom:6px}
 #sarf-demo .sd-slider-labels span{color:var(--sd-text3)}
+#sarf-demo .sd-range{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--sd-elevated);border-radius:2px;margin:10px 0 6px;outline:none;cursor:pointer}
+#sarf-demo .sd-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--sd-gold);border:2px solid var(--sd-bg);box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:pointer;position:relative;z-index:1}
+#sarf-demo .sd-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--sd-gold);border:2px solid var(--sd-bg);box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:pointer}
+#sarf-demo .sd-range::-webkit-slider-runnable-track{height:4px;border-radius:2px}
+#sarf-demo .sd-range::-moz-range-track{height:4px;background:var(--sd-elevated);border-radius:2px}
 #sarf-demo .sd-presets{display:flex;gap:5px;flex-wrap:wrap}
 #sarf-demo .sd-preset{padding:5px 10px;border-radius:100px;border:1px solid var(--sd-border);font-size:11px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent;transition:all .2s}
 #sarf-demo .sd-preset.on{border-color:var(--sd-gold);background:var(--sd-goldMuted);color:var(--sd-gold);font-weight:500}
@@ -1306,11 +1311,11 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-caption sd-step-desc">Choose your amount and how long you need to repay.</div>
   <div class="sd-card">
     <div class="t-micro sd-field-label">Financing amount</div>
-    <div style="background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:10px;padding:10px;display:flex;align-items:center;gap:6px">
+    <div style="display:flex;align-items:baseline;gap:4px;margin:4px 0 0">
       <span style="font-size:18px;font-weight:700;color:var(--sd-gold)">$</span>
-      <input id="sdAmt" class="sd-field-input" value="10,000" style="background:transparent;border:none;padding:0;font-size:18px;font-weight:700" oninput="sdUpdPrev()">
+      <span id="sdAmtDisplay" style="font-size:18px;font-weight:700;color:var(--sd-text)">10,000</span>
     </div>
-    <div class="sd-slider-track"><div class="sd-slider-fill" id="sdAmtBar" style="width:20%"></div></div>
+    <input type="range" class="sd-range" id="sdAmtRange" min="500" max="50000" step="500" value="10000" oninput="sdAmtSlide(this.value)">
     <div class="sd-slider-labels t-micro"><span>$500</span><span>$50,000</span></div>
   </div>
   <div class="sd-card">
@@ -1321,8 +1326,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div class="sd-tab" onclick="sdUnit('days')">Days</div>
     </div>
     <div id="sdDurVal" style="font-size:16px;font-weight:700;color:var(--sd-text);margin:6px 0 2px">6 months</div>
-    <div id="sdDurSub" class="t-caption" style="color:var(--sd-text3);margin-bottom:6px"></div>
-    <div class="sd-slider-track"><div class="sd-slider-fill" id="sdDurBar" style="width:50%"></div></div>
+    <div id="sdDurSub" class="t-caption" style="color:var(--sd-text3);margin-bottom:2px"></div>
+    <input type="range" class="sd-range" id="sdDurRange" min="1" max="12" step="1" value="6" oninput="sdDurSlide(this.value)">
     <div class="sd-slider-labels t-micro" id="sdDurLbl"><span>1 month</span><span>12 months</span></div>
     <div class="sd-presets" id="sdPre"></div>
   </div>
@@ -2066,22 +2071,37 @@ function render(){
   document.getElementById('sdRst').style.display=cur>=7?'block':'none';
   document.getElementById('sarf-demo').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function gAmt(){return Math.max(500,Math.min(50000,parseInt((document.getElementById('sdAmt')?document.getElementById('sdAmt').value:'10000').replace(/\D/g,''))||10000));}
+var sdAmtVal=10000;
+function gAmt(){return sdAmtVal;}
 function tW(){return uT==='weeks'?dur:uT==='months'?Math.round(dur*4.33):Math.round(dur/7);}
 function cR(){var w=tW(),a=gAmt(),r=8+(w/52)*6;if(a>15000)r-=.5;if(a<5000)r+=1;return Math.max(8,Math.min(16,parseFloat(r.toFixed(1))));}
 function nP(){var w=tW();return w<=2?w:Math.max(1,Math.round(w/2));}
 function dU(v){return uT==='months'?v+' '+(v===1?'month':'months'):uT==='weeks'?v+' '+(v===1?'week':'weeks'):v+' '+(v===1?'day':'days');}
 
+window.sdAmtSlide=function(v){
+  sdAmtVal=parseInt(v);
+  document.getElementById('sdAmtDisplay').textContent=sdAmtVal.toLocaleString();
+  sdUpdPrev();
+};
+window.sdDurSlide=function(v){
+  dur=parseInt(v);
+  updDur();sdUpdPrev();
+};
 window.sdUpdPrev=function(){
   var a=gAmt(),r=cR(),p=nP(),t=Math.round(a*(1+r/100)),pp=Math.round(t/p);
-  document.getElementById('sdAmtBar').style.width=((a/50000)*100)+'%';
   document.getElementById('sdPrev').innerHTML='<div class="sd-row"><span class="t-caption sd-row-l">Estimated rate</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">'+r+'% fixed</span></div><div class="sd-row"><span class="t-caption sd-row-l">Total repayment</span><span class="t-label sd-row-r">$'+t.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Per payment</span><span class="t-label sd-row-r">~$'+pp.toLocaleString()+' &times; '+p+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Schedule</span><span class="t-label sd-row-r" style="font-size:11px">Bi-weekly, auto-pulled</span></div>';
   baseR=r;
 };
-window.sdUnit=function(u){uT=u;var d={months:6,weeks:26,days:180};dur=d[u];var ts=document.getElementById('sdTabs').children;for(var i=0;i<ts.length;i++)ts[i].className='sd-tab'+(['months','weeks','days'][i]===u?' on':'');updDur();sdUpdPrev();};
+window.sdUnit=function(u){
+  uT=u;var d={months:6,weeks:26,days:180};dur=d[u];
+  var ts=document.getElementById('sdTabs').children;for(var i=0;i<ts.length;i++)ts[i].className='sd-tab'+(['months','weeks','days'][i]===u?' on':'');
+  var rg=R[uT];
+  var sl=document.getElementById('sdDurRange');sl.min=rg.n;sl.max=rg.x;sl.value=dur;
+  updDur();sdUpdPrev();
+};
 function updDur(){
-  var rg=R[uT],pct=((dur-rg.n)/(rg.x-rg.n))*100;
-  document.getElementById('sdDurBar').style.width=pct+'%';
+  var rg=R[uT];
+  document.getElementById('sdDurRange').value=dur;
   document.getElementById('sdDurVal').textContent=dU(dur);
   var p=nP(),fl=tW()<=2?'weekly':'bi-weekly';
   document.getElementById('sdDurSub').innerHTML=p+' '+fl+' payment'+(p!==1?'s':'')+' &middot; <span class="sd-badge sd-badge-gold">Matched to salary</span>';
