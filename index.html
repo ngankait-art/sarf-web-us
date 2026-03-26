@@ -2137,9 +2137,8 @@ function updImp(){
 window.sdTgl=function(t){if(t==='g')gA=!gA;if(t==='c')cA=!cA;updImp();};
 
 window.sdNx=function(){
-  if(cur===3&&document.getElementById('sd3res').style.display==='none'){runScan();return;}
   if(cur===7){sdGo(0);return;}
-  if(cur<T-1){cur++;render();if(cur===2){updDur();sdUpdPrev();}if(cur===4)updImp();}
+  if(cur<T-1){cur++;render();if(cur===2){updDur();sdUpdPrev();}if(cur===3)runScan();if(cur===4)updImp();}
 };
 window.sdBk=function(){if(cur>0){cur--;render();}};
 window.sdGo=function(n){cur=n;gA=false;cA=false;
