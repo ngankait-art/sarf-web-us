@@ -986,11 +986,11 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-slider-fill{height:100%;background:var(--sd-gold);border-radius:2px;transition:width .3s}
 #sarf-demo .sd-slider-labels{display:flex;justify-content:space-between;margin-bottom:6px}
 #sarf-demo .sd-slider-labels span{color:var(--sd-text3)}
-#sarf-demo .sd-range{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--sd-elevated);border-radius:2px;margin:10px 0 6px;outline:none;cursor:pointer}
-#sarf-demo .sd-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--sd-gold);border:2px solid var(--sd-bg);box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:pointer;position:relative;z-index:1}
-#sarf-demo .sd-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--sd-gold);border:2px solid var(--sd-bg);box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:pointer}
-#sarf-demo .sd-range::-webkit-slider-runnable-track{height:4px;border-radius:2px}
-#sarf-demo .sd-range::-moz-range-track{height:4px;background:var(--sd-elevated);border-radius:2px}
+#sarf-demo .sd-range{-webkit-appearance:none;appearance:none;width:100%;height:6px;background:var(--sd-elevated);border-radius:3px;margin:10px 0 6px;outline:none;cursor:pointer}
+#sarf-demo .sd-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;border-radius:50%;background:var(--sd-gold);border:3px solid var(--sd-bg);box-shadow:0 0 0 2px var(--sd-gold),0 2px 8px rgba(0,0,0,0.5);cursor:pointer;position:relative;z-index:1}
+#sarf-demo .sd-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--sd-gold);border:3px solid var(--sd-bg);box-shadow:0 0 0 2px var(--sd-gold),0 2px 8px rgba(0,0,0,0.5);cursor:pointer}
+#sarf-demo .sd-range::-webkit-slider-runnable-track{height:6px;border-radius:3px}
+#sarf-demo .sd-range::-moz-range-track{height:6px;background:var(--sd-elevated);border-radius:3px}
 #sarf-demo .sd-presets{display:flex;gap:5px;flex-wrap:wrap}
 #sarf-demo .sd-preset{padding:5px 10px;border-radius:100px;border:1px solid var(--sd-border);font-size:11px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent;transition:all .2s}
 #sarf-demo .sd-preset.on{border-color:var(--sd-gold);background:var(--sd-goldMuted);color:var(--sd-gold);font-weight:500}
@@ -1407,8 +1407,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
     <div id="sd5prot"></div>
   </div>
   <div style="margin-top:8px"><div class="t-label" style="font-weight:600;color:var(--sd-text)">Loan Structure</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">A commodity asset valued at $10,000 is purchased on your behalf. You own this asset.</div></div>
-  <div class="sd-opt on"><div class="sd-opt-row"><div class="sd-radio on"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
-  <div class="sd-opt"><div class="sd-opt-row"><div class="sd-radio"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Take ownership. You can sell it independently at any time.</div></div></div></div>
+  <div class="sd-opt on" id="sdOptSell" onclick="sdPickOpt('sell')"><div class="sd-opt-row"><div class="sd-radio on" id="sdRadioSell"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint" id="sdSellHint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
+  <div class="sd-opt" id="sdOptKeep" onclick="sdPickOpt('keep')"><div class="sd-opt-row"><div class="sd-radio" id="sdRadioKeep"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Take ownership. You can sell it independently at any time.</div></div></div></div>
   <div class="sd-confirm"><div class="sd-check-box">&check;</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px">I confirm the terms above. Total repayment is fixed and will not change.</div></div>
 </div>
 
@@ -2156,6 +2156,16 @@ function updImp(){
   document.getElementById('sd5prot').innerHTML=ph;
 }
 window.sdTgl=function(t){if(t==='g')gA=!gA;if(t==='c')cA=!cA;updImp();};
+window.sdPickOpt=function(c){
+  var sell=document.getElementById('sdOptSell'),keep=document.getElementById('sdOptKeep');
+  var rSell=document.getElementById('sdRadioSell'),rKeep=document.getElementById('sdRadioKeep');
+  var hint=document.getElementById('sdSellHint');
+  sell.classList.toggle('on',c==='sell');keep.classList.toggle('on',c==='keep');
+  rSell.classList.toggle('on',c==='sell');rKeep.classList.toggle('on',c==='keep');
+  rSell.innerHTML=c==='sell'?'<div class="sd-radio-dot"></div>':'';
+  rKeep.innerHTML=c==='keep'?'<div class="sd-radio-dot"></div>':'';
+  if(hint)hint.style.display=c==='sell'?'block':'none';
+};
 
 window.sdNx=function(){
   if(cur===7){sdGo(0);return;}
