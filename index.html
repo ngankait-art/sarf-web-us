@@ -933,7 +933,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   color:#1A1E2A;
 }
 #sarf-demo *{box-sizing:border-box;margin:0;padding:0}
-#sarf-demo .sd-wrap{max-width:420px;margin:0 auto}
+#sarf-demo .sd-wrap{max-width:420px;margin:0 auto;height:700px;display:flex;flex-direction:column;background:var(--sd-card);border:1px solid var(--sd-border);border-radius:16px;padding:20px 16px 16px;overflow:hidden}
 #sarf-demo .t-micro{font-size:10px;font-weight:600;line-height:12px}
 #sarf-demo .t-caption{font-size:11px;font-weight:400;line-height:14px}
 #sarf-demo .t-label{font-size:12px;font-weight:500;line-height:16px}
@@ -941,11 +941,12 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .t-heading{font-size:16px;font-weight:600;line-height:20px}
 #sarf-demo .t-title{font-size:18px;font-weight:600;line-height:22px}
 #sarf-demo .t-display{font-size:26px;font-weight:700;line-height:30px}
-#sarf-demo .sd-hdr{text-align:center;margin-bottom:16px}
-#sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:14px}
+#sarf-demo .sd-hdr{text-align:center;margin-bottom:12px;flex-shrink:0}
+#sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:10px;flex-shrink:0}
 #sarf-demo .sd-prog span{flex:1;height:2.5px;border-radius:2px;background:var(--sd-border);transition:background .4s}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
-#sarf-demo .sd-panels{min-height:420px}
+#sarf-demo .sd-panels{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-right:2px}
+#sarf-demo .sd-panels::-webkit-scrollbar{display:none}
 #sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
 #sarf-demo .sd-pnl.on{display:block}
 @keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1038,7 +1039,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-btn{display:block;width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;border:none;cursor:pointer;background:var(--sd-gold);color:#0A0A0A;font-family:inherit;transition:opacity .2s}
 #sarf-demo .sd-btn:hover{opacity:.9}
 #sarf-demo .sd-btn-ghost{background:transparent;color:var(--sd-text3);border:1px solid var(--sd-border)}
-#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:12px}
+#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:10px;flex-shrink:0}
 #sarf-demo .sd-nav .sd-btn{flex:1}
 #sarf-demo .sd-nav-back{flex:0 0 auto!important;width:auto;padding:12px 18px;background:transparent;border:1px solid var(--sd-border);color:var(--sd-text3)}
 #sarf-demo .sd-restart{display:none;border:none;background:none;color:var(--sd-text3);font-size:11px;cursor:pointer;font-family:inherit;margin:8px auto 0;text-align:center}
@@ -2069,7 +2070,7 @@ function render(){
   nx.textContent=labels[cur]||'Continue \u2192';
   if(cur===7){nx.className='sd-btn sd-btn-ghost';}
   document.getElementById('sdRst').style.display=cur>=7?'block':'none';
-  document.getElementById('sarf-demo').scrollIntoView({behavior:'smooth',block:'start'});
+  var pnls=document.querySelector('#sarf-demo .sd-panels');if(pnls)pnls.scrollTop=0;
 }
 var sdAmtVal=10000;
 function gAmt(){return sdAmtVal;}
