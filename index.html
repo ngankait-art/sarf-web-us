@@ -945,6 +945,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:14px}
 #sarf-demo .sd-prog span{flex:1;height:2.5px;border-radius:2px;background:var(--sd-border);transition:background .4s}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
+#sarf-demo .sd-panels{min-height:480px}
 #sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
 #sarf-demo .sd-pnl.on{display:block}
 @keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1262,6 +1263,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 <div class="sd-prog" id="sdProg"></div>
 
+<div class="sd-panels">
 <!-- S0: Create Account -->
 <div class="sd-pnl" id="sd0">
   <div class="t-micro sd-step-label">Step 1 of 8</div>
@@ -1444,6 +1446,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
     <div class="sd-row"><span class="t-body sd-row-l">Term</span><span class="t-label sd-row-r">6 months</span></div>
   </div>
 </div>
+
+</div><!-- /.sd-panels -->
 
 <!-- Navigation -->
 <div class="sd-nav" id="sdNav">
