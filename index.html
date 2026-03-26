@@ -984,19 +984,34 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-phone-inner{
   background:var(--sd-bg);
   border-radius:34px;
-  padding:16px 14px 14px;
+  padding:0;
   position:relative;
   overflow:hidden;
+  height:600px;
+  display:flex;
+  flex-direction:column;
 }
 #sarf-demo .sd-phone-inner-glow{
   position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);
 }
+#sarf-demo .sd-phone-top{
+  padding:0 14px;flex-shrink:0;
+}
 #sarf-demo .sd-phone-notch{
   width:72px;height:18px;background:#000;
-  border-radius:0 0 10px 10px;margin:0 auto 12px;
+  border-radius:0 0 10px 10px;margin:0 auto 10px;
 }
 .light #sarf-demo .sd-phone-notch{background:rgba(0,0,0,0.12);}
+#sarf-demo .sd-phone-scroll{
+  flex:1;overflow-y:auto;overflow-x:hidden;padding:0 14px;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+#sarf-demo .sd-phone-scroll::-webkit-scrollbar{display:none;}
+#sarf-demo .sd-phone-bottom{
+  flex-shrink:0;padding:8px 14px 14px;
+}
 #sarf-demo .t-micro{font-size:10px;font-weight:600;line-height:12px}
 #sarf-demo .t-caption{font-size:11px;font-weight:400;line-height:14px}
 #sarf-demo .t-label{font-size:12px;font-weight:500;line-height:16px}
@@ -1008,7 +1023,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:14px}
 #sarf-demo .sd-prog span{flex:1;height:2.5px;border-radius:2px;background:var(--sd-border);transition:background .4s}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
-#sarf-demo .sd-panels{min-height:420px}
+#sarf-demo .sd-panels{}
 #sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
 #sarf-demo .sd-pnl.on{display:block}
 @keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1096,7 +1111,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-btn{display:block;width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;border:none;cursor:pointer;background:var(--sd-gold);color:#0A0A0A;font-family:inherit;transition:opacity .2s}
 #sarf-demo .sd-btn:hover{opacity:.9}
 #sarf-demo .sd-btn-ghost{background:transparent;color:var(--sd-text3);border:1px solid var(--sd-border)}
-#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:10px;padding-bottom:4px}
+#sarf-demo .sd-nav{display:flex;gap:6px}
 #sarf-demo .sd-nav .sd-btn{flex:1}
 #sarf-demo .sd-nav-back{flex:0 0 auto!important;width:auto;padding:12px 18px;background:transparent;border:1px solid var(--sd-border);color:var(--sd-text3)}
 #sarf-demo .sd-restart{display:none;border:none;background:none;color:var(--sd-text3);font-size:11px;cursor:pointer;font-family:inherit;margin:8px auto 0;text-align:center}
@@ -1331,10 +1346,12 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="sd-phone-frame-left"></div>
   <div class="sd-phone-inner">
     <div class="sd-phone-inner-glow"></div>
-    <div class="sd-phone-notch"></div>
+    <div class="sd-phone-top">
+      <div class="sd-phone-notch"></div>
+      <div class="sd-prog" id="sdProg"></div>
+    </div>
 
-<div class="sd-prog" id="sdProg"></div>
-
+    <div class="sd-phone-scroll" id="sdScroll">
 <div class="sd-panels">
 <!-- S0: Create Account -->
 <div class="sd-pnl" id="sd0">
@@ -1521,11 +1538,15 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 </div><!-- /.sd-panels -->
 
-<!-- Navigation -->
-<div class="sd-nav" id="sdNav">
-  <button class="sd-btn sd-nav-back" id="sdBk" onclick="sdBk()" style="display:none">&larr;</button>
-  <button class="sd-btn" id="sdNx" onclick="sdNx()">Continue &rarr;</button>
-</div>
+    </div><!-- /.sd-phone-scroll -->
+
+    <!-- Navigation (pinned bottom) -->
+    <div class="sd-phone-bottom">
+      <div class="sd-nav" id="sdNav">
+        <button class="sd-btn sd-nav-back" id="sdBk" onclick="sdBk()" style="display:none">&larr;</button>
+        <button class="sd-btn" id="sdNx" onclick="sdNx()">Continue &rarr;</button>
+      </div>
+    </div>
 
   </div><!-- /.sd-phone-inner -->
 </div><!-- /.sd-phone -->
@@ -2139,7 +2160,7 @@ function render(){
   nx.textContent=labels[cur]||'Continue \u2192';
   if(cur===7){nx.className='sd-btn sd-btn-ghost';}
   document.getElementById('sdRst').style.display=cur>=7?'block':'none';
-  document.getElementById('sarf-demo').scrollIntoView({behavior:'smooth',block:'start'});
+  var sc=document.getElementById('sdScroll');if(sc)sc.scrollTop=0;
 }
 function gAmt(){return Math.max(500,Math.min(50000,parseInt((document.getElementById('sdAmt')?document.getElementById('sdAmt').value:'10000').replace(/\D/g,''))||10000));}
 function tW(){return uT==='weeks'?dur:uT==='months'?Math.round(dur*4.33):Math.round(dur/7);}
