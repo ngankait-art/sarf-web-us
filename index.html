@@ -921,7 +921,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   --sd-border:rgba(255,255,255,0.08);--sd-borderS:rgba(255,255,255,0.15);--sd-divider:rgba(255,255,255,0.05);
   font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;
   background:linear-gradient(180deg,var(--bg-card) 0%,#0A0A0A 30%,#0A0A0A 70%,var(--bg-card) 100%);
-  color:#fff;padding:80px 16px;-webkit-font-smoothing:antialiased;
+  color:#fff;padding:40px 16px;-webkit-font-smoothing:antialiased;
 }
 .light #sarf-demo{
   --sd-bg:#F5F3EE;--sd-card:#FFFFFF;--sd-elevated:#F0EDE5;
@@ -934,109 +934,109 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 }
 #sarf-demo *{box-sizing:border-box;margin:0;padding:0}
 #sarf-demo .sd-wrap{max-width:420px;margin:0 auto}
-#sarf-demo .t-micro{font-size:11px;font-weight:600;line-height:14px}
-#sarf-demo .t-caption{font-size:12px;font-weight:400;line-height:16px}
-#sarf-demo .t-label{font-size:14px;font-weight:500;line-height:20px}
-#sarf-demo .t-body{font-size:16px;font-weight:400;line-height:24px}
-#sarf-demo .t-heading{font-size:20px;font-weight:600;line-height:26px}
-#sarf-demo .t-title{font-size:24px;font-weight:600;line-height:30px}
-#sarf-demo .t-display{font-size:32px;font-weight:700;line-height:38px}
-#sarf-demo .sd-hdr{text-align:center;margin-bottom:32px}
-#sarf-demo .sd-prog{display:flex;gap:6px;margin-bottom:24px}
-#sarf-demo .sd-prog span{flex:1;height:3px;border-radius:2px;background:var(--sd-border);transition:background .4s}
+#sarf-demo .t-micro{font-size:10px;font-weight:600;line-height:12px}
+#sarf-demo .t-caption{font-size:11px;font-weight:400;line-height:14px}
+#sarf-demo .t-label{font-size:12px;font-weight:500;line-height:16px}
+#sarf-demo .t-body{font-size:13px;font-weight:400;line-height:18px}
+#sarf-demo .t-heading{font-size:16px;font-weight:600;line-height:20px}
+#sarf-demo .t-title{font-size:18px;font-weight:600;line-height:22px}
+#sarf-demo .t-display{font-size:26px;font-weight:700;line-height:30px}
+#sarf-demo .sd-hdr{text-align:center;margin-bottom:16px}
+#sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:14px}
+#sarf-demo .sd-prog span{flex:1;height:2.5px;border-radius:2px;background:var(--sd-border);transition:background .4s}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
 #sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
 #sarf-demo .sd-pnl.on{display:block}
-@keyframes sdFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes sdSpin{to{transform:rotate(360deg)}}
 @keyframes sdPulse{0%,100%{opacity:1}50%{opacity:.4}}
-#sarf-demo .sd-step-label{color:var(--sd-gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-#sarf-demo .sd-step-title{color:var(--sd-text);margin-bottom:6px}
-#sarf-demo .sd-step-desc{color:var(--sd-text3);margin-bottom:16px}
-#sarf-demo .sd-card{background:var(--sd-card);border:1px solid var(--sd-border);border-radius:16px;padding:20px 16px}
+#sarf-demo .sd-step-label{color:var(--sd-gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+#sarf-demo .sd-step-title{color:var(--sd-text);margin-bottom:3px}
+#sarf-demo .sd-step-desc{color:var(--sd-text3);margin-bottom:10px}
+#sarf-demo .sd-card{background:var(--sd-card);border:1px solid var(--sd-border);border-radius:12px;padding:14px 12px}
 #sarf-demo .sd-card-glow{border-color:var(--sd-goldBorder)}
-#sarf-demo .sd-card+.sd-card{margin-top:8px}
-#sarf-demo .sd-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--sd-divider)}
+#sarf-demo .sd-card+.sd-card{margin-top:6px}
+#sarf-demo .sd-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--sd-divider)}
 #sarf-demo .sd-row:last-child{border-bottom:none}
 #sarf-demo .sd-row-l{color:var(--sd-text3)}
 #sarf-demo .sd-row-r{font-weight:600;color:var(--sd-text)}
-#sarf-demo .sd-field{margin-bottom:16px}
+#sarf-demo .sd-field{margin-bottom:10px}
 #sarf-demo .sd-field:last-child{margin-bottom:0}
-#sarf-demo .sd-field-label{color:var(--sd-text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
-#sarf-demo .sd-field-input{background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:12px;padding:14px;color:var(--sd-text);width:100%;font-family:inherit;font-size:15px;outline:none}
+#sarf-demo .sd-field-label{color:var(--sd-text3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+#sarf-demo .sd-field-input{background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:10px;padding:10px;color:var(--sd-text);width:100%;font-family:inherit;font-size:13px;outline:none}
 #sarf-demo .sd-field-input:focus{border-color:rgba(216,164,68,.4)}
-#sarf-demo .sd-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;letter-spacing:.5px}
+#sarf-demo .sd-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px;letter-spacing:.5px}
 #sarf-demo .sd-badge-gold{background:var(--sd-goldMuted);color:var(--sd-gold)}
 #sarf-demo .sd-badge-green{background:var(--sd-greenMuted);color:var(--sd-green)}
-#sarf-demo .sd-banner{padding:12px 14px;border-radius:12px;margin-top:8px}
+#sarf-demo .sd-banner{padding:8px 10px;border-radius:10px;margin-top:6px}
 #sarf-demo .sd-banner-gold{background:rgba(216,164,68,.1);border:1px solid var(--sd-goldBorder)}
-#sarf-demo .sd-banner-gold p{color:var(--sd-gold);line-height:1.5}
+#sarf-demo .sd-banner-gold p{color:var(--sd-gold);line-height:1.4}
 #sarf-demo .sd-banner-green{background:rgba(34,197,94,.08);border:1px solid var(--sd-greenBorder)}
-#sarf-demo .sd-banner-green p{color:var(--sd-green);line-height:1.5}
-#sarf-demo .sd-bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-#sarf-demo .sd-bank-card{background:var(--sd-card);border:1px solid var(--sd-border);border-radius:16px;padding:18px 12px;text-align:center;cursor:pointer;transition:border-color .2s}
+#sarf-demo .sd-banner-green p{color:var(--sd-green);line-height:1.4}
+#sarf-demo .sd-bank-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+#sarf-demo .sd-bank-card{background:var(--sd-card);border:1px solid var(--sd-border);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:border-color .2s}
 #sarf-demo .sd-bank-card:hover{border-color:var(--sd-borderS)}
-#sarf-demo .sd-bank-icon{width:44px;height:44px;border-radius:50%;background:var(--sd-elevated);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:16px;font-weight:700;color:var(--sd-text3)}
-#sarf-demo .sd-tabs{display:flex;background:var(--sd-elevated);border-radius:100px;padding:3px}
-#sarf-demo .sd-tab{flex:1;text-align:center;padding:8px;border-radius:100px;font-size:14px;font-weight:500;color:var(--sd-text3);cursor:pointer;transition:all .2s}
+#sarf-demo .sd-bank-icon{width:32px;height:32px;border-radius:50%;background:var(--sd-elevated);display:flex;align-items:center;justify-content:center;margin:0 auto 4px;font-size:13px;font-weight:700;color:var(--sd-text3)}
+#sarf-demo .sd-tabs{display:flex;background:var(--sd-elevated);border-radius:100px;padding:2px}
+#sarf-demo .sd-tab{flex:1;text-align:center;padding:6px;border-radius:100px;font-size:12px;font-weight:500;color:var(--sd-text3);cursor:pointer;transition:all .2s}
 #sarf-demo .sd-tab.on{background:var(--sd-card);color:var(--sd-text);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.3)}
-#sarf-demo .sd-slider-track{height:6px;background:var(--sd-elevated);border-radius:3px;margin:12px 0 6px;overflow:hidden}
-#sarf-demo .sd-slider-fill{height:100%;background:var(--sd-gold);border-radius:3px;transition:width .3s}
-#sarf-demo .sd-slider-labels{display:flex;justify-content:space-between;margin-bottom:12px}
+#sarf-demo .sd-slider-track{height:4px;background:var(--sd-elevated);border-radius:2px;margin:8px 0 4px;overflow:hidden}
+#sarf-demo .sd-slider-fill{height:100%;background:var(--sd-gold);border-radius:2px;transition:width .3s}
+#sarf-demo .sd-slider-labels{display:flex;justify-content:space-between;margin-bottom:6px}
 #sarf-demo .sd-slider-labels span{color:var(--sd-text3)}
-#sarf-demo .sd-presets{display:flex;gap:6px;flex-wrap:wrap}
-#sarf-demo .sd-preset{padding:7px 14px;border-radius:100px;border:1px solid var(--sd-border);font-size:12px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent;transition:all .2s}
+#sarf-demo .sd-presets{display:flex;gap:5px;flex-wrap:wrap}
+#sarf-demo .sd-preset{padding:5px 10px;border-radius:100px;border:1px solid var(--sd-border);font-size:11px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent;transition:all .2s}
 #sarf-demo .sd-preset.on{border-color:var(--sd-gold);background:var(--sd-goldMuted);color:var(--sd-gold);font-weight:500}
-#sarf-demo .sd-rate-hero{text-align:center;padding:36px 16px 24px}
-#sarf-demo .sd-rate-lbl{color:var(--sd-text3);letter-spacing:3px;text-transform:uppercase}
-#sarf-demo .sd-rate-val{font-size:64px;font-weight:800;color:var(--sd-gold);line-height:68px;letter-spacing:-3px;margin:8px 0}
+#sarf-demo .sd-rate-hero{text-align:center;padding:20px 12px 16px}
+#sarf-demo .sd-rate-lbl{color:var(--sd-text3);letter-spacing:2px;text-transform:uppercase}
+#sarf-demo .sd-rate-val{font-size:44px;font-weight:800;color:var(--sd-gold);line-height:48px;letter-spacing:-2px;margin:4px 0}
 #sarf-demo .sd-rate-imp{color:var(--sd-green)}
 #sarf-demo .sd-rate-meta{color:var(--sd-text3);letter-spacing:.5px}
 #sarf-demo .sd-strike{text-decoration:line-through;color:var(--sd-text3)}
-#sarf-demo .sd-trust{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:16px}
-#sarf-demo .sd-trust-chip{font-size:11px;font-weight:600;color:var(--sd-gold);background:rgba(216,164,68,.08);border:1px solid rgba(216,164,68,.15);border-radius:100px;padding:4px 12px}
-#sarf-demo .sd-imp-card{border:1.5px solid var(--sd-border);border-radius:16px;padding:16px;margin-top:8px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:all .2s}
+#sarf-demo .sd-trust{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+#sarf-demo .sd-trust-chip{font-size:10px;font-weight:600;color:var(--sd-gold);background:rgba(216,164,68,.08);border:1px solid rgba(216,164,68,.15);border-radius:100px;padding:3px 10px}
+#sarf-demo .sd-imp-card{border:1.5px solid var(--sd-border);border-radius:12px;padding:10px;margin-top:6px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;transition:all .2s}
 #sarf-demo .sd-imp-card.on{border-color:var(--sd-greenBorder);background:rgba(34,197,94,.04)}
-#sarf-demo .sd-imp-icon{width:36px;height:36px;border-radius:10px;background:var(--sd-elevated);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:background .2s}
+#sarf-demo .sd-imp-icon{width:28px;height:28px;border-radius:8px;background:var(--sd-elevated);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:background .2s}
 #sarf-demo .sd-imp-icon.on{background:var(--sd-greenMuted)}
 #sarf-demo .sd-imp-head{display:flex;justify-content:space-between;align-items:center}
 #sarf-demo .sd-imp-delta{font-weight:600;color:var(--sd-green)}
-#sarf-demo .sd-inline-form{background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:12px;padding:14px;margin-top:10px}
-#sarf-demo .sd-exp-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+#sarf-demo .sd-inline-form{background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:10px;padding:10px;margin-top:6px}
+#sarf-demo .sd-exp-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
 #sarf-demo .sd-exp-row:last-of-type{margin-bottom:0}
-#sarf-demo .sd-exp-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-#sarf-demo .sd-asset-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-#sarf-demo .sd-asset-chip{padding:6px 12px;border-radius:8px;border:1px solid var(--sd-border);font-size:12px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent}
+#sarf-demo .sd-exp-icon{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+#sarf-demo .sd-asset-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+#sarf-demo .sd-asset-chip{padding:4px 10px;border-radius:6px;border:1px solid var(--sd-border);font-size:11px;color:var(--sd-text3);cursor:pointer;font-family:inherit;background:transparent}
 #sarf-demo .sd-asset-chip.on{border-color:var(--sd-goldBorder);background:var(--sd-goldMuted);color:var(--sd-gold)}
-#sarf-demo .sd-grid2x3{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-#sarf-demo .sd-grid-label{color:var(--sd-text3);margin-bottom:3px}
+#sarf-demo .sd-grid2x3{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#sarf-demo .sd-grid-label{color:var(--sd-text3);margin-bottom:2px}
 #sarf-demo .sd-grid-val{font-weight:600;color:var(--sd-text)}
-#sarf-demo .sd-opt{border:1.5px solid var(--sd-border);border-radius:16px;padding:16px;margin-top:8px;cursor:pointer;transition:all .2s}
+#sarf-demo .sd-opt{border:1.5px solid var(--sd-border);border-radius:12px;padding:10px;margin-top:6px;cursor:pointer;transition:all .2s}
 #sarf-demo .sd-opt.on{border-color:var(--sd-gold);background:var(--sd-goldMuted)}
-#sarf-demo .sd-opt-row{display:flex;align-items:flex-start;gap:12px}
-#sarf-demo .sd-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--sd-borderS);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:border .2s}
+#sarf-demo .sd-opt-row{display:flex;align-items:flex-start;gap:10px}
+#sarf-demo .sd-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--sd-borderS);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:border .2s}
 #sarf-demo .sd-radio.on{border-color:var(--sd-gold)}
-#sarf-demo .sd-radio-dot{width:10px;height:10px;border-radius:50%;background:var(--sd-gold)}
-#sarf-demo .sd-confirm{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--sd-card);border:1px solid var(--sd-border);border-radius:16px;margin-top:10px}
-#sarf-demo .sd-check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--sd-gold);background:var(--sd-gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#000;font-size:13px;font-weight:700}
-#sarf-demo .sd-prot-banner{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;margin-top:8px;background:rgba(34,197,94,.06);border:1px solid var(--sd-greenBorder)}
-#sarf-demo .sd-prot-icon{width:32px;height:32px;border-radius:8px;background:var(--sd-greenMuted);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:var(--sd-green)}
-#sarf-demo .sd-live-dot{width:8px;height:8px;border-radius:50%;background:var(--sd-orange);animation:sdPulse 1.4s infinite}
-#sarf-demo .sd-live-step{display:flex;gap:12px;margin-bottom:10px}
-#sarf-demo .sd-live-num{width:24px;height:24px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:700}
+#sarf-demo .sd-radio-dot{width:9px;height:9px;border-radius:50%;background:var(--sd-gold)}
+#sarf-demo .sd-confirm{display:flex;align-items:flex-start;gap:10px;padding:10px;background:var(--sd-card);border:1px solid var(--sd-border);border-radius:12px;margin-top:6px}
+#sarf-demo .sd-check-box{width:18px;height:18px;border-radius:5px;border:2px solid var(--sd-gold);background:var(--sd-gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#000;font-size:11px;font-weight:700}
+#sarf-demo .sd-prot-banner{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;margin-top:6px;background:rgba(34,197,94,.06);border:1px solid var(--sd-greenBorder)}
+#sarf-demo .sd-prot-icon{width:26px;height:26px;border-radius:6px;background:var(--sd-greenMuted);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;color:var(--sd-green)}
+#sarf-demo .sd-live-dot{width:7px;height:7px;border-radius:50%;background:var(--sd-orange);animation:sdPulse 1.4s infinite}
+#sarf-demo .sd-live-step{display:flex;gap:10px;margin-bottom:6px}
+#sarf-demo .sd-live-num{width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700}
 #sarf-demo .sd-live-num.done{background:var(--sd-greenMuted);color:var(--sd-green)}
 #sarf-demo .sd-live-num.pending{background:var(--sd-elevated);border:1px solid var(--sd-border);color:var(--sd-text3)}
-#sarf-demo .sd-check-circle{width:80px;height:80px;border-radius:50%;background:var(--sd-greenMuted);border:2px solid var(--sd-green);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:36px;color:var(--sd-green);font-weight:700}
-#sarf-demo .sd-savings{background:rgba(34,197,94,.08);border:1px solid var(--sd-greenBorder);border-radius:12px;padding:10px;text-align:center;margin-top:12px}
+#sarf-demo .sd-check-circle{width:56px;height:56px;border-radius:50%;background:var(--sd-greenMuted);border:2px solid var(--sd-green);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:26px;color:var(--sd-green);font-weight:700}
+#sarf-demo .sd-savings{background:rgba(34,197,94,.08);border:1px solid var(--sd-greenBorder);border-radius:10px;padding:6px;text-align:center;margin-top:8px}
 #sarf-demo .sd-savings p{font-weight:600;color:var(--sd-green)}
-#sarf-demo .sd-btn{display:block;width:100%;padding:16px;border-radius:16px;font-size:16px;font-weight:600;text-align:center;border:none;cursor:pointer;background:var(--sd-gold);color:#0A0A0A;font-family:inherit;transition:opacity .2s}
+#sarf-demo .sd-btn{display:block;width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;border:none;cursor:pointer;background:var(--sd-gold);color:#0A0A0A;font-family:inherit;transition:opacity .2s}
 #sarf-demo .sd-btn:hover{opacity:.9}
 #sarf-demo .sd-btn-ghost{background:transparent;color:var(--sd-text3);border:1px solid var(--sd-border)}
-#sarf-demo .sd-nav{display:flex;gap:8px;margin-top:20px}
+#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:12px}
 #sarf-demo .sd-nav .sd-btn{flex:1}
-#sarf-demo .sd-nav-back{flex:0 0 auto!important;width:auto;padding:16px 22px;background:transparent;border:1px solid var(--sd-border);color:var(--sd-text3)}
-#sarf-demo .sd-restart{display:none;border:none;background:none;color:var(--sd-text3);font-size:12px;cursor:pointer;font-family:inherit;margin:12px auto 0;text-align:center}
-#sarf-demo .sd-hint{color:var(--sd-gold);background:rgba(216,164,68,.1);border-radius:8px;padding:8px 10px;margin-top:8px;line-height:1.4}
+#sarf-demo .sd-nav-back{flex:0 0 auto!important;width:auto;padding:12px 18px;background:transparent;border:1px solid var(--sd-border);color:var(--sd-text3)}
+#sarf-demo .sd-restart{display:none;border:none;background:none;color:var(--sd-text3);font-size:11px;cursor:pointer;font-family:inherit;margin:8px auto 0;text-align:center}
+#sarf-demo .sd-hint{color:var(--sd-gold);background:rgba(216,164,68,.1);border-radius:6px;padding:6px 8px;margin-top:6px;line-height:1.3;font-size:11px}
 </style>
 </head>
 <body>
@@ -1255,9 +1255,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 <!-- Header -->
 <div class="sd-hdr">
-  <div class="t-micro sd-step-label" style="margin-bottom:12px">How it works</div>
-  <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:10px">Get financing in minutes,<br>not weeks</div>
-  <div class="t-label" style="color:var(--sd-text3);font-weight:400;line-height:1.6">Asset-backed. Fixed terms. No compounding. From request to funded &mdash; on your phone.</div>
+  <div class="t-micro sd-step-label" style="margin-bottom:6px">How it works</div>
+  <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:6px">Get financing in minutes,<br>not weeks</div>
+  <div class="t-label" style="color:var(--sd-text3);font-weight:400;line-height:1.4">Asset-backed. Fixed terms. No compounding. From request to funded &mdash; on your phone.</div>
 </div>
 
 <div class="sd-prog" id="sdProg"></div>
@@ -1304,9 +1304,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-caption sd-step-desc">Choose your amount and how long you need to repay.</div>
   <div class="sd-card">
     <div class="t-micro sd-field-label">Financing amount</div>
-    <div style="background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:12px;padding:14px;display:flex;align-items:center;gap:8px">
-      <span style="font-size:24px;font-weight:700;color:var(--sd-gold)">$</span>
-      <input id="sdAmt" class="sd-field-input" value="10,000" style="background:transparent;border:none;padding:0;font-size:24px;font-weight:700" oninput="sdUpdPrev()">
+    <div style="background:var(--sd-bg);border:1px solid var(--sd-border);border-radius:10px;padding:10px;display:flex;align-items:center;gap:6px">
+      <span style="font-size:18px;font-weight:700;color:var(--sd-gold)">$</span>
+      <input id="sdAmt" class="sd-field-input" value="10,000" style="background:transparent;border:none;padding:0;font-size:18px;font-weight:700" oninput="sdUpdPrev()">
     </div>
     <div class="sd-slider-track"><div class="sd-slider-fill" id="sdAmtBar" style="width:20%"></div></div>
     <div class="sd-slider-labels t-micro"><span>$500</span><span>$50,000</span></div>
@@ -1318,8 +1318,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div class="sd-tab" onclick="sdUnit('weeks')">Weeks</div>
       <div class="sd-tab" onclick="sdUnit('days')">Days</div>
     </div>
-    <div id="sdDurVal" style="font-size:22px;font-weight:700;color:var(--sd-text);margin:8px 0 4px">6 months</div>
-    <div id="sdDurSub" class="t-caption" style="color:var(--sd-text3);margin-bottom:10px"></div>
+    <div id="sdDurVal" style="font-size:16px;font-weight:700;color:var(--sd-text);margin:6px 0 2px">6 months</div>
+    <div id="sdDurSub" class="t-caption" style="color:var(--sd-text3);margin-bottom:6px"></div>
     <div class="sd-slider-track"><div class="sd-slider-fill" id="sdDurBar" style="width:50%"></div></div>
     <div class="sd-slider-labels t-micro" id="sdDurLbl"><span>1 month</span><span>12 months</span></div>
     <div class="sd-presets" id="sdPre"></div>
@@ -1341,7 +1341,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-micro sd-step-label">Step 5 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700">Want a better rate?</div>
   <div class="t-caption sd-step-desc">Add a guarantor or tokenized collateral to reduce your rate. Both are optional.</div>
-  <div class="sd-card sd-card-glow" style="text-align:center;padding:24px 16px;margin-bottom:8px">
+  <div class="sd-card sd-card-glow" style="text-align:center;padding:14px 12px;margin-bottom:6px">
     <div class="t-micro sd-rate-lbl" id="sd4lbl">Your fixed rate</div>
     <div class="sd-rate-val" id="sd4rate">10%</div>
     <div class="t-label sd-rate-imp" id="sd4from" style="display:none"></div>
@@ -1361,12 +1361,12 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
     <div style="flex:1"><div class="sd-imp-head"><span class="t-label" style="font-weight:600;color:var(--sd-text)">Add tokenized collateral</span><span class="t-label sd-imp-delta">&minus;2.0%</span></div><div class="t-caption" style="color:var(--sd-text3);margin-top:4px;line-height:16px">Pledge a tokenized asset to secure a lower rate.</div></div>
   </div>
   <div id="sdCf" style="display:none" class="sd-inline-form">
-    <div class="t-caption" style="font-weight:600;color:var(--sd-text);margin-bottom:10px">How it works</div>
+    <div class="t-caption" style="font-weight:600;color:var(--sd-text);margin-bottom:6px">How it works</div>
     <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(216,164,68,.12)"><span style="color:var(--sd-gold)">&darr;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Deposit to smart contract</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Your asset is transferred to Sarf's escrow. You retain ownership.</div></div></div>
     <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(59,130,246,.12)"><span style="color:var(--sd-blue)">&#x1F512;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Held during repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Asset remains locked. Verifiable on-chain at any time.</div></div></div>
     <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(34,197,94,.12)"><span style="color:var(--sd-green)">&check;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Returned on full repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Automatically released back to your wallet.</div></div></div>
     <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(239,68,68,.12)"><span style="color:var(--sd-red)">&triangle;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-red)">Liquidation on default</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">If you miss 3 consecutive payments, the asset may be sold.</div></div></div>
-    <div style="border-top:1px solid var(--sd-border);margin-top:12px;padding-top:12px">
+    <div style="border-top:1px solid var(--sd-border);margin-top:8px;padding-top:8px">
       <div class="t-micro sd-field-label">Asset type</div>
       <div class="sd-asset-chips"><span class="sd-asset-chip on">Tokenized equity</span><span class="sd-asset-chip">Stablecoin</span><span class="sd-asset-chip">Real estate</span><span class="sd-asset-chip">Other</span></div>
       <div class="sd-field" style="margin-top:12px"><div class="t-micro sd-field-label">Wallet address</div><input class="sd-field-input" placeholder="0x..."></div>
@@ -1380,14 +1380,14 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-micro sd-step-label">Step 6 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700">Review your agreement</div>
   <div class="t-caption sd-step-desc">Fixed terms. What you see is what you pay &mdash; nothing more.</div>
-  <div class="sd-card sd-card-glow" style="padding:24px 18px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+  <div class="sd-card sd-card-glow" style="padding:14px 12px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
       <span class="t-micro" style="color:var(--sd-text3);letter-spacing:1.5px;text-transform:uppercase">Financing Agreement</span>
       <span class="sd-badge sd-badge-gold" style="text-transform:uppercase">Fixed terms</span>
     </div>
     <div class="t-micro" style="color:var(--sd-text3)">Total financing</div>
-    <div style="font-size:32px;font-weight:700;color:var(--sd-text);letter-spacing:-1px;margin:2px 0 18px">$10,000.00</div>
-    <div class="sd-grid2x3" style="padding-top:18px;border-top:1px solid var(--sd-divider)">
+    <div style="font-size:24px;font-weight:700;color:var(--sd-text);letter-spacing:-1px;margin:2px 0 10px">$10,000.00</div>
+    <div class="sd-grid2x3" style="padding-top:10px;border-top:1px solid var(--sd-divider)">
       <div><div class="t-micro sd-grid-label">Fixed rate</div><div class="t-label sd-grid-val" id="sd5rate">10%</div></div>
       <div><div class="t-micro sd-grid-label">Total repayment</div><div class="t-label sd-grid-val" id="sd5total">$11,000</div></div>
       <div><div class="t-micro sd-grid-label">Bi-weekly payment</div><div class="t-label sd-grid-val" id="sd5pay">~$917</div></div>
@@ -1395,34 +1395,34 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div><div class="t-micro sd-grid-label"># Payments</div><div class="t-label sd-grid-val">12</div></div>
       <div><div class="t-micro sd-grid-label">Fees</div><div class="t-label sd-grid-val" style="color:var(--sd-gold)">$0</div></div>
     </div>
-    <div class="sd-banner sd-banner-gold" style="margin-top:16px"><p class="t-caption">Payments auto-pulled bi-weekly matched to your salary cycle</p></div>
+    <div class="sd-banner sd-banner-gold" style="margin-top:8px"><p class="t-caption">Payments auto-pulled bi-weekly matched to your salary cycle</p></div>
     <div id="sd5prot"></div>
   </div>
-  <div style="margin-top:12px"><div class="t-label" style="font-weight:600;color:var(--sd-text)">Loan Structure</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px;margin-top:4px">A commodity asset valued at $10,000 is purchased on your behalf. You own this asset.</div></div>
-  <div class="sd-opt on"><div class="sd-opt-row"><div class="sd-radio on"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px;margin-top:4px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
-  <div class="sd-opt"><div class="sd-opt-row"><div class="sd-radio"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px;margin-top:4px">Take ownership. You can sell it independently at any time.</div></div></div></div>
+  <div style="margin-top:8px"><div class="t-label" style="font-weight:600;color:var(--sd-text)">Loan Structure</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">A commodity asset valued at $10,000 is purchased on your behalf. You own this asset.</div></div>
+  <div class="sd-opt on"><div class="sd-opt-row"><div class="sd-radio on"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
+  <div class="sd-opt"><div class="sd-opt-row"><div class="sd-radio"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Take ownership. You can sell it independently at any time.</div></div></div></div>
   <div class="sd-confirm"><div class="sd-check-box">&check;</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px">I confirm the terms above. Total repayment is fixed and will not change.</div></div>
 </div>
 
 <!-- S6: Funding Status -->
 <div class="sd-pnl" id="sd6">
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div class="sd-live-dot"></div><div class="t-micro" style="color:var(--sd-orange);letter-spacing:1px;flex:1">COLLECTING CAPITAL</div><span class="sd-badge sd-badge-gold">Live</span></div>
-  <div class="t-caption" style="color:var(--sd-text2);margin-bottom:16px;line-height:18px">Your request is live on the marketplace. Providers are reviewing and allocating capital.</div>
-  <div class="sd-card sd-card-glow" style="text-align:center;padding:24px 18px">
+  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><div class="sd-live-dot"></div><div class="t-micro" style="color:var(--sd-orange);letter-spacing:1px;flex:1">COLLECTING CAPITAL</div><span class="sd-badge sd-badge-gold">Live</span></div>
+  <div class="t-caption" style="color:var(--sd-text2);margin-bottom:10px;line-height:14px">Your request is live on the marketplace. Providers are reviewing and allocating capital.</div>
+  <div class="sd-card sd-card-glow" style="text-align:center;padding:14px 12px">
     <div class="t-micro" style="color:var(--sd-gold);letter-spacing:2px;text-transform:uppercase">Financing Amount</div>
-    <div style="font-size:32px;font-weight:700;color:var(--sd-text);margin:6px 0">$10,000</div>
+    <div style="font-size:24px;font-weight:700;color:var(--sd-text);margin:4px 0">$10,000</div>
     <div class="t-caption" style="color:var(--sd-text2)">6 month contract</div>
   </div>
   <div class="sd-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
       <span class="t-label" style="color:var(--sd-text2)">Capital allocated</span>
       <span class="t-heading" style="font-weight:700;color:var(--sd-gold)">65%</span>
     </div>
-    <div class="sd-slider-track" style="margin:0 0 10px"><div class="sd-slider-fill" style="width:65%"></div></div>
+    <div class="sd-slider-track" style="margin:0 0 6px"><div class="sd-slider-fill" style="width:65%"></div></div>
     <div style="display:flex;justify-content:space-between"><span class="t-caption" style="color:var(--sd-text3)">$6,500 of $10,000</span><span class="t-caption" style="color:var(--sd-text3)">3 providers</span></div>
   </div>
   <div class="sd-card">
-    <div class="t-micro" style="color:var(--sd-text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">What happens next</div>
+    <div class="t-micro" style="color:var(--sd-text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">What happens next</div>
     <div class="sd-live-step"><div class="sd-live-num done">&check;</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Providers review your contract</div></div>
     <div class="sd-live-step"><div class="sd-live-num done">&check;</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Capital allocated until 100% funded</div></div>
     <div class="sd-live-step"><div class="sd-live-num pending">3</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Funds transferred to your account</div></div>
@@ -1432,10 +1432,10 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 <!-- S7: Active -->
 <div class="sd-pnl" id="sd7">
-  <div style="text-align:center;padding-top:24px">
+  <div style="text-align:center;padding-top:14px">
     <div class="sd-check-circle">&check;</div>
-    <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:8px">Financing Active</div>
-    <div class="t-body" style="color:var(--sd-text2);line-height:1.6;margin-bottom:20px">Your contract is now active and your repayment schedule has begun.</div>
+    <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:4px">Financing Active</div>
+    <div class="t-body" style="color:var(--sd-text2);line-height:1.4;margin-bottom:12px">Your contract is now active and your repayment schedule has begun.</div>
   </div>
   <div class="sd-card">
     <div class="sd-row"><span class="t-body sd-row-l">Amount delivered</span><span class="t-label sd-row-r">$10,000</span></div>
@@ -2070,7 +2070,7 @@ function dU(v){return uT==='months'?v+' '+(v===1?'month':'months'):uT==='weeks'?
 window.sdUpdPrev=function(){
   var a=gAmt(),r=cR(),p=nP(),t=Math.round(a*(1+r/100)),pp=Math.round(t/p);
   document.getElementById('sdAmtBar').style.width=((a/50000)*100)+'%';
-  document.getElementById('sdPrev').innerHTML='<div class="sd-row"><span class="t-caption sd-row-l">Estimated rate</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">'+r+'% fixed</span></div><div class="sd-row"><span class="t-caption sd-row-l">Total repayment</span><span class="t-label sd-row-r">$'+t.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Per payment</span><span class="t-label sd-row-r">~$'+pp.toLocaleString()+' &times; '+p+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Schedule</span><span class="t-label sd-row-r" style="font-size:12px">Bi-weekly, auto-pulled</span></div>';
+  document.getElementById('sdPrev').innerHTML='<div class="sd-row"><span class="t-caption sd-row-l">Estimated rate</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">'+r+'% fixed</span></div><div class="sd-row"><span class="t-caption sd-row-l">Total repayment</span><span class="t-label sd-row-r">$'+t.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Per payment</span><span class="t-label sd-row-r">~$'+pp.toLocaleString()+' &times; '+p+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Schedule</span><span class="t-label sd-row-r" style="font-size:11px">Bi-weekly, auto-pulled</span></div>';
   baseR=r;
 };
 window.sdUnit=function(u){uT=u;var d={months:6,weeks:26,days:180};dur=d[u];var ts=document.getElementById('sdTabs').children;for(var i=0;i<ts.length;i++)ts[i].className='sd-tab'+(['months','weeks','days'][i]===u?' on':'');updDur();sdUpdPrev();};
@@ -2089,10 +2089,10 @@ window.sdPre=function(v){dur=v;updDur();sdUpdPrev();};
 window.sdBank=function(n){
   document.getElementById('sd1banks').style.display='none';
   var sc=document.getElementById('sd1scan');sc.style.display='block';
-  sc.innerHTML='<div class="sd-card" style="text-align:center;padding:40px 20px"><div style="width:48px;height:48px;border-radius:50%;border:3px solid var(--sd-border);border-top-color:var(--sd-gold);margin:0 auto 16px;animation:sdSpin .7s linear infinite"></div><p class="t-label" style="font-weight:600;color:var(--sd-text);margin-bottom:4px">Connecting to '+n+'...</p><p class="t-caption" style="color:var(--sd-text3)">Reading income &middot; Detecting salary cycle</p></div>';
+  sc.innerHTML='<div class="sd-card" style="text-align:center;padding:24px 14px"><div style="width:36px;height:36px;border-radius:50%;border:3px solid var(--sd-border);border-top-color:var(--sd-gold);margin:0 auto 10px;animation:sdSpin .7s linear infinite"></div><p class="t-label" style="font-weight:600;color:var(--sd-text);margin-bottom:3px">Connecting to '+n+'...</p><p class="t-caption" style="color:var(--sd-text3)">Reading income &middot; Detecting salary cycle</p></div>';
   setTimeout(function(){
     sc.style.display='none';var d=document.getElementById('sd1done');d.style.display='block';
-    d.innerHTML='<div class="sd-card sd-card-glow" style="text-align:center;padding:24px 18px"><div style="width:44px;height:44px;border-radius:50%;background:var(--sd-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:18px;color:#0A0A0A;font-weight:700">&check;</div><p class="t-label" style="font-weight:600;color:var(--sd-text);margin-bottom:3px">'+n+' connected</p><p class="t-caption" style="color:var(--sd-text3)">12 months of income verified</p></div><div class="sd-card" style="margin-top:8px"><div class="sd-row"><span class="t-body sd-row-l">Monthly income</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">$6,200/mo</span></div><div class="sd-row"><span class="t-body sd-row-l">Income stability</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">Strong</span></div><div class="sd-row"><span class="t-body sd-row-l">Salary cycle</span><span class="t-label sd-row-r"><span class="sd-badge sd-badge-gold">Bi-weekly (1st & 15th)</span></span></div><div class="sd-row"><span class="t-body sd-row-l">Repayment schedule</span><span class="t-label sd-row-r" style="font-size:12px;color:var(--sd-text3)">Auto-matched to salary</span></div></div><div class="sd-banner sd-banner-gold"><p class="t-caption">Your repayments will be scheduled bi-weekly to match your salary deposits. No manual transfers needed.</p></div>';
+    d.innerHTML='<div class="sd-card sd-card-glow" style="text-align:center;padding:14px 12px"><div style="width:32px;height:32px;border-radius:50%;background:var(--sd-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:14px;color:#0A0A0A;font-weight:700">&check;</div><p class="t-label" style="font-weight:600;color:var(--sd-text);margin-bottom:2px">'+n+' connected</p><p class="t-caption" style="color:var(--sd-text3)">12 months of income verified</p></div><div class="sd-card" style="margin-top:6px"><div class="sd-row"><span class="t-body sd-row-l">Monthly income</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">$6,200/mo</span></div><div class="sd-row"><span class="t-body sd-row-l">Income stability</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">Strong</span></div><div class="sd-row"><span class="t-body sd-row-l">Salary cycle</span><span class="t-label sd-row-r"><span class="sd-badge sd-badge-gold">Bi-weekly (1st & 15th)</span></span></div><div class="sd-row"><span class="t-body sd-row-l">Repayment schedule</span><span class="t-label sd-row-r" style="font-size:11px;color:var(--sd-text3)">Auto-matched to salary</span></div></div><div class="sd-banner sd-banner-gold"><p class="t-caption">Repayments scheduled bi-weekly to match your salary deposits.</p></div>';
   },2200);
 };
 
@@ -2102,14 +2102,14 @@ function runScan(){
   document.getElementById('sd3fill').style.width='0%';document.getElementById('sd3chk').innerHTML='';
   var iv=setInterval(function(){
     i++;document.getElementById('sd3fill').style.width=Math.min(i*20,100)+'%';
-    if(i<=scI.length){var h='';for(var j=0;j<i;j++)h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:20px;height:20px;border-radius:50%;background:rgba(216,164,68,.12);display:flex;align-items:center;justify-content:center"><span class="t-micro" style="color:var(--sd-gold)">&check;</span></div><span class="t-caption" style="color:var(--sd-text3)">'+scI[j]+'</span></div>';document.getElementById('sd3chk').innerHTML=h;}
+    if(i<=scI.length){var h='';for(var j=0;j<i;j++)h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:16px;height:16px;border-radius:50%;background:rgba(216,164,68,.12);display:flex;align-items:center;justify-content:center"><span class="t-micro" style="color:var(--sd-gold)">&check;</span></div><span class="t-caption" style="color:var(--sd-text3)">'+scI[j]+'</span></div>';document.getElementById('sd3chk').innerHTML=h;}
     if(i>scI.length+1){clearInterval(iv);document.getElementById('sd3scan').style.display='none';document.getElementById('sd3t').textContent='Your rate is ready';document.getElementById('sd3s').textContent='Based on your income and cash flow \u2014 not FICO.';showRate();}
   },500);
 }
 function showRate(){
   var a=gAmt(),r=baseR,t=Math.round(a*(1+r/100)),p=nP(),pp=Math.round(t/p);
   document.getElementById('sd3res').style.display='block';
-  document.getElementById('sd3res').innerHTML='<div class="sd-card sd-card-glow sd-rate-hero"><div class="t-micro sd-rate-lbl">YOUR FIXED RATE</div><div class="sd-rate-val">'+r+'%</div><div class="t-caption sd-rate-meta">Fixed &middot; No compounding &middot; Locked on day one</div><div style="border-top:1px solid var(--sd-divider);margin-top:24px;padding-top:14px;text-align:left"><div class="sd-row"><span class="t-caption sd-row-l">You borrow</span><span class="t-label sd-row-r">$'+a.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">You repay total</span><span class="t-label sd-row-r">$'+t.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Per payment</span><span class="t-label sd-row-r">~$'+pp.toLocaleString()+' &times; '+p+' bi-weekly</span></div><div class="sd-row"><span class="t-caption sd-row-l">Duration</span><span class="t-label sd-row-r">6 months</span></div><div class="sd-row"><span class="t-caption sd-row-l">Schedule</span><span class="t-label sd-row-r"><span class="sd-badge sd-badge-gold">Bi-weekly &middot; Auto-pulled</span></span></div><div class="sd-row"><span class="t-caption sd-row-l">Origination fee</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">$0</span></div><div class="sd-row"><span class="t-caption sd-row-l">FICO required</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">None</span></div></div></div><div class="sd-trust"><span class="sd-trust-chip">Instant decision</span><span class="sd-trust-chip">No credit pull</span><span class="sd-trust-chip">$0 fees</span><span class="sd-trust-chip">Fixed terms</span></div>';
+  document.getElementById('sd3res').innerHTML='<div class="sd-card sd-card-glow sd-rate-hero"><div class="t-micro sd-rate-lbl">YOUR FIXED RATE</div><div class="sd-rate-val">'+r+'%</div><div class="t-caption sd-rate-meta">Fixed &middot; No compounding &middot; Locked on day one</div><div style="border-top:1px solid var(--sd-divider);margin-top:14px;padding-top:10px;text-align:left"><div class="sd-row"><span class="t-caption sd-row-l">You borrow</span><span class="t-label sd-row-r">$'+a.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">You repay total</span><span class="t-label sd-row-r">$'+t.toLocaleString()+'</span></div><div class="sd-row"><span class="t-caption sd-row-l">Per payment</span><span class="t-label sd-row-r">~$'+pp.toLocaleString()+' &times; '+p+' bi-weekly</span></div><div class="sd-row"><span class="t-caption sd-row-l">Duration</span><span class="t-label sd-row-r">6 months</span></div><div class="sd-row"><span class="t-caption sd-row-l">Schedule</span><span class="t-label sd-row-r"><span class="sd-badge sd-badge-gold">Bi-weekly &middot; Auto-pulled</span></span></div><div class="sd-row"><span class="t-caption sd-row-l">Origination fee</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">$0</span></div><div class="sd-row"><span class="t-caption sd-row-l">FICO required</span><span class="t-label sd-row-r" style="color:var(--sd-gold)">None</span></div></div></div><div class="sd-trust"><span class="sd-trust-chip">Instant decision</span><span class="sd-trust-chip">No credit pull</span><span class="sd-trust-chip">$0 fees</span><span class="sd-trust-chip">Fixed terms</span></div>';
 }
 
 function updImp(){
