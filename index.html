@@ -934,6 +934,69 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 }
 #sarf-demo *{box-sizing:border-box;margin:0;padding:0}
 #sarf-demo .sd-wrap{max-width:420px;margin:0 auto}
+/* Phone shell */
+#sarf-demo .sd-phone{
+  position:relative;
+  background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);
+  border-radius:36px;
+  padding:3px;
+  box-shadow:
+    0 0 0 1px rgba(200,153,42,0.15),
+    2px 0 0 1px rgba(200,153,42,0.35),
+    4px 2px 0 1px rgba(200,153,42,0.2),
+    -1px 0 0 1px rgba(245,208,128,0.1),
+    0 40px 80px rgba(0,0,0,0.7),
+    0 15px 30px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(245,208,128,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.4);
+  margin-top:8px;
+}
+.light #sarf-demo .sd-phone{
+  background:linear-gradient(160deg,#e8e4dc 0%,#d8d4cc 100%);
+  box-shadow:
+    0 0 0 1px rgba(180,140,40,0.2),
+    2px 0 0 1px rgba(180,140,40,0.25),
+    4px 2px 0 1px rgba(180,140,40,0.15),
+    -1px 0 0 1px rgba(180,140,40,0.1),
+    0 40px 80px rgba(0,0,0,0.12),
+    0 15px 30px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6),
+    inset 0 -1px 0 rgba(0,0,0,0.05);
+}
+#sarf-demo .sd-phone-frame-top{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,rgba(200,153,42,0) 0%,rgba(245,208,128,0.8) 30%,rgba(200,153,42,1) 50%,rgba(245,208,128,0.8) 70%,rgba(200,153,42,0) 100%);
+  border-radius:36px 36px 0 0;z-index:2;
+}
+#sarf-demo .sd-phone-frame-right{
+  position:absolute;top:0;right:-1px;bottom:0;width:3px;
+  background:linear-gradient(180deg,rgba(200,153,42,0) 0%,rgba(200,153,42,0.6) 30%,rgba(200,153,42,0.8) 50%,rgba(200,153,42,0.6) 70%,rgba(200,153,42,0) 100%);
+  border-radius:0 36px 36px 0;z-index:2;
+}
+#sarf-demo .sd-phone-frame-left{
+  position:absolute;top:0;left:-1px;bottom:0;width:2px;
+  background:linear-gradient(180deg,rgba(245,208,128,0) 0%,rgba(245,208,128,0.1) 30%,rgba(245,208,128,0.15) 50%,rgba(245,208,128,0.1) 70%,rgba(245,208,128,0) 100%);
+  border-radius:36px 0 0 36px;z-index:2;
+}
+.light #sarf-demo .sd-phone-frame-top,
+.light #sarf-demo .sd-phone-frame-right,
+.light #sarf-demo .sd-phone-frame-left{opacity:0.5;}
+#sarf-demo .sd-phone-inner{
+  background:var(--sd-bg);
+  border-radius:34px;
+  padding:16px 14px 14px;
+  position:relative;
+  overflow:hidden;
+}
+#sarf-demo .sd-phone-inner-glow{
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);
+}
+#sarf-demo .sd-phone-notch{
+  width:72px;height:18px;background:#000;
+  border-radius:0 0 10px 10px;margin:0 auto 12px;
+}
+.light #sarf-demo .sd-phone-notch{background:rgba(0,0,0,0.12);}
 #sarf-demo .t-micro{font-size:10px;font-weight:600;line-height:12px}
 #sarf-demo .t-caption{font-size:11px;font-weight:400;line-height:14px}
 #sarf-demo .t-label{font-size:12px;font-weight:500;line-height:16px}
@@ -945,7 +1008,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-prog{display:flex;gap:5px;margin-bottom:14px}
 #sarf-demo .sd-prog span{flex:1;height:2.5px;border-radius:2px;background:var(--sd-border);transition:background .4s}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
-#sarf-demo .sd-panels{min-height:480px}
+#sarf-demo .sd-panels{min-height:420px}
 #sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
 #sarf-demo .sd-pnl.on{display:block}
 @keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1033,7 +1096,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-btn{display:block;width:100%;padding:12px;border-radius:12px;font-size:14px;font-weight:600;text-align:center;border:none;cursor:pointer;background:var(--sd-gold);color:#0A0A0A;font-family:inherit;transition:opacity .2s}
 #sarf-demo .sd-btn:hover{opacity:.9}
 #sarf-demo .sd-btn-ghost{background:transparent;color:var(--sd-text3);border:1px solid var(--sd-border)}
-#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:12px}
+#sarf-demo .sd-nav{display:flex;gap:6px;margin-top:10px;padding-bottom:4px}
 #sarf-demo .sd-nav .sd-btn{flex:1}
 #sarf-demo .sd-nav-back{flex:0 0 auto!important;width:auto;padding:12px 18px;background:transparent;border:1px solid var(--sd-border);color:var(--sd-text3)}
 #sarf-demo .sd-restart{display:none;border:none;background:none;color:var(--sd-text3);font-size:11px;cursor:pointer;font-family:inherit;margin:8px auto 0;text-align:center}
@@ -1254,12 +1317,21 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <section id="sarf-demo">
 <div class="sd-wrap">
 
-<!-- Header -->
+<!-- Header (outside phone) -->
 <div class="sd-hdr">
   <div class="t-micro sd-step-label" style="margin-bottom:6px">How it works</div>
   <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:6px">Get financing in minutes,<br>not weeks</div>
   <div class="t-label" style="color:var(--sd-text3);font-weight:400;line-height:1.4">Asset-backed. Fixed terms. No compounding. From request to funded &mdash; on your phone.</div>
 </div>
+
+<!-- Phone shell -->
+<div class="sd-phone">
+  <div class="sd-phone-frame-top"></div>
+  <div class="sd-phone-frame-right"></div>
+  <div class="sd-phone-frame-left"></div>
+  <div class="sd-phone-inner">
+    <div class="sd-phone-inner-glow"></div>
+    <div class="sd-phone-notch"></div>
 
 <div class="sd-prog" id="sdProg"></div>
 
@@ -1454,6 +1526,10 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <button class="sd-btn sd-nav-back" id="sdBk" onclick="sdBk()" style="display:none">&larr;</button>
   <button class="sd-btn" id="sdNx" onclick="sdNx()">Continue &rarr;</button>
 </div>
+
+  </div><!-- /.sd-phone-inner -->
+</div><!-- /.sd-phone -->
+
 <button class="sd-restart" id="sdRst" onclick="sdGo(0)">&#8634; Restart demo</button>
 </div>
 </section>
