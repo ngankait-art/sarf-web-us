@@ -947,7 +947,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-prog span.on{background:var(--sd-gold)}
 #sarf-demo .sd-panels{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-right:2px}
 #sarf-demo .sd-panels::-webkit-scrollbar{display:none}
-#sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out}
+#sarf-demo .sd-pnl{display:none;animation:sdFade .35s ease-out;padding-bottom:8px}
 #sarf-demo .sd-pnl.on{display:block}
 @keyframes sdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes sdSpin{to{transform:rotate(360deg)}}
@@ -972,9 +972,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-badge-green{background:var(--sd-greenMuted);color:var(--sd-green)}
 #sarf-demo .sd-banner{padding:12px 14px;border-radius:12px;margin-top:10px}
 #sarf-demo .sd-banner-gold{background:rgba(216,164,68,.1);border:1px solid var(--sd-goldBorder)}
-#sarf-demo .sd-banner-gold p{color:var(--sd-gold);line-height:1.4}
+#sarf-demo .sd-banner-gold p{color:var(--sd-gold);line-height:1.5}
 #sarf-demo .sd-banner-green{background:rgba(34,197,94,.08);border:1px solid var(--sd-greenBorder)}
-#sarf-demo .sd-banner-green p{color:var(--sd-green);line-height:1.4}
+#sarf-demo .sd-banner-green p{color:var(--sd-green);line-height:1.5}
 #sarf-demo .sd-bank-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 #sarf-demo .sd-bank-card{background:var(--sd-card);border:1px solid var(--sd-border);border-radius:16px;padding:16px 12px;text-align:center;cursor:pointer;transition:border-color .2s}
 #sarf-demo .sd-bank-card:hover{border-color:var(--sd-borderS)}
@@ -982,7 +982,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 #sarf-demo .sd-tabs{display:flex;background:var(--sd-elevated);border-radius:100px;padding:3px}
 #sarf-demo .sd-tab{flex:1;text-align:center;padding:10px;border-radius:100px;font-size:14px;font-weight:500;color:var(--sd-text3);cursor:pointer;transition:all .2s}
 #sarf-demo .sd-tab.on{background:var(--sd-card);color:var(--sd-text);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.3)}
-#sarf-demo .sd-slider-track{height:5px;background:var(--sd-elevated);border-radius:3px;margin:10px 0 6px;overflow:hidden}
+#sarf-demo .sd-slider-track{height:6px;background:var(--sd-elevated);border-radius:3px;margin:12px 0 8px;overflow:hidden}
 #sarf-demo .sd-slider-fill{height:100%;background:var(--sd-gold);border-radius:2px;transition:width .3s}
 #sarf-demo .sd-slider-labels{display:flex;justify-content:space-between;margin-bottom:12px}
 #sarf-demo .sd-slider-labels span{color:var(--sd-text3)}
@@ -1262,9 +1262,9 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 <!-- Header (outside phone) -->
 <div class="sd-hdr">
-  <div class="t-micro sd-step-label" style="margin-bottom:6px">How it works</div>
-  <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:6px">Get financing in minutes,<br>not weeks</div>
-  <div class="t-label" style="color:var(--sd-text3);font-weight:400;line-height:1.4">Asset-backed. Fixed terms. No compounding. From request to funded &mdash; on your phone.</div>
+  <div class="t-micro sd-step-label" style="margin-bottom:10px">How it works</div>
+  <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:8px">Get financing in minutes,<br>not weeks</div>
+  <div class="t-label" style="color:var(--sd-text3);font-weight:400;line-height:1.5">Asset-backed. Fixed terms. No compounding. From request to funded &mdash; on your phone.</div>
 </div>
 
 <div class="sd-prog" id="sdProg"></div>
@@ -1287,7 +1287,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 <div class="sd-pnl" id="sd1">
   <div class="t-micro sd-step-label">Step 2 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700">Connect your bank</div>
-  <div class="t-caption sd-step-desc" style="line-height:18px">Read-only access. We analyze income and cash flow to personalize your terms.</div>
+  <div class="t-caption sd-step-desc" style="line-height:20px">Read-only access. We analyze income and cash flow to personalize your terms.</div>
   <div id="sd1banks">
     <div class="sd-bank-grid">
       <div class="sd-bank-card" onclick="sdBank('Chase')"><div class="sd-bank-icon"><img src="logo-chase-v2.jpg" alt="Chase" style="width:100%;height:100%;object-fit:cover;border-radius:50%"></div><div class="t-label" style="color:var(--sd-text)">Chase</div></div>
@@ -1297,8 +1297,8 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div class="sd-bank-card" onclick="sdBank('Citibank')"><div class="sd-bank-icon"><img src="logo-citi.png" alt="Citi" style="width:100%;height:100%;object-fit:contain;border-radius:50%"></div><div class="t-label" style="color:var(--sd-text)">Citibank</div></div>
       <div class="sd-bank-card" onclick="sdBank('Other bank')"><div class="sd-bank-icon">+</div><div class="t-label" style="color:var(--sd-text)">Other bank</div></div>
     </div>
-    <div style="background:rgba(216,164,68,.08);border:1px solid rgba(216,164,68,.15);border-radius:12px;padding:8px 12px;text-align:center;margin-top:8px">
-      <p class="t-micro" style="color:var(--sd-gold);line-height:16px">Bank-grade encryption &middot; Read-only access &middot; No money is moved</p>
+    <div style="background:rgba(216,164,68,.08);border:1px solid rgba(216,164,68,.15);border-radius:14px;padding:12px 16px;text-align:center;margin-top:14px">
+      <p class="t-micro" style="color:var(--sd-gold);line-height:18px">Bank-grade encryption &middot; Read-only access &middot; No money is moved</p>
     </div>
   </div>
   <div id="sd1scan" style="display:none"></div>
@@ -1340,7 +1340,7 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-micro sd-step-label">Step 4 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700" id="sd3t">Analyzing your profile...</div>
   <div class="t-caption sd-step-desc" id="sd3s">About 60 seconds. No credit pull.</div>
-  <div id="sd3scan" class="sd-card"><div class="sd-slider-track" style="margin:0 0 16px"><div class="sd-slider-fill" id="sd3fill" style="width:0%"></div></div><div id="sd3chk"></div></div>
+  <div id="sd3scan" class="sd-card"><div class="sd-slider-track" style="margin:0 0 20px"><div class="sd-slider-fill" id="sd3fill" style="width:0%"></div></div><div id="sd3chk"></div></div>
   <div id="sd3res" style="display:none"></div>
 </div>
 
@@ -1349,16 +1349,16 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-micro sd-step-label">Step 5 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700">Want a better rate?</div>
   <div class="t-caption sd-step-desc">Add a guarantor or tokenized collateral to reduce your rate. Both are optional.</div>
-  <div class="sd-card sd-card-glow" style="text-align:center;padding:14px 12px;margin-bottom:6px">
+  <div class="sd-card sd-card-glow" style="text-align:center;padding:24px 20px;margin-bottom:12px">
     <div class="t-micro sd-rate-lbl" id="sd4lbl">Your fixed rate</div>
     <div class="sd-rate-val" id="sd4rate">10%</div>
     <div class="t-label sd-rate-imp" id="sd4from" style="display:none"></div>
-    <div class="t-caption sd-rate-meta">Fixed &middot; No compounding &middot; Locked on day one</div>
+    <div class="t-caption sd-rate-meta" style="margin-top:4px">Fixed &middot; No compounding &middot; Locked on day one</div>
     <div class="sd-savings" id="sd4sv" style="display:none"><p class="t-caption"></p></div>
   </div>
   <div class="sd-imp-card" id="sdG" onclick="sdTgl('g')">
     <div class="sd-imp-icon" id="sdGi">&#x1F464;</div>
-    <div style="flex:1"><div class="sd-imp-head"><span class="t-label" style="font-weight:600;color:var(--sd-text)">Add a guarantor</span><span class="t-label sd-imp-delta">&minus;1.5%</span></div><div class="t-caption" style="color:var(--sd-text3);margin-top:4px;line-height:16px">Someone who agrees to cover payments if you can't.</div></div>
+    <div style="flex:1"><div class="sd-imp-head"><span class="t-label" style="font-weight:600;color:var(--sd-text)">Add a guarantor</span><span class="t-label sd-imp-delta">&minus;1.5%</span></div><div class="t-caption" style="color:var(--sd-text3);margin-top:6px;line-height:20px">Someone who agrees to cover payments if you can't.</div></div>
   </div>
   <div id="sdGf" style="display:none" class="sd-inline-form">
     <div class="sd-field"><div class="t-micro sd-field-label">Guarantor name</div><input class="sd-field-input" placeholder="Full name"></div>
@@ -1366,18 +1366,18 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   </div>
   <div class="sd-imp-card" id="sdC" onclick="sdTgl('c')">
     <div class="sd-imp-icon" id="sdCi">&#x1F512;</div>
-    <div style="flex:1"><div class="sd-imp-head"><span class="t-label" style="font-weight:600;color:var(--sd-text)">Add tokenized collateral</span><span class="t-label sd-imp-delta">&minus;2.0%</span></div><div class="t-caption" style="color:var(--sd-text3);margin-top:4px;line-height:16px">Pledge a tokenized asset to secure a lower rate.</div></div>
+    <div style="flex:1"><div class="sd-imp-head"><span class="t-label" style="font-weight:600;color:var(--sd-text)">Add tokenized collateral</span><span class="t-label sd-imp-delta">&minus;2.0%</span></div><div class="t-caption" style="color:var(--sd-text3);margin-top:6px;line-height:20px">Pledge a tokenized asset to secure a lower rate.</div></div>
   </div>
   <div id="sdCf" style="display:none" class="sd-inline-form">
-    <div class="t-caption" style="font-weight:600;color:var(--sd-text);margin-bottom:6px">How it works</div>
-    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(216,164,68,.12)"><span style="color:var(--sd-gold)">&darr;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Deposit to smart contract</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Your asset is transferred to Sarf's escrow. You retain ownership.</div></div></div>
-    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(59,130,246,.12)"><span style="color:var(--sd-blue)">&#x1F512;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Held during repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Asset remains locked. Verifiable on-chain at any time.</div></div></div>
-    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(34,197,94,.12)"><span style="color:var(--sd-green)">&check;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Returned on full repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Automatically released back to your wallet.</div></div></div>
-    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(239,68,68,.12)"><span style="color:var(--sd-red)">&triangle;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-red)">Liquidation on default</div><div class="t-micro" style="color:var(--sd-text3);line-height:14px;margin-top:2px">If you miss 3 consecutive payments, the asset may be sold.</div></div></div>
-    <div style="border-top:1px solid var(--sd-border);margin-top:8px;padding-top:8px">
+    <div class="t-caption" style="font-weight:600;color:var(--sd-text);margin-bottom:10px">How it works</div>
+    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(216,164,68,.12)"><span style="color:var(--sd-gold)">&darr;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Deposit to smart contract</div><div class="t-micro" style="color:var(--sd-text3);line-height:18px;margin-top:4px">Your asset is transferred to Sarf's escrow. You retain ownership.</div></div></div>
+    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(59,130,246,.12)"><span style="color:var(--sd-blue)">&#x1F512;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Held during repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:18px;margin-top:4px">Asset remains locked. Verifiable on-chain at any time.</div></div></div>
+    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(34,197,94,.12)"><span style="color:var(--sd-green)">&check;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-text)">Returned on full repayment</div><div class="t-micro" style="color:var(--sd-text3);line-height:18px;margin-top:4px">Automatically released back to your wallet.</div></div></div>
+    <div class="sd-exp-row"><div class="sd-exp-icon" style="background:rgba(239,68,68,.12)"><span style="color:var(--sd-red)">&triangle;</span></div><div><div class="t-caption" style="font-weight:500;color:var(--sd-red)">Liquidation on default</div><div class="t-micro" style="color:var(--sd-text3);line-height:18px;margin-top:4px">If you miss 3 consecutive payments, the asset may be sold.</div></div></div>
+    <div style="border-top:1px solid var(--sd-border);margin-top:14px;padding-top:14px">
       <div class="t-micro sd-field-label">Asset type</div>
       <div class="sd-asset-chips"><span class="sd-asset-chip on" onclick="sdPickAsset(this)">Tokenized equity</span><span class="sd-asset-chip" onclick="sdPickAsset(this)">Stablecoin</span><span class="sd-asset-chip" onclick="sdPickAsset(this)">Real estate</span><span class="sd-asset-chip" onclick="sdPickAsset(this)">Other</span></div>
-      <div class="sd-field" style="margin-top:12px"><div class="t-micro sd-field-label">Wallet address</div><input class="sd-field-input" placeholder="0x..."></div>
+      <div class="sd-field" style="margin-top:14px"><div class="t-micro sd-field-label">Wallet address</div><input class="sd-field-input" placeholder="0x..."></div>
       <div class="sd-field"><div class="t-micro sd-field-label">Estimated value (USD)</div><input class="sd-field-input" placeholder="$0.00"></div>
     </div>
   </div>
@@ -1388,14 +1388,14 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   <div class="t-micro sd-step-label">Step 6 of 8</div>
   <div class="t-title sd-step-title" style="font-weight:700">Review your agreement</div>
   <div class="t-caption sd-step-desc">Fixed terms. What you see is what you pay &mdash; nothing more.</div>
-  <div class="sd-card sd-card-glow" style="padding:14px 12px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+  <div class="sd-card sd-card-glow" style="padding:22px 20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
       <span class="t-micro" style="color:var(--sd-text3);letter-spacing:1.5px;text-transform:uppercase">Financing Agreement</span>
       <span class="sd-badge sd-badge-gold" style="text-transform:uppercase">Fixed terms</span>
     </div>
     <div class="t-micro" style="color:var(--sd-text3)">Total financing</div>
-    <div style="font-size:24px;font-weight:700;color:var(--sd-text);letter-spacing:-1px;margin:2px 0 10px">$10,000.00</div>
-    <div class="sd-grid2x3" style="padding-top:10px;border-top:1px solid var(--sd-divider)">
+    <div style="font-size:28px;font-weight:700;color:var(--sd-text);letter-spacing:-1px;margin:4px 0 14px">$10,000.00</div>
+    <div class="sd-grid2x3" style="padding-top:14px;border-top:1px solid var(--sd-divider)">
       <div><div class="t-micro sd-grid-label">Fixed rate</div><div class="t-label sd-grid-val" id="sd5rate">10%</div></div>
       <div><div class="t-micro sd-grid-label">Total repayment</div><div class="t-label sd-grid-val" id="sd5total">$11,000</div></div>
       <div><div class="t-micro sd-grid-label">Bi-weekly payment</div><div class="t-label sd-grid-val" id="sd5pay">~$917</div></div>
@@ -1403,34 +1403,34 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
       <div><div class="t-micro sd-grid-label"># Payments</div><div class="t-label sd-grid-val">12</div></div>
       <div><div class="t-micro sd-grid-label">Fees</div><div class="t-label sd-grid-val" style="color:var(--sd-gold)">$0</div></div>
     </div>
-    <div class="sd-banner sd-banner-gold" style="margin-top:8px"><p class="t-caption">Payments auto-pulled bi-weekly matched to your salary cycle</p></div>
+    <div class="sd-banner sd-banner-gold" style="margin-top:12px"><p class="t-caption">Payments auto-pulled bi-weekly matched to your salary cycle</p></div>
     <div id="sd5prot"></div>
   </div>
-  <div style="margin-top:8px"><div class="t-label" style="font-weight:600;color:var(--sd-text)">Loan Structure</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">A commodity asset valued at $10,000 is purchased on your behalf. You own this asset.</div></div>
-  <div class="sd-opt on" id="sdOptSell" onclick="sdPickOpt('sell')"><div class="sd-opt-row"><div class="sd-radio on" id="sdRadioSell"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint" id="sdSellHint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
-  <div class="sd-opt" id="sdOptKeep" onclick="sdPickOpt('keep')"><div class="sd-opt-row"><div class="sd-radio" id="sdRadioKeep"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:14px;margin-top:2px">Take ownership. You can sell it independently at any time.</div></div></div></div>
-  <div class="sd-confirm"><div class="sd-check-box">&check;</div><div class="t-caption" style="color:var(--sd-text3);line-height:18px">I confirm the terms above. Total repayment is fixed and will not change.</div></div>
+  <div style="margin-top:14px"><div class="t-label" style="font-weight:600;color:var(--sd-text)">Loan Structure</div><div class="t-caption" style="color:var(--sd-text3);line-height:20px;margin-top:4px">A commodity asset valued at $10,000 is purchased on your behalf. You own this asset.</div></div>
+  <div class="sd-opt on" id="sdOptSell" onclick="sdPickOpt('sell')"><div class="sd-opt-row"><div class="sd-radio on" id="sdRadioSell"><div class="sd-radio-dot"></div></div><div><div class="t-label" style="font-weight:600;color:var(--sd-gold)">Sell instantly for cash</div><div class="t-caption" style="color:var(--sd-text3);line-height:20px;margin-top:4px">$10,000 deposited directly to your bank account.</div><div class="t-caption sd-hint" id="sdSellHint">&#9889; Most borrowers choose this. Funds arrive within 1 business day.</div></div></div></div>
+  <div class="sd-opt" id="sdOptKeep" onclick="sdPickOpt('keep')"><div class="sd-opt-row"><div class="sd-radio" id="sdRadioKeep"></div><div><div class="t-label" style="font-weight:600;color:var(--sd-text)">Keep the commodity</div><div class="t-caption" style="color:var(--sd-text3);line-height:20px;margin-top:4px">Take ownership. You can sell it independently at any time.</div></div></div></div>
+  <div class="sd-confirm"><div class="sd-check-box">&check;</div><div class="t-caption" style="color:var(--sd-text3);line-height:20px">I confirm the terms above. Total repayment is fixed and will not change.</div></div>
 </div>
 
 <!-- S6: Funding Status -->
 <div class="sd-pnl" id="sd6">
-  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><div class="sd-live-dot"></div><div class="t-micro" style="color:var(--sd-orange);letter-spacing:1px;flex:1">COLLECTING CAPITAL</div><span class="sd-badge sd-badge-gold">Live</span></div>
-  <div class="t-caption" style="color:var(--sd-text2);margin-bottom:10px;line-height:14px">Your request is live on the marketplace. Providers are reviewing and allocating capital.</div>
-  <div class="sd-card sd-card-glow" style="text-align:center;padding:14px 12px">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div class="sd-live-dot"></div><div class="t-micro" style="color:var(--sd-orange);letter-spacing:1px;flex:1">COLLECTING CAPITAL</div><span class="sd-badge sd-badge-gold">Live</span></div>
+  <div class="t-caption" style="color:var(--sd-text2);margin-bottom:16px;line-height:20px">Your request is live on the marketplace. Providers are reviewing and allocating capital.</div>
+  <div class="sd-card sd-card-glow" style="text-align:center;padding:22px 20px">
     <div class="t-micro" style="color:var(--sd-gold);letter-spacing:2px;text-transform:uppercase">Financing Amount</div>
-    <div style="font-size:24px;font-weight:700;color:var(--sd-text);margin:4px 0">$10,000</div>
+    <div style="font-size:28px;font-weight:700;color:var(--sd-text);margin:6px 0">$10,000</div>
     <div class="t-caption" style="color:var(--sd-text2)">6 month contract</div>
   </div>
   <div class="sd-card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
       <span class="t-label" style="color:var(--sd-text2)">Capital allocated</span>
       <span class="t-heading" style="font-weight:700;color:var(--sd-gold)">65%</span>
     </div>
-    <div class="sd-slider-track" style="margin:0 0 6px"><div class="sd-slider-fill" style="width:65%"></div></div>
+    <div class="sd-slider-track" style="margin:0 0 10px"><div class="sd-slider-fill" style="width:65%"></div></div>
     <div style="display:flex;justify-content:space-between"><span class="t-caption" style="color:var(--sd-text3)">$6,500 of $10,000</span><span class="t-caption" style="color:var(--sd-text3)">3 providers</span></div>
   </div>
   <div class="sd-card">
-    <div class="t-micro" style="color:var(--sd-text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">What happens next</div>
+    <div class="t-micro" style="color:var(--sd-text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">What happens next</div>
     <div class="sd-live-step"><div class="sd-live-num done">&check;</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Providers review your contract</div></div>
     <div class="sd-live-step"><div class="sd-live-num done">&check;</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Capital allocated until 100% funded</div></div>
     <div class="sd-live-step"><div class="sd-live-num pending">3</div><div class="t-label" style="color:var(--sd-text3);padding-top:2px">Funds transferred to your account</div></div>
@@ -1440,10 +1440,10 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
 
 <!-- S7: Active -->
 <div class="sd-pnl" id="sd7">
-  <div style="text-align:center;padding-top:14px">
+  <div style="text-align:center;padding-top:20px">
     <div class="sd-check-circle">&check;</div>
-    <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:4px">Financing Active</div>
-    <div class="t-body" style="color:var(--sd-text2);line-height:1.4;margin-bottom:12px">Your contract is now active and your repayment schedule has begun.</div>
+    <div class="t-title" style="font-weight:700;color:var(--sd-text);margin-bottom:8px">Financing Active</div>
+    <div class="t-body" style="color:var(--sd-text2);line-height:1.5;margin-bottom:18px">Your contract is now active and your repayment schedule has begun.</div>
   </div>
   <div class="sd-card">
     <div class="sd-row"><span class="t-body sd-row-l">Amount delivered</span><span class="t-label sd-row-r">$10,000</span></div>
