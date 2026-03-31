@@ -579,6 +579,50 @@ h1 em{
 .feat-t{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:10px;font-family:'DM Sans',sans-serif;}
 .feat-d{font-size:13px;color:var(--text-muted);line-height:1.7;font-family:'DM Sans',sans-serif;}
 
+/* FAQ SECTION */
+.faq-sec{
+  padding:80px 40px;
+  background:linear-gradient(180deg,var(--bg-deep) 0%,var(--bg-mid) 100%);
+  position:relative;
+}
+.faq-sec h2{
+  text-align:center;font-size:clamp(28px,4vw,42px);font-weight:700;
+  color:var(--text-primary);margin-bottom:8px;letter-spacing:-.02em;
+}
+.faq-sec .faq-sub{
+  text-align:center;color:var(--text-secondary);font-size:15px;margin-bottom:48px;
+}
+.faq-list{
+  max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px;
+}
+.faq-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);
+  overflow:hidden;transition:border-color var(--transition-base),background var(--transition-base);
+}
+.faq-item:hover{border-color:var(--gold-border);}
+.faq-item.open{border-color:var(--gold-border-strong);background:var(--gold-accent);}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:18px 22px;cursor:pointer;user-select:none;
+}
+.faq-q span{
+  font-size:15px;font-weight:600;color:var(--text-primary);line-height:1.4;
+}
+.faq-icon{
+  width:28px;height:28px;min-width:28px;border-radius:50%;
+  background:var(--surface-2);display:flex;align-items:center;justify-content:center;
+  transition:transform var(--transition-base),background var(--transition-base);
+}
+.faq-icon svg{width:14px;height:14px;stroke:var(--text-muted);stroke-width:2;fill:none;transition:stroke var(--transition-base);}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold-glow);}
+.faq-item.open .faq-icon svg{stroke:var(--gold);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;
+}
+.faq-a-inner{
+  padding:0 22px 18px;color:var(--text-secondary);font-size:14px;line-height:1.7;
+}
+
 /* BOTTOM CTA */
 .bottom{
   padding:80px 24px 100px;text-align:center;
@@ -897,6 +941,10 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   .re-acc-content li{font-size:11px;}
 
   /* Bottom CTA */
+  .faq-sec{padding:60px 20px;}
+  .faq-q{padding:16px 18px;}
+  .faq-a-inner{padding:0 18px 16px;}
+
   .bottom{padding:60px 20px 80px;}
   .bottom h2{font-size:clamp(22px,6vw,36px);}
   .bottom-btn{padding:14px 32px;font-size:13px;}
@@ -1603,6 +1651,71 @@ input.err,textarea.err{border-color:rgba(239,68,68,0.6);}
   </div>
 </section>
 
+<!-- FAQ SECTION -->
+<section class="faq-sec" id="faq">
+  <h2 class="reveal">Frequently Asked Questions</h2>
+  <p class="faq-sub reveal">Everything you need to know about SARF financing.</p>
+  <div class="faq-list">
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How is SARF different from a traditional loan?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">SARF uses your real income and cash-flow data to determine your rate &mdash; not your FICO score. There are zero origination fees, no compounding interest, and your total repayment amount is locked on day one. You always know exactly what you owe.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Do I need a credit score to apply?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">No. SARF does not require a FICO score or run a hard credit pull. We analyze your bank-verified income, salary cycle, and cash-flow patterns to build a real-time picture of your ability to repay.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How fast can I get approved?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Most applicants receive a rate decision within 60 seconds. Once you connect your bank account, SARF instantly verifies your income and generates a personalized, fixed-rate offer.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Are there any hidden fees?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">None. SARF charges $0 origination fees, $0 prepayment penalties, and $0 late-payment surcharges. The total cost of your financing is agreed upfront and never changes.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>How do repayments work?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Repayments are automatically scheduled to align with your salary deposits &mdash; typically bi-weekly. This means payments are pulled when you have money, reducing missed-payment risk and making budgeting effortless.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Can I lower my rate after applying?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Adding a guarantor or providing collateral can reduce your rate by up to 3.5%. These options are completely optional and can be configured before you finalize your agreement.</div></div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>Is my financial data secure?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. SARF uses bank-level encryption and read-only access to verify your income. We never store your bank credentials, and your data is never shared with third parties.</div></div>
+    </div>
+
+  </div>
+</section>
+
 <!-- BOTTOM CTA -->
 <section class="bottom">
   <h2 class="reveal">Financing that works<br>for <em style="color:var(--gold);">everyone.</em></h2>
@@ -1690,6 +1803,23 @@ function toggleTheme() {
   } else {
     label.textContent = 'Light';
     icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+function toggleFaq(el) {
+  var item = el.parentElement;
+  var ans = item.querySelector('.faq-a');
+  var isOpen = item.classList.contains('open');
+
+  // close all others
+  document.querySelectorAll('.faq-item.open').forEach(function(o) {
+    o.classList.remove('open');
+    o.querySelector('.faq-a').style.maxHeight = null;
+  });
+
+  if (!isOpen) {
+    item.classList.add('open');
+    ans.style.maxHeight = ans.scrollHeight + 'px';
   }
 }
 
