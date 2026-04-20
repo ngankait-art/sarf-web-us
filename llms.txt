@@ -1,0 +1,24 @@
+# SARF
+
+> Interest-free, asset-backed commodity financing with no FICO score required. Approval is based on bank-verified income and cash-flow patterns. Built by Plug in Ventures, a fintech accelerator.
+
+## About
+
+- [Homepage](https://sarf.space/): Product overview, comparison vs SoFi/Upstart/LendingClub/Chase/BofA, repayment intelligence, FAQ, waitlist signup
+
+## Key facts
+
+- **Parent company:** Plug in Ventures (fintech accelerator)
+- **Approval signal:** Bank-verified income and cash-flow, not FICO
+- **Cost structure:** Always interest-free; total cost fixed and disclosed on day one
+- **Fees:** $0 origination, $0 prepayment, $0 late-payment surcharges
+- **Decision time:** Most applicants get a rate decision within 60 seconds
+- **Repayment:** Auto-aligned with salary deposits, typically bi-weekly
+- **Rate reduction:** Optional guarantor or collateral can reduce rate up to 3.5%
+- **Security:** Bank-level encryption, read-only bank access, credentials never stored
+- **Status:** Pre-launch, waitlist open
+- **Contact:** contact@sarf.space
+
+## Product mechanics
+
+SARF buys a commodity on the customer's behalf and sells it to them at a fixed, agreed-upon price with deferred payment. The customer can keep the commodity or have SARF sell it for cash. Total cost is locked in upfront — no interest, no surprises. This is not a loan; it is asset-backed commodity financing.
