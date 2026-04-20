@@ -1,0 +1,27 @@
+{
+  "name": "SARF — Financing Without a FICO Score",
+  "short_name": "SARF",
+  "description": "Interest-free, asset-backed financing without a FICO score. Approved on income, fixed cost upfront, zero hidden fees.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07090E",
+  "theme_color": "#F5A800",
+  "lang": "en-US",
+  "categories": ["finance"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
