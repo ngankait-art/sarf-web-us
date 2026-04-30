@@ -4,7 +4,11 @@
 
 ## About
 
-- [Homepage](https://sarf.space/): Product overview, comparison vs SoFi/Upstart/LendingClub/Chase/BofA, repayment intelligence, FAQ, waitlist signup
+- [Homepage](https://sarf.space/): Product overview, comparison vs SoFi/Upstart/LendingClub/Chase/BofA, repayment intelligence, FAQ, early access signup
+
+## Compare
+
+- [SARF vs Upstart](https://sarf.space/compare/upstart/): Cash-flow underwriting (no FICO required) vs AI-enhanced credit scoring. Approval basis, fee structure, and product fit.
 
 ## Key facts
 
@@ -16,7 +20,7 @@
 - **Repayment:** Auto-aligned with salary deposits, typically bi-weekly
 - **Rate reduction:** Optional guarantor or collateral can reduce rate up to 3.5%
 - **Security:** Bank-level encryption, read-only bank access, credentials never stored
-- **Status:** Pre-launch, waitlist open
+- **Status:** Early access live
 - **Contact:** contact@sarf.space
 
 ## Product mechanics
