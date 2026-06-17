@@ -2389,7 +2389,7 @@ function submitSignup() {
   spinner.style.display = 'block';
   btn.disabled = true;
 
-  fetch(SCRIPT_URL, {
+  fetch(SCRIPT_URL + '?sheet=' + encodeURIComponent('Investor/Company'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -2397,9 +2397,10 @@ function submitSignup() {
         Email:     email,
         Timestamp: new Date().toLocaleString('en-US', {timeZone:'America/New_York'}),
         fullName:  name,
+        Role:      signupRole === 'investor' ? 'Investor' : 'Company',
         Phone:     phone || '',
         Company:   org,
-        Message:   (signupRole === 'investor' ? '[INVESTOR] ' : '[COMPANY] ') + (message || '')
+        Message:   message || ''
       }]
     })
   })
