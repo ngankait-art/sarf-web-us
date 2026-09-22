@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>SARF — Earned Wage Access Concept (Internal Draft)</title>
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts used by the transplanted application (from the prototype's own @import) -->
+<link href="https://fonts.googleapis.com/css2?family=Encode+Sans+Semi+Condensed:wght@600;700&family=Montserrat:wght@700;800&family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--
+  INTERNAL DRAFT — NOT PRODUCTION.
+  This file is a standalone concept preview. It is not linked from
+  production, carries no canonical URL, no Open Graph tags, no JSON-LD,
+  and makes no network requests. Design tokens below are copied verbatim
+  from the production index.html :root (lines ~183-215) and .light
+  override (lines ~217-242) so the concept matches sarf.space exactly.
+  Source of truth for the demo: Sarf_Application_Flow_Phase1_Prototype.html
+  (archived at ~/sarf-refs/). See that archive's README.md for the full
+  source-priority hierarchy used to write this file.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;}
+section[id],footer[id]{scroll-margin-top:72px;}
+
+/* ===== DESIGN TOKENS — copied verbatim from production index.html :root / .light ===== */
+:root{
+  --gold:#F5A800;
+  --gold-light:#FFB800;
+  --gold-bright:#FFD055;
+  --gold-glow:rgba(245,168,0,0.15);
+  --gold-glow-strong:rgba(245,168,0,0.22);
+  --gold-border:rgba(245,168,0,0.2);
+  --gold-border-strong:rgba(245,168,0,0.35);
+  --gold-accent:rgba(245,168,0,0.06);
+  --bg-deep:#07090E;
+  --bg-mid:#0A0C12;
+  --bg-card:#0D1018;
+  --bg-card-hover:rgba(255,255,255,0.035);
+  --text-primary:#EAE5D8;
+  --text-secondary:rgba(234,229,216,0.72);
+  --text-muted:rgba(234,229,216,0.5);
+  --text-subtle:rgba(234,229,216,0.3);
+  --surface:rgba(255,255,255,0.03);
+  --surface-2:rgba(255,255,255,0.055);
+  --surface-hover:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.06);
+  --border-gold:rgba(245,168,0,0.12);
+  --nav-bg:rgba(7,9,14,0.94);
+  --radius-sm:10px;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+  --transition-fast:.15s ease;
+  --transition-base:.25s ease;
+  --transition-slow:.4s ease;
+  --shadow-card:0 8px 32px rgba(0,0,0,0.35);
+  --shadow-gold:0 4px 24px rgba(245,168,0,0.4);
+}
+.light{
+  --gold:#D4920A;
+  --gold-light:#E6A00C;
+  --gold-bright:#F5B800;
+  --gold-glow:rgba(212,146,10,0.1);
+  --gold-glow-strong:rgba(212,146,10,0.18);
+  --gold-border:rgba(212,146,10,0.25);
+  --gold-border-strong:rgba(212,146,10,0.4);
+  --gold-accent:rgba(212,146,10,0.04);
+  --bg-deep:#F7F4EE;
+  --bg-mid:#F0EDE5;
+  --bg-card:#FFFFFF;
+  --bg-card-hover:rgba(255,255,255,0.9);
+  --text-primary:#1A1E2A;
+  --text-secondary:rgba(26,30,42,0.64);
+  --text-muted:rgba(26,30,42,0.5);
+  --text-subtle:rgba(26,30,42,0.3);
+  --surface:rgba(0,0,0,0.02);
+  --surface-2:rgba(0,0,0,0.04);
+  --surface-hover:rgba(0,0,0,0.05);
+  --border:rgba(0,0,0,0.06);
+  --border-gold:rgba(212,146,10,0.14);
+  --nav-bg:rgba(247,244,238,0.94);
+  --shadow-card:0 8px 32px rgba(0,0,0,0.08);
+  --shadow-gold:0 4px 24px rgba(212,146,10,0.3);
+}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:99px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-deep);color:var(--text-primary);overflow-x:hidden;line-height:1.6;transition:background-color var(--transition-slow),color var(--transition-slow);}
+.nav-brand,.f-brand-name{font-family:'Inter',sans-serif !important;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;}
+
+/* Accessibility helpers — new to this preview */
+.pv-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.pv-skip{position:absolute;left:-9999px;top:0;z-index:999;background:var(--gold);color:#07090E;padding:10px 18px;border-radius:0 0 10px 0;font-weight:700;font-size:13px;}
+.pv-skip:focus{left:0;}
+a:focus-visible,button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px;}
+
+/* NAVBAR — copied verbatim from production */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:var(--nav-bg);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border-bottom:1px solid var(--gold-border);transition:background var(--transition-slow),border-color var(--transition-slow);}
+@media(max-width:580px){nav{padding:0 18px;}}
+.nav-left{display:flex;align-items:center;gap:10px;}
+.sarf-logo-circle{width:32px;height:32px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 16px rgba(245,168,0,0.35);background:#111;}
+.sarf-logo-circle picture{display:contents;}
+.sarf-logo-circle img{width:110%;height:110%;object-fit:cover;}
+.sarf-logo-circle.footer{width:24px;height:24px;box-shadow:none;}
+.nav-brand{font-size:14px;color:var(--text-primary);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;border:none;transition:background .2s;white-space:nowrap;line-height:1;}
+.theme-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(245,168,0,0.18);color:var(--text-muted);font-family:'DM Sans',sans-serif;}
+.theme-btn svg{width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.theme-btn:hover{background:rgba(255,255,255,0.09);}
+.nav-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:36px;}
+.nav-link{font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text-secondary);text-decoration:none;position:relative;padding:4px 0;transition:color var(--transition-base);white-space:nowrap;}
+.nav-link:hover{color:var(--text-primary);}
+.nav-link.active{color:var(--gold);}
+.nav-link.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold);border-radius:2px;}
+@media(max-width:980px){.nav-center{display:none;}}
+.contact-btn{background:rgba(255,255,255,0.04);border:1px solid var(--gold-border);color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
+.contact-btn:hover{background:rgba(255,255,255,0.09);color:var(--text-primary);}
+@media(max-width:580px){.contact-btn span.contact-label{display:none;}}
+
+/* COPY TOAST — verbatim */
+.copy-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg-card);border:1px solid var(--gold-border-strong);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:13px;padding:11px 20px;border-radius:12px;z-index:200;box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 24px rgba(245,168,0,0.12);display:flex;align-items:center;gap:9px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.copy-toast svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+/* HERO WORDMARK — verbatim */
+.hero-wordmark{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(28px,3.4vw,44px);letter-spacing:0.16em;color:var(--gold-bright);text-transform:uppercase;margin-bottom:14px;line-height:1;text-shadow:0 0 24px rgba(245,168,0,0.55),0 0 48px rgba(245,168,0,0.25);animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.3s both;}
+@media(max-width:900px){.hero-wordmark{text-align:center;}}
+
+/* HERO — verbatim */
+.hero{min-height:100vh;padding:90px 76px 60px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:62px;position:relative;overflow:hidden;background:var(--bg-deep);}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:100px 24px 60px;text-align:center;}.phone-wrap{display:none;}}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(245,168,0,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(245,168,0,0.05) 1px,transparent 1px);background-size:60px 60px;opacity:0.35;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,#000 40%,transparent 100%);}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 55% at 15% 45%,rgba(245,168,0,0.09) 0%,transparent 55%);}
+.hero-glow2{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 40% at 85% 55%,rgba(245,168,0,0.03) 0%,transparent 55%);}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:128px;pointer-events:none;background:linear-gradient(to top,rgba(7,9,14,0.8),transparent);}
+.light .hero-fade{background:linear-gradient(to top,rgba(247,244,238,0.8),transparent);}
+.hero-text{position:relative;z-index:1;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+.hero-parent{font-size:13px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-bright);margin:0 0 18px 0;opacity:0.95;animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.1s both;}
+@media(max-width:900px){.hero-parent{text-align:center;font-size:12px;}}
+#hero-h1{animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.55s both;}
+.hero-sub{animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.95s both;}
+.hero-disclaimer{animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.6s both;}
+.phone-wrap{animation:fadeUp 1.3s cubic-bezier(0.16,1,0.3,1) 0.75s both;}
+h1{font-size:clamp(46px,4.8vw,70px);line-height:1.1;font-weight:700;margin-bottom:20px;font-family:'DM Sans',sans-serif;color:var(--text-primary);letter-spacing:-0.01em;}
+h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--text-muted);line-height:1.8;margin-bottom:34px;max-width:32rem;font-weight:400;font-family:'DM Sans',sans-serif;letter-spacing:0.01em;}
+@media(max-width:900px){.hero-sub{margin-left:auto;margin-right:auto;margin-bottom:36px;}}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#F5A800 0%,#FFC53D 30%,#FFD055 50%,#FFC53D 70%,#F5A800 100%);background-size:300% 100%;color:#07090E;font-weight:700;font-size:14px;padding:16px 34px;border-radius:16px;border:none;cursor:pointer;box-shadow:var(--shadow-gold),inset 0 1px 0 rgba(255,255,255,0.2);transition:box-shadow var(--transition-base),transform var(--transition-fast);font-family:'DM Sans',sans-serif;animation:shimmer 4s linear infinite,fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.3s both;}
+.cta-btn:hover{box-shadow:0 10px 40px rgba(245,168,0,0.6),inset 0 1px 0 rgba(255,255,255,0.2);transform:translateY(-1px);}
+.cta-arrow{font-size:14px;display:inline-block;transition:transform .2s;}
+.cta-btn:hover .cta-arrow{transform:translateX(3px);}
+.hero-disclaimer{margin-top:14px;font-size:12px;color:var(--text-muted);opacity:0.7;font-family:'DM Sans',sans-serif;}
+.pv-cta-secondary{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--gold-border);color:var(--text-secondary);font-weight:600;font-size:13px;padding:14px 24px;border-radius:14px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:10px;transition:border-color .2s,color .2s;}
+.pv-cta-secondary:hover{border-color:var(--gold-border-strong);color:var(--text-primary);}
+@media(max-width:900px){.pv-cta-secondary{margin-left:0;margin-top:10px;}}
+
+/* PHONE MOCKUP — verbatim */
+.phone-wrap{display:flex;justify-content:center;align-items:center;perspective:1000px;}
+.hero .phone{width:272px;background:linear-gradient(160deg,#13151f 0%,#0b0d14 100%);border-radius:40px;border:2px solid transparent;background-clip:padding-box;padding:3px;position:relative;will-change:transform;cursor:grab;box-shadow:0 0 0 1px rgba(200,153,42,0.15),2px 0 0 1px rgba(200,153,42,0.35),4px 2px 0 1px rgba(200,153,42,0.2),-1px 0 0 1px rgba(245,208,128,0.1),0 60px 120px rgba(0,0,0,0.8),0 20px 40px rgba(0,0,0,0.5),inset 0 1px 0 rgba(245,208,128,0.15),inset 0 -1px 0 rgba(0,0,0,0.4);}
+.hero .phone:active{cursor:grabbing;}
+.phone-inner{background:#0b0d14;border-radius:38px;padding:18px;position:relative;overflow:hidden;}
+.phone-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(245,208,128,0.3),transparent);}
+.phone-frame-top{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,rgba(200,153,42,0.0) 0%,rgba(245,208,128,0.8) 30%,rgba(200,153,42,1) 50%,rgba(245,208,128,0.8) 70%,rgba(200,153,42,0.0) 100%);border-radius:40px 40px 0 0;z-index:2;}
+.phone-frame-side{position:absolute;top:0;right:-1px;bottom:0;width:3px;background:linear-gradient(180deg,rgba(200,153,42,0.0) 0%,rgba(200,153,42,0.6) 30%,rgba(200,153,42,0.8) 50%,rgba(200,153,42,0.6) 70%,rgba(200,153,42,0.0) 100%);border-radius:0 40px 40px 0;z-index:2;}
+.notch{width:76px;height:20px;background:#000;border-radius:0 0 12px 12px;margin:0 auto 16px;}
+.p-screen{background:#10121a;border-radius:18px;padding:16px;margin-bottom:10px;}
+.p-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,228,217,0.28);margin-bottom:5px;}
+.p-amount{font-size:26px;font-weight:500;color:#F2EDE3;margin-bottom:8px;}
+.p-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.22);border-radius:6px;padding:3px 9px;color:#F5A800;font-size:10px;font-weight:500;margin-bottom:10px;}
+.p-pill-dot{width:4px;height:4px;border-radius:50%;background:#F5A800;flex-shrink:0;}
+.p-divider{border:none;border-top:1px solid rgba(255,255,255,0.05);margin:8px 0;}
+.p-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.p-row-label{font-size:10px;color:rgba(232,228,217,0.3);}
+.p-row-val{font-size:11px;font-weight:500;}
+.p-row-val.white{color:#F2EDE3;}
+.p-row-val.gold{color:#F5A800;}
+.p-row-val.green{color:#7ec48a;}
+.p-note{font-size:9px;color:rgba(232,228,217,0.22);line-height:1.5;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.04);}
+.p-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.p-bar{background:#10121a;border-radius:10px;padding:12px;}
+.p-bar-lbl{font-size:9px;color:rgba(232,228,217,0.28);margin-bottom:8px;}
+.p-bar-track{background:#1a1c24;border-radius:4px;height:3px;overflow:hidden;margin-bottom:4px;}
+.p-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#F5A800 0%,#FFD055 60%,#F5A800 100%);background-size:200% 100%;width:0%;transition:width 1.8s cubic-bezier(0.16,1,0.3,1);}
+.p-bar-row{display:flex;justify-content:space-between;font-size:8px;color:rgba(232,228,217,0.18);}
+.p-stat{background:#10121a;border-radius:10px;padding:11px;}
+.p-stat-val{font-size:14px;font-weight:500;margin-bottom:2px;}
+.p-stat-val.gold{color:#F5A800;}
+.p-stat-val.green{color:#7ec48a;}
+.p-stat-lbl{font-size:9px;color:rgba(232,228,217,0.28);}
+.p-home{width:36px;height:4px;background:rgba(232,228,217,0.08);border-radius:2px;margin:12px auto 0;}
+
+/* FEATURE STRIP — verbatim */
+.strip{border-top:1px solid var(--gold-border);background:linear-gradient(180deg,var(--bg-deep) 0%,rgba(13,16,24,1) 100%);padding:64px 40px;}
+.strip-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:900px){.strip-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.strip-inner{grid-template-columns:1fr;}}
+.strip-card{border-radius:var(--radius-md);padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);backdrop-filter:blur(10px);transition:transform var(--transition-base),box-shadow var(--transition-base),border-color var(--transition-base);position:relative;overflow:hidden;}
+.light .strip-card{background:rgba(255,255,255,0.7);}
+.strip-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 80% 60% at 50% 0%,var(--gold-glow-strong),transparent 70%);opacity:0;transition:opacity var(--transition-base);pointer-events:none;}
+.strip-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.25),0 0 0 1px var(--gold-border-strong);}
+.strip-card:hover::before{opacity:1;}
+.strip-icon{width:36px;height:36px;border-radius:12px;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.strip-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.strip-label{font-size:20px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;}
+.strip-sub{font-size:12px;color:var(--text-muted);margin-top:2px;}
+
+/* SHARED SECTION STYLES — verbatim */
+.sec-badge{display:inline-flex;align-items:center;border:1px solid var(--gold-border);background:var(--gold-glow);color:var(--gold-light);font-size:11px;border-radius:999px;padding:4px 14px;font-family:'DM Sans',sans-serif;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:16px;}
+.sec-heading{font-size:clamp(28px,3.5vw,36px);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:12px;font-family:'DM Sans',sans-serif;letter-spacing:-0.01em;}
+.gold-word{background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sec-intro{font-size:16px;color:var(--text-muted);text-align:center;max-width:680px;margin:0 auto 48px;line-height:1.75;}
+
+/* COMPARE SECTION — verbatim, trimmed for qualitative table */
+.compare-sec{padding:80px 40px;background:linear-gradient(180deg,var(--bg-mid) 0%,var(--bg-deep) 100%);position:relative;overflow:hidden;}
+.compare-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;pointer-events:none;background:radial-gradient(ellipse at center top,rgba(245,168,0,0.06) 0%,transparent 70%);}
+.compare-inner{max-width:1280px;margin:0 auto;text-align:center;position:relative;}
+.compare-table-wrap{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--gold-border);background:var(--bg-card);box-shadow:var(--shadow-card),0 0 0 1px rgba(245,168,0,0.04);}
+.pv-ct-scroll{overflow-x:auto;}
+.ct-head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr 1.2fr;background:rgba(245,168,0,0.06);border-bottom:1px solid var(--gold-border);min-width:680px;}
+.ct-head>div{padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);font-family:'DM Sans',sans-serif;}
+.ct-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr 1.2fr;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s;min-width:680px;}
+.light .ct-row{border-bottom:1px solid rgba(0,0,0,0.04);}
+.ct-row:last-of-type{border-bottom:none;}
+.ct-row.sarf{background:rgba(245,168,0,0.05);border-left:3px solid var(--gold);}
+.ct-row>div{padding:14px 16px;font-size:13.5px;font-family:'DM Sans',sans-serif;color:var(--text-primary);}
+.ct-name{font-weight:700;}
+.ct-name.sarf-name{color:var(--gold);}
+.ct-yes{color:#4ade80;font-weight:600;}
+.ct-no{color:var(--text-muted);}
+.ct-neutral{color:var(--text-muted);font-style:italic;font-size:12.5px;}
+.ct-foot-row{padding:12px 20px;font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--gold-border);font-style:italic;text-align:left;font-family:'DM Sans',sans-serif;line-height:1.6;}
+
+/* WHY SARF SECTION — verbatim */
+.why-sec{padding:80px 40px;background:linear-gradient(180deg,var(--bg-deep) 0%,var(--bg-card) 100%);}
+.why-inner{max-width:1280px;margin:0 auto;text-align:center;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:left;}
+@media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.feat-grid{grid-template-columns:1fr;}}
+.feat{border-radius:var(--radius-lg);padding:28px;background:rgba(255,255,255,0.025);border:1px solid var(--gold-border);backdrop-filter:blur(12px);transition:transform var(--transition-base),box-shadow var(--transition-base),border-color var(--transition-base);position:relative;overflow:hidden;}
+.light .feat{background:rgba(255,255,255,0.8);}
+.feat::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 70% 50% at 50% 100%,var(--gold-glow),transparent 70%);opacity:0;transition:opacity var(--transition-base);pointer-events:none;}
+.feat:hover{transform:translateY(-7px);box-shadow:0 24px 64px rgba(0,0,0,0.3),0 0 0 1px var(--gold-border-strong);}
+.feat:hover::after{opacity:1;}
+.feat-icon-wrap{width:44px;height:44px;border-radius:14px;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.feat-icon-wrap svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.feat-tag{display:inline-block;border:1px solid var(--gold-border);background:var(--gold-glow);color:var(--gold-light);font-size:10px;border-radius:999px;padding:3px 10px;margin-bottom:12px;font-family:'DM Sans',sans-serif;}
+.feat-t{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:10px;font-family:'DM Sans',sans-serif;}
+.feat-d{font-size:13px;color:var(--text-muted);line-height:1.7;font-family:'DM Sans',sans-serif;}
+
+/* FAQ SECTION — verbatim */
+.faq-sec{padding:80px 40px;background:linear-gradient(180deg,var(--bg-deep) 0%,var(--bg-mid) 100%);position:relative;}
+.faq-sec h2{text-align:center;font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--text-primary);margin-bottom:8px;letter-spacing:-.02em;}
+.faq-sec .faq-sub{text-align:center;color:var(--text-secondary);font-size:15px;margin-bottom:48px;}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:border-color var(--transition-base),background var(--transition-base);}
+.faq-item:hover{border-color:var(--gold-border);}
+.faq-item.open{border-color:var(--gold-border-strong);background:var(--gold-accent);}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;cursor:pointer;background:none;border:none;text-align:left;font-family:'DM Sans',sans-serif;color:inherit;}
+.faq-q span{font-size:15px;font-weight:600;color:var(--text-primary);line-height:1.4;}
+.faq-icon{width:28px;height:28px;min-width:28px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;transition:transform var(--transition-base),background var(--transition-base);}
+.faq-icon svg{width:14px;height:14px;stroke:var(--text-muted);stroke-width:2;fill:none;transition:stroke var(--transition-base);}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold-glow);}
+.faq-item.open .faq-icon svg{stroke:var(--gold);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;}
+.faq-a-inner{padding:0 22px 18px;color:var(--text-secondary);font-size:14px;line-height:1.7;}
+
+/* BOTTOM CTA — verbatim */
+.bottom{padding:80px 24px 100px;text-align:center;border-top:1px solid var(--gold-border);background:var(--bg-deep);position:relative;overflow:hidden;}
+.bottom::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:700px;height:400px;pointer-events:none;background:radial-gradient(ellipse at center bottom,rgba(245,168,0,0.07) 0%,transparent 65%);}
+.bottom h2{font-size:clamp(26px,4vw,50px);color:var(--text-primary);margin-bottom:12px;font-weight:700;font-family:'DM Sans',sans-serif;position:relative;letter-spacing:-0.01em;}
+.bottom p{font-size:14px;color:var(--text-muted);margin-bottom:32px;line-height:1.75;position:relative;}
+.bottom-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:#07090E;font-weight:700;font-size:14px;padding:16px 40px;border-radius:16px;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(245,168,0,0.4);transition:box-shadow .2s,transform .2s;font-family:'DM Sans',sans-serif;position:relative;}
+.bottom-btn:hover{box-shadow:0 8px 36px rgba(245,168,0,0.55);transform:translateY(-2px);}
+.bottom-btn:active{transform:translateY(0) scale(0.98);}
+.b-note{font-size:11px;color:var(--text-muted);margin-top:16px;opacity:0.6;position:relative;}
+
+/* FOOTER — verbatim */
+footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:28px 40px;border-top:1px solid var(--gold-border);background:var(--bg-mid);flex-wrap:wrap;}
+.f-brand{display:flex;align-items:center;gap:8px;}
+.f-contact{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-muted);font-family:'DM Sans',sans-serif;}
+.f-contact a{color:var(--gold);text-decoration:none;}
+.f-contact a:hover{text-decoration:underline;}
+.f-copy-mini{background:none;border:1px solid var(--gold-border);border-radius:6px;color:var(--text-muted);cursor:pointer;padding:3px 6px;line-height:0;display:inline-flex;transition:border-color .2s,color .2s;}
+.f-copy-mini:hover{border-color:var(--gold);color:var(--gold);}
+.f-copy-mini svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.f-txt{font-size:12px;color:var(--text-muted);}
+@media(max-width:580px){footer{flex-direction:column;gap:12px;text-align:center;padding:20px;}}
+
+/* MODAL — verbatim */
+#pv-modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;}
+#pv-modal.open{display:flex;}
+.modal{max-width:448px;width:100%;border-radius:16px;border:1px solid var(--gold-border);background:var(--bg-card);box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 40px rgba(245,168,0,0.08);max-height:90vh;overflow-y:auto;animation:modalIn .3s cubic-bezier(.22,1,.36,1);}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--gold-border);gap:16px;}
+.modal-title{font-size:18px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;}
+.modal-sub{font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.5;}
+.modal-close{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--surface);border:1px solid var(--gold-border);color:var(--text-muted);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s;line-height:1;}
+.modal-close:hover{transform:scale(1.1);}
+.modal-body{padding:20px 24px;}
+#pv-modal .field{margin-bottom:16px;}
+#pv-modal .field label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px;font-family:'DM Sans',sans-serif;}
+.req{color:var(--gold);margin-inline-start:2px;}
+#pv-modal .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:480px){#pv-modal .field-row{grid-template-columns:1fr;}}
+#pv-modal .field input,#pv-modal .field textarea{width:100%;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.04);border:1.5px solid var(--gold-border);font-size:13px;color:var(--text-primary);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;resize:vertical;}
+.light #pv-modal .field input,.light #pv-modal .field textarea{background:rgba(0,0,0,0.04);}
+#pv-modal .field input::placeholder,#pv-modal .field textarea::placeholder{color:var(--text-muted);opacity:.6;}
+#pv-modal .field input:focus,#pv-modal .field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,168,0,0.12),0 2px 8px rgba(0,0,0,0.15);}
+#pv-form-error{font-size:12px;color:#ef4444;margin-bottom:12px;display:none;text-align:center;}
+.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:#07090E;font-weight:700;font-size:14px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 4px 20px rgba(245,168,0,0.35);font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .2s;}
+.submit-btn:hover{transform:scale(1.02);}
+.submit-btn:active{transform:scale(.95);}
+.modal-success{display:none;text-align:center;padding:40px 24px;}
+.success-icon{width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;}
+.success-icon svg{width:48px;height:48px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.s-title{font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+.s-msg{font-size:14px;color:var(--text-muted);}
+
+/* REVEAL — verbatim */
+.reveal{transition:opacity .7s cubic-bezier(0.16,1,0.3,1),transform .7s cubic-bezier(0.16,1,0.3,1);}
+.reveal.on{opacity:1 !important;transform:none !important;transition-delay:var(--reveal-delay,0ms);}
+
+/* ══════════════════ DEMO SECTION (website-side chrome only) ══════════════════ */
+#sarf-demo{padding:80px 40px;background:linear-gradient(180deg,var(--bg-card) 0%,var(--bg-deep) 100%);}
+@media(max-width:580px){#sarf-demo{padding:60px 16px;}}
+.pv-demo-hdr{max-width:680px;margin:0 auto 32px;text-align:center;}
+.pv-demo-badge{display:inline-block;max-width:520px;margin-top:14px;font-size:11px;line-height:1.5;color:var(--gold-light);background:var(--gold-glow);border:1px solid var(--gold-border);border-radius:100px;padding:6px 16px;}
+/* Centres the original-size prototype application inside the website section.
+   The application's own geometry is untouched — this only positions it. */
+.pv-app-shell{display:flex;justify-content:center;}
+
+/* ══════════════════ APPLICATION — transplanted from ══════════════════
+   ~/sarf-refs/Sarf_Application_Flow_Phase1_Prototype.html
+   Every rule below is the prototype's own CSS, unchanged apart from being
+   scoped under #pv-app so website styles and prototype styles cannot collide.
+   :root -> #pv-app, body -> #pv-app, @keyframes spin/procFadeIn renamed
+   pvSpin/pvProcFadeIn to avoid clashing with the website's own keyframes. */
+#pv-app{
+    --bg:#000000;
+    --surface:#141210;
+    --surface-2:#1c1a17;
+    --hairline:#2b2723;
+    --gold:#FFB343;
+    --gold-2:#D8A444;
+    --gold-soft:rgba(255,179,67,.14);
+    --text:#F5F1EA;
+    --text-muted:#9C9690;
+    --text-faint:#6b6560;
+    --red:#e0654f;
+    --green:#6fbf8b;
+
+    --panel-bg:#0c0b0a;
+    --panel-line:#242019;
+  }
+#pv-app *{ box-sizing:border-box; }
+#pv-app{
+    color:var(--text);
+    font-family:'Red Hat Display', -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    /* Embedding-only reset: the website's body sets line-height:1.6, which is an
+       inherited property. The standalone prototype's body sets none, so its screens
+       render against the browser default. Restoring `normal` here reproduces the
+       prototype's own vertical rhythm exactly. */
+    line-height:normal;
+  }
+#pv-app a{ color:inherit; }
+/* Visible keyboard focus, in the prototype's own gold language. Outline-based so
+   it adds no layout box and cannot alter any measured dimension; :focus-visible
+   means it appears for keyboard users only, leaving mouse appearance unchanged. */
+#pv-app [role="radio"]:focus-visible,
+#pv-app [role="button"]:focus-visible,
+#pv-app .btn-primary:focus-visible,
+#pv-app .btn-secondary:focus-visible,
+#pv-app .btn-text:focus-visible,
+#pv-app .vendor-btn:focus-visible,
+#pv-app .vendor-fail-link:focus-visible,
+#pv-app input:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+#pv-app .phone{
+    width:300px; aspect-ratio:375/812; border-radius:42px;
+    border:1px solid #2a2620; background:var(--bg);
+    box-shadow:0 40px 70px -30px rgba(0,0,0,.85), 0 0 0 6px #0a0908 inset;
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+  }
+#pv-app .statusbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 22px 4px; font-size:13px; font-weight:600; color:var(--text); flex-shrink:0;
+    transition:color .2s ease;
+  }
+#pv-app .statusbar .icons{ display:flex; gap:5px; align-items:center; }
+#pv-app .brand-row{
+    display:flex; align-items:center; padding:10px 20px 0; flex-shrink:0;
+  }
+#pv-app .brand-logo{ height:46px; width:auto; display:block; }
+#pv-app .navrow{ display:flex; align-items:center; justify-content:space-between; padding:8px 20px 0; flex-shrink:0; min-height:30px; }
+#pv-app .back-btn{
+    width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+    border-radius:50%; background:var(--surface); border:1px solid var(--hairline); cursor:pointer;
+  }
+#pv-app .back-btn.hidden{ visibility:hidden; }
+#pv-app .step-label{ font-size:10.5px; font-weight:700; letter-spacing:.1em; color:var(--gold-2); text-transform:uppercase; }
+#pv-app .progress-track{ height:3px; border-radius:3px; background:var(--surface-2); margin:14px 20px 0; overflow:hidden; flex-shrink:0; transition:opacity .15s ease; }
+#pv-app .progress-fill{ height:100%; background:var(--gold); border-radius:3px; transition:width .25s ease; }
+#pv-app #screen-body{ flex:1; padding:24px 20px 20px; display:flex; flex-direction:column; overflow-y:auto; position:relative; }
+#pv-app #screen-body::-webkit-scrollbar{ width:0; }
+#pv-app .app-h1{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; line-height:1.2; margin:0 0 8px; letter-spacing:-.01em; }
+#pv-app .app-sub{ font-size:13.5px; line-height:1.5; color:var(--text-muted); margin:0 0 20px; }
+#pv-app .spacer{ flex:1; min-height:14px; }
+#pv-app .btn-primary{
+    width:100%; padding:15px; border-radius:14px; border:none;
+    font-family:'Red Hat Display', sans-serif; font-weight:700; font-size:15px; letter-spacing:.01em;
+    background:var(--surface-2); color:var(--text-faint); cursor:not-allowed; transition:all .18s ease;
+  }
+#pv-app .btn-primary.active{
+    background:linear-gradient(135deg,#F6C276,#FFB343); color:#241703; cursor:pointer;
+    box-shadow:0 10px 24px -8px rgba(255,179,67,.5);
+  }
+#pv-app .btn-secondary{
+    width:100%; padding:13px; border-radius:14px; margin-top:10px;
+    background:transparent; border:1px solid var(--hairline); color:var(--text-muted);
+    font-family:'Red Hat Display',sans-serif; font-weight:600; font-size:13.5px; cursor:pointer;
+  }
+#pv-app .btn-secondary:hover{ border-color:var(--text-faint); color:var(--text); }
+#pv-app .btn-text{
+    background:none; border:none; color:var(--gold-2); font-family:'Red Hat Display',sans-serif;
+    font-weight:600; font-size:13px; cursor:pointer; text-align:center; padding:10px;
+  }
+#pv-app .btn-danger-link{ color:var(--red); }
+#pv-app .trust-line{ display:flex; align-items:center; gap:6px; margin-top:12px; font-size:11px; color:var(--text-faint); }
+/* option cards (yes/no, selects) */
+#pv-app .options{ display:flex; flex-direction:column; gap:10px; }
+#pv-app .option-card{
+    display:flex; align-items:center; gap:12px; padding:13px 14px; border-radius:14px;
+    border:1px solid var(--hairline); background:var(--surface); cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+#pv-app .option-card .label{ flex:1; font-size:14.5px; font-weight:500; }
+#pv-app .option-card .radio{
+    width:19px; height:19px; border-radius:50%; border:1.5px solid var(--hairline);
+    flex-shrink:0; transition:all .15s ease;
+  }
+#pv-app .option-card.selected{ border-color:var(--gold); background:var(--gold-soft); }
+#pv-app .option-card.selected .radio{ background:var(--gold); border-color:var(--gold); }
+/* form fields */
+#pv-app .field{ position:relative; margin-bottom:14px; }
+#pv-app .field input{
+    width:100%; background:var(--surface); border:1px solid var(--hairline); border-radius:12px;
+    padding:21px 14px 8px; color:var(--text); font-family:'Red Hat Display', sans-serif; font-size:14.5px;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+#pv-app .field input::placeholder{ color:transparent; }
+#pv-app .field label{
+    position:absolute; left:14px; top:15px; font-size:14.5px; color:var(--text-faint);
+    pointer-events:none; transition:all .15s ease; font-family:'Red Hat Display', sans-serif;
+  }
+#pv-app .field.filled label,#pv-app .field input:focus ~ label{
+    top:7px; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-2);
+  }
+#pv-app .field input:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
+#pv-app .field-row{ display:flex; gap:10px; }
+#pv-app .field-row .field{ flex:1; }
+#pv-app .field-hint{ font-size:11px; color:var(--text-faint); margin:-8px 0 14px; }
+#pv-app .consent{ display:flex; gap:9px; align-items:flex-start; margin:2px 0 16px; }
+#pv-app .consent input[type="checkbox"]{
+    appearance:none; -webkit-appearance:none; width:18px; height:18px; border-radius:5px;
+    border:1.5px solid var(--hairline); background:var(--surface); flex-shrink:0; margin-top:1px;
+    cursor:pointer; position:relative; transition:all .15s ease;
+  }
+#pv-app .consent input[type="checkbox"]:checked{ background:var(--gold); border-color:var(--gold); }
+#pv-app .consent input[type="checkbox"]:checked::after{
+    content:''; position:absolute; left:5px; top:1.5px; width:5px; height:9px;
+    border:solid #241703; border-width:0 2px 2px 0; transform:rotate(40deg);
+  }
+#pv-app .consent p{ margin:0; font-size:10.8px; line-height:1.5; color:var(--text-faint); }
+/* amount slider (offer screen) */
+#pv-app .amount-display{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:38px; text-align:center; letter-spacing:-.01em; margin:2px 0 16px; }
+#pv-app .amt-range{ -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:6px; background:var(--surface-2); outline:none; margin:4px 0 0; }
+#pv-app .amt-range::-webkit-slider-thumb{ -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; box-shadow:0 4px 10px rgba(255,179,67,.45); cursor:pointer; }
+#pv-app .amt-range::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; cursor:pointer; }
+#pv-app .range-labels{ display:flex; justify-content:space-between; font-size:10.5px; color:var(--text-faint); margin:5px 0 18px; }
+#pv-app .split-bar{ height:9px; border-radius:5px; overflow:hidden; background:var(--surface-2); display:flex; margin-bottom:10px; }
+#pv-app .split-ewa{ background:var(--gold); transition:width .15s ease; }
+#pv-app .split-bridge{ background:rgba(255,179,67,.28); border-left:1px dashed rgba(255,179,67,.6); transition:width .15s ease; }
+#pv-app .split-legend{ display:flex; gap:16px; margin-bottom:16px; }
+#pv-app .legend-item{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); }
+#pv-app .dot{ width:7px; height:7px; border-radius:50%; }
+#pv-app .dot-ewa{ background:var(--gold); }
+#pv-app .dot-bridge{ background:transparent; border:1px dashed var(--gold); }
+#pv-app .stat-rows{ display:flex; flex-direction:column; gap:9px; margin-bottom:6px; }
+#pv-app .stat-row{ display:flex; justify-content:space-between; font-size:13.5px; font-weight:600; }
+#pv-app .stat-row.muted{ font-size:11.5px; font-weight:400; color:var(--text-faint); margin-top:-4px; }
+#pv-app .stat-row .stat-value{ font-variant-numeric:tabular-nums; }
+#pv-app .banner{ background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:12px 14px; font-size:13px; color:var(--text-muted); margin-bottom:18px; }
+#pv-app .banner b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; }
+#pv-app .breakdown-block{ margin-bottom:16px; }
+#pv-app .breakdown-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+#pv-app .breakdown-head .bd-name{ font-size:13px; font-weight:600; }
+#pv-app .breakdown-head .bd-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px; color:var(--gold); font-variant-numeric:tabular-nums; }
+#pv-app .mini-bar{ height:8px; border-radius:5px; background:var(--surface-2); overflow:hidden; margin-bottom:8px; }
+#pv-app .mini-bar-fill{ height:100%; border-radius:5px; transition:width .15s ease; }
+#pv-app .mini-bar-fill.ewa{ background:var(--gold); }
+#pv-app .mini-bar-fill.bridge{ background:rgba(255,179,67,.32); }
+#pv-app .breakdown-sentence{ font-size:12px; line-height:1.5; color:var(--text-muted); margin:0; }
+/* offer / loan-details card */
+#pv-app .offer-card{ border:1px solid var(--hairline); border-radius:18px; background:var(--surface); padding:2px 18px; margin:4px 0 16px; }
+#pv-app .offer-row{ padding:15px 0; }
+#pv-app .offer-row-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+#pv-app .offer-name{ font-size:14px; font-weight:600; }
+#pv-app .offer-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:17px; color:var(--gold); font-variant-numeric:tabular-nums; }
+#pv-app .offer-sub{ margin:4px 0 0; font-size:11.5px; color:var(--text-muted); }
+#pv-app .offer-divider{ height:1px; background:var(--hairline); }
+#pv-app .installment-list{ margin:8px 0 0; display:flex; flex-direction:column; gap:5px; }
+#pv-app .installment-row{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); }
+#pv-app .installment-row b{ color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; }
+#pv-app .total-row{ display:flex; justify-content:space-between; align-items:baseline; padding:14px 0 13px; border-top:1px solid var(--hairline); margin-top:4px; }
+#pv-app .total-row .offer-name{ font-size:13px; font-weight:700; }
+#pv-app .total-row .offer-amt{ font-size:20px; }
+#pv-app .offer-total{ display:flex; justify-content:space-between; padding:15px 0 4px; margin-top:2px; border-top:1px dashed var(--hairline); font-size:13px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; }
+/* contract / scroll box */
+#pv-app .contract-box{
+    border:1px solid var(--hairline); border-radius:14px; background:var(--surface);
+    padding:16px; height:190px; overflow-y:auto; margin-bottom:14px; font-size:11.5px; line-height:1.6; color:var(--text-muted);
+    flex-shrink:0;
+  }
+#pv-app .contract-box h4{ font-size:11.5px; color:var(--text); margin:12px 0 4px; }
+#pv-app .contract-box h4:first-child{ margin-top:0; }
+#pv-app .contract-box p{ margin:0 0 8px; }
+#pv-app .scroll-hint{ font-size:10.5px; color:var(--gold-2); text-align:center; margin:-8px 0 12px; opacity:1; transition:opacity .2s ease; }
+#pv-app .scroll-hint.done{ opacity:0; height:0; margin:0; overflow:hidden; }
+#pv-app .sig-line{ font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:12px; }
+/* vendor-hosted (light) screens */
+#pv-app .vendor-mode{ background:#f4f2ee; margin:-24px -20px -20px; padding:24px 20px 20px; border-radius:0 0 0 0; flex:1; display:flex; flex-direction:column; color:#2a2620; }
+#pv-app .vendor-badge{
+    display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:100px;
+    background:#e7e3db; color:#6b6355; font-size:10.5px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; margin-bottom:16px; width:fit-content;
+  }
+#pv-app .vendor-badge .dot2{ width:6px; height:6px; border-radius:50%; background:#8a8477; }
+#pv-app .vendor-mode .app-h1{ color:#1c1a17; }
+#pv-app .vendor-mode .app-sub{ color:#6b6355; }
+#pv-app .vendor-card{ background:#fff; border:1px solid #e2ded4; border-radius:14px; padding:14px 16px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
+#pv-app .vendor-card span{ font-size:14px; font-weight:600; color:#2a2620; }
+#pv-app .vendor-card small{ display:block; font-size:11px; color:#8a8477; font-weight:400; margin-top:2px; }
+#pv-app .vc-row{ display:flex; align-items:center; gap:12px; }
+#pv-app .provider-badge{ width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:11.5px; letter-spacing:.01em; flex-shrink:0; }
+#pv-app .vendor-search{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:12px; }
+#pv-app .vendor-search::placeholder{ color:#a39c8c; }
+#pv-app .vendor-empty{ text-align:center; font-size:12px; color:#a39c8c; padding:16px 0; }
+#pv-app .vendor-spinner{ width:34px; height:34px; border-radius:50%; border:3px solid #e2ded4; border-top-color:#8a8477; margin:30px auto 18px; animation:pvSpin 0.9s linear infinite; }
+@keyframes pvSpin{ to{ transform:rotate(360deg); } }
+#pv-app .vendor-btn{ width:100%; padding:14px; border-radius:12px; border:none; background:#1c1a17; color:#fff; font-family:'Red Hat Display',sans-serif; font-weight:700; font-size:14px; cursor:pointer; margin-top:6px; }
+#pv-app .vendor-btn:hover{ background:#000; }
+#pv-app .vendor-fail-link{ display:block; text-align:center; margin-top:14px; font-size:11.5px; color:#a3543f; background:none; border:none; cursor:pointer; font-family:'Red Hat Display',sans-serif; }
+#pv-app .vendor-note{ font-size:10.5px; color:#a39c8c; text-align:center; margin-top:10px; line-height:1.5; }
+/* modal (quota reached) */
+#pv-app .modal-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.72); display:flex; align-items:center; justify-content:center; padding:26px; z-index:5; }
+#pv-app .modal-card{ background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:24px 20px; text-align:center; }
+#pv-app .modal-card h3{ font-family:'Montserrat',sans-serif; font-size:17px; margin:0 0 10px; }
+#pv-app .modal-card p{ font-size:12.5px; line-height:1.55; color:var(--text-muted); margin:0 0 14px; }
+#pv-app .modal-card p.strong{ color:var(--text); font-weight:600; }
+/* decline / terminal states */
+#pv-app .icon-ring{ width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:20px auto 18px; }
+#pv-app .icon-ring.warn{ background:rgba(224,101,79,.12); }
+#pv-app .icon-ring.info{ background:var(--gold-soft); }
+#pv-app .icon-ring.good{ background:rgba(111,191,139,.14); }
+#pv-app .centered{ text-align:center; }
+/* virtual card */
+#pv-app .vcard{
+    border-radius:16px; padding:20px; margin:6px 0 18px; position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#1c1a17,#0a0908);
+    border:1px solid #2e2a24;
+    flex-shrink:0;
+  }
+#pv-app .vcard::after{ content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,179,67,.16),transparent 55%); }
+#pv-app .vcard-top{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; }
+#pv-app .vcard-logo{ font-family:'Encode Sans Semi Condensed',sans-serif; font-weight:700; font-size:15px; letter-spacing:.1em; color:var(--gold); }
+#pv-app .vcard-chip{ width:30px; height:22px; border-radius:5px; background:linear-gradient(135deg,#e6c98a,#c79b4f); }
+#pv-app .vcard-num{ font-family:'Red Hat Display',sans-serif; font-size:15.5px; letter-spacing:.06em; margin:26px 0 14px; font-variant-numeric:tabular-nums; position:relative; }
+#pv-app .vcard-bottom{ display:flex; justify-content:space-between; font-size:10px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; position:relative; }
+#pv-app .vcard-bottom b{ display:block; color:var(--text); font-size:12.5px; text-transform:none; letter-spacing:0; margin-top:2px; font-variant-numeric:tabular-nums; }
+#pv-app .wallet-row{ display:flex; gap:8px; margin-bottom:14px; }
+#pv-app .wallet-btn{ flex:1; padding:11px; border-radius:10px; border:1px solid var(--hairline); background:var(--surface); color:var(--text); font-size:12px; font-weight:600; text-align:center; }
+/* plain icon bullet list (intro / payroll interstitial) — added 9/10/26 */
+#pv-app .icon-list{ display:flex; flex-direction:column; gap:13px; margin-top:16px; }
+#pv-app .icon-list-row{ display:flex; align-items:flex-start; gap:11px; }
+#pv-app .icon-list-row .icon-wrap{ width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--gold); display:flex; }
+#pv-app .icon-list-row .icon-wrap svg{ width:100%; height:100%; display:block; }
+#pv-app .icon-list-row span:last-child{ font-size:14px; font-weight:500; line-height:1.45; color:var(--text); }
+/* flat rows, no card/border — offer math block — added 9/10/26 */
+#pv-app .flat-rows{ display:flex; flex-direction:column; margin:2px 0 16px; }
+#pv-app .flat-row{ display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; }
+#pv-app .flat-row .flat-label{ font-size:13.5px; color:var(--text-muted); font-weight:500; }
+#pv-app .flat-row .flat-value{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:15px; color:var(--text); font-variant-numeric:tabular-nums; text-align:right; }
+#pv-app .flat-row.total{ padding-top:11px; }
+#pv-app .flat-row.total .flat-label{ color:var(--text); font-weight:700; }
+#pv-app .flat-row.total .flat-value{ color:var(--gold); font-size:18px; }
+#pv-app .flat-divider{ height:1px; background:var(--hairline); margin:2px 0; }
+/* processing screen — stacked status lines — added 9/10/26, left-align fix 9/10/26 */
+#pv-app .proc-steps{ display:flex; flex-direction:column; gap:8px; margin:22px auto 22px; align-items:flex-start; width:fit-content; max-width:100%; text-align:left; }
+#pv-app .proc-step{ font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:8px; animation:pvProcFadeIn .3s ease; text-align:left; }
+#pv-app .proc-step .proc-check{ width:16px; height:16px; border-radius:50%; background:rgba(111,191,139,.16); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+#pv-app .proc-step .proc-check svg{ width:9px; height:9px; }
+@keyframes pvProcFadeIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
+/* vendor-hosted plain text field (payroll auth mock) — added 9/10/26 */
+#pv-app .vendor-field{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:10px; }
+#pv-app .vendor-field::placeholder{ color:#a39c8c; }
+/* small centered partner-attribution note (dark screens) — added 9/10/26 */
+#pv-app .partner-note{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
+/* small centered form disclaimer (intro fee footnote) — added 9/10/26 */
+#pv-app .form-footnote{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
+/* small security/encryption reassurance line with lock icon (your info form) — added 9/17/26 */
+#pv-app .security-note{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); margin:2px 0 16px; }
+#pv-app .security-note svg{ flex-shrink:0; color:var(--text-faint); }
+/* unboxed "Paid in full on" note (offer screen) — added 9/17/26 */
+#pv-app .paid-in-full-note{ font-size:12.5px; color:var(--text-muted); text-align:center; margin:14px 0 6px; }
+#pv-app .paid-in-full-note b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; }
+
+/* RESPONSIVE — mirrors production's mobile block */
+@media(max-width:580px){
+  .compare-sec,.why-sec{padding-left:20px;padding-right:20px;}
+  .strip{padding:48px 20px;}
+  footer{padding:20px;}
+  .hero{padding:90px 20px 50px;gap:32px;}
+  h1{font-size:clamp(32px,8vw,46px);}
+  .hero-sub{font-size:15px;margin-bottom:28px;}
+  .cta-btn{padding:14px 28px;font-size:13px;}
+  .hero-disclaimer{font-size:11px;}
+  .strip-label{font-size:18px;}
+  .strip-sub{font-size:11px;}
+  .compare-sec{padding:60px 16px;}
+  .feat{padding:20px;}
+  .feat-t{font-size:15px;}
+  .feat-d{font-size:12px;}
+  .faq-sec{padding:60px 20px;}
+  .faq-q{padding:16px 18px;}
+  .faq-a-inner{padding:0 18px 16px;}
+  .bottom{padding:60px 20px 80px;}
+  .bottom h2{font-size:clamp(22px,6vw,36px);}
+  .bottom-btn{padding:14px 32px;font-size:13px;}
+  .b-note{font-size:10px;}
+  .modal{border-radius:14px;}
+  .modal-head{padding:16px 20px;}
+  .modal-body{padding:16px 20px;}
+  .modal-title{font-size:16px;}
+}
+
+/* REDUCED MOTION — new requirement, not present in production */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+  .hero-wordmark,.hero-parent,.hero-badge,#hero-h1,.hero-sub,.hero-disclaimer,.phone-wrap,.cta-btn{animation:none !important;opacity:1 !important;transform:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+}
+</style>
+</head>
+<body>
+<a class="pv-skip" href="#pv-main">Skip to content</a>
+
+<!-- NAVBAR -->
+<nav aria-label="Primary">
+  <div class="nav-left">
+    <span class="sarf-logo-circle"><picture><source srcset="../logo-sarf.webp" type="image/webp"><img src="../logo-sarf.png" alt="SARF" width="501" height="512" fetchpriority="high"></picture></span>
+    <span class="nav-brand">SARF</span>
+  </div>
+  <div class="nav-center">
+    <a href="#hero" class="nav-link active">Home</a>
+    <a href="#services" class="nav-link">Compare</a>
+    <a href="#sarf-demo" class="nav-link">See how it works</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn theme-btn" id="theme-btn" onclick="pvToggleTheme()">
+      <svg id="theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span id="theme-label">Light</span>
+    </button>
+    <button class="nav-btn contact-btn" onclick="pvCopyEmail()" title="Copy contact@sarf.space">
+      <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+      <span class="contact-label">Contact Us</span>
+    </button>
+  </div>
+</nav>
+
+<main id="pv-main">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-text">
+    <div class="hero-wordmark">SARF</div>
+    <h1 id="hero-h1">Access your<br>earned wages<br><em>before payday.</em></h1>
+    <p class="hero-sub">Connect your payroll to see how much of your earned pay may be available. If approved, funds are loaded onto your Sarf card with no credit pull and no interest.</p>
+    <div>
+      <button class="cta-btn" onclick="pvScrollToDemo()">See what you qualify for <span class="cta-arrow">&rarr;</span></button>
+      <button class="pv-cta-secondary" onclick="pvScrollToDemo()">How Sarf works</button>
+    </div>
+    <p class="hero-disclaimer">Active employment and a supported payroll account are required. Fees and availability apply.</p>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone" id="phone-el">
+      <div class="phone-frame-top"></div>
+      <div class="phone-frame-side"></div>
+      <div class="phone-inner">
+        <div class="notch"></div>
+        <div class="p-screen">
+          <div class="p-lbl">Available Now</div>
+          <div class="p-amount" id="pv-phone-amount">$500</div>
+          <div class="p-pill"><span class="p-pill-dot"></span>0% interest</div>
+          <div class="p-divider"></div>
+          <div class="p-row"><span class="p-row-label">You get</span><span class="p-row-val white" id="pv-phone-get">$500</span></div>
+          <div class="p-row"><span class="p-row-label">Verification fee</span><span class="p-row-val gold" id="pv-phone-fee">$10</span></div>
+          <div class="p-row"><span class="p-row-label">Repaid on</span><span class="p-row-val white">Next paycheck</span></div>
+          <div class="p-row"><span class="p-row-label">Credit pull</span><span class="p-row-val green">None</span></div>
+          <div class="p-row"><span class="p-row-label">Interest</span><span class="p-row-val green">0%</span></div>
+          <div class="p-note">Illustrative example. Repaid in one deduction from your next paycheck via payroll connection.</div>
+        </div>
+        <div class="p-stats">
+          <div class="p-stat"><div class="p-stat-val gold">0%</div><div class="p-stat-lbl">Interest</div></div>
+          <div class="p-stat"><div class="p-stat-val green">No pull</div><div class="p-stat-lbl">Credit check</div></div>
+          <div class="p-stat"><div class="p-stat-val gold">Payroll</div><div class="p-stat-lbl">Repayment source</div></div>
+          <div class="p-stat"><div class="p-stat-val green">Sarf card</div><div class="p-stat-lbl">Funds delivered via</div></div>
+        </div>
+        <div class="p-bar">
+          <div class="p-bar-lbl">Pay Period Progress</div>
+          <div class="p-bar-track"><div class="p-bar-fill" id="pv-p-bar-fill"></div></div>
+          <div class="p-bar-row"><span>Period start</span><span>Payday</span></div>
+        </div>
+        <div class="p-home"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<section class="strip">
+  <div class="strip-inner">
+    <div class="strip-card reveal">
+      <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="strip-label">Earned wages</div>
+      <div class="strip-sub">Access pay you've already earned</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M19 5L5 19" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg></div>
+      <div class="strip-label">0% interest</div>
+      <div class="strip-sub">Just a flat verification fee</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="strip-label">No credit pull</div>
+      <div class="strip-sub">Eligibility from payroll, not FICO</div>
+    </div>
+    <div class="strip-card reveal">
+      <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="strip-label">On payday</div>
+      <div class="strip-sub">Repayment connects to your next paycheck</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-sec" id="services">
+  <div class="compare-inner">
+    <div class="sec-badge">Compare</div>
+    <h2 class="sec-heading reveal">How Sarf <span class="gold-word">compares</span></h2>
+    <p class="sec-intro reveal">A category-level look at how earned wage access differs from other ways to bridge a gap before payday. Figures and named providers are intentionally omitted here — this is a qualitative comparison only.</p>
+    <div class="pv-ct-scroll">
+      <div class="compare-table-wrap reveal" style="min-width:680px;">
+        <div class="ct-head">
+          <div>Category</div><div>Credit pull</div><div>Interest</div><div>Based on earned wages</div><div>Cost shown upfront</div>
+        </div>
+        <div class="ct-row sarf">
+          <div class="ct-name sarf-name">Sarf earned-wage access</div>
+          <div class="ct-no">No</div>
+          <div class="ct-yes">0%</div>
+          <div class="ct-yes">Yes</div>
+          <div class="ct-yes">Yes</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-name">Traditional credit card</div>
+          <div class="ct-yes" style="color:#e07a7a;">Typically yes</div>
+          <div class="ct-neutral">Varies by issuer</div>
+          <div class="ct-no">No</div>
+          <div class="ct-neutral">Varies</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-name">Payday-style borrowing</div>
+          <div class="ct-neutral">Varies by lender</div>
+          <div class="ct-neutral">Often high-cost</div>
+          <div class="ct-no">No</div>
+          <div class="ct-neutral">Varies</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-name">Traditional personal loan</div>
+          <div class="ct-yes" style="color:#e07a7a;">Typically yes</div>
+          <div class="ct-neutral">Varies by lender</div>
+          <div class="ct-no">No</div>
+          <div class="ct-neutral">Varies</div>
+        </div>
+        <div class="ct-foot-row">Category-level comparison for illustration only. No specific competitor names, prices, or APR figures are represented — this concept does not assert claims about any named provider's current terms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SARF -->
+<section class="why-sec" id="why-sarf">
+  <div class="why-inner">
+    <div class="sec-badge">Why Sarf</div>
+    <h2 class="sec-heading reveal">A different way to <span class="gold-word">bridge payday.</span></h2>
+    <p class="sec-intro reveal">Sarf looks at what you've already earned through your employer's payroll system — not a credit score — to determine what may be available to you now.</p>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <span class="feat-tag">Earned, not borrowed</span>
+        <div class="feat-t">Access wages you've already worked for</div>
+        <div class="feat-d">Sarf looks at what you've earned so far this pay period through your connected payroll account — not future income.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Always 0%</span>
+        <div class="feat-t">No interest on Phase 1 access</div>
+        <div class="feat-d">There is no interest rate on the current product. A flat verification fee applies and is shown before you accept.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Payroll-based</span>
+        <div class="feat-t">Eligibility from your payroll, not FICO</div>
+        <div class="feat-d">Active employment and a supported payroll connection are required. No hard credit pull is run to determine eligibility.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Connected to payday</span>
+        <div class="feat-t">Repayment lines up with your paycheck</div>
+        <div class="feat-d">The amount is deducted in one transaction from your next paycheck through your payroll connection — no separate bill to track.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INTERACTIVE DEMO — application transplanted from the Phase 1 prototype ═══ -->
+<section id="sarf-demo" aria-labelledby="pv-demo-heading">
+  <div class="pv-demo-hdr">
+    <span class="sec-badge">Demo</span>
+    <h2 id="pv-demo-heading" class="sec-heading">See how earned wage access <span class="gold-word">works</span></h2>
+    <p class="sec-intro" style="margin-bottom:0">A fully local walkthrough of the Phase 1 application. Fictional information only — nothing you enter is sent anywhere.</p>
+    <span class="pv-demo-badge" role="note">Internal illustrative product concept — terms and availability remain subject to product and legal approval.</span>
+  </div>
+  <div class="pv-app-shell">
+    <div id="pv-app">
+<div class="phone">
+        <div class="statusbar" id="statusbar">
+          <span>9:41</span>
+          <div class="icons">
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><rect x="0" y="6" width="2.5" height="4" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="2.5" height="6" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="2.5" height="8" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="2.5" height="10" rx="0.5" fill="currentColor"/></svg>
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M1 4C5 0 10 0 14 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M3.3 6.6C6 4 9 4 11.7 6.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="9.3" r="1.2" fill="currentColor"/></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11" fill="none"><rect x="0.75" y="0.75" width="20" height="9.5" rx="2.25" stroke="currentColor" stroke-width="1"/><rect x="2.2" y="2.2" width="14" height="6.6" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.3" width="1.6" height="4.4" rx="0.8" fill="currentColor"/></svg>
+          </div>
+        </div>
+        <div class="brand-row"><img class="brand-logo" src="data:image/png;base64,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" alt="Sarf" /></div>
+        <div class="navrow">
+          <div class="back-btn" id="back-btn" role="button" tabindex="0" aria-label="Go back">
+            <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M7 1L1 6.5L7 12" stroke="#F5F1EA" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="step-label" id="step-label"></span>
+        </div>
+        <div class="progress-track" id="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <div id="screen-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="bottom" id="join">
+  <h2 class="reveal">Your earned pay should<br>not have to <em style="color:var(--gold);">wait.</em></h2>
+  <p class="reveal">Connect your payroll to see what may be available before payday.</p>
+  <button class="bottom-btn reveal" onclick="pvScrollToDemo()">See what you qualify for</button>
+  <p class="b-note reveal">Questions? Reach us at <a href="mailto:contact@sarf.space" style="color:var(--gold);text-decoration:none;">contact@sarf.space</a></p>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec" id="faq">
+  <h2 class="reveal">Frequently Asked Questions</h2>
+  <p class="faq-sub reveal">Everything you need to know about Sarf earned wage access.</p>
+  <div class="faq-list">
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What is Sarf?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf gives you access to a portion of the wages you've already earned during your current pay period, ahead of your scheduled payday.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How does earned-wage access work?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">You connect your payroll account so Sarf can see how much you've earned so far this pay period. Based on that, you're offered an amount you may be eligible to access now, repaid in one deduction on your next payday.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Who is eligible?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Active employment and a supported payroll connection are required. Eligibility and the amount available are based on your verified payroll information.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How is payroll connected?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf connects to your payroll provider using Pinwheel to verify your income and, if you proceed, to set up repayment from your paycheck.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Is there a credit pull?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Sarf does not run a credit check or require a FICO score. Eligibility is based on your verified payroll information.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How much may be available?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">The amount available is based on how much of your current pay period you've already earned, up to a program maximum. Final amounts are subject to approval.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What is the verification fee?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">A flat fee that covers verifying your employer and income. It's shown to you before you accept, and does not change based on how much you access.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How does repayment work?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">The amount you accessed is deducted in one transaction from your next paycheck through your connected payroll account.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Where do approved funds go?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Approved funds are loaded onto your Sarf card, subject to operational confirmation.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What if my payroll provider is unsupported?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf currently supports a limited set of payroll providers. If yours isn't listed, you won't be able to proceed at this time.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Is qualification guaranteed?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Eligibility and the amount available depend on your verified payroll information and are subject to approval.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How is my information handled?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Information you provide is used for verification purposes. Payroll credentials are entered directly with our payroll partner and are not seen or stored by Sarf.</div></div></div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="about">
+  <div class="f-brand">
+    <span class="sarf-logo-circle footer"><picture><source srcset="../logo-sarf.webp" type="image/webp"><img src="../logo-sarf.png" alt="SARF" width="501" height="512" loading="lazy"></picture></span>
+    <span class="f-brand-name">SARF</span>
+  </div>
+  <div class="f-contact">
+    <span>Contact:</span>
+    <a href="mailto:contact@sarf.space">contact@sarf.space</a>
+    <button class="f-copy-mini" onclick="pvCopyEmail()" title="Copy email" aria-label="Copy email">
+      <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    </button>
+  </div>
+  <div class="f-txt">&copy; 2026 SARF Inc. &middot; Earned wage access, connected to your payroll.</div>
+</footer>
+
+<!-- EARLY ACCESS MODAL — retained for visual fidelity; submission is a local no-op -->
+<div class="modal-overlay" id="pv-modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pv-modal-title">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="pv-modal-title">Get Early Access</div>
+        <div class="modal-sub">Tell us about you and we'll get you set up. Takes 30 seconds. (Demo — nothing is submitted.)</div>
+      </div>
+      <button class="modal-close" onclick="pvCloseModal()" aria-label="Close">&#215;</button>
+    </div>
+    <div id="pv-modal-form-wrap">
+      <div class="modal-body">
+        <div class="field"><label for="pv-f-email">Email address <span class="req">*</span></label><input type="email" id="pv-f-email" placeholder="you@example.com"></div>
+        <div class="field-row">
+          <div class="field"><label for="pv-f-name">Full name <span class="req">*</span></label><input type="text" id="pv-f-name" placeholder="Your name"></div>
+          <div class="field"><label for="pv-f-phone">Phone number <span class="req">*</span></label><input type="tel" id="pv-f-phone" placeholder="+1 (555) 123-4567"></div>
+        </div>
+        <div class="field"><label for="pv-f-message">Anything else we should know <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label><textarea id="pv-f-message" rows="3" placeholder="Optional note"></textarea></div>
+        <div id="pv-form-error"></div>
+        <button class="submit-btn" type="button" onclick="pvSubmitModal()">Confirm &amp; Join</button>
+      </div>
+    </div>
+    <div class="modal-success" id="pv-modal-success">
+      <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+      <div class="s-title">You're in!</div>
+      <div class="s-msg">(Demo only — no data was sent.)</div>
+    </div>
+  </div>
+</div>
+
+<div class="copy-toast" id="copy-toast" role="status">
+  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="copy-toast-text">Copied contact@sarf.space</span>
+</div>
+
+<script>
+'use strict';
+/* ============================================================
+   No network calls. No analytics. No cookies. No localStorage.
+   All state below is in-memory only and resets on refresh.
+   ============================================================ */
+
+/* ---------- theme (copied behavior from production) ---------- */
+var pvIsLight = false;
+function pvToggleTheme(){
+  pvIsLight = !pvIsLight;
+  document.documentElement.classList.toggle('light', pvIsLight);
+  var label = document.getElementById('theme-label');
+  var icon = document.getElementById('theme-icon');
+  if(pvIsLight){
+    label.textContent = 'Dark';
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  } else {
+    label.textContent = 'Light';
+    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }
+}
+
+/* ---------- copy email (clipboard API only, no network) ---------- */
+function pvCopyEmail(){
+  var email = 'contact@sarf.space';
+  function showToast(){
+    var t = document.getElementById('copy-toast');
+    document.getElementById('copy-toast-text').textContent = 'Copied ' + email;
+    t.classList.add('show');
+    clearTimeout(window._pvToastTimer);
+    window._pvToastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(email).then(showToast).catch(fallback);
+  } else { fallback(); }
+  function fallback(){
+    var ta = document.createElement('textarea');
+    ta.value = email; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+    showToast();
+  }
+}
+
+/* ---------- scroll to demo ---------- */
+function pvScrollToDemo(){
+  var el = document.getElementById('sarf-demo');
+  if(el) el.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+}
+
+/* ---------- FAQ accordion ---------- */
+function pvToggleFaq(btn){
+  var item = btn.parentElement;
+  var ans = item.querySelector('.faq-a');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(o){
+    o.classList.remove('open');
+    o.querySelector('.faq-a').style.maxHeight = null;
+    o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    ans.style.maxHeight = ans.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* ---------- early-access modal — local no-op, no network ---------- */
+function pvOpenModal(){ document.getElementById('pv-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function pvCloseModal(){ document.getElementById('pv-modal').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('pv-modal').addEventListener('click', function(e){ if(e.target === this) pvCloseModal(); });
+function pvSubmitModal(){
+  var email = document.getElementById('pv-f-email').value.trim();
+  var name = document.getElementById('pv-f-name').value.trim();
+  var phone = document.getElementById('pv-f-phone').value.trim();
+  var errEl = document.getElementById('pv-form-error');
+  errEl.style.display = 'none';
+  if(!email || !name || !phone){ errEl.textContent = 'Please fill in all required fields.'; errEl.style.display = 'block'; return; }
+  if(!email.includes('@')){ errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
+  /* Local no-op — nothing is transmitted. */
+  document.getElementById('pv-modal-form-wrap').style.display = 'none';
+  document.getElementById('pv-modal-success').style.display = 'block';
+}
+
+/* ---------- reveal-on-scroll (copied behavior from production) ---------- */
+var pvObs = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      var delay = e.target.getAttribute('data-reveal-delay') || '0';
+      e.target.style.transitionDelay = delay + 'ms';
+      e.target.classList.add('on');
+      pvObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(function(el){
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  pvObs.observe(el);
+});
+document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(function(el,i){
+  el.setAttribute('data-reveal-delay', (i % 4) * 80);
+});
+
+/* ---------- active nav link on scroll ---------- */
+(function(){
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = navLinks.map(function(l){ return document.getElementById(l.getAttribute('href').slice(1)); });
+  function onScroll(){
+    var pos = window.scrollY + 120, current = 0;
+    for(var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop <= pos) current = i; }
+    navLinks.forEach(function(l,i){ l.classList.toggle('active', i===current); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+/* ---------- hero phone gentle float (skipped under reduced motion) ---------- */
+(function(){
+  var phoneEl = document.getElementById('phone-el');
+  if(!phoneEl) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var floatPhase = 0;
+  (function loop(){
+    var ty = Math.sin(floatPhase) * -7;
+    phoneEl.style.transform = 'rotateX(2deg) rotateY(-6deg) translateY(' + ty.toFixed(2) + 'px)';
+    floatPhase += 0.008;
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ============================================================
+   APPLICATION — transplanted from the Phase 1 prototype
+   (~/sarf-refs/Sarf_Application_Flow_Phase1_Prototype.html).
+   State object, router, screen templates, validation, calculations
+   and event handlers are the prototype's own code. Review-only
+   material (reviewer panel, screen map, simulate triggers, developer
+   restart, URL-hash deep links) has been removed; nothing else changed.
+   Wrapped in an IIFE so its globals cannot collide with the website's.
+   ============================================================ */
+(function(){
+'use strict';
+/* =========================================================================
+   STATE
+========================================================================= */
+const STATE = { fullName:'', requestedAmount:500, isFirstLoan:true, history:[], scrolledToBottom:false, revealed:false };
+let current = 'welcome';
+let currentParams = {};
+const MIN_LOAN = 200, MAX_LOAN = 620;
+const FEE_FIRST = 10, FEE_SUBSEQUENT = 20;
+
+const STEP_OF = { welcome:1, employed:2, yourinfo:3, verify:4, 'payroll-interstitial':5, 'payroll-vendor':6, 'payroll-auth':6,
+  processing:7, offer:8, review:9, 'payments-interstitial':10,'payments-vendor':10,'payments-failure':10, allset:10, congrats:11 };
+const NO_BAR = new Set(['quota','conn-failed','no-offers','congrats']);
+
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+function fmt2(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function addDays(base,days){ const d=new Date(base); d.setDate(d.getDate()+days); return d; }
+function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
+function fee(){ return STATE.isFirstLoan ? FEE_FIRST : FEE_SUBSEQUENT; }
+
+const PROVIDERS = [
+  { name:'ADP', initials:'AD', color:'#D0271D' },
+  { name:'Workday', initials:'WD', color:'#1662F1' },
+  { name:'Gusto', initials:'GU', color:'#F45D48' },
+  { name:'Paychex', initials:'PX', color:'#00A651' },
+  { name:'Rippling', initials:'RP', color:'#6C5CE7' },
+];
+
+
+
+/* =========================================================================
+   SMALL SHARED MARKUP HELPERS
+========================================================================= */
+function trustLine(text){
+  return '<div class="trust-line"><svg width="11" height="13" viewBox="0 0 11 13" fill="none"><rect x="1" y="5.5" width="9" height="6.5" rx="1.3" stroke="currentColor" stroke-width="1.1"/><path d="M3 5.5V3.5C3 2.1 4.1 1 5.5 1C6.9 1 8 2.1 8 3.5V5.5" stroke="currentColor" stroke-width="1.1"/></svg>'+text+'</div>';
+}
+function iconRing(kind, svg){ return '<div class="icon-ring '+kind+'">'+svg+'</div>'; }
+const SVG_X = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#e0654f" stroke-width="2" stroke-linecap="round"/></svg>';
+const SVG_INFO = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FFB343" stroke-width="1.8"/><path d="M12 11V17M12 7.5V7.6" stroke="#FFB343" stroke-width="2" stroke-linecap="round"/></svg>';
+const SVG_CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#6fbf8b" stroke-width="1.8"/><path d="M8 12.5L10.7 15L16 9" stroke="#6fbf8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const SVG_CHECK_MINI = '<svg width="9" height="9" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#6fbf8b" stroke-width="2"/><path d="M8 12.5L10.7 15L16 9" stroke="#6fbf8b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* small line icons for plain bullet lists (intro / payroll interstitial) */
+const ICON_PERCENT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="17" r="2.5" stroke="currentColor" stroke-width="2"/></svg>';
+const ICON_SHIELD = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3L19 6V11C19 15.5 16 19 12 21C8 19 5 15.5 5 11V6L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_DOLLAR = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2V22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16.5 6.5C16.5 6.5 14.8 5 12 5C9.5 5 7.5 6.3 7.5 8.2C7.5 12 16.5 10.5 16.5 15C16.5 17 14.5 18.5 12 18.5C9.2 18.5 7.5 17 7.5 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const ICON_DOC = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 3H14L19 8V21H6V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3V8H19" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13H15M9 16.5H15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const ICON_LOGIN = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 4H6C4.9 4 4 4.9 4 6V18C4 19.1 4.9 20 6 20H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8L19 12L15 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 12H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const ICON_ANALYZE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"/><path d="M20 20L15.5 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const ICON_REPEAT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12C4 8 7 5 11 5H18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M15 2L18 5L15 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12C20 16 17 19 13 19H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 22L6 19L9 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_LOCK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function iconRow(svg, text){ return '<div class="icon-list-row"><span class="icon-wrap">'+svg+'</span><span>'+text+'</span></div>'; }
+function iconList(rows){ return '<div class="icon-list">'+rows.join('')+'</div>'; }
+
+function vendorScreen(opts){
+  return '<div class="vendor-mode">'
+    + '<h2 class="app-h1">'+opts.title+'</h2>'
+    + '<p class="app-sub">'+opts.sub+'</p>'
+    + (opts.body||'')
+    + '<div class="spacer"></div>'
+    + (opts.primaryLabel ? '<button class="vendor-btn" data-go="'+opts.primaryGo+'" data-params=\''+JSON.stringify(opts.primaryParams||{})+'\'>'+opts.primaryLabel+'</button>' : '')
+    + (opts.failGo ? '<button class="vendor-fail-link" data-go="'+opts.failGo+'" data-params=\''+JSON.stringify(opts.failParams||{})+'\'>'+opts.failLabel+'</button>' : '')
+    + '</div>';
+}
+
+/* =========================================================================
+   SCREEN RENDER FUNCTIONS
+========================================================================= */
+const SCREENS = {
+
+  welcome:(p)=> `
+    <h2 class="app-h1">Don't wait for payday</h2>
+    <p class="app-sub" style="margin-bottom:6px;">Get up to $700 from money you've already earned.</p>
+    ${iconList([
+      iconRow(ICON_PERCENT, '0% interest'),
+      iconRow(ICON_SHIELD, 'No credit pull, ever'),
+      iconRow(ICON_DOLLAR, '$10 verification fee* <span style="font-size:12px;color:var(--text-muted);">(includes your Detailed Income Report)</span>'),
+    ])}
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="employed">See what you qualify for</button>
+    <button class="btn-text" data-go="verify" data-params='{}'>Already a Sarf member? Sign in</button>
+    <p class="form-footnote">*$10 for your first loan. $20 for each loan after that.</p>
+  `,
+
+  employed:(p)=> p.declined ? `
+    ${iconRing('warn', SVG_X)}
+    <div class="centered">
+      <h2 class="app-h1">We can't continue right now</h2>
+      <p class="app-sub">Sarf currently requires active employment and a connected payroll account to offer financing.</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-secondary" data-action="employed-reset">Go back</button>
+  ` : `
+    <h2 class="app-h1">First things first, are you working?</h2>
+    <p class="app-sub">Income is required to get a Sarf loan. We will verify directly from your payroll.</p>
+    <div class="options" role="radiogroup" aria-label="Are you currently working?">
+      <div class="option-card" data-action="employed-yes" role="radio" aria-checked="false" tabindex="0"><span class="label">Yes</span><div class="radio"></div></div>
+      <div class="option-card" data-action="employed-no" role="radio" aria-checked="false" tabindex="-1"><span class="label">No</span><div class="radio"></div></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="employed-continue">Continue</button>
+  `,
+
+  yourinfo:(p)=> `
+    <h2 class="app-h1">Nice! Let's get your info</h2>
+    <p class="app-sub">We use this information for verification purposes.</p>
+    <div class="field-row">
+      <div class="field" id="wrap-first"><input type="text" id="f-first" /><label for="f-first">First name</label></div>
+      <div class="field" id="wrap-last"><input type="text" id="f-last" /><label for="f-last">Last name</label></div>
+    </div>
+    <div class="field" id="wrap-email"><input type="email" id="f-email" /><label for="f-email">Email address</label></div>
+    <div class="field" id="wrap-phone"><input type="tel" id="f-phone" /><label for="f-phone">Mobile number</label></div>
+    <p class="security-note">${ICON_LOCK}<span>Your information is securely encrypted</span></p>
+    <div class="consent">
+      <input type="checkbox" id="f-tcpa" />
+      <p>By continuing, I agree to receive automated texts from Sarf about my application and loan. Msg &amp; data rates may apply.</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="yourinfo-continue" data-go="verify">Continue</button>
+  `,
+
+  verify:(p)=> `
+    <h2 class="app-h1">Verify your code</h2>
+    <p class="app-sub">Enter the 5-digit code we just texted you.</p>
+    <div class="field"><input type="text" id="f-code" maxlength="5" inputmode="numeric" /><label for="f-code">5-digit code</label></div>
+    <button class="btn-text" id="resend-link" style="text-align:left;padding-left:2px;">Resend code</button>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="verify-continue" data-go="payroll-interstitial">Verify</button>
+  `,
+
+  'payroll-interstitial':(p)=> `
+    <h2 class="app-h1">Connecting to your payroll</h2>
+    ${iconList([
+      iconRow(ICON_LOGIN, 'You sign into your payroll account'),
+      iconRow(ICON_ANALYZE, 'Sarf analyzes your payroll data to qualify you.'),
+      iconRow(ICON_REPEAT, 'Your loan is repaid directly from payroll.'),
+    ])}
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="payroll-vendor">Continue</button>
+    <p class="partner-note">In partnership with Pinwheel, Inc.</p>
+  `,
+
+  'payroll-vendor':(p)=> vendorScreen({
+    vendor:'Pinwheel', title:'Find your employer', sub:'Search by payroll provider or employer to connect your account.',
+    body:'<input type="text" class="vendor-search" id="provider-search" placeholder="Search by payroll provider or employer" />'
+      + '<div id="provider-list">'
+      + PROVIDERS.map(pr=>'<div class="vendor-card" role="button" tabindex="0" aria-label="'+pr.name+', sign in with your '+pr.name+' credentials" data-name="'+pr.name.toLowerCase()+'" data-go="payroll-auth" data-params=\'{"provider":"'+pr.name+'"}\'><div class="vc-row"><div class="provider-badge" style="background:'+pr.color+';">'+pr.initials+'</div><span>'+pr.name+'<small>Sign in with your '+pr.name+' credentials</small></span></div></div>').join('')
+      + '</div><p class="vendor-empty" id="provider-empty" style="display:none;">No providers match your search.</p>',
+  }),
+
+  'payroll-auth':(p)=> vendorScreen({
+    vendor:'Pinwheel', title:'Log in to '+(p.provider||'your payroll provider'), sub:'Enter your '+(p.provider||'payroll')+' credentials to connect your account.',
+    body:'<input type="text" class="vendor-field" placeholder="Username" />'
+      + '<input type="password" class="vendor-field" placeholder="Password" />',
+    primaryLabel:'Log In', primaryGo:'processing'
+  }),
+
+  processing:(p)=> `
+    <div class="centered">
+      <div class="vendor-spinner" style="border-color:#2b2723;border-top-color:#FFB343;"></div>
+      <h2 class="app-h1">Putting your offer together...</h2>
+      <div class="proc-steps" id="processing-subtitles"></div>
+    </div>
+    <div class="spacer"></div>
+  `,
+
+  offer:(p)=> `
+    <div class="modal-overlay" id="fee-modal" style="display:none;">
+      <div class="modal-card">
+        <h3>What's the verification fee for?</h3>
+        <p>It covers a quick check of your employer and income — the same info we use to size your offer. You'll get the full picture in your Detailed Income Report, right in your Sarf portal.</p>
+        <button class="btn-primary active" id="fee-modal-close">Got it</button>
+      </div>
+    </div>
+    <h2 class="app-h1">How much do you need?</h2>
+    <p class="app-sub" style="margin-top:-10px;">You're eligible to borrow between $${fmt(MIN_LOAN)} and $${fmt(MAX_LOAN)} … and it's yours in minutes!</p>
+    <div class="amount-display">$<span id="amt-val">${fmt(STATE.requestedAmount)}</span></div>
+    <input type="range" id="amt-slider" class="amt-range" min="${MIN_LOAN}" max="${MAX_LOAN}" step="10" value="${STATE.requestedAmount}" />
+    <div class="range-labels"><span>$${fmt(MIN_LOAN)}</span><span>$${fmt(MAX_LOAN)}</span></div>
+    <div class="flat-rows" id="offer-math" style="margin-top:14px;">
+      <div class="flat-row"><span class="flat-label">You borrow</span><span class="flat-value" id="borrow-amt">$${fmt(STATE.requestedAmount+fee())}</span></div>
+      <div class="flat-row"><span class="flat-label">Verification fee</span><span class="flat-value" id="fee-amt">$${fee()}</span></div>
+      <div class="flat-divider"></div>
+      <div class="flat-row total"><span class="flat-label">You Get</span><span class="flat-value" id="net-amt">$${fmt(STATE.requestedAmount)}</span></div>
+    </div>
+    <button class="btn-text" id="fee-info-link" style="text-align:left;padding-left:2px;margin-top:-8px;">What's the verification fee for?</button>
+    <p class="paid-in-full-note">Paid in full on: <b id="payday-date"></b></p>
+    <div class="spacer"></div>
+    <button class="btn-primary active" id="offer-continue" data-go="review">Continue</button>
+    ${trustLine('Bank-grade encryption. No credit pull.')}
+  `,
+
+  review:(p)=> {
+    const today = new Date();
+    const payDate = addDays(today, 17);
+    const f = fee();
+    const net = STATE.requestedAmount;
+    const borrow = STATE.requestedAmount + f;
+    return `
+    <h2 class="app-h1">Almost there, just review and sign</h2>
+    <div class="offer-card" style="padding:2px 14px;">
+      <div class="offer-row" style="padding:12px 0;">
+        <div class="offer-row-head"><span class="offer-name">You borrow</span><span class="offer-amt">$${fmt(borrow)}</span></div>
+      </div>
+      <div class="offer-divider"></div>
+      <div class="offer-row" style="padding:12px 0;">
+        <div class="offer-row-head"><span class="offer-name">Verification fee</span><span class="offer-amt">$${fmt(f)}</span></div>
+      </div>
+      <div class="offer-divider"></div>
+      <div class="offer-row" style="padding:12px 0;">
+        <div class="offer-row-head"><span class="offer-name">You Get</span><span class="offer-amt" style="color:var(--green);font-size:23px;">$${fmt(net)}</span></div>
+      </div>
+      <div class="total-row">
+        <span class="offer-name">Paid in full</span>
+        <span class="offer-amt" style="font-size:15px;">${fmtDate(payDate)}</span>
+      </div>
+    </div>
+    <p class="app-sub" style="margin-top:-6px;">Your full loan amount lands on a Sarf debit card, paid back in one shot on your next paycheck.</p>
+    <div class="contract-box" id="contract-box">
+      <h4>Sarf EWA Loan Agreement</h4>
+      <p>This agreement covers the Earned Wage Access advance described above, funded through Stearns Bank and disbursed to your Sarf card.</p>
+      <h4>Earned Wage Access</h4>
+      <p>This is an advance on wages you have already earned during your current pay period — it is not a loan. Sarf charges a flat fee of $${fmt(f)} for this advance. You will receive $${fmt(net)} on your Sarf card, and the full amount owed — $${fmt(borrow)}, your advance plus the verification fee — will be deducted in a single transaction from your next paycheck.</p>
+      <h4>Security &amp; Repayment</h4>
+      <p>This loan will be repaid automatically via payroll deduction on your next payday. No security interest is taken against any property. A late fee may apply if a scheduled deduction fails; there is no penalty for paying off early.</p>
+      <p style="color:var(--text-faint);">— end of agreement —</p>
+    </div>
+    <p class="scroll-hint" id="scroll-hint">↓ scroll to the bottom to continue ↓</p>
+    <p class="sig-line">By typing your full legal name below, you agree to the terms of this Loan Agreement dated ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}.</p>
+    <div class="field filled"><input type="text" id="f-sig" /><label for="f-sig">Type your full legal name to sign</label></div>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="sign-continue" data-go="payments-interstitial">Sign &amp; Continue</button>
+  `;
+  },
+
+  'payments-interstitial':(p)=> `
+    <div class="centered">
+      <div class="vendor-spinner"></div>
+      <h2 class="app-h1">Locking in auto pay</h2>
+      <p class="app-sub">Auto pay keeps things simple — it's required to finalize your loan.</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="payments-vendor">Continue</button>
+  `,
+
+  'payments-vendor':(p)=> vendorScreen({
+    vendor:'Pinwheel', title:'Pay by Paycheck', sub:'Confirm your repayment amount',
+    body:'<div class="vendor-card" style="cursor:default;"><span>$'+fmt(STATE.requestedAmount+fee())+' deduction on your next paycheck<small>Your loan amount plus the verification fee</small></span></div>',
+    primaryLabel:'Continue (confirmed)', primaryGo:'allset'
+  }),
+
+  allset:(p)=> {
+    const repayDate = addDays(new Date(), 17);
+    return `
+    ${iconRing('good', SVG_CHECK)}
+    <div class="centered">
+      <h2 class="app-h1">You're all set!</h2>
+      <p class="app-sub">Here's your repayment details.</p>
+    </div>
+    <div class="stat-rows" style="margin-bottom:18px;">
+      <div class="stat-row"><span>Loan Amount</span><span class="stat-value">$${fmt(STATE.requestedAmount+fee())}</span></div>
+      <div class="stat-row"><span>Repayment date</span><span class="stat-value">${fmtDate(repayDate)}</span></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="congrats">Continue</button>
+  `;
+  },
+
+  congrats:(p)=> {
+    const net = STATE.requestedAmount;
+    const first = (STATE.fullName || 'Priya Shah').split(' ')[0];
+    return `
+    <div class="centered">
+      <h2 class="app-h1">You did it, ${first}!</h2>
+      <p class="app-sub">Your money is available - right now.</p>
+      <div class="amount-display" style="margin:2px 0 14px;">$<span>${fmt(net)}</span></div>
+      <p class="app-sub" style="margin-top:-10px;margin-bottom:16px;">has been loaded onto your Sarf card.</p>
+    </div>
+    <div class="vcard">
+      <div class="vcard-top"><span class="vcard-logo">SARF</span><div class="vcard-chip"></div></div>
+      <div class="vcard-num" id="vcard-num">•••• •••• •••• 4471</div>
+      <div class="vcard-bottom">
+        <div>Card holder<b>${(STATE.fullName || 'Priya Shah').toUpperCase()}</b></div>
+        <div>Expires<b id="vcard-exp">••/••</b></div>
+        <div>CVV<b id="vcard-cvv">•••</b></div>
+      </div>
+    </div>
+    <button class="btn-secondary" id="reveal-btn" style="margin-top:0;margin-bottom:14px;">Reveal card details</button>
+    <div class="wallet-row">
+      <div class="wallet-btn">+ Apple Wallet</div>
+      <div class="wallet-btn">+ Google Wallet</div>
+    </div>
+    <p class="app-sub" style="margin-bottom:6px;">A physical card is on its way — arriving in 5–7 business days.</p>
+    <button class="btn-text" style="text-align:left;padding-left:2px;">Sign in to see your Sarf Score and Income Report</button>
+    <div class="spacer"></div>
+    <button class="btn-secondary" data-go="welcome" data-params='{"replace":true}'>Done — restart from Intro</button>
+  `;
+  },
+};
+
+/* =========================================================================
+   ROUTER
+========================================================================= */
+let employedChoice = null;
+let activeTimer = null;
+let activeInterval = null;
+function clearTimers(){
+  if(activeTimer){ clearTimeout(activeTimer); activeTimer = null; }
+  if(activeInterval){ clearInterval(activeInterval); activeInterval = null; }
+}
+
+function go(id, params){
+  params = params || {};
+  if(params.replace){ STATE.history = []; }
+  else { STATE.history.push({ id: current, params: currentParams }); }
+  current = id;
+  currentParams = params;
+  renderScreen();
+}
+function goBack(){
+  if(STATE.history.length === 0) return;
+  const prev = STATE.history.pop();
+  current = prev.id;
+  currentParams = prev.params;
+  renderScreen();
+}
+
+function renderScreen(){
+  employedChoice = null;
+  clearTimers();
+  const step = STEP_OF[current];
+  const noBar = NO_BAR.has(current) || !step;
+
+  document.getElementById('back-btn').classList.toggle('hidden', STATE.history.length === 0);
+  document.getElementById('step-label').textContent = noBar ? '' : ('Step '+step+' of 11');
+  document.getElementById('progress-track').style.display = noBar ? 'none' : 'block';
+  document.getElementById('progress-fill').style.width = noBar ? '0%' : ((step/11)*100)+'%';
+
+  const body = document.getElementById('screen-body');
+  body.scrollTop = 0;
+  body.innerHTML = SCREENS[current] ? SCREENS[current](currentParams) : '<p>Screen not found: '+current+'</p>';
+  mountExtra(current);
+
+}
+
+/* per-screen extra wiring after innerHTML is set */
+function mountExtra(id){
+  if(id === 'processing'){
+    const subtitles = [
+      'Pulling in your employer details',
+      'Mapping your pay cycle',
+      'Finalizing your offer'
+    ];
+    const container = document.getElementById('processing-subtitles');
+    function addStep(i){
+      if(!container) return;
+      const row = document.createElement('div');
+      row.className = 'proc-step';
+      row.innerHTML = '<span class="proc-check">'+SVG_CHECK_MINI+'</span><span>'+subtitles[i]+'</span>';
+      container.appendChild(row);
+    }
+    addStep(0);
+    let idx = 0;
+    activeInterval = setInterval(()=>{
+      idx++;
+      if(idx < subtitles.length){ addStep(idx); }
+      else { clearInterval(activeInterval); activeInterval = null; }
+    }, 5000);
+    activeTimer = setTimeout(()=> go('offer', {}), 15000);
+  }
+  if(id === 'payroll-vendor'){
+    const search = document.getElementById('provider-search');
+    const list = document.getElementById('provider-list');
+    const empty = document.getElementById('provider-empty');
+    search.addEventListener('input', ()=>{
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+      list.querySelectorAll('.vendor-card').forEach(card=>{
+        const match = card.dataset.name.includes(q);
+        card.style.display = match ? 'flex' : 'none';
+        if(match) visible++;
+      });
+      empty.style.display = visible === 0 ? 'block' : 'none';
+    });
+  }
+  if(id === 'yourinfo'){
+    const first=document.getElementById('f-first'), last=document.getElementById('f-last'),
+          email=document.getElementById('f-email'), phone=document.getElementById('f-phone'),
+          tcpa=document.getElementById('f-tcpa'), cont=document.getElementById('yourinfo-continue');
+    function validate(){
+      const ok = first.value.trim() && last.value.trim() && email.value.trim() && phone.value.trim() && tcpa.checked;
+      cont.classList.toggle('active', !!ok);
+      STATE.fullName = (first.value.trim()+' '+last.value.trim()).trim();
+    }
+    [first,last,email,phone].forEach(el=>{
+      el.addEventListener('input', ()=>{ el.closest('.field').classList.toggle('filled', el.value.trim()!==''); validate(); });
+    });
+    tcpa.addEventListener('change', validate);
+    validate();
+  }
+  if(id === 'verify'){
+    const code=document.getElementById('f-code'), cont=document.getElementById('verify-continue'), resend=document.getElementById('resend-link');
+    code.addEventListener('input', ()=>{ cont.classList.toggle('active', code.value.trim().length===5); });
+    resend.addEventListener('click', ()=>{ resend.textContent='Code sent!'; });
+  }
+  if(id === 'offer'){
+    const slider=document.getElementById('amt-slider');
+    const payday = addDays(new Date(), 17);
+    document.getElementById('payday-date').textContent = fmtDate(payday);
+    function update(){
+      const total = parseInt(slider.value,10);
+      STATE.requestedAmount = total;
+      document.getElementById('amt-val').textContent = fmt(total);
+      document.getElementById('borrow-amt').textContent = '$'+fmt(total+fee());
+      document.getElementById('fee-amt').textContent = '$'+fmt(fee());
+      document.getElementById('net-amt').textContent = '$'+fmt(total);
+      const pct = ((total-slider.min)/(slider.max-slider.min))*100;
+      slider.style.background = 'linear-gradient(to right, var(--gold) 0%, var(--gold) '+pct+'%, var(--surface-2) '+pct+'%, var(--surface-2) 100%)';
+    }
+    slider.addEventListener('input', update);
+    update();
+    const feeModal = document.getElementById('fee-modal');
+    const feeInfoLink = document.getElementById('fee-info-link');
+    const feeModalClose = document.getElementById('fee-modal-close');
+    feeInfoLink.addEventListener('click', ()=>{ feeModal.style.display = 'flex'; });
+    feeModalClose.addEventListener('click', ()=>{ feeModal.style.display = 'none'; });
+    feeModal.addEventListener('click', (e)=>{ if(e.target === feeModal) feeModal.style.display = 'none'; });
+  }
+  if(id === 'review'){
+    STATE.scrolledToBottom = false;
+    const box=document.getElementById('contract-box'), hint=document.getElementById('scroll-hint'),
+          sig=document.getElementById('f-sig'), cont=document.getElementById('sign-continue');
+    function validate(){
+      // Signature only needs to be non-empty; it is no longer matched against the
+      // first/last name captured on 7.3. Scroll-to-bottom is still required.
+      const signed = sig.value.trim().length > 0;
+      cont.classList.toggle('active', STATE.scrolledToBottom && signed);
+    }
+    box.addEventListener('scroll', ()=>{
+      if(box.scrollTop + box.clientHeight >= box.scrollHeight - 4){ STATE.scrolledToBottom = true; hint.classList.add('done'); validate(); }
+    });
+    sig.addEventListener('input', validate);
+    validate();
+  }
+  if(id === 'congrats'){
+    const btn=document.getElementById('reveal-btn'), num=document.getElementById('vcard-num'),
+          exp=document.getElementById('vcard-exp'), cvv=document.getElementById('vcard-cvv');
+    STATE.revealed = false;
+    btn.addEventListener('click', ()=>{
+      STATE.revealed = !STATE.revealed;
+      if(STATE.revealed){ num.textContent='4000 1218 3492 4471'; exp.textContent='09/29'; cvv.textContent='412'; btn.textContent='Hide card details'; }
+      else { num.textContent='•••• •••• •••• 4471'; exp.textContent='••/••'; cvv.textContent='•••'; btn.textContent='Reveal card details'; }
+    });
+  }
+}
+
+function handleAction(action){
+  if(action === 'employed-yes' || action === 'employed-no'){
+    employedChoice = action === 'employed-yes' ? 'yes' : 'no';
+    document.querySelectorAll('#screen-body .option-card').forEach(c=>{
+      const isSel = c.dataset.action === action;
+      c.classList.toggle('selected', isSel);
+      c.setAttribute('aria-checked', String(isSel));
+      c.tabIndex = isSel ? 0 : -1;
+    });
+    const cont = document.getElementById('employed-continue');
+    if(cont) cont.classList.add('active');
+  }
+  if(action === 'employed-reset'){
+    currentParams = {}; employedChoice = null; renderScreen();
+  }
+}
+
+document.getElementById('screen-body').addEventListener('click', function(e){
+  const btn = e.target.closest('button, .option-card, .vendor-card');
+  if(!btn) return;
+  if(btn.classList.contains('btn-primary') && !btn.classList.contains('active')) return;
+  if(btn.id === 'employed-continue'){
+    if(employedChoice === 'yes'){ go('yourinfo', {}); }
+    else if(employedChoice === 'no'){ currentParams = { declined:true }; renderScreen(); }
+    return;
+  }
+  if(btn.dataset.action){ handleAction(btn.dataset.action); return; }
+  if(btn.dataset.go){ go(btn.dataset.go, btn.dataset.params ? JSON.parse(btn.dataset.params) : {}); return; }
+});
+
+document.getElementById('back-btn').addEventListener('click', goBack);
+
+/* ── Keyboard layer (additive) ──────────────────────────────────────────────
+   The prototype implements the employment choices, the provider cards and the
+   back control as non-semantic <div>s. A <div> does not synthesise a click from
+   Enter/Space, so the handlers below forward to each element's existing click
+   path. Because that synthesis is one-way, nothing double-fires, and none of
+   the prototype's own handlers, markup order, styling or calculations change.
+   ────────────────────────────────────────────────────────────────────────── */
+function pvIsActivationKey(e){ return e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'; }
+
+document.getElementById('screen-body').addEventListener('keydown', function(e){
+  const el = e.target.closest('[role="radio"], [role="button"]');
+  if(!el) return;
+
+  if(pvIsActivationKey(e)){
+    e.preventDefault();               // Space would otherwise scroll the page
+    el.click();                       // reuse the existing delegated click handler
+    return;
+  }
+
+  /* Roving arrow-key navigation inside the employment radiogroup. */
+  if(el.getAttribute('role') !== 'radio') return;
+  if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].indexOf(e.key) === -1) return;
+  e.preventDefault();
+  const group = Array.prototype.slice.call(
+    el.closest('[role="radiogroup"]').querySelectorAll('[role="radio"]'));
+  const step = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : -1;
+  const next = group[(group.indexOf(el) + step + group.length) % group.length];
+  next.focus();
+  next.click();                       // arrow keys move and select, per the radiogroup pattern
+});
+
+document.getElementById('back-btn').addEventListener('keydown', function(e){
+  if(pvIsActivationKey(e)){ e.preventDefault(); goBack(); }
+});
+
+
+/* =========================================================================
+   INIT
+========================================================================= */
+(function init(){
+  renderScreen();
+})();
+})();
+
+/* Pay-period progress fill — mirrors production's load-triggered animation (#p-bar-fill) */
+window.addEventListener('load', function(){
+  var fill = document.getElementById('pv-p-bar-fill');
+  if (!fill) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { fill.style.width = '62%'; return; }
+  setTimeout(function(){ fill.style.width = '62%'; }, 1000);
+});
+
+</script>
+</body>
+</html>
