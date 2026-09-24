@@ -118,6 +118,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;height:60px;display:flex;alig
 .nav-link{font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text-secondary);text-decoration:none;position:relative;padding:4px 0;transition:color var(--transition-base);white-space:nowrap;}
 .nav-link:hover{color:var(--text-primary);}
 .nav-link.active{color:var(--gold);}
+.pv-nav-waitlist{background:var(--gold-glow);border-color:var(--gold-border-strong);color:var(--gold-light);font-weight:700;}
+.pv-nav-waitlist:hover{background:rgba(245,168,0,0.18);}
 .nav-link.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold);border-radius:2px;}
 @media(max-width:980px){.nav-center{display:none;}}
 .contact-btn{background:rgba(255,255,255,0.04);border:1px solid var(--gold-border);color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
@@ -204,7 +206,7 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
    incomplete final row (3+2, or 2+2+1) stays centred rather than orphaning a
    left-aligned card. Basis is computed from the gap so rows stay flush. */
 .strip-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
-.strip-card{flex:0 1 calc((100% - 64px) / 5);min-width:0;border-radius:var(--radius-md);padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);backdrop-filter:blur(10px);transition:transform var(--transition-base),box-shadow var(--transition-base),border-color var(--transition-base);position:relative;overflow:hidden;}
+.strip-card{flex:0 1 calc((100% - 48px) / 4);min-width:0;border-radius:var(--radius-md);padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);backdrop-filter:blur(10px);transition:transform var(--transition-base),box-shadow var(--transition-base),border-color var(--transition-base);position:relative;overflow:hidden;}
 .light .strip-card{background:rgba(255,255,255,0.7);}
 .strip-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 80% 60% at 50% 0%,var(--gold-glow-strong),transparent 70%);opacity:0;transition:opacity var(--transition-base);pointer-events:none;}
 .strip-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.25),0 0 0 1px var(--gold-border-strong);}
@@ -213,14 +215,22 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
 .strip-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .strip-label{font-size:20px;font-weight:700;color:var(--text-primary);font-family:'DM Sans',sans-serif;}
 .strip-sub{font-size:12px;color:var(--text-muted);margin-top:2px;}
-@media(max-width:1200px){.strip-card{flex-basis:calc((100% - 32px) / 3);}}
-@media(max-width:900px){.strip-card{flex-basis:calc((100% - 16px) / 2);}}
+@media(max-width:1100px){.strip-card{flex-basis:calc((100% - 16px) / 2);}}
 @media(max-width:480px){.strip-card{flex-basis:100%;}}
 
 /* SHARED SECTION STYLES, verbatim */
 .sec-badge{display:inline-flex;align-items:center;border:1px solid var(--gold-border);background:var(--gold-glow);color:var(--gold-light);font-size:11px;border-radius:999px;padding:4px 14px;font-family:'DM Sans',sans-serif;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:16px;}
 .sec-heading{font-size:clamp(28px,3.5vw,36px);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:12px;font-family:'DM Sans',sans-serif;letter-spacing:-0.01em;}
 .gold-word{background-image:linear-gradient(135deg,var(--gold) 0%,var(--gold-bright) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+/* status pill, copied verbatim from production index.html (.ct-badge / .ct-badge.live) */
+.ct-badge{display:inline-block;align-self:flex-start;white-space:nowrap;background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.3);color:var(--gold);font-size:12px;border-radius:999px;padding:2px 8px;font-weight:500;}
+.ct-badge.live{background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.4);color:#22c55e;}
+.hero-status{display:inline-block;margin-bottom:16px;animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 0.35s both;}
+.hero-points{list-style:none;padding:0;margin:0 0 30px;max-width:32rem;animation:fadeUp 1.1s cubic-bezier(0.16,1,0.3,1) 1.05s both;}
+.hero-points li{position:relative;padding-left:24px;margin-bottom:10px;font-size:16px;line-height:1.6;color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
+.hero-points li::before{content:'';position:absolute;left:4px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--gold);}
+@media(max-width:900px){.hero-points{margin-left:auto;margin-right:auto;text-align:left;}}
+.sec-body{font-size:16.5px;line-height:1.8;color:var(--text-secondary);text-align:center;max-width:820px;margin:0 auto;font-family:'DM Sans',sans-serif;}
 .sec-intro{font-size:16px;color:var(--text-muted);text-align:center;max-width:680px;margin:0 auto 48px;line-height:1.75;}
 
 /* COMPARE SECTION, from production index.html */
@@ -229,9 +239,9 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
 .compare-inner{max-width:1280px;margin:0 auto;text-align:center;position:relative;}
 .compare-table-wrap{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--gold-border);background:var(--bg-card);box-shadow:var(--shadow-card),0 0 0 1px rgba(245,168,0,0.04);}
 .pv-ct-scroll{overflow-x:auto;}
-.ct-head{display:grid;grid-template-columns:1.15fr 1.95fr 1.3fr 1.2fr 1.4fr;background:rgba(245,168,0,0.06);border-bottom:1px solid var(--gold-border);min-width:880px;}
+.ct-head{display:grid;grid-template-columns:1.45fr 1.15fr 1.1fr 1.35fr 1.05fr 1.05fr;background:rgba(245,168,0,0.06);border-bottom:1px solid var(--gold-border);min-width:960px;}
 .ct-head>div{display:flex;align-items:center;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);font-family:'DM Sans',sans-serif;}
-.ct-row{display:grid;grid-template-columns:1.15fr 1.95fr 1.3fr 1.2fr 1.4fr;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s;min-width:880px;}
+.ct-row{display:grid;grid-template-columns:1.45fr 1.15fr 1.1fr 1.35fr 1.05fr 1.05fr;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s;min-width:960px;}
 .light .ct-row{border-bottom:1px solid rgba(0,0,0,0.04);}
 .ct-row:last-of-type{border-bottom:none;}
 .ct-row.sarf{background:rgba(245,168,0,0.05);border-left:3px solid var(--gold);}
@@ -251,7 +261,7 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
    screens rather than collapsing. The hint appears only at the widths where that
    scroll actually exists (table min-width 880px + section padding). */
 .ct-scroll-hint{display:none;}
-@media(max-width:959px){.ct-scroll-hint{display:block;font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:0 0 12px;font-family:'DM Sans',sans-serif;}}
+@media(max-width:1039px){.ct-scroll-hint{display:block;font-size:11.5px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted);text-align:center;margin:0 0 12px;font-family:'DM Sans',sans-serif;}}
 .ct-note{max-width:820px;margin:18px auto 0;font-size:13px;line-height:1.7;color:var(--text-muted);text-align:center;font-family:'DM Sans',sans-serif;}
 .ct-claim{max-width:820px;margin:24px auto 0;font-size:15px;line-height:1.7;color:var(--text-primary);text-align:center;font-family:'DM Sans',sans-serif;font-weight:500;}
 .ct-foot-row{padding:12px 20px;font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--gold-border);font-style:italic;text-align:left;font-family:'DM Sans',sans-serif;line-height:1.6;}
@@ -259,7 +269,14 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
 /* WHY SARF SECTION, verbatim */
 .why-sec{padding:80px 40px;background:linear-gradient(180deg,var(--bg-deep) 0%,var(--bg-card) 100%);}
 .why-inner{max-width:1280px;margin:0 auto;text-align:center;}
-.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:left;}
+/* Flex + justify-content:center rather than a fixed grid, so an incomplete
+   final row stays centred instead of orphaning a left-aligned card. */
+.feat-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;text-align:left;}
+.feat-grid.cols-3>.feat{flex:0 1 calc((100% - 32px) / 3);}
+.feat-grid.cols-3>.feat,.feat-grid>.feat{min-width:0;}
+.feat-grid:not(.cols-3)>.feat{flex:0 1 calc((100% - 32px) / 3);}
+@media(max-width:980px){.feat-grid>.feat{flex-basis:calc((100% - 16px) / 2)!important;}}
+@media(max-width:700px){.feat-grid>.feat{flex-basis:100%!important;}}
 @media(max-width:900px){.feat-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:480px){.feat-grid{grid-template-columns:1fr;}}
 .feat{border-radius:var(--radius-lg);padding:28px;background:rgba(255,255,255,0.025);border:1px solid var(--gold-border);backdrop-filter:blur(12px);transition:transform var(--transition-base),box-shadow var(--transition-base),border-color var(--transition-base);position:relative;overflow:hidden;}
@@ -295,6 +312,9 @@ h1 em{display:block;font-style:normal;background-image:linear-gradient(135deg,va
 .bottom::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:700px;height:400px;pointer-events:none;background:radial-gradient(ellipse at center bottom,rgba(245,168,0,0.07) 0%,transparent 65%);}
 .bottom h2{font-size:clamp(26px,4vw,50px);color:var(--text-primary);margin-bottom:12px;font-weight:700;font-family:'DM Sans',sans-serif;position:relative;letter-spacing:-0.01em;}
 .bottom p{font-size:14px;color:var(--text-muted);margin-bottom:32px;line-height:1.75;position:relative;}
+.bottom-points{list-style:none;padding:0;margin:0 auto 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;max-width:760px;}
+.bottom-points li{position:relative;padding-left:20px;font-size:14.5px;color:var(--text-secondary);font-family:'DM Sans',sans-serif;}
+.bottom-points li::before{content:'';position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
 .bottom-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:#07090E;font-weight:700;font-size:14px;padding:16px 40px;border-radius:16px;border:none;cursor:pointer;box-shadow:0 4px 24px rgba(245,168,0,0.4);transition:box-shadow .2s,transform .2s;font-family:'DM Sans',sans-serif;position:relative;}
 .bottom-btn:hover{box-shadow:0 8px 36px rgba(245,168,0,0.55);transform:translateY(-2px);}
 .bottom-btn:active{transform:translateY(0) scale(0.98);}
@@ -336,6 +356,13 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
 .submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:#07090E;font-weight:700;font-size:14px;border:none;border-radius:12px;cursor:pointer;box-shadow:0 4px 20px rgba(245,168,0,0.35);font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .2s;}
 .submit-btn:hover{transform:scale(1.02);}
 .submit-btn:active{transform:scale(.95);}
+/* loading affordance, copied from production index.html; keyframe renamed so it
+   cannot collide with the prototype's own spinner */
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;}
+.submit-spinner{width:16px;height:16px;border:2px solid rgba(0,0,0,0.2);border-top-color:#07090E;border-radius:50%;animation:pvBtnSpin .6s linear infinite;display:none;}
+@keyframes pvBtnSpin{to{transform:rotate(360deg);}}
+#pv-form-error{display:none;background:rgba(224,101,79,0.12);border:1px solid rgba(224,101,79,0.35);color:#e0654f;border-radius:10px;padding:10px 12px;font-size:12.5px;margin-bottom:12px;font-family:'DM Sans',sans-serif;}
+#pv-modal input[aria-invalid="true"],#pv-modal textarea[aria-invalid="true"]{border-color:#e0654f;}
 .modal-success{display:none;text-align:center;padding:40px 24px;}
 .success-icon{width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;}
 .success-icon svg{width:48px;height:48px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -355,14 +382,19 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
 /* Centres the original-size prototype application inside the website section.
    The application's own geometry is untouched; this only positions it. */
 .pv-app-shell{display:flex;justify-content:center;}
-
-/* ══════════════════ APPLICATION — transplanted from ══════════════════
-   ~/sarf-refs/Sarf_Application_Flow_Phase1_Prototype.html
+/* ══════════════════ APPLICATION ══════════════════
+   Transplanted from Jeff's updated clickable prototype,
+   "Sarf Application Flow — Phase 1 MVP Prototype (Copy).html".
    Every rule below is the prototype's own CSS, unchanged apart from being
-   scoped under #pv-app so website styles and prototype styles cannot collide.
-   :root -> #pv-app, body -> #pv-app, @keyframes spin/procFadeIn renamed
-   pvSpin/pvProcFadeIn to avoid clashing with the website's own keyframes. */
-#pv-app{
+   scoped under #pv-app so website styles and prototype styles cannot collide,
+   and two keyframes renamed (spin → pvSpin, procFadeIn → pvProcFadeIn) for the
+   same reason. The prototype's page chrome (masthead, reviewer panel, screen
+   map, page background) is not carried over.
+   ══════════════════════════════════════════════════════════════════════ */
+#pv-app{ line-height:normal; -webkit-font-smoothing:antialiased; }
+#pv-app *{ box-sizing:border-box; }
+#pv-app a{ color:inherit; }
+  #pv-app{
     --bg:#000000;
     --surface:#141210;
     --surface-2:#1c1a17;
@@ -379,267 +411,347 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
     --panel-bg:#0c0b0a;
     --panel-line:#242019;
   }
-#pv-app *{ box-sizing:border-box; }
-#pv-app{
-    color:var(--text);
-    font-family:'Red Hat Display', -apple-system, 'Segoe UI', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    /* Embedding-only reset: the website's body sets line-height:1.6, which is an
-       inherited property. The standalone prototype's body sets none, so its screens
-       render against the browser default. Restoring `normal` here reproduces the
-       prototype's own vertical rhythm exactly. */
-    line-height:normal;
-  }
-#pv-app a{ color:inherit; }
-/* Visible keyboard focus, in the prototype's own gold language. Outline-based so
-   it adds no layout box and cannot alter any measured dimension; :focus-visible
-   means it appears for keyboard users only, leaving mouse appearance unchanged. */
-#pv-app [role="radio"]:focus-visible,
-#pv-app [role="button"]:focus-visible,
-#pv-app .btn-primary:focus-visible,
-#pv-app .btn-secondary:focus-visible,
-#pv-app .btn-text:focus-visible,
-#pv-app .vendor-btn:focus-visible,
-#pv-app .vendor-fail-link:focus-visible,
-#pv-app input:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-#pv-app .phone{
+
+  #pv-app .phone{
     width:300px; aspect-ratio:375/812; border-radius:42px;
     border:1px solid #2a2620; background:var(--bg);
     box-shadow:0 40px 70px -30px rgba(0,0,0,.85), 0 0 0 6px #0a0908 inset;
     overflow:hidden; display:flex; flex-direction:column; position:relative;
   }
-#pv-app .statusbar{
+  #pv-app .statusbar{
     display:flex; justify-content:space-between; align-items:center;
     padding:14px 22px 4px; font-size:13px; font-weight:600; color:var(--text); flex-shrink:0;
     transition:color .2s ease;
   }
-#pv-app .statusbar .icons{ display:flex; gap:5px; align-items:center; }
-#pv-app .brand-row{
+  #pv-app .statusbar .icons{ display:flex; gap:5px; align-items:center; }
+  #pv-app .brand-row{
     display:flex; align-items:center; padding:10px 20px 0; flex-shrink:0;
   }
-#pv-app .brand-logo{ height:46px; width:auto; display:block; }
-#pv-app .navrow{ display:flex; align-items:center; justify-content:space-between; padding:8px 20px 0; flex-shrink:0; min-height:30px; }
-#pv-app .back-btn{
+  #pv-app .brand-logo{ height:46px; width:auto; display:block; }
+  #pv-app .navrow{ display:flex; align-items:center; justify-content:space-between; padding:8px 20px 0; flex-shrink:0; min-height:30px; }
+  #pv-app .back-btn{
     width:30px; height:30px; display:flex; align-items:center; justify-content:center;
     border-radius:50%; background:var(--surface); border:1px solid var(--hairline); cursor:pointer;
   }
-#pv-app .back-btn.hidden{ visibility:hidden; }
-#pv-app .step-label{ font-size:10.5px; font-weight:700; letter-spacing:.1em; color:var(--gold-2); text-transform:uppercase; }
-#pv-app .progress-track{ height:3px; border-radius:3px; background:var(--surface-2); margin:14px 20px 0; overflow:hidden; flex-shrink:0; transition:opacity .15s ease; }
-#pv-app .progress-fill{ height:100%; background:var(--gold); border-radius:3px; transition:width .25s ease; }
-#pv-app #screen-body{ flex:1; padding:24px 20px 20px; display:flex; flex-direction:column; overflow-y:auto; position:relative; }
-#pv-app #screen-body::-webkit-scrollbar{ width:0; }
-#pv-app .app-h1{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; line-height:1.2; margin:0 0 8px; letter-spacing:-.01em; }
-#pv-app .app-sub{ font-size:13.5px; line-height:1.5; color:var(--text-muted); margin:0 0 20px; }
-#pv-app .spacer{ flex:1; min-height:14px; }
-#pv-app .btn-primary{
+  #pv-app .back-btn.hidden{ visibility:hidden; }
+  #pv-app .step-label{ font-size:10.5px; font-weight:700; letter-spacing:.1em; color:var(--gold-2); text-transform:uppercase; }
+  #pv-app .progress-track{ height:3px; border-radius:3px; background:var(--surface-2); margin:14px 20px 0; overflow:hidden; flex-shrink:0; transition:opacity .15s ease; }
+  #pv-app .progress-fill{ height:100%; background:var(--gold); border-radius:3px; transition:width .25s ease; }
+  #pv-app #screen-body{ flex:1; padding:24px 20px 20px; display:flex; flex-direction:column; overflow-y:auto; position:relative; }
+  #pv-app #screen-body::-webkit-scrollbar{ width:0; }
+
+  #pv-app .app-h1{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; line-height:1.2; margin:0 0 8px; letter-spacing:-.01em; }
+  #pv-app .app-sub{ font-size:13.5px; line-height:1.5; color:var(--text-muted); margin:0 0 20px; }
+  #pv-app .spacer{ flex:1; min-height:14px; }
+
+  #pv-app .btn-primary{
     width:100%; padding:15px; border-radius:14px; border:none;
     font-family:'Red Hat Display', sans-serif; font-weight:700; font-size:15px; letter-spacing:.01em;
     background:var(--surface-2); color:var(--text-faint); cursor:not-allowed; transition:all .18s ease;
   }
-#pv-app .btn-primary.active{
+  #pv-app .btn-primary.active{
     background:linear-gradient(135deg,#F6C276,#FFB343); color:#241703; cursor:pointer;
     box-shadow:0 10px 24px -8px rgba(255,179,67,.5);
   }
-#pv-app .btn-secondary{
+  #pv-app .btn-secondary{
     width:100%; padding:13px; border-radius:14px; margin-top:10px;
     background:transparent; border:1px solid var(--hairline); color:var(--text-muted);
     font-family:'Red Hat Display',sans-serif; font-weight:600; font-size:13.5px; cursor:pointer;
   }
-#pv-app .btn-secondary:hover{ border-color:var(--text-faint); color:var(--text); }
-#pv-app .btn-text{
+  #pv-app .btn-secondary:hover{ border-color:var(--text-faint); color:var(--text); }
+  #pv-app .btn-text{
     background:none; border:none; color:var(--gold-2); font-family:'Red Hat Display',sans-serif;
     font-weight:600; font-size:13px; cursor:pointer; text-align:center; padding:10px;
   }
-#pv-app .btn-danger-link{ color:var(--red); }
-#pv-app .trust-line{ display:flex; align-items:center; gap:6px; margin-top:12px; font-size:11px; color:var(--text-faint); }
-/* option cards (yes/no, selects) */
-#pv-app .options{ display:flex; flex-direction:column; gap:10px; }
-#pv-app .option-card{
+  #pv-app .btn-danger-link{ color:var(--red); }
+
+  #pv-app .trust-line{ display:flex; align-items:center; gap:6px; margin-top:12px; font-size:11px; color:var(--text-faint); }
+
+  /* option cards (yes/no, selects) */
+  #pv-app .options{ display:flex; flex-direction:column; gap:10px; }
+  #pv-app .option-card{
     display:flex; align-items:center; gap:12px; padding:13px 14px; border-radius:14px;
     border:1px solid var(--hairline); background:var(--surface); cursor:pointer;
     transition:border-color .15s ease, background .15s ease;
   }
-#pv-app .option-card .label{ flex:1; font-size:14.5px; font-weight:500; }
-#pv-app .option-card .radio{
+  #pv-app .option-card .label{ flex:1; font-size:14.5px; font-weight:500; }
+  #pv-app .option-card .radio{
     width:19px; height:19px; border-radius:50%; border:1.5px solid var(--hairline);
     flex-shrink:0; transition:all .15s ease;
   }
-#pv-app .option-card.selected{ border-color:var(--gold); background:var(--gold-soft); }
-#pv-app .option-card.selected .radio{ background:var(--gold); border-color:var(--gold); }
-/* form fields */
-#pv-app .field{ position:relative; margin-bottom:14px; }
-#pv-app .field input{
+  #pv-app .option-card.selected{ border-color:var(--gold); background:var(--gold-soft); }
+  #pv-app .option-card.selected .radio{ background:var(--gold); border-color:var(--gold); }
+
+  /* form fields */
+  #pv-app .field{ position:relative; margin-bottom:14px; }
+  #pv-app .field input{
     width:100%; background:var(--surface); border:1px solid var(--hairline); border-radius:12px;
     padding:21px 14px 8px; color:var(--text); font-family:'Red Hat Display', sans-serif; font-size:14.5px;
     transition:border-color .15s ease, box-shadow .15s ease;
   }
-#pv-app .field input::placeholder{ color:transparent; }
-#pv-app .field label{
+  #pv-app .field input::placeholder{ color:transparent; }
+  #pv-app .field label{
     position:absolute; left:14px; top:15px; font-size:14.5px; color:var(--text-faint);
     pointer-events:none; transition:all .15s ease; font-family:'Red Hat Display', sans-serif;
   }
-#pv-app .field.filled label,#pv-app .field input:focus ~ label{
+  #pv-app .field.filled label,
+#pv-app .field input:focus ~ label{
     top:7px; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-2);
   }
-#pv-app .field input:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
-#pv-app .field-row{ display:flex; gap:10px; }
-#pv-app .field-row .field{ flex:1; }
-#pv-app .field-hint{ font-size:11px; color:var(--text-faint); margin:-8px 0 14px; }
-#pv-app .consent{ display:flex; gap:9px; align-items:flex-start; margin:2px 0 16px; }
-#pv-app .consent input[type="checkbox"]{
+  #pv-app .field input:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
+  #pv-app .field-row{ display:flex; gap:10px; }
+  #pv-app .field-row .field{ flex:1; }
+  #pv-app .field-hint{ font-size:11px; color:var(--text-faint); margin:-8px 0 14px; }
+
+  #pv-app .consent{ display:flex; gap:9px; align-items:flex-start; margin:2px 0 16px; }
+  #pv-app .consent input[type="checkbox"]{
     appearance:none; -webkit-appearance:none; width:18px; height:18px; border-radius:5px;
     border:1.5px solid var(--hairline); background:var(--surface); flex-shrink:0; margin-top:1px;
     cursor:pointer; position:relative; transition:all .15s ease;
   }
-#pv-app .consent input[type="checkbox"]:checked{ background:var(--gold); border-color:var(--gold); }
-#pv-app .consent input[type="checkbox"]:checked::after{
+  #pv-app .consent input[type="checkbox"]:checked{ background:var(--gold); border-color:var(--gold); }
+  #pv-app .consent input[type="checkbox"]:checked::after{
     content:''; position:absolute; left:5px; top:1.5px; width:5px; height:9px;
     border:solid #241703; border-width:0 2px 2px 0; transform:rotate(40deg);
   }
-#pv-app .consent p{ margin:0; font-size:10.8px; line-height:1.5; color:var(--text-faint); }
-/* amount slider (offer screen) */
-#pv-app .amount-display{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:38px; text-align:center; letter-spacing:-.01em; margin:2px 0 16px; }
-#pv-app .amt-range{ -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:6px; background:var(--surface-2); outline:none; margin:4px 0 0; }
-#pv-app .amt-range::-webkit-slider-thumb{ -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; box-shadow:0 4px 10px rgba(255,179,67,.45); cursor:pointer; }
-#pv-app .amt-range::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; cursor:pointer; }
-#pv-app .range-labels{ display:flex; justify-content:space-between; font-size:10.5px; color:var(--text-faint); margin:5px 0 18px; }
-#pv-app .split-bar{ height:9px; border-radius:5px; overflow:hidden; background:var(--surface-2); display:flex; margin-bottom:10px; }
-#pv-app .split-ewa{ background:var(--gold); transition:width .15s ease; }
-#pv-app .split-bridge{ background:rgba(255,179,67,.28); border-left:1px dashed rgba(255,179,67,.6); transition:width .15s ease; }
-#pv-app .split-legend{ display:flex; gap:16px; margin-bottom:16px; }
-#pv-app .legend-item{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); }
-#pv-app .dot{ width:7px; height:7px; border-radius:50%; }
-#pv-app .dot-ewa{ background:var(--gold); }
-#pv-app .dot-bridge{ background:transparent; border:1px dashed var(--gold); }
-#pv-app .stat-rows{ display:flex; flex-direction:column; gap:9px; margin-bottom:6px; }
-#pv-app .stat-row{ display:flex; justify-content:space-between; font-size:13.5px; font-weight:600; }
-#pv-app .stat-row.muted{ font-size:11.5px; font-weight:400; color:var(--text-faint); margin-top:-4px; }
-#pv-app .stat-row .stat-value{ font-variant-numeric:tabular-nums; }
-#pv-app .banner{ background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:12px 14px; font-size:13px; color:var(--text-muted); margin-bottom:18px; }
-#pv-app .banner b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; }
-#pv-app .breakdown-block{ margin-bottom:16px; }
-#pv-app .breakdown-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
-#pv-app .breakdown-head .bd-name{ font-size:13px; font-weight:600; }
-#pv-app .breakdown-head .bd-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px; color:var(--gold); font-variant-numeric:tabular-nums; }
-#pv-app .mini-bar{ height:8px; border-radius:5px; background:var(--surface-2); overflow:hidden; margin-bottom:8px; }
-#pv-app .mini-bar-fill{ height:100%; border-radius:5px; transition:width .15s ease; }
-#pv-app .mini-bar-fill.ewa{ background:var(--gold); }
-#pv-app .mini-bar-fill.bridge{ background:rgba(255,179,67,.32); }
-#pv-app .breakdown-sentence{ font-size:12px; line-height:1.5; color:var(--text-muted); margin:0; }
-/* offer / loan-details card */
-#pv-app .offer-card{ border:1px solid var(--hairline); border-radius:18px; background:var(--surface); padding:2px 18px; margin:4px 0 16px; }
-#pv-app .offer-row{ padding:15px 0; }
-#pv-app .offer-row-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
-#pv-app .offer-name{ font-size:14px; font-weight:600; }
-#pv-app .offer-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:17px; color:var(--gold); font-variant-numeric:tabular-nums; }
-#pv-app .offer-sub{ margin:4px 0 0; font-size:11.5px; color:var(--text-muted); }
-#pv-app .offer-divider{ height:1px; background:var(--hairline); }
-#pv-app .installment-list{ margin:8px 0 0; display:flex; flex-direction:column; gap:5px; }
-#pv-app .installment-row{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); }
-#pv-app .installment-row b{ color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; }
-#pv-app .total-row{ display:flex; justify-content:space-between; align-items:baseline; padding:14px 0 13px; border-top:1px solid var(--hairline); margin-top:4px; }
-#pv-app .total-row .offer-name{ font-size:13px; font-weight:700; }
-#pv-app .total-row .offer-amt{ font-size:20px; }
-#pv-app .offer-total{ display:flex; justify-content:space-between; padding:15px 0 4px; margin-top:2px; border-top:1px dashed var(--hairline); font-size:13px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; }
-/* contract / scroll box */
-#pv-app .contract-box{
+  #pv-app .consent p{ margin:0; font-size:10.8px; line-height:1.5; color:var(--text-faint); }
+
+  /* amount slider (offer screen) */
+  #pv-app .amount-display{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:38px; text-align:center; letter-spacing:-.01em; margin:2px 0 16px; }
+  #pv-app .amt-range{ -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:6px; background:var(--surface-2); outline:none; margin:4px 0 0; }
+  #pv-app .amt-range::-webkit-slider-thumb{ -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; box-shadow:0 4px 10px rgba(255,179,67,.45); cursor:pointer; }
+  #pv-app .amt-range::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:var(--gold); border:3px solid #0a0908; cursor:pointer; }
+  #pv-app .range-labels{ display:flex; justify-content:space-between; font-size:10.5px; color:var(--text-faint); margin:5px 0 18px; }
+  #pv-app .split-bar{ height:9px; border-radius:5px; overflow:hidden; background:var(--surface-2); display:flex; margin-bottom:10px; }
+  #pv-app .split-ewa{ background:var(--gold); transition:width .15s ease; }
+  #pv-app .split-bridge{ background:rgba(255,179,67,.28); border-left:1px dashed rgba(255,179,67,.6); transition:width .15s ease; }
+  #pv-app .split-legend{ display:flex; gap:16px; margin-bottom:16px; }
+  #pv-app .legend-item{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); }
+  #pv-app .dot{ width:7px; height:7px; border-radius:50%; }
+  #pv-app .dot-ewa{ background:var(--gold); }
+  #pv-app .dot-bridge{ background:transparent; border:1px dashed var(--gold); }
+  #pv-app .stat-rows{ display:flex; flex-direction:column; gap:9px; margin-bottom:6px; }
+  #pv-app .stat-row{ display:flex; justify-content:space-between; font-size:13.5px; font-weight:600; }
+  #pv-app .stat-row.muted{ font-size:11.5px; font-weight:400; color:var(--text-faint); margin-top:-4px; }
+  #pv-app .stat-row .stat-value{ font-variant-numeric:tabular-nums; }
+  #pv-app .banner{ background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:12px 14px; font-size:13px; color:var(--text-muted); margin-bottom:18px; }
+  #pv-app .banner b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; }
+  #pv-app .breakdown-block{ margin-bottom:16px; }
+  #pv-app .breakdown-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
+  #pv-app .breakdown-head .bd-name{ font-size:13px; font-weight:600; }
+  #pv-app .breakdown-head .bd-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px; color:var(--gold); font-variant-numeric:tabular-nums; }
+  #pv-app .mini-bar{ height:8px; border-radius:5px; background:var(--surface-2); overflow:hidden; margin-bottom:8px; }
+  #pv-app .mini-bar-fill{ height:100%; border-radius:5px; transition:width .15s ease; }
+  #pv-app .mini-bar-fill.ewa{ background:var(--gold); }
+  #pv-app .mini-bar-fill.bridge{ background:rgba(255,179,67,.32); }
+  #pv-app .breakdown-sentence{ font-size:12px; line-height:1.5; color:var(--text-muted); margin:0; }
+
+  /* offer / loan-details card */
+  #pv-app .offer-card{ border:1px solid var(--hairline); border-radius:18px; background:var(--surface); padding:2px 18px; margin:4px 0 16px; }
+  #pv-app .offer-row{ padding:15px 0; }
+  #pv-app .offer-row-head{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  #pv-app .offer-name{ font-size:14px; font-weight:600; }
+  #pv-app .offer-amt{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:17px; color:var(--gold); font-variant-numeric:tabular-nums; }
+  #pv-app .offer-sub{ margin:4px 0 0; font-size:11.5px; color:var(--text-muted); }
+  #pv-app .offer-divider{ height:1px; background:var(--hairline); }
+  #pv-app .installment-list{ margin:8px 0 0; display:flex; flex-direction:column; gap:5px; }
+  #pv-app .installment-row{ display:flex; justify-content:space-between; font-size:11.5px; color:var(--text-muted); }
+  #pv-app .installment-row b{ color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; }
+  #pv-app .total-row{ display:flex; justify-content:space-between; align-items:baseline; padding:14px 0 13px; border-top:1px solid var(--hairline); margin-top:4px; }
+  #pv-app .total-row .offer-name{ font-size:13px; font-weight:700; }
+  #pv-app .total-row .offer-amt{ font-size:20px; }
+  #pv-app .offer-total{ display:flex; justify-content:space-between; padding:15px 0 4px; margin-top:2px; border-top:1px dashed var(--hairline); font-size:13px; font-weight:700; color:var(--text); font-variant-numeric:tabular-nums; }
+
+  /* contract / scroll box */
+  #pv-app .contract-box{
     border:1px solid var(--hairline); border-radius:14px; background:var(--surface);
     padding:16px; height:190px; overflow-y:auto; margin-bottom:14px; font-size:11.5px; line-height:1.6; color:var(--text-muted);
     flex-shrink:0;
   }
-#pv-app .contract-box h4{ font-size:11.5px; color:var(--text); margin:12px 0 4px; }
-#pv-app .contract-box h4:first-child{ margin-top:0; }
-#pv-app .contract-box p{ margin:0 0 8px; }
-#pv-app .scroll-hint{ font-size:10.5px; color:var(--gold-2); text-align:center; margin:-8px 0 12px; opacity:1; transition:opacity .2s ease; }
-#pv-app .scroll-hint.done{ opacity:0; height:0; margin:0; overflow:hidden; }
-#pv-app .sig-line{ font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:12px; }
-/* vendor-hosted (light) screens */
-#pv-app .vendor-mode{ background:#f4f2ee; margin:-24px -20px -20px; padding:24px 20px 20px; border-radius:0 0 0 0; flex:1; display:flex; flex-direction:column; color:#2a2620; }
-#pv-app .vendor-badge{
+  #pv-app .contract-box h4{ font-size:11.5px; color:var(--text); margin:12px 0 4px; }
+  #pv-app .contract-box h4:first-child{ margin-top:0; }
+  #pv-app .contract-box p{ margin:0 0 8px; }
+  #pv-app .scroll-hint{ font-size:10.5px; color:var(--gold-2); text-align:center; margin:-8px 0 12px; opacity:1; transition:opacity .2s ease; }
+  #pv-app .scroll-hint.done{ opacity:0; height:0; margin:0; overflow:hidden; }
+  #pv-app .sig-line{ font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:12px; }
+
+  /* vendor-hosted (light) screens */
+  #pv-app .vendor-mode{ background:#f4f2ee; margin:-24px -20px -20px; padding:24px 20px 20px; border-radius:0 0 0 0; flex:1; display:flex; flex-direction:column; color:#2a2620; }
+  #pv-app .vendor-badge{
     display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:100px;
     background:#e7e3db; color:#6b6355; font-size:10.5px; font-weight:700; letter-spacing:.06em;
     text-transform:uppercase; margin-bottom:16px; width:fit-content;
   }
-#pv-app .vendor-badge .dot2{ width:6px; height:6px; border-radius:50%; background:#8a8477; }
-#pv-app .vendor-mode .app-h1{ color:#1c1a17; }
-#pv-app .vendor-mode .app-sub{ color:#6b6355; }
-#pv-app .vendor-card{ background:#fff; border:1px solid #e2ded4; border-radius:14px; padding:14px 16px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
-#pv-app .vendor-card span{ font-size:14px; font-weight:600; color:#2a2620; }
-#pv-app .vendor-card small{ display:block; font-size:11px; color:#8a8477; font-weight:400; margin-top:2px; }
-#pv-app .vc-row{ display:flex; align-items:center; gap:12px; }
-#pv-app .provider-badge{ width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:11.5px; letter-spacing:.01em; flex-shrink:0; }
-#pv-app .vendor-search{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:12px; }
-#pv-app .vendor-search::placeholder{ color:#a39c8c; }
-#pv-app .vendor-empty{ text-align:center; font-size:12px; color:#a39c8c; padding:16px 0; }
-#pv-app .vendor-spinner{ width:34px; height:34px; border-radius:50%; border:3px solid #e2ded4; border-top-color:#8a8477; margin:30px auto 18px; animation:pvSpin 0.9s linear infinite; }
-@keyframes pvSpin{ to{ transform:rotate(360deg); } }
-#pv-app .vendor-btn{ width:100%; padding:14px; border-radius:12px; border:none; background:#1c1a17; color:#fff; font-family:'Red Hat Display',sans-serif; font-weight:700; font-size:14px; cursor:pointer; margin-top:6px; }
-#pv-app .vendor-btn:hover{ background:#000; }
-#pv-app .vendor-fail-link{ display:block; text-align:center; margin-top:14px; font-size:11.5px; color:#a3543f; background:none; border:none; cursor:pointer; font-family:'Red Hat Display',sans-serif; }
-#pv-app .vendor-note{ font-size:10.5px; color:#a39c8c; text-align:center; margin-top:10px; line-height:1.5; }
-/* modal (quota reached) */
-#pv-app .modal-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.72); display:flex; align-items:center; justify-content:center; padding:26px; z-index:5; }
-#pv-app .modal-card{ background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:24px 20px; text-align:center; }
-#pv-app .modal-card h3{ font-family:'Montserrat',sans-serif; font-size:17px; margin:0 0 10px; }
-#pv-app .modal-card p{ font-size:12.5px; line-height:1.55; color:var(--text-muted); margin:0 0 14px; }
-#pv-app .modal-card p.strong{ color:var(--text); font-weight:600; }
-/* decline / terminal states */
-#pv-app .icon-ring{ width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:20px auto 18px; }
-#pv-app .icon-ring.warn{ background:rgba(224,101,79,.12); }
-#pv-app .icon-ring.info{ background:var(--gold-soft); }
-#pv-app .icon-ring.good{ background:rgba(111,191,139,.14); }
-#pv-app .centered{ text-align:center; }
-/* virtual card */
-#pv-app .vcard{
+  #pv-app .vendor-badge .dot2{ width:6px; height:6px; border-radius:50%; background:#8a8477; }
+  #pv-app .vendor-mode .app-h1{ color:#1c1a17; }
+  #pv-app .vendor-mode .app-sub{ color:#6b6355; }
+  #pv-app .vendor-card{ background:#fff; border:1px solid #e2ded4; border-radius:14px; padding:14px 16px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
+  #pv-app .vendor-card span{ font-size:14px; font-weight:600; color:#2a2620; }
+  #pv-app .vendor-card small{ display:block; font-size:11px; color:#8a8477; font-weight:400; margin-top:2px; }
+  #pv-app .vc-row{ display:flex; align-items:center; gap:12px; }
+  #pv-app .provider-badge{ width:34px; height:34px; border-radius:9px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:11.5px; letter-spacing:.01em; flex-shrink:0; }
+  #pv-app .vendor-search{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:12px; }
+  #pv-app .vendor-search::placeholder{ color:#a39c8c; }
+  #pv-app .vendor-empty{ text-align:center; font-size:12px; color:#a39c8c; padding:16px 0; }
+  #pv-app .vendor-spinner{ width:34px; height:34px; border-radius:50%; border:3px solid #e2ded4; border-top-color:#8a8477; margin:30px auto 18px; animation:pvSpin 0.9s linear infinite; }
+  @keyframes pvSpin{ to{ transform:rotate(360deg); } }
+  #pv-app .vendor-btn{ width:100%; padding:14px; border-radius:12px; border:none; background:#1c1a17; color:#fff; font-family:'Red Hat Display',sans-serif; font-weight:700; font-size:14px; cursor:pointer; margin-top:6px; }
+  #pv-app .vendor-btn:hover{ background:#000; }
+  #pv-app .vendor-fail-link{ display:block; text-align:center; margin-top:14px; font-size:11.5px; color:#a3543f; background:none; border:none; cursor:pointer; font-family:'Red Hat Display',sans-serif; }
+  #pv-app .vendor-note{ font-size:10.5px; color:#a39c8c; text-align:center; margin-top:10px; line-height:1.5; }
+
+  /* modal (quota reached) */
+  #pv-app .modal-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.72); display:flex; align-items:center; justify-content:center; padding:26px; z-index:5; }
+  #pv-app .modal-card{ background:var(--surface); border:1px solid var(--hairline); border-radius:18px; padding:24px 20px; text-align:center; }
+  #pv-app .modal-card h3{ font-family:'Montserrat',sans-serif; font-size:17px; margin:0 0 10px; }
+  #pv-app .modal-card p{ font-size:12.5px; line-height:1.55; color:var(--text-muted); margin:0 0 14px; }
+  #pv-app .modal-card p.strong{ color:var(--text); font-weight:600; }
+
+  /* decline / terminal states */
+  #pv-app .icon-ring{ width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:20px auto 18px; }
+  #pv-app .icon-ring.warn{ background:rgba(224,101,79,.12); }
+  #pv-app .icon-ring.info{ background:var(--gold-soft); }
+  #pv-app .icon-ring.good{ background:rgba(111,191,139,.14); }
+  #pv-app .centered{ text-align:center; }
+
+  /* virtual card */
+  #pv-app .vcard{
     border-radius:16px; padding:20px; margin:6px 0 18px; position:relative; overflow:hidden;
     background:linear-gradient(135deg,#1c1a17,#0a0908);
     border:1px solid #2e2a24;
     flex-shrink:0;
   }
-#pv-app .vcard::after{ content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,179,67,.16),transparent 55%); }
-#pv-app .vcard-top{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; }
-#pv-app .vcard-logo{ font-family:'Encode Sans Semi Condensed',sans-serif; font-weight:700; font-size:15px; letter-spacing:.1em; color:var(--gold); }
-#pv-app .vcard-chip{ width:30px; height:22px; border-radius:5px; background:linear-gradient(135deg,#e6c98a,#c79b4f); }
-#pv-app .vcard-num{ font-family:'Red Hat Display',sans-serif; font-size:15.5px; letter-spacing:.06em; margin:26px 0 14px; font-variant-numeric:tabular-nums; position:relative; }
-#pv-app .vcard-bottom{ display:flex; justify-content:space-between; font-size:10px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; position:relative; }
-#pv-app .vcard-bottom b{ display:block; color:var(--text); font-size:12.5px; text-transform:none; letter-spacing:0; margin-top:2px; font-variant-numeric:tabular-nums; }
-#pv-app .wallet-row{ display:flex; gap:8px; margin-bottom:14px; }
-#pv-app .wallet-btn{ flex:1; padding:11px; border-radius:10px; border:1px solid var(--hairline); background:var(--surface); color:var(--text); font-size:12px; font-weight:600; text-align:center; }
-/* plain icon bullet list (intro / payroll interstitial) — added 9/10/26 */
-#pv-app .icon-list{ display:flex; flex-direction:column; gap:13px; margin-top:16px; }
-#pv-app .icon-list-row{ display:flex; align-items:flex-start; gap:11px; }
-#pv-app .icon-list-row .icon-wrap{ width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--gold); display:flex; }
-#pv-app .icon-list-row .icon-wrap svg{ width:100%; height:100%; display:block; }
-#pv-app .icon-list-row span:last-child{ font-size:14px; font-weight:500; line-height:1.45; color:var(--text); }
-/* flat rows, no card/border — offer math block — added 9/10/26 */
-#pv-app .flat-rows{ display:flex; flex-direction:column; margin:2px 0 16px; }
-#pv-app .flat-row{ display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; }
-#pv-app .flat-row .flat-label{ font-size:13.5px; color:var(--text-muted); font-weight:500; }
-#pv-app .flat-row .flat-value{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:15px; color:var(--text); font-variant-numeric:tabular-nums; text-align:right; }
-#pv-app .flat-row.total{ padding-top:11px; }
-#pv-app .flat-row.total .flat-label{ color:var(--text); font-weight:700; }
-#pv-app .flat-row.total .flat-value{ color:var(--gold); font-size:18px; }
-#pv-app .flat-divider{ height:1px; background:var(--hairline); margin:2px 0; }
-/* processing screen — stacked status lines — added 9/10/26, left-align fix 9/10/26 */
-#pv-app .proc-steps{ display:flex; flex-direction:column; gap:8px; margin:22px auto 22px; align-items:flex-start; width:fit-content; max-width:100%; text-align:left; }
-#pv-app .proc-step{ font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:8px; animation:pvProcFadeIn .3s ease; text-align:left; }
-#pv-app .proc-step .proc-check{ width:16px; height:16px; border-radius:50%; background:rgba(111,191,139,.16); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-#pv-app .proc-step .proc-check svg{ width:9px; height:9px; }
-@keyframes pvProcFadeIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
-/* vendor-hosted plain text field (payroll auth mock) — added 9/10/26 */
-#pv-app .vendor-field{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:10px; }
-#pv-app .vendor-field::placeholder{ color:#a39c8c; }
-/* small centered partner-attribution note (dark screens) — added 9/10/26 */
-#pv-app .partner-note{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
-/* small centered form disclaimer (intro fee footnote) — added 9/10/26 */
-#pv-app .form-footnote{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
-/* small security/encryption reassurance line with lock icon (your info form) — added 9/17/26 */
-#pv-app .security-note{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); margin:2px 0 16px; }
-#pv-app .security-note svg{ flex-shrink:0; color:var(--text-faint); }
-/* unboxed "Paid in full on" note (offer screen) — added 9/17/26 */
-#pv-app .paid-in-full-note{ font-size:12.5px; color:var(--text-muted); text-align:center; margin:14px 0 6px; }
-#pv-app .paid-in-full-note b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; }
+  #pv-app .vcard::after{ content:''; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,179,67,.16),transparent 55%); }
+  #pv-app .vcard-top{ display:flex; justify-content:space-between; align-items:flex-start; position:relative; }
+  #pv-app .vcard-logo{ font-family:'Encode Sans Semi Condensed',sans-serif; font-weight:700; font-size:15px; letter-spacing:.1em; color:var(--gold); }
+  #pv-app .vcard-chip{ width:30px; height:22px; border-radius:5px; background:linear-gradient(135deg,#e6c98a,#c79b4f); }
+  #pv-app .vcard-num{ font-family:'Red Hat Display',sans-serif; font-size:15.5px; letter-spacing:.06em; margin:26px 0 14px; font-variant-numeric:tabular-nums; position:relative; }
+  #pv-app .vcard-bottom{ display:flex; justify-content:space-between; font-size:10px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.05em; position:relative; }
+  #pv-app .vcard-bottom b{ display:block; color:var(--text); font-size:12.5px; text-transform:none; letter-spacing:0; margin-top:2px; font-variant-numeric:tabular-nums; }
+
+  #pv-app .wallet-row{ display:flex; gap:8px; margin-bottom:14px; }
+  #pv-app .wallet-btn{ flex:1; padding:11px; border-radius:10px; border:1px solid var(--hairline); background:var(--surface); color:var(--text); font-size:12px; font-weight:600; text-align:center; }
+
+
+  /* plain icon bullet list (intro / payroll interstitial) — added 9/10/26 */
+  #pv-app .icon-list{ display:flex; flex-direction:column; gap:13px; margin-top:16px; }
+  #pv-app .icon-list-row{ display:flex; align-items:flex-start; gap:11px; }
+  #pv-app .icon-list-row .icon-wrap{ width:16px; height:16px; margin-top:2px; flex-shrink:0; color:var(--gold); display:flex; }
+  #pv-app .icon-list-row .icon-wrap svg{ width:100%; height:100%; display:block; }
+  #pv-app .icon-list-row span:last-child{ font-size:14px; font-weight:500; line-height:1.45; color:var(--text); }
+
+  /* flat rows, no card/border — offer math block — added 9/10/26 */
+  #pv-app .flat-rows{ display:flex; flex-direction:column; margin:2px 0 16px; }
+  #pv-app .flat-row{ display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; }
+  #pv-app .flat-row .flat-label{ font-size:13.5px; color:var(--text-muted); font-weight:500; }
+  #pv-app .flat-row .flat-value{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:15px; color:var(--text); font-variant-numeric:tabular-nums; text-align:right; }
+  #pv-app .flat-row.total{ padding-top:11px; }
+  #pv-app .flat-row.total .flat-label{ color:var(--text); font-weight:700; }
+  #pv-app .flat-row.total .flat-value{ color:var(--gold); font-size:18px; }
+  #pv-app .flat-divider{ height:1px; background:var(--hairline); margin:2px 0; }
+
+  /* processing screen — stacked status lines — added 9/10/26, left-align fix 9/10/26 */
+  #pv-app .proc-steps{ display:flex; flex-direction:column; gap:8px; margin:22px auto 22px; align-items:flex-start; width:fit-content; max-width:100%; text-align:left; }
+  #pv-app .proc-step{ font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:8px; animation:pvProcFadeIn .3s ease; text-align:left; }
+  #pv-app .proc-step .proc-check{ width:16px; height:16px; border-radius:50%; background:rgba(111,191,139,.16); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  #pv-app .proc-step .proc-check svg{ width:9px; height:9px; }
+  @keyframes pvProcFadeIn{ from{ opacity:0; transform:translateY(4px);} to{ opacity:1; transform:translateY(0);} }
+
+  /* vendor-hosted plain text field (payroll auth mock) — added 9/10/26 */
+  #pv-app .vendor-field{ width:100%; background:#fff; border:1px solid #e2ded4; border-radius:12px; padding:13px 14px; font-family:'Red Hat Display',sans-serif; font-size:13.5px; color:#2a2620; margin-bottom:10px; }
+  #pv-app .vendor-field::placeholder{ color:#a39c8c; }
+
+  /* small centered partner-attribution note (dark screens) — added 9/10/26 */
+  #pv-app .partner-note{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
+
+  /* small centered form disclaimer (intro fee footnote) — added 9/10/26 */
+  #pv-app .form-footnote{ font-size:10.5px; color:var(--text-faint); text-align:center; margin-top:10px; }
+
+  /* small security/encryption reassurance line with lock icon (your info form) — added 9/17/26 */
+  #pv-app .security-note{ display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-faint); margin:2px 0 16px; }
+  #pv-app .security-note svg{ flex-shrink:0; color:var(--text-faint); }
+
+  /* unboxed "Paid in full on" note (offer screen) — added 9/17/26 */
+  #pv-app .paid-in-full-note{ font-size:12.5px; color:var(--text-muted); text-align:center; margin:14px 0 6px; }
+  #pv-app .paid-in-full-note b{ color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:800; font-size:14px; }
+
+  /* inline form error banner (verify code) — added 9/18/26 */
+  #pv-app .field-error-banner{ background:rgba(224,101,79,.12); border:1px solid rgba(224,101,79,.35); border-radius:12px; padding:12px 14px; margin-bottom:16px; }
+  #pv-app .field-error-banner strong{ display:block; color:var(--red); font-family:'Montserrat',sans-serif; font-weight:800; font-size:13.5px; margin-bottom:4px; }
+  #pv-app .field-error-banner p{ font-size:12.5px; color:var(--text-muted); line-height:1.45; margin:0; }
+
+  /* small caps section label inside a vendor-hosted (light) screen — added 9/23/26 for the EWA / 0% Bridge Loan auto-pay split */
+  #pv-app .vendor-section-label{ font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#8a8477; margin:14px 0 8px; }
+  #pv-app .vendor-section-label:first-child{ margin-top:0; }
+
+  /* Earned wages / Bridge loan zone reference band under the offer slider, the
+     matching slider-track accent color, inline info icons, a payment-schedule
+     list with dates, and small-print row subtext — all added 9/23/26 per
+     Jeff's offer-screen redesign round. */
+  #pv-app{ --bridge-accent:#4FA89E; }
+
+  #pv-app .zone-bar{ display:flex; width:100%; gap:4px; margin:8px 0 2px; align-items:stretch; }
+  #pv-app .zone-seg{ display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:6px 7px; border-radius:8px; min-width:58px; }
+  #pv-app .zone-seg .zone-name{ font-size:10px; font-weight:700; line-height:1.25; }
+  #pv-app .zone-seg .zone-range{ font-size:8.5px; opacity:.8; line-height:1.25; }
+  #pv-app .zone-earned{ background:var(--gold-soft); color:var(--gold); }
+  #pv-app .zone-bridge{ background:rgba(79,168,158,.16); color:var(--bridge-accent); }
+
+  #pv-app .info-icon-btn{ display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; margin-left:2px; padding:0; background:none; border:none; color:var(--text-faint); cursor:pointer; vertical-align:-5px; }
+  #pv-app .info-icon-btn:hover{ color:var(--gold); }
+  #pv-app .info-icon-btn svg{ width:13px; height:13px; display:block; }
+
+  #pv-app .flat-row-subtext{ font-size:11px; color:var(--text-faint); margin:-4px 0 4px; }
+
+  #pv-app .pay-schedule{ display:flex; flex-direction:column; margin:16px 0 4px; border:1px solid var(--hairline); border-radius:14px; padding:2px 14px; }
+  #pv-app .pay-schedule-row{ display:flex; align-items:center; gap:8px; padding:10px 0; border-bottom:1px solid var(--hairline); font-size:12.5px; }
+  #pv-app .pay-schedule-row:last-child{ border-bottom:none; }
+  #pv-app .ps-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  #pv-app .ps-earned{ background:var(--gold); }
+  #pv-app .ps-bridge{ background:var(--bridge-accent); }
+  #pv-app .ps-label{ flex:1; color:var(--text-muted); font-weight:500; }
+  #pv-app .ps-date{ color:var(--text); font-weight:600; font-variant-numeric:tabular-nums; }
+  #pv-app .ps-amt{ color:var(--text); font-weight:700; font-family:'Montserrat',sans-serif; font-variant-numeric:tabular-nums; margin-left:10px; min-width:56px; text-align:right; }
+
+  /* Offer screen, round 4 redesign (9/24/26) — text-box amount entry with a
+     draggable flag marker on a read-through track, replacing the native
+     range slider + colored zone-bar blocks above. Ported from the standalone
+     offer-screen sandbox Jeff reviewed. */
+  #pv-app .amt-field-wrap{ display:flex; align-items:center; gap:2px; background:var(--surface); border:1.5px solid var(--hairline); border-radius:14px; padding:12px 16px; margin:4px 0 2px; }
+  #pv-app .amt-field-wrap:focus-within{ border-color:var(--gold-2); }
+  #pv-app .amt-currency{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:26px; color:var(--text-faint); }
+  #pv-app .amt-input{ flex:1; background:none; border:none; outline:none; color:var(--text); font-family:'Montserrat',sans-serif; font-weight:800; font-size:26px; -moz-appearance:textfield; }
+  #pv-app .amt-input::-webkit-outer-spin-button,
+#pv-app .amt-input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  #pv-app .track-block{ margin:6px 0 8px; }
+  #pv-app .amt-track{ position:relative; height:8px; border-radius:999px; margin:30px 2px 0; }
+  #pv-app .amt-pointer{ position:absolute; top:-7px; transform:translateX(-50%); width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent; border-top:9px solid var(--gold); pointer-events:none; transition:border-top-color .12s ease; }
+  #pv-app .amt-pointer.in-bridge{ border-top-color:var(--bridge-accent); }
+  #pv-app .amt-pointer-hit{ position:absolute; top:-22px; width:34px; height:34px; transform:translateX(-50%); cursor:grab; touch-action:none; z-index:6; }
+  #pv-app .amt-pointer-hit:active{ cursor:grabbing; }
+  #pv-app .amt-pointer-hit:active .amt-pointer{ border-left-width:7px; border-right-width:7px; border-top-width:11px; }
+  #pv-app .amt-pointer-label{ position:absolute; bottom:100%; transform:translateX(-50%); margin-bottom:13px; font-family:'Montserrat',sans-serif; font-weight:800; font-size:12px; color:var(--text); background:var(--surface-2); border:1px solid var(--hairline); border-radius:8px; padding:3px 7px; white-space:nowrap; pointer-events:none; }
+  #pv-app .amt-boundary-tick{ position:absolute; top:-3px; bottom:-3px; width:2px; transform:translateX(-50%); background:var(--text); border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.35); }
+  #pv-app .track-endpoints{ position:relative; display:flex; justify-content:space-between; font-size:11px; color:var(--text-faint); margin-top:12px; font-weight:600; min-height:14px; }
+  #pv-app .track-boundary-label{ position:absolute; top:0; font-size:11px; font-weight:800; color:var(--text); }
+
+  #pv-app .legend-row{ display:flex; gap:20px; justify-content:center; margin:10px 0 4px; }
+  #pv-app .legend-item{ display:flex; align-items:flex-start; gap:6px; font-size:inherit; color:inherit; }
+  #pv-app .legend-dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+  #pv-app .legend-earned{ background:var(--gold); }
+  #pv-app .legend-bridge{ background:var(--bridge-accent); }
+  #pv-app .legend-text{ display:flex; flex-direction:column; }
+  #pv-app .legend-label{ font-size:12px; font-weight:700; color:var(--text); }
+  #pv-app .legend-sub{ font-size:10px; font-weight:500; color:var(--text-faint); margin-top:1px; }
+
+/* The prototype's screens are laid out for a 375px device, but its frame renders
+   at 300px, so at 1:1 the content sits 25% too large for the frame it is in and
+   six of its screens overflow. The phone is therefore laid out at its true 375px
+   width and scaled to 0.8, which is the same 300 x 649.6 footprint on the page
+   with the content in correct proportion to the frame. Nothing inside the
+   prototype is restyled: every internal dimension keeps its designed ratio. */
+#pv-app{width:300px;height:649.6px;}
+#pv-app .phone{width:375px;transform:scale(0.8);transform-origin:top left;}
 
 /* RESPONSIVE, mirrors production's mobile block */
 @media(max-width:580px){
@@ -691,7 +803,7 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
   <div class="nav-center">
     <a href="#hero" class="nav-link active">Home</a>
     <a href="#services" class="nav-link">Compare</a>
-    <a href="#sarf-demo" class="nav-link">See how it works</a>
+    <a href="#how-it-works" class="nav-link">How it works</a>
     <a href="#faq" class="nav-link">FAQ</a>
   </div>
   <div class="nav-right">
@@ -699,6 +811,7 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
       <svg id="theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <span id="theme-label">Light</span>
     </button>
+    <button class="nav-btn pv-nav-waitlist" onclick="pvOpenWaitlist(this)">Join Waitlist</button>
     <button class="nav-btn contact-btn" onclick="pvCopyEmail()" title="Copy contact@sarf.space">
       <svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
       <span class="contact-label">Contact Us</span>
@@ -716,13 +829,18 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
   <div class="hero-fade"></div>
   <div class="hero-text">
     <div class="hero-wordmark">SARF</div>
-    <h1 id="hero-h1">Access up to $1,500<br>before payday<br><em>at 0% interest.</em></h1>
-    <p class="hero-sub">Connect your payroll account to instantly verify your income. Access up to $1,500 through your earned wages and, when eligible, an additional 0% bridge loan of up to $700. No credit pull. No interest. Funds load directly onto your Sarf card.</p>
+    <span class="ct-badge live hero-status">Waitlist open</span>
+    <h1 id="hero-h1">Get cash at 0% interest.<br><em>Always.</em></h1>
+    <ul class="hero-points">
+      <li>Up to $1,500 through 0% loans and earned wage access</li>
+      <li>Automatic repayment from your paycheck</li>
+      <li>No credit check. No interest. Clear flat assessment fees.</li>
+    </ul>
     <div>
-      <button class="cta-btn" onclick="pvScrollToDemo()">See what you qualify for <span class="cta-arrow">&rarr;</span></button>
+      <button class="cta-btn" onclick="pvOpenWaitlist(this)">Join Waitlist <span class="cta-arrow">&rarr;</span></button>
       <button class="pv-cta-secondary" onclick="pvScrollToDemo()">How Sarf works</button>
     </div>
-    <p class="hero-disclaimer">A supported payroll account is required. A flat fee for verification applies. Eligibility and availability may vary.</p>
+    <p class="hero-disclaimer">A supported payroll account is required. A flat Financial Assessment fee applies. Eligibility and availability may vary.</p>
   </div>
   <div class="phone-wrap">
     <div class="phone" id="phone-el">
@@ -731,16 +849,16 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
       <div class="phone-inner">
         <div class="notch"></div>
         <div class="p-screen">
-          <div class="p-lbl">Available Now</div>
-          <div class="p-amount" id="pv-phone-amount">$500</div>
-          <div class="p-pill"><span class="p-pill-dot"></span>0% interest</div>
+          <div class="p-lbl">Available Balance</div>
+          <div class="p-amount" id="pv-phone-amount">$1,500</div>
+          <div class="p-pill"><span class="p-pill-dot"></span>0% interest, always</div>
           <div class="p-divider"></div>
-          <div class="p-row"><span class="p-row-label">You get</span><span class="p-row-val white" id="pv-phone-get">$500</span></div>
-          <div class="p-row"><span class="p-row-label">Verification fee</span><span class="p-row-val gold" id="pv-phone-fee">$10</span></div>
-          <div class="p-row"><span class="p-row-label">Repaid on</span><span class="p-row-val white">Next paycheck</span></div>
-          <div class="p-row"><span class="p-row-label">Credit pull</span><span class="p-row-val green">None</span></div>
-          <div class="p-row"><span class="p-row-label">Interest</span><span class="p-row-val green">0%</span></div>
-          <div class="p-note">Illustrative example. Repaid in one deduction from your next paycheck via payroll connection.</div>
+          <div class="p-row"><span class="p-row-label">0% Loan</span><span class="p-row-val gold">Up to $700</span></div>
+          <div class="p-row"><span class="p-row-label">Earned Wages</span><span class="p-row-val white">Up to $800</span></div>
+          <div class="p-row"><span class="p-row-label">You repay</span><span class="p-row-val white">$1,500</span></div>
+          <div class="p-row"><span class="p-row-label">Interest</span><span class="p-row-val green">$0</span></div>
+          <div class="p-row"><span class="p-row-label">Assessment fee</span><span class="p-row-val gold">$10 first, $20-$35 after</span></div>
+          <div class="p-row"><span class="p-row-label">Hidden fees</span><span class="p-row-val green">None</span></div>
         </div>
         <div class="p-stats">
           <div class="p-stat"><div class="p-stat-val gold">0%</div><div class="p-stat-lbl">Interest</div></div>
@@ -764,28 +882,23 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
   <div class="strip-inner">
     <div class="strip-card reveal">
       <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="strip-label">Earned wages</div>
-      <div class="strip-sub">Access pay you've already earned. Total access can reach $1,500, based on verified earnings and eligibility.</div>
-    </div>
-    <div class="strip-card reveal">
-      <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
-      <div class="strip-label">0% bridge loan</div>
-      <div class="strip-sub">When eligible, access an additional bridge loan of up to $700 at 0% interest.</div>
+      <div class="strip-label">Up to $1,500 total access</div>
+      <div class="strip-sub">Earned wages plus a 0% bridge loan, subject to eligibility</div>
     </div>
     <div class="strip-card reveal">
       <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M19 5L5 19" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg></div>
-      <div class="strip-label">0% interest</div>
-      <div class="strip-sub">Just a flat verification fee</div>
+      <div class="strip-label">Up to $700 as a 0% bridge loan</div>
+      <div class="strip-sub">Covers the gap between your earned wages and the amount you need</div>
     </div>
     <div class="strip-card reveal">
       <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-      <div class="strip-label">No credit pull</div>
-      <div class="strip-sub">Eligibility from payroll, not FICO</div>
+      <div class="strip-label">No credit score required</div>
+      <div class="strip-sub">Qualification uses verified payroll information, not a credit pull</div>
     </div>
     <div class="strip-card reveal">
       <div class="strip-icon"><svg viewBox="0 0 24 24"><path d="M23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-      <div class="strip-label">On payday</div>
-      <div class="strip-sub">Earned wages come out of your next paycheck</div>
+      <div class="strip-label">Automatic payroll-linked repayment</div>
+      <div class="strip-sub">Deducted from your paychecks through your payroll connection</div>
     </div>
   </div>
 </section>
@@ -797,56 +910,62 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
     <h2 class="sec-heading reveal" style="margin-bottom:36px;">How Sarf <span class="gold-word">compares</span></h2>
     <p class="ct-scroll-hint">Scroll sideways to see every column</p>
     <div class="pv-ct-scroll">
-      <div class="compare-table-wrap reveal" style="min-width:880px;">
+      <div class="compare-table-wrap reveal" style="min-width:960px;">
         <div class="ct-head">
-          <div>Platform</div><div>Fee or Rate</div><div>Max Access</div><div>Credit Check?</div><div>Payroll Secured?</div>
+          <div>Provider</div><div>Type</div><div>Rate</div><div>Fees</div><div>Credit Check</div><div>Max Amount</div>
         </div>
         <div class="ct-row sarf">
-          <div class="ct-name sarf-name"><span class="ct-logo-wrap"><span class="sarf-logo-circle sm"><picture><source srcset="../logo-sarf.webp" type="image/webp"><img src="../logo-sarf.png" alt="SARF" width="501" height="512" loading="lazy"></picture></span>SARF</span></div>
-          <div class="ct-fee" data-pv-copy="feeCompare">First assessment $10; then $20, or $35 when total access exceeds $700</div>
-          <div class="ct-yes">Up to $1,500 total</div>
-          <div class="ct-yes">No credit check</div>
-          <div class="ct-yes">Yes - Pinwheel</div>
+          <div class="ct-name sarf-name"><span class="ct-logo-wrap"><span class="sarf-logo-circle sm"><picture><source srcset="../logo-sarf.webp" type="image/webp"><img src="../logo-sarf.png" alt="SARF" width="501" height="512" loading="lazy"></picture></span><span>SARF</span></span><span class="ct-badge live" style="margin-left:8px;">Waitlist open</span></div>
+          <div class="ct-yes">0% Loan + EWA</div>
+          <div class="ct-yes">0% always</div>
+          <div class="ct-fee">$10-$35 assessment fee</div>
+          <div class="ct-yes">None</div>
+          <div class="ct-yes">$1,500</div>
         </div>
         <div class="ct-row">
-          <div class="ct-name">EarnIn</div>
-          <div class="ct-neutral">Tip optional</div>
-          <div class="ct-no">$750 earned only</div>
-          <div class="ct-yes">No check</div>
-          <div class="ct-warn">No</div>
+          <div class="ct-name"><span class="ct-logo-wrap"><img src="../logo-earnin.png" alt="EarnIn" class="ct-logo" width="320" height="320" loading="lazy">EarnIn</span></div>
+          <div class="ct-neutral">EWA only</div>
+          <div class="ct-neutral">Tips expected</div>
+          <div class="ct-no">None</div>
+          <div class="ct-yes">None</div>
+          <div class="ct-no">$150/day</div>
         </div>
         <div class="ct-row">
-          <div class="ct-name">Dave</div>
-          <div class="ct-neutral">$1/month fee</div>
-          <div class="ct-no">$750 earned only</div>
-          <div class="ct-yes">No check</div>
-          <div class="ct-warn">No</div>
+          <div class="ct-name"><span class="ct-logo-wrap"><img src="../logo-dave.svg" alt="Dave" class="ct-logo" width="87" height="22" loading="lazy">Dave</span></div>
+          <div class="ct-neutral">EWA only</div>
+          <div class="ct-neutral">Tips expected</div>
+          <div class="ct-warn">$1/month membership</div>
+          <div class="ct-yes">None</div>
+          <div class="ct-no">$500</div>
         </div>
         <div class="ct-row">
           <div class="ct-name"><span class="ct-logo-wrap"><img src="../logo-sofi.png" alt="SoFi" class="ct-logo" width="800" height="229" loading="lazy">SoFi</span></div>
-          <div class="ct-warn">8-25% APR</div>
-          <div class="ct-neutral">Up to $100K</div>
-          <div class="ct-warn">Yes - hard pull</div>
-          <div class="ct-warn">No</div>
+          <div class="ct-neutral">Personal loan</div>
+          <div class="ct-warn">8-29% APR</div>
+          <div class="ct-no">None</div>
+          <div class="ct-warn">Required</div>
+          <div class="ct-neutral">$100,000</div>
         </div>
         <div class="ct-row">
           <div class="ct-name"><span class="ct-logo-wrap"><img src="../logo-upstart.png" alt="Upstart" class="ct-logo" width="800" height="541" loading="lazy">Upstart</span></div>
-          <div class="ct-warn">6-35% APR</div>
-          <div class="ct-neutral">Up to $50K</div>
-          <div class="ct-warn">Yes - hard pull</div>
-          <div class="ct-warn">No</div>
+          <div class="ct-neutral">Personal loan</div>
+          <div class="ct-warn">7-35% APR</div>
+          <div class="ct-warn">Up to 12%</div>
+          <div class="ct-warn">Required</div>
+          <div class="ct-neutral">$50,000</div>
         </div>
         <div class="ct-row">
           <div class="ct-name">Credit Cards</div>
-          <div class="ct-warn">24% APR</div>
+          <div class="ct-neutral">Revolving credit</div>
+          <div class="ct-warn">20-30% APR</div>
+          <div class="ct-warn">Cash-advance fees</div>
+          <div class="ct-warn">Required</div>
           <div class="ct-neutral">Varies</div>
-          <div class="ct-warn">Yes - hard pull</div>
-          <div class="ct-warn">No</div>
+        </div>
         </div>
       </div>
     </div>
-    <p class="ct-claim reveal">Sarf is the only platform in this comparison with 0% bridge lending beyond earned wages. No credit check. No interest on the loan. Ever.</p>
-    <p class="ct-note reveal">Sarf combines access to verified earned wages with an additional 0% bridge loan of up to $700, subject to eligibility. Total access may reach $1,500.</p>
+    <p class="ct-note reveal" data-pv-copy="feeNote">Sarf Financial Assessment fee: $10 for your first assessment, $20 after that, or $35 on later assessments when requesting $700 or more. The fee covers verification. Your bridge loan remains at 0% interest.</p>
   </div>
 </section>
 
@@ -854,28 +973,72 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
 <section class="why-sec" id="why-sarf">
   <div class="why-inner">
     <div class="sec-badge">Why Sarf</div>
-    <h2 class="sec-heading reveal">A different way to <span class="gold-word">bridge payday.</span></h2>
-    <p class="sec-intro reveal">Sarf looks at what you've already earned through your employer's payroll system, not a credit score, to determine what may be available to you now.</p>
+    <h2 class="sec-heading reveal">Lending should not cost you<br><span class="gold-word">more than you borrowed.</span></h2>
+    <p class="sec-body reveal">EarnIn and Dave provide early wage access, but they do not provide an additional 0% bridge loan. SoFi and Upstart offer personal loans but charge interest. Sarf combines earned wage access with an additional 0% bridge loan, using verified payroll information instead of a credit score.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="why-sec" id="how-it-works" style="background:linear-gradient(180deg,var(--bg-card) 0%,var(--bg-deep) 100%);">
+  <div class="why-inner">
+    <div class="sec-badge">How it works</div>
+    <h2 class="sec-heading reveal">From signup to cash in <span class="gold-word">three steps.</span></h2>
+    <div class="feat-grid cols-3" style="margin-top:36px;">
+      <div class="feat reveal">
+        <span class="feat-tag">Step 01</span>
+        <div class="feat-t">Connect your payroll</div>
+        <div class="feat-d">Link your employer through our payroll integration. We verify your income, not your credit score. It takes about 60 seconds.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Step 02</span>
+        <div class="feat-t">Get up to $1,500 at 0%</div>
+        <div class="feat-d">Access up to $700 as a 0% bridge loan, plus your earned wages, up to $1,500 in total. No interest and no origination fee. Your assessment fee is shown clearly before you continue.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Step 03</span>
+        <div class="feat-t">Repay automatically</div>
+        <div class="feat-d">Your earned-wage access is deducted from your next paycheck. Any bridge loan is divided into three automatic payments beginning with the following paycheck.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="why-sec" id="what-you-get">
+  <div class="why-inner">
+    <div class="sec-badge">What you get</div>
+    <h2 class="sec-heading reveal">Built for people the <span class="gold-word">system left behind.</span></h2>
+    <p class="sec-intro reveal">Sarf uses verified income and payroll information instead of relying on a traditional credit score.</p>
     <div class="feat-grid">
       <div class="feat reveal">
-        <span class="feat-tag">Earned, not borrowed</span>
-        <div class="feat-t">Access wages you've already worked for</div>
-        <div class="feat-d">Sarf looks at what you've earned so far this pay period through your connected payroll account, not future income. When you need more than you have earned, an additional 0% bridge loan of up to $700 can close the gap.</div>
+        <span class="feat-tag">Earned Wage Access</span>
+        <div class="feat-t">Money you have already earned</div>
+        <div class="feat-d">Access money you have already earned before payday. The amount is based on your verified payroll information.</div>
       </div>
       <div class="feat reveal">
-        <span class="feat-tag">Always 0%</span>
-        <div class="feat-t">No interest. Ever.</div>
-        <div class="feat-d">There is no interest on earned wage access or the additional Sarf bridge loan. A flat verification fee applies and is shown before you accept.</div>
+        <span class="feat-tag">Bank-Level Security</span>
+        <div class="feat-t">Regulated financial infrastructure</div>
+        <div class="feat-d">Sarf uses bank-grade security and regulated financial infrastructure to protect your information and funds.</div>
       </div>
       <div class="feat reveal">
-        <span class="feat-tag">Payroll-based</span>
-        <div class="feat-t">Eligibility from your payroll, not FICO</div>
-        <div class="feat-d">Active employment and a supported payroll connection are required. No hard credit pull is run to determine eligibility.</div>
+        <span class="feat-tag">Sarf Card</span>
+        <div class="feat-t">Funds you can use right away</div>
+        <div class="feat-d">Approved funds load directly onto your Sarf card so they can be used without waiting for a separate bank transfer.</div>
       </div>
       <div class="feat reveal">
-        <span class="feat-tag">Connected to payday</span>
-        <div class="feat-t">Repayment built around how you actually get paid</div>
-        <div class="feat-d" data-pv-copy="repayCard">Your earned wage access is deducted automatically from your next paycheck. If you receive an additional 0% bridge loan, it is split into 3 equal monthly payments beginning with the following paycheck and automatically deducted until it is repaid.</div>
+        <span class="feat-tag">Payroll-Linked Repayment</span>
+        <div class="feat-t">Repayment that follows your paychecks</div>
+        <div class="feat-d">Sarf connects to your payroll provider. Earned-wage access is repaid from your next paycheck, while bridge-loan payments begin with the following paycheck.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">No Credit Score Required</span>
+        <div class="feat-t">Qualification without a credit pull</div>
+        <div class="feat-d">Sarf does not use a credit pull to determine eligibility. Qualification is based on verified employment, income, and payroll information.</div>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-tag">Truly 0%</span>
+        <div class="feat-t">Truly 0% on every bridge loan</div>
+        <div class="feat-d">The bridge loan carries 0% interest with no compounding. Sarf charges a separate flat Financial Assessment fee: $10 for the first assessment, $20 afterward, or $35 on later assessments when requesting $700 or more.</div>
       </div>
     </div>
   </div>
@@ -897,7 +1060,7 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
   </div>
   <div class="pv-app-shell">
     <div id="pv-app">
-<div class="phone">
+      <div class="phone">
         <div class="statusbar" id="statusbar">
           <span>9:41</span>
           <div class="icons">
@@ -916,15 +1079,21 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
         <div class="progress-track" id="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
         <div id="screen-body"></div>
       </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- BOTTOM CTA -->
 <section class="bottom" id="join">
-  <h2 class="reveal">Your earned pay should<br>not have to <em style="color:var(--gold);">wait.</em></h2>
-  <p class="reveal">Connect your payroll to see what may be available before payday.</p>
-  <button class="bottom-btn reveal" onclick="pvScrollToDemo()">See what you qualify for</button>
+  <h2 class="reveal">Stop paying interest to access<br>the <em style="color:var(--gold);">money you need.</em></h2>
+  <ul class="bottom-points reveal">
+    <li>0% bridge loans plus earned wage access</li>
+    <li>Up to $1,500 in total access</li>
+    <li>Automatic payroll-linked repayment</li>
+    <li>No credit check</li>
+  </ul>
+  <button class="bottom-btn reveal" onclick="pvOpenWaitlist(this)">Join the Waitlist</button>
   <p class="b-note reveal">Questions? Reach us at <a href="mailto:contact@sarf.space" style="color:var(--gold);text-decoration:none;">contact@sarf.space</a></p>
 </section>
 
@@ -933,18 +1102,14 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
   <h2 class="reveal">Frequently Asked Questions</h2>
   <p class="faq-sub reveal">Everything you need to know about Sarf earned wage access and the additional 0% bridge loan.</p>
   <div class="faq-list">
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What is Sarf?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf is a payroll-connected financial access platform. Eligible users may access wages they have already earned and, when needed, receive an additional 0% bridge loan. Total access may reach $1,500, while the bridge-loan portion is limited to $700. Eligibility is based on verified payroll information without a credit pull.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How does earned-wage access work?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">You connect your payroll account so Sarf can verify your income and see how much you have earned so far this pay period. You can access those earned wages before payday, and if you need more than you have earned, eligible users may also receive an additional 0% bridge loan of up to $700. Your earned wage access is deducted from your next paycheck. The bridge loan is repaid separately, in 3 equal monthly payments that begin with the paycheck after that one.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Who is eligible?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Active employment and a supported payroll connection are required. Eligibility and the amount available are based on your verified payroll information.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How is payroll connected?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf connects to your payroll provider using Pinwheel to verify your income and, if you proceed, to set up repayment from your paycheck.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Is there a credit pull?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Sarf does not run a credit check or require a FICO score. Eligibility is based on your verified payroll information.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How much may be available?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Eligible users may receive up to $1,500 in total access based on their verified income and earned wages. The amount may consist entirely of earned wage access or a combination of earned wages and an additional 0% bridge loan. The bridge-loan portion is limited to $700. All amounts remain subject to eligibility and approval.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What is the verification fee?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner" data-pv-copy="feeFaq">A flat fee covers the Sarf Financial Assessment. Sarf verifies your employer, income, cash flow, and employment history through your payroll connection. This fee is separate from the amount you access, and the bridge loan always carries 0% interest. The fee is owed once the assessment is completed, regardless of whether you are approved. Your first assessment is $10. After that, it is $20 when your total requested access is $700 or less, or $35 when your total requested access exceeds $700.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How does repayment work?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner" data-pv-copy="repayFaq">Your earned wage access is deducted automatically from your next paycheck. If you receive an additional 0% bridge loan, it is split into 3 equal monthly payments. The first of those payments begins with the paycheck after the one your earned wage access came out of, and the remaining two follow monthly until the loan is repaid.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Where do approved funds go?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Approved funds, whether earned wages or an additional 0% bridge loan, are loaded onto your Sarf card, subject to operational confirmation.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What if my payroll provider is unsupported?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf connects to over 1,500 payroll providers, covering the vast majority of employed workers in the US. If yours isn't supported, you won't be able to proceed at this time, but we're expanding coverage regularly.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Is qualification guaranteed?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Eligibility and the amount available depend on your verified payroll information and are subject to approval.</div></div></div>
-    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How is my information handled?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Information you provide is used for verification purposes. Payroll credentials are entered directly with our payroll partner and are not seen or stored by Sarf.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How can Sarf offer a 0% bridge loan?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf connects to your payroll provider and verifies your employer, income and pay history directly. Because repayment is scheduled against your paychecks through that connection, Sarf does not price the loan with interest. The only stated charge is a flat Sarf Financial Assessment fee, shown to you before you continue.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What is the Sarf Financial Assessment?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner" data-pv-copy="feeFaq">A flat fee covers the Sarf Financial Assessment. Sarf verifies your employer, income, cash flow, and employment history through your payroll connection. It is separate from the amount you access, and your bridge loan is always 0% interest. Your first assessment is $10. After that it is $20, or $35 on later assessments when you request $700 or more.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How much can I access?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Eligible users may access up to $1,500 in total, based on verified income and earned wages. The amount may be entirely earned wage access, or a combination of earned wages and an additional 0% bridge loan. The bridge-loan portion is limited to $700. All amounts remain subject to eligibility and approval.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>How does repayment work?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner" data-pv-copy="repayFaq">Your earned-wage access is deducted automatically from your next paycheck. Any bridge loan is divided into three equal payments. The first begins with the paycheck after the one your earned-wage access came out of, and the remaining two follow on the next applicable paychecks.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Do you check my credit score?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Sarf does not use a credit pull to determine eligibility. Qualification is based on verified employment, income, and payroll information. Eligibility is not guaranteed.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What if I lose my job during repayment?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Contact Sarf support as soon as possible. Available repayment options are governed by your agreement and Sarf’s applicable support policies.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>What if my payroll provider is unsupported?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Sarf connects to over 1,500 payroll providers, covering the vast majority of employed workers in the US. If yours isn’t supported, you won’t be able to proceed at this time, but we’re expanding coverage regularly.</div></div></div>
+    <div class="faq-item reveal"><button class="faq-q" onclick="pvToggleFaq(this)" aria-expanded="false"><span>Where do approved funds go?</span><span class="faq-icon"><svg viewBox="0 0 14 14"><line x1="7" y1="1" x2="7" y2="13"/><line x1="1" y1="7" x2="13" y2="7"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Approved funds, whether earned wages or an additional 0% bridge loan, load directly onto your Sarf card so they can be used without waiting for a separate bank transfer.</div></div></div>
   </div>
 </section>
 
@@ -963,35 +1128,54 @@ footer{display:flex;align-items:center;justify-content:space-between;gap:16px;pa
       <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
     </button>
   </div>
-  <div class="f-txt">&copy; 2026 SARF Inc. &middot; Earned wage access, connected to your payroll.</div>
+  <div class="f-txt">&copy; 2026 Sarf Inc. All rights reserved.</div>
 </footer>
 
-<!-- EARLY ACCESS MODAL, retained for visual fidelity; submission is a local no-op -->
+<!-- WAITLIST MODAL: posts to the same Google Sheet (via SheetDB) as the live site -->
 <div class="modal-overlay" id="pv-modal">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pv-modal-title">
     <div class="modal-head">
       <div>
-        <div class="modal-title" id="pv-modal-title">Get Early Access</div>
-        <div class="modal-sub">Tell us about you and we'll get you set up. Takes 30 seconds. (Demo, nothing is submitted.)</div>
+        <div class="modal-title" id="pv-modal-title">Join the Waitlist</div>
+        <div class="modal-sub">Tell us how to reach you and we will let you know as soon as Sarf opens in your area.</div>
       </div>
-      <button class="modal-close" onclick="pvCloseModal()" aria-label="Close">&#215;</button>
+      <button class="modal-close" onclick="pvCloseWaitlist()" aria-label="Close">&#215;</button>
     </div>
     <div id="pv-modal-form-wrap">
       <div class="modal-body">
-        <div class="field"><label for="pv-f-email">Email address <span class="req">*</span></label><input type="email" id="pv-f-email" placeholder="you@example.com"></div>
-        <div class="field-row">
-          <div class="field"><label for="pv-f-name">Full name <span class="req">*</span></label><input type="text" id="pv-f-name" placeholder="Your name"></div>
-          <div class="field"><label for="pv-f-phone">Phone number <span class="req">*</span></label><input type="tel" id="pv-f-phone" placeholder="+1 (555) 123-4567"></div>
+        <div class="field">
+          <label for="pvw-email">Email address <span class="req">*</span></label>
+          <input type="email" id="pvw-email" autocomplete="email" placeholder="you@example.com" required>
         </div>
-        <div class="field"><label for="pv-f-message">Anything else we should know <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label><textarea id="pv-f-message" rows="3" placeholder="Optional note"></textarea></div>
-        <div id="pv-form-error"></div>
-        <button class="submit-btn" type="button" onclick="pvSubmitModal()">Confirm &amp; Join</button>
+        <div class="field-row">
+          <div class="field">
+            <label for="pvw-name">Full name <span class="req">*</span></label>
+            <input type="text" id="pvw-name" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="pvw-phone">Phone number <span class="req">*</span></label>
+            <input type="tel" id="pvw-phone" autocomplete="tel" placeholder="+1 (555) 123-4567" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="pvw-company">Employer <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <input type="text" id="pvw-company" autocomplete="organization" placeholder="Where you work">
+        </div>
+        <div class="field">
+          <label for="pvw-message">Anything else? <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+          <textarea id="pvw-message" rows="3" placeholder="Tell us what you need Sarf for..."></textarea>
+        </div>
+        <div id="pv-form-error" role="alert" aria-live="polite"></div>
+        <button class="submit-btn" id="pvw-submit" onclick="pvSubmitWaitlist()">
+          <div class="submit-spinner" id="pvw-spinner"></div>
+          <span id="pvw-btn-text">Join the Waitlist</span>
+        </button>
       </div>
     </div>
-    <div class="modal-success" id="pv-modal-success">
+    <div class="modal-success" id="pv-modal-success" role="status">
       <div class="success-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-      <div class="s-title">You're in!</div>
-      <div class="s-msg">(Demo only, no data was sent.)</div>
+      <div class="s-title">You are on the list</div>
+      <div class="s-msg">We will be in touch as soon as Sarf is available to you.</div>
     </div>
   </div>
 </div>
@@ -1077,43 +1261,152 @@ function pvToggleFaq(btn){
    single spot. Each element also ships with the same text inline, so the page
    still reads correctly with JavaScript disabled.
 
-   Assessment fee (as interpreted for this preview):
-     first assessment            $10, including when total access exceeds $700
-     later, total access <= $700 $20
-     later, total access  > $700 $35
+   Sarf Financial Assessment fee:
+     first assessment      $10, whatever the amount requested
+     later, under $700     $20
+     later, $700 or more   $35
      no separate bridge-loan charge; the bridge loan is always 0% interest
 
    Repayment sequence:
-     earned wage access -> deducted from the NEXT paycheck
-     bridge loan        -> 3 equal monthly payments, the first beginning with
-                           the paycheck AFTER the earned-wage repayment
+     earned-wage access -> deducted from the NEXT paycheck
+     bridge loan        -> 3 equal payments, the first beginning with the
+                           paycheck AFTER the earned-wage repayment
    ═══════════════════════════════════════════════════════════════ */
 const PV_COPY = {
-  feeCompare: 'First assessment $10; then $20, or $35 when total access exceeds $700',
-  feeFaq: 'A flat fee covers the Sarf Financial Assessment. Sarf verifies your employer, income, cash flow, and employment history through your payroll connection. This fee is separate from the amount you access, and the bridge loan always carries 0% interest. The fee is owed once the assessment is completed, regardless of whether you are approved. Your first assessment is $10. After that, it is $20 when your total requested access is $700 or less, or $35 when your total requested access exceeds $700.',
-  repayCard: 'Your earned wage access is deducted automatically from your next paycheck. If you receive an additional 0% bridge loan, it is split into 3 equal monthly payments beginning with the following paycheck and automatically deducted until it is repaid.',
-  repayFaq: 'Your earned wage access is deducted automatically from your next paycheck. If you receive an additional 0% bridge loan, it is split into 3 equal monthly payments. The first of those payments begins with the paycheck after the one your earned wage access came out of, and the remaining two follow monthly until the loan is repaid.'
+  feeNote: 'Sarf Financial Assessment fee: $10 for your first assessment, $20 after that, or $35 on later assessments when requesting $700 or more. The fee covers verification. Your bridge loan remains at 0% interest.',
+  feeFaq: 'A flat fee covers the Sarf Financial Assessment. Sarf verifies your employer, income, cash flow, and employment history through your payroll connection. It is separate from the amount you access, and your bridge loan is always 0% interest. Your first assessment is $10. After that it is $20, or $35 on later assessments when you request $700 or more.',
+  repayCard: 'Sarf connects to your payroll provider. Earned-wage access is repaid from your next paycheck, while bridge-loan payments begin with the following paycheck.',
+  repayFaq: 'Your earned-wage access is deducted automatically from your next paycheck. Any bridge loan is divided into three equal payments. The first begins with the paycheck after the one your earned-wage access came out of, and the remaining two follow on the next applicable paychecks.'
 };
 document.querySelectorAll('[data-pv-copy]').forEach(function(el){
   const t = PV_COPY[el.getAttribute('data-pv-copy')];
   if(t) el.textContent = t;
 });
 
-/* ---------- early-access modal, local no-op, no network ---------- */
-function pvOpenModal(){ document.getElementById('pv-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
-function pvCloseModal(){ document.getElementById('pv-modal').classList.remove('open'); document.body.style.overflow = ''; }
-document.getElementById('pv-modal').addEventListener('click', function(e){ if(e.target === this) pvCloseModal(); });
-function pvSubmitModal(){
-  var email = document.getElementById('pv-f-email').value.trim();
-  var name = document.getElementById('pv-f-name').value.trim();
-  var phone = document.getElementById('pv-f-phone').value.trim();
-  var errEl = document.getElementById('pv-form-error');
+/* ---------- Waitlist ----------------------------------------------------
+   Submits to the same Google Sheet the live site uses, through the same
+   SheetDB collection, with the same method, headers, payload shape and field
+   names as submitForm() in index.html. Nothing about the sheet's schema or the
+   production handler changes. The endpoint id is the one already published in
+   the live site's own HTML, so no new secret is introduced here.
+
+   One deliberate difference from production: fetch() does not reject on an
+   HTTP 400 or 500, so response.ok is checked explicitly before the success
+   state is shown, and a body that is not valid JSON is treated as a failure.
+   ----------------------------------------------------------------------- */
+var PV_SHEET_URL = 'https://sheetdb.io/api/v1/xrkeaduauvp0q';
+var pvSubmitting = false;
+var pvLastFocus = null;
+
+function pvOpenWaitlist(trigger){
+  pvLastFocus = trigger || document.activeElement;
+  var modal = document.getElementById('pv-modal');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  var first = document.getElementById('pvw-email');
+  if(first) setTimeout(function(){ first.focus(); }, 40);
+}
+function pvCloseWaitlist(){
+  document.getElementById('pv-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  if(pvLastFocus && pvLastFocus.focus) pvLastFocus.focus();
+  pvLastFocus = null;
+}
+document.getElementById('pv-modal').addEventListener('click', function(e){ if(e.target === this) pvCloseWaitlist(); });
+
+/* Escape closes; Tab is trapped inside the dialog while it is open. */
+document.getElementById('pv-modal').addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ e.preventDefault(); pvCloseWaitlist(); return; }
+  if(e.key !== 'Tab') return;
+  var f = this.querySelectorAll('button, input, textarea, [href], [tabindex]:not([tabindex="-1"])');
+  var visible = Array.prototype.filter.call(f, function(el){ return el.offsetParent !== null && !el.disabled; });
+  if(!visible.length) return;
+  var first = visible[0], last = visible[visible.length - 1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+});
+
+function pvSubmitWaitlist(){
+  if(pvSubmitting) return;                       // duplicate-click protection
+
+  var email   = document.getElementById('pvw-email').value.trim();
+  var name    = document.getElementById('pvw-name').value.trim();
+  var phone   = document.getElementById('pvw-phone').value.trim();
+  var company = document.getElementById('pvw-company').value.trim();
+  var message = document.getElementById('pvw-message').value.trim();
+  var errEl   = document.getElementById('pv-form-error');
+
+  function fail(msg){
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+  function markInvalid(ids){
+    ['pvw-email','pvw-name','pvw-phone'].forEach(function(id){
+      document.getElementById(id).setAttribute('aria-invalid', ids.indexOf(id) > -1 ? 'true' : 'false');
+    });
+  }
+
   errEl.style.display = 'none';
-  if(!email || !name || !phone){ errEl.textContent = 'Please fill in all required fields.'; errEl.style.display = 'block'; return; }
-  if(!email.includes('@')){ errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
-  /* Local no-op, nothing is transmitted. */
-  document.getElementById('pv-modal-form-wrap').style.display = 'none';
-  document.getElementById('pv-modal-success').style.display = 'block';
+
+  if(!email || !name || !phone){
+    markInvalid([!email && 'pvw-email', !name && 'pvw-name', !phone && 'pvw-phone'].filter(Boolean));
+    fail('Please fill in all required fields.');
+    return;
+  }
+  if(email.indexOf('@') === -1){
+    markInvalid(['pvw-email']);
+    fail('Please enter a valid email address.');
+    return;
+  }
+  markInvalid([]);
+
+  var btn     = document.getElementById('pvw-submit');
+  var spinner = document.getElementById('pvw-spinner');
+  var label   = document.getElementById('pvw-btn-text');
+
+  pvSubmitting = true;
+  label.textContent = 'Submitting...';
+  spinner.style.display = 'block';
+  btn.disabled = true;
+
+  function recover(msg){
+    /* The entered values are left in the form so the visitor can retry. */
+    pvSubmitting = false;
+    spinner.style.display = 'none';
+    label.textContent = 'Join the Waitlist';
+    btn.disabled = false;
+    fail(msg);
+  }
+
+  fetch(PV_SHEET_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: [{
+        Email:     email,
+        Timestamp: new Date().toLocaleString('en-US', {timeZone:'America/New_York'}),
+        fullName:  name,
+        Phone:     phone,
+        Company:   company || '',
+        Message:   message || '',
+        Source:    (window.location.pathname || '/') + (window.location.search || '')
+      }]
+    })
+  })
+  .then(function(res){
+    /* fetch() resolves for 4xx and 5xx, so the status has to be checked here
+       or an error response would fall through to the success state. */
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();                           // a non-JSON body throws, and is treated as a failure
+  })
+  .then(function(){
+    pvSubmitting = false;
+    document.getElementById('pv-modal-form-wrap').style.display = 'none';
+    document.getElementById('pv-modal-success').style.display = 'block';
+  })
+  .catch(function(){
+    recover('Something went wrong. Please try again.');
+  });
 }
 
 /* ---------- reveal-on-scroll (copied behavior from production) ---------- */
@@ -1164,35 +1457,111 @@ document.querySelectorAll('.strip-inner .strip-card,.feat-grid .feat').forEach(f
 })();
 
 /* ============================================================
-   APPLICATION, transplanted from the application prototype
-   (~/sarf-refs/Sarf_Application_Flow_Phase1_Prototype.html).
-   State object, router, screen templates, validation, calculations
-   and event handlers are the prototype's own code. Review-only
-   material (reviewer panel, screen map, simulate triggers, developer
-   restart, URL-hash deep links) has been removed; nothing else changed.
+   APPLICATION, transplanted from Jeff's updated clickable prototype
+   ("Sarf Application Flow — Phase 1 MVP Prototype (Copy).html").
+   State object, router, screen templates, validation and calculations are
+   the prototype's own code. Removed: the reviewer panel, the screen map and
+   its jump controls, the developer restart button, URL-hash deep links, and
+   every visible "Simulate:" control. Changed: one assessment-fee rule, the
+   default state, processing timing and the signature check, all per the
+   approved spec. A keyboard layer and ARIA roles are added on top.
    Wrapped in an IIFE so its globals cannot collide with the website's.
    ============================================================ */
 (function(){
 'use strict';
+
+
 /* =========================================================================
    STATE
 ========================================================================= */
-const STATE = { fullName:'', requestedAmount:500, isFirstLoan:true, history:[], scrolledToBottom:false, revealed:false };
+/* Default state shows the combined path on load: $800 already earned plus a
+   $400 Borrowed Extra portion, $1,200 of $1,500 total, first assessment ($10).
+   The bridge portion stays well under its $700 cap. */
+const STATE = { fullName:'', requestedAmount:1200, earnedSoFar:800, isFirstLoan:true, history:[], scrolledToBottom:false, revealed:false };
 let current = 'welcome';
 let currentParams = {};
-const MIN_LOAN = 200, MAX_LOAN = 620;
-const FEE_FIRST = 10, FEE_SUBSEQUENT = 20;
+const MIN_LOAN = 200, LOAN_CAP = 1500, BRIDGE_CAP = 700;
+/* Sarf Financial Assessment fee, single source of truth. The fee is keyed on
+   whether this is the consumer's first assessment and on the amount requested,
+   NOT on whether a bridge portion is involved. There is no separate bridge
+   charge and no origination fee; the bridge itself is always 0%. */
+const FEE_FIRST = 10, FEE_LATER_UNDER = 20, FEE_LATER_AT_OR_OVER = 35;
+const FEE_AMOUNT_BOUNDARY = 700;
 
 const STEP_OF = { welcome:1, employed:2, yourinfo:3, verify:4, 'payroll-interstitial':5, 'payroll-vendor':6, 'payroll-auth':6,
   processing:7, offer:8, review:9, 'payments-interstitial':10,'payments-vendor':10,'payments-failure':10, allset:10, congrats:11 };
-const NO_BAR = new Set(['quota','conn-failed','no-offers','congrats']);
+const NO_BAR = new Set(['quota','conn-failed','no-offers','congrats','signin']);
 
 function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
 function fmt2(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 function addDays(base,days){ const d=new Date(base); d.setDate(d.getDate()+days); return d; }
 function fmtDate(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
-function fee(){ return STATE.isFirstLoan ? FEE_FIRST : FEE_SUBSEQUENT; }
 
+/* Combo (Earned wages + 0% Bridge loan) math — added 9/23/26 per Jeff's spec:
+   max offer = lesser of $1,500 and (earned-so-far + $700). Whatever's been
+   earned this pay period goes to Earned wages (up to $1,500); anything
+   requested beyond that, up to the $700 Bridge cap, becomes a 0% Bridge
+   Loan split into 3 equal payments across the paychecks after next. */
+function maxOffer(){ return Math.min(LOAN_CAP, STATE.earnedSoFar + BRIDGE_CAP); }
+function ewaAmt(){ return Math.min(STATE.requestedAmount, STATE.earnedSoFar); }
+function bridgeAmt(){ return Math.max(0, STATE.requestedAmount - STATE.earnedSoFar); }
+function isCombo(){ return bridgeAmt() > 0; }
+function fee(){
+  if(STATE.isFirstLoan) return FEE_FIRST;
+  return STATE.requestedAmount >= FEE_AMOUNT_BOUNDARY ? FEE_LATER_AT_OR_OVER : FEE_LATER_UNDER;
+}
+function bridgeInstallments(){
+  const total = bridgeAmt();
+  if(total <= 0) return [0,0,0];
+  const base = Math.floor((total/3)*100)/100;
+  const last = Math.round((total - base*2)*100)/100;
+  return [base, base, last];
+}
+
+/* Repayment timing — corrected 9/23/26 per Jeff: Earned wages is deducted on
+   the very next paycheck. The 0% Bridge Loan does NOT start on that same
+   paycheck — it starts on the paycheck AFTER next, then continues for two
+   more (3 installments total). */
+function nextPayDate(){ return addDays(new Date(), 17); }
+function bridgePayDates(){
+  const payDate = nextPayDate();
+  return [addDays(payDate,14), addDays(payDate,28), addDays(payDate,42)];
+}
+function paySchedule(){
+  const payDate = nextPayDate();
+  const bDates = bridgePayDates();
+  const f = fee();
+  let html = '<div class="pay-schedule-row"><span class="ps-dot ps-earned"></span><span class="ps-label">Already Earned</span><span class="ps-date">'+fmtDate(payDate)+'</span><span class="ps-amt">$'+fmt(ewaAmt()+f)+'</span></div>';
+  if(isCombo()){
+    const inst = bridgeInstallments();
+    inst.forEach((amt,i)=>{
+      html += '<div class="pay-schedule-row"><span class="ps-dot ps-bridge"></span><span class="ps-label">Borrowed Extra payment '+(i+1)+' of 3</span><span class="ps-date">'+fmtDate(bDates[i])+'</span><span class="ps-amt">$'+fmt2(amt)+'</span></div>';
+    });
+  }
+  return html;
+}
+
+/* Clamp a percentage into [0,100] — used to position the amount track's
+   marker and boundary tick. */
+function clampPct(v){ return Math.max(0, Math.min(100, v)); }
+
+function infoIcon(key){ return '<button type="button" class="info-icon-btn" data-action="info-'+key+'" aria-label="More info">'+SVG_INFO_MINI+'</button>'; }
+function infoContent(key){
+  const combo = isCombo();
+  if(key === 'ewa') return { title:'Already Earned', body:"This is money you've already earned this pay period — it's not a loan. Sarf advances it to you now, and it's paid back automatically from your next paycheck." };
+  if(key === 'bridge') return { title:'Borrowed Extra', body:"If you ask for more than you've earned so far this pay period, Sarf covers the difference with Borrowed Extra — a 0% loan, no interest, ever. It's split into 3 equal payments, starting the paycheck after your Already Earned amount is repaid." };
+  if(key === 'fee') return { title:'Sarf Financial Assessment fee', body:
+    "A flat fee that covers verifying your employer, income, cash flow and employment history. It is separate from the amount you access, and your Borrowed Extra is always 0% interest. Your first assessment is $10. After that it is $20, or $35 when you request $700 or more. You'll get the full picture in your Detailed Income Report, right in your Sarf portal." };
+  return { title:'', body:'' };
+}
+
+const REASON_MSG = {
+  TENURE_UNDER_1YR: "You haven't been at your current job long enough yet.",
+  INSUFFICIENT_HISTORY: "We don't have enough pay history yet to make a decision.",
+  PAY_CADENCE_GAP: "Your recent pay history has a gap we couldn't account for.",
+  BELOW_MIN_AMOUNT: "Based on your income, we can't responsibly offer a loan right now."
+};
+const CONTEXT_LABEL = { payroll:'payroll' };
 const PROVIDERS = [
   { name:'ADP', initials:'AD', color:'#D0271D' },
   { name:'Workday', initials:'WD', color:'#1662F1' },
@@ -1200,9 +1569,7 @@ const PROVIDERS = [
   { name:'Paychex', initials:'PX', color:'#00A651' },
   { name:'Rippling', initials:'RP', color:'#6C5CE7' },
 ];
-
-
-
+const RETRY_TARGET = { payroll:'payroll-vendor' };
 /* =========================================================================
    SMALL SHARED MARKUP HELPERS
 ========================================================================= */
@@ -1212,6 +1579,7 @@ function trustLine(text){
 function iconRing(kind, svg){ return '<div class="icon-ring '+kind+'">'+svg+'</div>'; }
 const SVG_X = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#e0654f" stroke-width="2" stroke-linecap="round"/></svg>';
 const SVG_INFO = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FFB343" stroke-width="1.8"/><path d="M12 11V17M12 7.5V7.6" stroke="#FFB343" stroke-width="2" stroke-linecap="round"/></svg>';
+const SVG_INFO_MINI = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 11V17M12 7.5V7.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
 const SVG_CHECK = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#6fbf8b" stroke-width="1.8"/><path d="M8 12.5L10.7 15L16 9" stroke="#6fbf8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const SVG_CHECK_MINI = '<svg width="9" height="9" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#6fbf8b" stroke-width="2"/><path d="M8 12.5L10.7 15L16 9" stroke="#6fbf8b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
@@ -1227,6 +1595,15 @@ const ICON_LOCK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none"><
 
 function iconRow(svg, text){ return '<div class="icon-list-row"><span class="icon-wrap">'+svg+'</span><span>'+text+'</span></div>'; }
 function iconList(rows){ return '<div class="icon-list">'+rows.join('')+'</div>'; }
+
+function infoModal(){
+  return '<div class="modal-overlay" id="info-modal" style="display:none;">'
+    + '<div class="modal-card">'
+    + '<h3 id="info-modal-title"></h3>'
+    + '<p id="info-modal-body"></p>'
+    + '<button class="btn-primary active" data-action="close-info-modal">Got it</button>'
+    + '</div></div>';
+}
 
 function vendorScreen(opts){
   return '<div class="vendor-mode">'
@@ -1246,23 +1623,55 @@ const SCREENS = {
 
   welcome:(p)=> `
     <h2 class="app-h1">Don't wait for payday</h2>
-    <p class="app-sub" style="margin-bottom:6px;">Get up to $700 from money you've already earned.</p>
+    <p class="app-sub" style="margin-bottom:6px;">Get up to $1,500 of what you've Already Earned — need more? Borrow the rest as Borrowed Extra, at 0% interest.</p>
     ${iconList([
-      iconRow(ICON_PERCENT, '0% interest'),
+      iconRow(ICON_DOLLAR, '<b>Already Earned</b> — get money you\'ve already earned this pay period, today'),
+      iconRow(ICON_PERCENT, '<b>Borrowed Extra</b> — need more than you\'ve earned? Borrow the rest at 0% interest'),
       iconRow(ICON_SHIELD, 'No credit pull, ever'),
-      iconRow(ICON_DOLLAR, '$10 verification fee* <span style="font-size:12px;color:var(--text-muted);">(includes your Detailed Income Report)</span>'),
+      iconRow(ICON_DOC, 'Flat verification fee* <span style="font-size:12px;color:var(--text-muted);">(includes your Detailed Income Report)</span>'),
     ])}
     <div class="spacer"></div>
     <button class="btn-primary active" data-go="employed">See what you qualify for</button>
-    <button class="btn-text" data-go="verify" data-params='{}'>Already a Sarf member? Sign in</button>
-    <p class="form-footnote">*$10 for your first loan. $20 for each loan after that.</p>
+    <button class="btn-text" data-go="signin" data-params='{}'>Already a Sarf member? Sign in</button>
+    <p class="form-footnote">*First assessment $10, then $20, or $35 when you request $700 or more.</p>
+  `,
+
+  signin:(p)=> `
+    <div class="field-error-banner" id="signin-error" style="display:none;">
+      <strong>Incorrect email or password</strong>
+      <p>Please double check your email and password and try again, or click "Forgot password?" to reset it.</p>
+    </div>
+    <h2 class="app-h1">Welcome back</h2>
+    <p class="app-sub">Sign in to your Sarf account.</p>
+    <div class="field"><input type="email" id="signin-email" /><label for="signin-email">Email address</label></div>
+    <div class="field"><input type="password" id="signin-password" /><label for="signin-password">Password</label></div>
+    <button class="btn-primary active">Sign In</button>
+    <button class="btn-text" style="text-align:left;padding-left:2px;">Forgot password?</button>
+    <p style="text-align:center;font-size:11px;color:var(--text-faint);margin:16px 0;">or</p>
+    <button class="btn-secondary">Sign in with Google</button>
+    <button class="btn-secondary">Sign in with Apple?</button>
+    <div class="spacer"></div>
+    <button class="btn-text">New to Sarf? See what you qualify for</button>
+  `,
+
+  quota:(p)=> `
+    <div class="modal-overlay">
+      <div class="modal-card">
+        <h3>We've hit today's lending limit</h3>
+        <p>We're so glad you're here! We're just getting started, so we're keeping a close eye on how many loans we fund each day — and today's batch is already spoken for.</p>
+        <p class="strong">Please check back tomorrow — we'll be ready for you.</p>
+        <button class="btn-primary active" data-go="welcome" data-params='{"replace":true}'>Got it</button>
+      </div>
+    </div>
+    <h2 class="app-h1">Get up to $1,500 instantly.</h2>
+    <p class="app-sub">No credit pull, ever. Money in minutes once you're approved.</p>
   `,
 
   employed:(p)=> p.declined ? `
     ${iconRing('warn', SVG_X)}
     <div class="centered">
-      <h2 class="app-h1">We can't continue right now</h2>
-      <p class="app-sub">Sarf currently requires active employment and a connected payroll account to offer financing.</p>
+      <h2 class="app-h1">Apologies, but we can't continue</h2>
+      <p class="app-sub">To qualify for a Sarf loan you must be actively employed. Sarf will make a direct connection to your payroll in order to qualify you for a loan and set up direct payroll payment.</p>
     </div>
     <div class="spacer"></div>
     <button class="btn-secondary" data-action="employed-reset">Go back</button>
@@ -1296,6 +1705,10 @@ const SCREENS = {
   `,
 
   verify:(p)=> `
+    <div class="field-error-banner" id="code-error" style="display:none;">
+      <strong>Invalid code entered</strong>
+      <p>Please enter the verification code we texted you or click "Resend code" to send you a new verification code.</p>
+    </div>
     <h2 class="app-h1">Verify your code</h2>
     <p class="app-sub">Enter the 5-digit code we just texted you.</p>
     <div class="field"><input type="text" id="f-code" maxlength="5" inputmode="numeric" /><label for="f-code">5-digit code</label></div>
@@ -1320,8 +1733,8 @@ const SCREENS = {
     vendor:'Pinwheel', title:'Find your employer', sub:'Search by payroll provider or employer to connect your account.',
     body:'<input type="text" class="vendor-search" id="provider-search" placeholder="Search by payroll provider or employer" />'
       + '<div id="provider-list">'
-      + PROVIDERS.map(pr=>'<div class="vendor-card" role="button" tabindex="0" aria-label="'+pr.name+', sign in with your '+pr.name+' credentials" data-name="'+pr.name.toLowerCase()+'" data-go="payroll-auth" data-params=\'{"provider":"'+pr.name+'"}\'><div class="vc-row"><div class="provider-badge" style="background:'+pr.color+';">'+pr.initials+'</div><span>'+pr.name+'<small>Sign in with your '+pr.name+' credentials</small></span></div></div>').join('')
-      + '</div><p class="vendor-empty" id="provider-empty" style="display:none;">No providers match your search.</p>',
+      + PROVIDERS.map(pr=>'<div class="vendor-card" role="button" tabindex="0" aria-label="Connect '+pr.name+'" data-name="'+pr.name.toLowerCase()+'" data-go="payroll-auth" data-params=\'{"provider":"'+pr.name+'"}\'><div class="vc-row"><div class="provider-badge" style="background:'+pr.color+';">'+pr.initials+'</div><span>'+pr.name+'<small>Sign in with your '+pr.name+' credentials</small></span></div></div>').join('')
+      + '</div><p class="vendor-empty" id="provider-empty" style="display:none;">No providers match your search.</p>'
   }),
 
   'payroll-auth':(p)=> vendorScreen({
@@ -1330,6 +1743,20 @@ const SCREENS = {
       + '<input type="password" class="vendor-field" placeholder="Password" />',
     primaryLabel:'Log In', primaryGo:'processing'
   }),
+
+  'conn-failed':(p)=>{
+    const ctx = p.context || 'payroll';
+    return `
+    ${iconRing('warn', SVG_X)}
+    <div class="centered">
+      <h2 class="app-h1">We couldn't connect your ${CONTEXT_LABEL[ctx]}</h2>
+      <p class="app-sub">Something didn't go through on our end — a verified connection is required to continue.</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="${RETRY_TARGET[ctx]}">Try Again</button>
+    <button class="btn-text btn-danger-link" style="cursor:default;">Contact Support</button>
+    `;
+  },
 
   processing:(p)=> `
     <div class="centered">
@@ -1340,65 +1767,132 @@ const SCREENS = {
     <div class="spacer"></div>
   `,
 
-  offer:(p)=> `
-    <div class="modal-overlay" id="fee-modal" style="display:none;">
-      <div class="modal-card">
-        <h3>What's the verification fee for?</h3>
-        <p>It covers a quick check of your employer and income — the same info we use to size your offer. You'll get the full picture in your Detailed Income Report, right in your Sarf portal.</p>
-        <button class="btn-primary active" id="fee-modal-close">Got it</button>
+  'no-offers':(p)=>{
+    const reason = p.reason || 'TENURE_UNDER_1YR';
+    return `
+    ${iconRing('info', SVG_INFO)}
+    <div class="centered">
+      <h2 class="app-h1">We're not able to offer financing right now</h2>
+      <p class="app-sub">${REASON_MSG[reason]}</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="welcome" data-params='{"replace":true}'>Return Home</button>
+    `;
+  },
+
+  offer:(p)=> {
+    const min = MIN_LOAN, max = maxOffer();
+    const amt = Math.max(min, Math.min(STATE.requestedAmount, max));
+    STATE.requestedAmount = amt;
+    const combo = isCombo();
+    const f = fee();
+    const total = ewaAmt() + bridgeAmt() + f;
+    const earnedPct = clampPct(((STATE.earnedSoFar - min) / (max - min)) * 100);
+    const valuePct = clampPct(((amt - min) / (max - min)) * 100);
+    const hasBridgeZone = earnedPct > 0.5 && earnedPct < 99.5;
+    let boundaryLabelStyle;
+    if(earnedPct < 20) boundaryLabelStyle = 'left:calc('+earnedPct+'% + 5px); transform:translateX(0);';
+    else if(earnedPct > 80) boundaryLabelStyle = 'left:calc('+earnedPct+'% - 5px); transform:translateX(-100%);';
+    else boundaryLabelStyle = 'left:'+earnedPct+'%; transform:translateX(-50%);';
+    const alreadyEarnedSub = hasBridgeZone ? ('$'+fmt(min)+' to $'+fmt(STATE.earnedSoFar)) : ('$'+fmt(min)+' to $'+fmt(max));
+    const borrowedExtraSub = hasBridgeZone ? ('$'+fmt(STATE.earnedSoFar+1)+' to $'+fmt(max)) : '';
+    return `
+    ${infoModal()}
+    <h2 class="app-h1">How much do you want?</h2>
+    <p class="app-sub" style="margin:-10px 0 10px;" id="offer-eligible-line">You're eligible for up to $${fmt(max)}.</p>
+
+    <div class="amt-field-wrap">
+      <span class="amt-currency">$</span>
+      <input type="number" inputmode="numeric" class="amt-input" id="amt-input" value="${amt}" />
+    </div>
+
+    <div class="track-block">
+      <div class="amt-track" id="amt-track" style="background:linear-gradient(to right, var(--gold) 0%, var(--gold) ${earnedPct}%, var(--bridge-accent) ${earnedPct}%, var(--bridge-accent) 100%);">
+        ${hasBridgeZone ? `<div class="amt-boundary-tick" style="left:${earnedPct}%;"></div>` : ''}
+        <div class="amt-pointer-label" id="amt-pointer-label" style="left:${valuePct}%;">$${fmt(amt)}</div>
+        <div class="amt-pointer ${amt > STATE.earnedSoFar ? 'in-bridge' : ''}" id="amt-pointer" style="left:${valuePct}%;"></div>
+        <div class="amt-pointer-hit" id="amt-pointer-hit" style="left:${valuePct}%;"></div>
+      </div>
+      <div class="track-endpoints">
+        <span>$${fmt(min)}</span>
+        ${hasBridgeZone ? `<span class="track-boundary-label" style="${boundaryLabelStyle}">$${fmt(STATE.earnedSoFar)}</span>` : ''}
+        <span>$${fmt(max)}</span>
       </div>
     </div>
-    <h2 class="app-h1">How much do you need?</h2>
-    <p class="app-sub" style="margin-top:-10px;">You're eligible to borrow between $${fmt(MIN_LOAN)} and $${fmt(MAX_LOAN)} … and it's yours in minutes!</p>
-    <div class="amount-display">$<span id="amt-val">${fmt(STATE.requestedAmount)}</span></div>
-    <input type="range" id="amt-slider" class="amt-range" min="${MIN_LOAN}" max="${MAX_LOAN}" step="10" value="${STATE.requestedAmount}" />
-    <div class="range-labels"><span>$${fmt(MIN_LOAN)}</span><span>$${fmt(MAX_LOAN)}</span></div>
-    <div class="flat-rows" id="offer-math" style="margin-top:14px;">
-      <div class="flat-row"><span class="flat-label">You borrow</span><span class="flat-value" id="borrow-amt">$${fmt(STATE.requestedAmount+fee())}</span></div>
-      <div class="flat-row"><span class="flat-label">Verification fee</span><span class="flat-value" id="fee-amt">$${fee()}</span></div>
-      <div class="flat-divider"></div>
-      <div class="flat-row total"><span class="flat-label">You Get</span><span class="flat-value" id="net-amt">$${fmt(STATE.requestedAmount)}</span></div>
+
+    <div class="legend-row">
+      <span class="legend-item">
+        <span class="legend-dot legend-earned"></span>
+        <span class="legend-text"><span class="legend-label">Already Earned</span><span class="legend-sub">${alreadyEarnedSub}</span></span>
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot legend-bridge"></span>
+        <span class="legend-text"><span class="legend-label">Borrowed Extra</span>${borrowedExtraSub ? `<span class="legend-sub">${borrowedExtraSub}</span>` : ''}</span>
+      </span>
     </div>
-    <button class="btn-text" id="fee-info-link" style="text-align:left;padding-left:2px;margin-top:-8px;">What's the verification fee for?</button>
-    <p class="paid-in-full-note">Paid in full on: <b id="payday-date"></b></p>
+
+    <div class="flat-rows" id="offer-math">
+      <div class="flat-row"><span class="flat-label">Already Earned ${infoIcon('ewa')}</span><span class="flat-value" id="split-ewa-amt">$${fmt(ewaAmt())}</span></div>
+      <div class="flat-row"><span class="flat-label">Borrowed Extra ${infoIcon('bridge')}</span><span class="flat-value" id="split-bridge-amt">$${fmt(bridgeAmt())}</span></div>
+      <div class="flat-divider"></div>
+      <div class="flat-row"><span class="flat-label">Verification fee ${infoIcon('fee')}</span><span class="flat-value" id="fee-amt">$${f}</span></div>
+      <div class="flat-divider"></div>
+      <div class="flat-row total"><span class="flat-label">Total payroll deductions</span><span class="flat-value" id="total-deductions-amt">$${fmt(total)}</span></div>
+    </div>
+    <div class="pay-schedule" id="pay-schedule">${paySchedule()}</div>
     <div class="spacer"></div>
     <button class="btn-primary active" id="offer-continue" data-go="review">Continue</button>
     ${trustLine('Bank-grade encryption. No credit pull.')}
-  `,
+  `;
+  },
 
   review:(p)=> {
-    const today = new Date();
-    const payDate = addDays(today, 17);
+    const combo = isCombo();
     const f = fee();
+    const ewa = ewaAmt(), bridge = bridgeAmt();
     const net = STATE.requestedAmount;
-    const borrow = STATE.requestedAmount + f;
+    const payDate = nextPayDate();
+    const bDates = bridgePayDates();
+    const inst = bridgeInstallments();
     return `
+    ${infoModal()}
     <h2 class="app-h1">Almost there, just review and sign</h2>
     <div class="offer-card" style="padding:2px 14px;">
       <div class="offer-row" style="padding:12px 0;">
-        <div class="offer-row-head"><span class="offer-name">You borrow</span><span class="offer-amt">$${fmt(borrow)}</span></div>
+        <div class="offer-row-head"><span class="offer-name">Already Earned ${infoIcon('ewa')}</span><span class="offer-amt">$${fmt(ewa)}</span></div>
       </div>
       <div class="offer-divider"></div>
       <div class="offer-row" style="padding:12px 0;">
-        <div class="offer-row-head"><span class="offer-name">Verification fee</span><span class="offer-amt">$${fmt(f)}</span></div>
+        <div class="offer-row-head"><span class="offer-name">Borrowed Extra ${infoIcon('bridge')}</span><span class="offer-amt">$${fmt(bridge)}</span></div>
       </div>
+      <div class="offer-divider"></div>
+      <div class="offer-row" style="padding:12px 0 0;">
+        <div class="offer-row-head"><span class="offer-name">Verification fee ${infoIcon('fee')}</span><span class="offer-amt">$${fmt(f)}</span></div>
+      </div>
+      <p class="flat-row-subtext" style="padding-bottom:8px;">Covers your Sarf Financial Assessment</p>
       <div class="offer-divider"></div>
       <div class="offer-row" style="padding:12px 0;">
         <div class="offer-row-head"><span class="offer-name">You Get</span><span class="offer-amt" style="color:var(--green);font-size:23px;">$${fmt(net)}</span></div>
       </div>
       <div class="total-row">
-        <span class="offer-name">Paid in full</span>
-        <span class="offer-amt" style="font-size:15px;">${fmtDate(payDate)}</span>
+        <span class="offer-name">Total payroll deductions</span>
+        <span class="offer-amt" style="font-size:15px;">$${fmt(ewa+bridge+f)}</span>
       </div>
     </div>
-    <p class="app-sub" style="margin-top:-6px;">Your full loan amount lands on a Sarf debit card, paid back in one shot on your next paycheck.</p>
+    <div class="pay-schedule" style="margin-top:2px;">${paySchedule()}</div>
     <div class="contract-box" id="contract-box">
-      <h4>Sarf EWA Loan Agreement</h4>
-      <p>This agreement covers the Earned Wage Access advance described above, funded through Stearns Bank and disbursed to your Sarf card.</p>
+      <h4>${combo ? 'Sarf EWA &amp; 0% Bridge Loan Agreement' : 'Sarf EWA Loan Agreement'}</h4>
+      <p>${combo
+        ? `This agreement covers two loans funded through Stearns Bank and disbursed together to your Sarf card: an Earned Wage Access advance and a 0% Bridge Loan.`
+        : `This agreement covers the Earned Wage Access advance described above, funded through Stearns Bank and disbursed to your Sarf card.`}</p>
       <h4>Earned Wage Access</h4>
-      <p>This is an advance on wages you have already earned during your current pay period — it is not a loan. Sarf charges a flat fee of $${fmt(f)} for this advance. You will receive $${fmt(net)} on your Sarf card, and the full amount owed — $${fmt(borrow)}, your advance plus the verification fee — will be deducted in a single transaction from your next paycheck.</p>
+      <p>This is an advance on wages you have already earned during your current pay period — it is not a loan. Sarf charges a flat fee of $${fmt(f)} for this agreement${combo ? ', covering both loans below' : ''}. You will receive $${fmt(ewa)} on your Sarf card, and $${fmt(ewa+f)} — your Earned Wage Access advance plus the verification fee — will be deducted in a single transaction from your next paycheck, on ${fmtDate(payDate)}.</p>
+      ${combo ? `
+      <h4>0% Bridge Loan</h4>
+      <p>The remaining $${fmt(bridge)} of what you requested is more than you've earned so far this pay period, so it's structured as a separate, interest-free Bridge Loan — no interest and no fee beyond the one above. You will receive $${fmt(bridge)} on your Sarf card, and it will be repaid in 3 installments starting the paycheck after your Earned Wage Access is repaid — $${fmt2(inst[0])} on ${fmtDate(bDates[0])}, $${fmt2(inst[1])} on ${fmtDate(bDates[1])}, and $${fmt2(inst[2])} on ${fmtDate(bDates[2])} — automatically deducted from your following 3 paychecks.</p>
+      ` : ''}
       <h4>Security &amp; Repayment</h4>
-      <p>This loan will be repaid automatically via payroll deduction on your next payday. No security interest is taken against any property. A late fee may apply if a scheduled deduction fails; there is no penalty for paying off early.</p>
+      <p>${combo ? 'Both loans above' : 'This loan'} will be repaid automatically via payroll deduction. No security interest is taken against any property. A late fee may apply if a scheduled deduction fails; there is no penalty for paying off early.</p>
       <p style="color:var(--text-faint);">— end of agreement —</p>
     </div>
     <p class="scroll-hint" id="scroll-hint">↓ scroll to the bottom to continue ↓</p>
@@ -1419,14 +1913,43 @@ const SCREENS = {
     <button class="btn-primary active" data-go="payments-vendor">Continue</button>
   `,
 
-  'payments-vendor':(p)=> vendorScreen({
-    vendor:'Pinwheel', title:'Pay by Paycheck', sub:'Confirm your repayment amount',
-    body:'<div class="vendor-card" style="cursor:default;"><span>$'+fmt(STATE.requestedAmount+fee())+' deduction on your next paycheck<small>Your loan amount plus the verification fee</small></span></div>',
-    primaryLabel:'Continue (confirmed)', primaryGo:'allset'
-  }),
+  'payments-vendor':(p)=> {
+    const combo = isCombo();
+    const f = fee();
+    const payDate = nextPayDate();
+    const bDates = bridgePayDates();
+    const inst = bridgeInstallments();
+    let body = (combo ? '<p class="vendor-section-label">Already Earned</p>' : '')
+      + '<div class="vendor-card" style="cursor:default;"><span>$'+fmt(ewaAmt()+f)+' deduction on '+fmtDate(payDate)+'<small>Your Already Earned advance plus the verification fee</small></span></div>';
+    if(combo){
+      body += '<p class="vendor-section-label">Borrowed Extra</p>'
+        + '<div class="vendor-card" style="cursor:default;"><span>$'+fmt2(inst[0])+' deduction on '+fmtDate(bDates[0])+'<small>Borrowed Extra payment 1 of 3</small></span></div>'
+        + '<div class="vendor-card" style="cursor:default;"><span>$'+fmt2(inst[1])+' deduction on '+fmtDate(bDates[1])+'<small>Borrowed Extra payment 2 of 3</small></span></div>'
+        + '<div class="vendor-card" style="cursor:default;"><span>$'+fmt2(inst[2])+' deduction on '+fmtDate(bDates[2])+'<small>Borrowed Extra payment 3 of 3</small></span></div>';
+    }
+    return vendorScreen({
+      vendor:'Pinwheel', title:'Pay by Paycheck', sub: combo ? 'Confirm your repayment amounts' : 'Confirm your repayment amount',
+      body,
+      primaryLabel:'Continue (confirmed)', primaryGo:'allset'
+    });
+  },
+
+  'payments-failure':(p)=> `
+    ${iconRing('warn', SVG_X)}
+    <div class="centered">
+      <h2 class="app-h1">Unable to complete your loan</h2>
+      <p class="app-sub">In order for your loan to be processed, you must set up direct payments through auto pay. Please set this up to proceed.</p>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary active" data-go="payments-vendor">Try Again</button>
+    <button class="btn-text" data-go="allset">Set up later</button>
+  `,
 
   allset:(p)=> {
-    const repayDate = addDays(new Date(), 17);
+    const combo = isCombo();
+    const f = fee();
+    const payDate = nextPayDate();
+    const bDates = bridgePayDates();
     return `
     ${iconRing('good', SVG_CHECK)}
     <div class="centered">
@@ -1434,8 +1957,8 @@ const SCREENS = {
       <p class="app-sub">Here's your repayment details.</p>
     </div>
     <div class="stat-rows" style="margin-bottom:18px;">
-      <div class="stat-row"><span>Loan Amount</span><span class="stat-value">$${fmt(STATE.requestedAmount+fee())}</span></div>
-      <div class="stat-row"><span>Repayment date</span><span class="stat-value">${fmtDate(repayDate)}</span></div>
+      <div class="stat-row"><span>Already Earned</span><span class="stat-value">$${fmt(ewaAmt()+f)} on ${fmtDate(payDate)}</span></div>
+      ${combo ? `<div class="stat-row"><span>Borrowed Extra</span><span class="stat-value">3 payments starting ${fmtDate(bDates[0])}</span></div>` : ''}
     </div>
     <div class="spacer"></div>
     <button class="btn-primary active" data-go="congrats">Continue</button>
@@ -1445,12 +1968,13 @@ const SCREENS = {
   congrats:(p)=> {
     const net = STATE.requestedAmount;
     const first = (STATE.fullName || 'Priya Shah').split(' ')[0];
+    const combo = isCombo();
     return `
     <div class="centered">
       <h2 class="app-h1">You did it, ${first}!</h2>
       <p class="app-sub">Your money is available - right now.</p>
       <div class="amount-display" style="margin:2px 0 14px;">$<span>${fmt(net)}</span></div>
-      <p class="app-sub" style="margin-top:-10px;margin-bottom:16px;">has been loaded onto your Sarf card.</p>
+      <p class="app-sub" style="margin-top:-10px;margin-bottom:16px;">has been loaded onto your Sarf card${combo ? ' — your Already Earned advance plus Borrowed Extra' : ''}.</p>
     </div>
     <div class="vcard">
       <div class="vcard-top"><span class="vcard-logo">SARF</span><div class="vcard-chip"></div></div>
@@ -1519,6 +2043,16 @@ function renderScreen(){
 
 }
 
+/* wires an info-modal's backdrop-click-to-dismiss — the modal itself opens
+   via data-action="info-<key>" / "close-info-modal", routed through the
+   single delegated click listener + handleAction() below, same as every
+   other actionable element in this prototype. */
+function wireInfoModalBackdrop(){
+  const modal = document.getElementById('info-modal');
+  if(!modal) return;
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display = 'none'; });
+}
+
 /* per-screen extra wiring after innerHTML is set */
 function mountExtra(id){
   if(id === 'processing'){
@@ -1542,10 +2076,17 @@ function mountExtra(id){
       if(idx < subtitles.length){ addStep(idx); }
       else { clearInterval(activeInterval); activeInterval = null; }
     }, 800);
-    /* Approved timing change: the prototype advanced after 15s with status lines
-       every 5s. Both are scaled down together so all three lines still appear and
-       the animation still plays, rather than the screen flashing past. */
+    /* Approved timing change: the prototype advanced after 15s with a status
+       line every 5s. Both are scaled down together so all three lines still
+       appear and the animation still plays, rather than flashing past. */
     activeTimer = setTimeout(()=> go('offer', {}), 2600);
+  }
+  if(id === 'signin'){
+    const email=document.getElementById('signin-email'), password=document.getElementById('signin-password');
+    const errorBanner=document.getElementById('signin-error');
+    [email,password].forEach(el=>{
+      el.addEventListener('input', ()=>{ el.closest('.field').classList.toggle('filled', el.value.trim()!==''); errorBanner.style.display='none'; });
+    });
   }
   if(id === 'payroll-vendor'){
     const search = document.getElementById('provider-search');
@@ -1579,47 +2120,101 @@ function mountExtra(id){
   }
   if(id === 'verify'){
     const code=document.getElementById('f-code'), cont=document.getElementById('verify-continue'), resend=document.getElementById('resend-link');
-    code.addEventListener('input', ()=>{ cont.classList.toggle('active', code.value.trim().length===5); });
-    resend.addEventListener('click', ()=>{ resend.textContent='Code sent!'; });
+    const codeError=document.getElementById('code-error');
+    code.addEventListener('input', ()=>{ cont.classList.toggle('active', code.value.trim().length===5); codeError.style.display='none'; });
+    resend.addEventListener('click', ()=>{ resend.textContent='Code sent!'; codeError.style.display='none'; });
   }
   if(id === 'offer'){
-    const slider=document.getElementById('amt-slider');
-    const payday = addDays(new Date(), 17);
-    document.getElementById('payday-date').textContent = fmtDate(payday);
-    function update(){
-      const total = parseInt(slider.value,10);
-      STATE.requestedAmount = total;
-      document.getElementById('amt-val').textContent = fmt(total);
-      document.getElementById('borrow-amt').textContent = '$'+fmt(total+fee());
-      document.getElementById('fee-amt').textContent = '$'+fmt(fee());
-      document.getElementById('net-amt').textContent = '$'+fmt(total);
-      const pct = ((total-slider.min)/(slider.max-slider.min))*100;
-      slider.style.background = 'linear-gradient(to right, var(--gold) 0%, var(--gold) '+pct+'%, var(--surface-2) '+pct+'%, var(--surface-2) 100%)';
+    const input = document.getElementById('amt-input');
+    const track = document.getElementById('amt-track');
+    const hit = document.getElementById('amt-pointer-hit');
+    const pointer = document.getElementById('amt-pointer');
+    const pointerLabel = document.getElementById('amt-pointer-label');
+
+    /* Live update while typing or dragging — touches only the DOM nodes that
+       need to change, so the text input never loses focus/cursor and the
+       drag stays smooth. The boundary tick/label and legend only depend on
+       earnedSoFar (not the requested amount), so they don't need updating
+       here — only a full renderScreen() (on blur, drag-end, or a simulate
+       toggle) recomputes those. */
+    function liveUpdate(){
+      const min = MIN_LOAN, max = maxOffer();
+      const amt = Math.max(min, Math.min(STATE.requestedAmount, max));
+      const f = fee();
+      const valuePct = clampPct(((amt - min) / (max - min)) * 100);
+
+      pointer.style.left = valuePct + '%';
+      pointerLabel.style.left = valuePct + '%';
+      hit.style.left = valuePct + '%';
+      pointerLabel.textContent = '$' + fmt(amt);
+      pointer.classList.toggle('in-bridge', amt > STATE.earnedSoFar);
+      if(document.activeElement !== input) input.value = amt;
+
+      document.getElementById('split-ewa-amt').textContent = '$'+fmt(ewaAmt());
+      document.getElementById('split-bridge-amt').textContent = '$'+fmt(bridgeAmt());
+      document.getElementById('fee-amt').textContent = '$'+f;
+      document.getElementById('total-deductions-amt').textContent = '$'+fmt(ewaAmt()+bridgeAmt()+f);
+      document.getElementById('pay-schedule').innerHTML = paySchedule();
     }
-    slider.addEventListener('input', update);
-    update();
-    const feeModal = document.getElementById('fee-modal');
-    const feeInfoLink = document.getElementById('fee-info-link');
-    const feeModalClose = document.getElementById('fee-modal-close');
-    feeInfoLink.addEventListener('click', ()=>{ feeModal.style.display = 'flex'; });
-    feeModalClose.addEventListener('click', ()=>{ feeModal.style.display = 'none'; });
-    feeModal.addEventListener('click', (e)=>{ if(e.target === feeModal) feeModal.style.display = 'none'; });
+
+    input.addEventListener('input', ()=>{
+      const v = parseInt(input.value,10);
+      STATE.requestedAmount = input.value === '' ? STATE.requestedAmount : (isNaN(v) ? STATE.requestedAmount : v);
+      liveUpdate();
+    });
+    input.addEventListener('blur', ()=>{
+      const min = MIN_LOAN, max = maxOffer();
+      const v = parseInt(input.value,10);
+      STATE.requestedAmount = isNaN(v) ? STATE.earnedSoFar : Math.max(min, Math.min(v, max));
+      /* Deliberately a lightweight liveUpdate(), not a full renderScreen(), here.
+         renderScreen() tears down and rebuilds #screen-body's DOM; if that happens
+         synchronously during blur — which fires on mousedown, before mouseup/click —
+         it can detach the element the user is mid-click on (e.g. the Continue button)
+         before the click event fires, silently swallowing the click. Nothing this
+         screen shows on blur (breakdown, pay schedule, pointer position) needs a full
+         rebuild: the boundary tick/legend only depend on earnedSoFar, not the typed
+         amount, so liveUpdate() alone keeps everything in sync. */
+      liveUpdate();
+    });
+    input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') input.blur(); });
+
+    let dragging = false;
+    function pctFromClientX(clientX){
+      const rect = track.getBoundingClientRect();
+      return clampPct(((clientX - rect.left) / rect.width) * 100);
+    }
+    function amountFromPct(pct){
+      const lo = MIN_LOAN, hi = maxOffer();
+      const raw = lo + (pct/100) * (hi-lo);
+      return Math.max(lo, Math.min(Math.round(raw/5)*5, hi));
+    }
+    function handleDrag(clientX){
+      STATE.requestedAmount = amountFromPct(pctFromClientX(clientX));
+      liveUpdate();
+    }
+    hit.addEventListener('pointerdown', (e)=>{ dragging = true; hit.setPointerCapture(e.pointerId); handleDrag(e.clientX); });
+    hit.addEventListener('pointermove', (e)=>{ if(dragging) handleDrag(e.clientX); });
+    const endDrag = ()=>{ if(dragging){ dragging = false; renderScreen(); } };
+    hit.addEventListener('pointerup', endDrag);
+    hit.addEventListener('pointercancel', endDrag);
+
+    wireInfoModalBackdrop();
   }
   if(id === 'review'){
     STATE.scrolledToBottom = false;
     const box=document.getElementById('contract-box'), hint=document.getElementById('scroll-hint'),
           sig=document.getElementById('f-sig'), cont=document.getElementById('sign-continue');
     function validate(){
-      // Signature only needs to be non-empty; it is no longer matched against the
-      // first/last name captured on 7.3. Scroll-to-bottom is still required.
-      const signed = sig.value.trim().length > 0;
-      cont.classList.toggle('active', STATE.scrolledToBottom && signed);
+      /* Approved change: the signature only has to be non-empty. It is no longer
+         matched against the name captured on 7.3. Scroll-to-bottom still applies. */
+      cont.classList.toggle('active', STATE.scrolledToBottom && sig.value.trim().length > 0);
     }
     box.addEventListener('scroll', ()=>{
       if(box.scrollTop + box.clientHeight >= box.scrollHeight - 4){ STATE.scrolledToBottom = true; hint.classList.add('done'); validate(); }
     });
     sig.addEventListener('input', validate);
     validate();
+    wireInfoModalBackdrop();
   }
   if(id === 'congrats'){
     const btn=document.getElementById('reveal-btn'), num=document.getElementById('vcard-num'),
@@ -1637,16 +2232,36 @@ function handleAction(action){
   if(action === 'employed-yes' || action === 'employed-no'){
     employedChoice = action === 'employed-yes' ? 'yes' : 'no';
     document.querySelectorAll('#screen-body .option-card').forEach(c=>{
-      const isSel = c.dataset.action === action;
-      c.classList.toggle('selected', isSel);
-      c.setAttribute('aria-checked', String(isSel));
-      c.tabIndex = isSel ? 0 : -1;
+      const on = c.dataset.action === action;
+      c.classList.toggle('selected', on);
+      c.setAttribute('aria-checked', on ? 'true' : 'false');
+      c.setAttribute('tabindex', on ? '0' : '-1');
     });
     const cont = document.getElementById('employed-continue');
     if(cont) cont.classList.add('active');
+    return;
   }
   if(action === 'employed-reset'){
     currentParams = {}; employedChoice = null; renderScreen();
+    return;
+  }
+  if(action === 'close-info-modal'){
+    const modal = document.getElementById('info-modal');
+    if(modal) modal.style.display = 'none';
+    return;
+  }
+  if(action.indexOf('info-') === 0){
+    const key = action.slice(5);
+    const c = infoContent(key);
+    const titleEl = document.getElementById('info-modal-title');
+    const bodyEl = document.getElementById('info-modal-body');
+    const modal = document.getElementById('info-modal');
+    if(titleEl && bodyEl && modal){
+      titleEl.textContent = c.title;
+      bodyEl.textContent = c.body;
+      modal.style.display = 'flex';
+    }
+    return;
   }
 }
 
@@ -1665,26 +2280,19 @@ document.getElementById('screen-body').addEventListener('click', function(e){
 
 document.getElementById('back-btn').addEventListener('click', goBack);
 
-/* ── Keyboard layer (additive) ──────────────────────────────────────────────
-   The prototype implements the employment choices, the provider cards and the
-   back control as non-semantic <div>s. A <div> does not synthesise a click from
-   Enter/Space, so the handlers below forward to each element's existing click
-   path. Because that synthesis is one-way, nothing double-fires, and none of
-   the prototype's own handlers, markup order, styling or calculations change.
-   ────────────────────────────────────────────────────────────────────────── */
+/* ── Keyboard layer (additive) ─────────────────────────────────────────────
+   The employment choices, the provider cards and the back control are
+   non-semantic <div>s. A <div> does not synthesise a click from Enter/Space,
+   so the handlers below forward to each element's existing click path. That
+   synthesis is one-way, so nothing double-fires and none of the prototype's
+   own handlers, markup order, styling or calculations change.
+   ───────────────────────────────────────────────────────────────────────── */
 function pvIsActivationKey(e){ return e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar'; }
 
 document.getElementById('screen-body').addEventListener('keydown', function(e){
   const el = e.target.closest('[role="radio"], [role="button"]');
   if(!el) return;
-
-  if(pvIsActivationKey(e)){
-    e.preventDefault();               // Space would otherwise scroll the page
-    el.click();                       // reuse the existing delegated click handler
-    return;
-  }
-
-  /* Roving arrow-key navigation inside the employment radiogroup. */
+  if(pvIsActivationKey(e)){ e.preventDefault(); el.click(); return; }
   if(el.getAttribute('role') !== 'radio') return;
   if(['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].indexOf(e.key) === -1) return;
   e.preventDefault();
@@ -1692,8 +2300,7 @@ document.getElementById('screen-body').addEventListener('keydown', function(e){
     el.closest('[role="radiogroup"]').querySelectorAll('[role="radio"]'));
   const step = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : -1;
   const next = group[(group.indexOf(el) + step + group.length) % group.length];
-  next.focus();
-  next.click();                       // arrow keys move and select, per the radiogroup pattern
+  next.focus(); next.click();
 });
 
 document.getElementById('back-btn').addEventListener('keydown', function(e){
@@ -1703,11 +2310,44 @@ document.getElementById('back-btn').addEventListener('keydown', function(e){
 
 /* =========================================================================
    INIT
+
+   Development-only overrides, read from the query string. Nothing here is
+   reachable from the preview's own UI: the investor-facing flow always loads
+   the default combined path below. These exist so QA can reach the EWA-only
+   path, the later-assessment fee tiers and the failure/decline screens
+   without a simulator button on the phone.
+
+     ?pvEarned=300      earned-so-far, drives the Already Earned / Borrowed Extra split
+     ?pvAmount=650      requested amount
+     ?pvFirst=0         0 = a later assessment, so the $20 / $35 tiers apply
+     ?pvScreen=no-offers   jump straight to any screen, including failure states
+     ?pvReason=BELOW_MIN_AMOUNT   decline reason for the no-offers screen
+
+   The prototype's own location.hash routing was removed: on the website the
+   hash belongs to the page's nav anchors.
 ========================================================================= */
 (function init(){
+  let q;
+  try { q = new URLSearchParams(window.location.search); } catch(e){ q = null; }
+  if(q){
+    const num = (k)=>{ const v = parseInt(q.get(k), 10); return isNaN(v) ? null : v; };
+    const earned = num('pvEarned'); if(earned !== null) STATE.earnedSoFar = earned;
+    const amount = num('pvAmount'); if(amount !== null) STATE.requestedAmount = amount;
+    if(q.get('pvFirst') !== null) STATE.isFirstLoan = q.get('pvFirst') !== '0';
+    STATE.requestedAmount = Math.max(MIN_LOAN, Math.min(STATE.requestedAmount, maxOffer()));
+    const screen = q.get('pvScreen');
+    if(screen && SCREENS[screen]){
+      current = screen;
+      const reason = q.get('pvReason');
+      if(reason && REASON_MSG[reason]) currentParams = { reason: reason };
+      if(screen === 'conn-failed') currentParams = { context:'payroll' };
+    }
+  }
   renderScreen();
 })();
+
 })();
+
 
 /* Pay-period progress fill, mirrors production's load-triggered animation (#p-bar-fill) */
 window.addEventListener('load', function(){
